@@ -4,7 +4,7 @@ title:      排序算法(JavaScript版)
 subtitle:   排序算法(JavaScript版)
 date:       2016-11-10
 author:     Reborn
-header-img: https://blog.raymontech.top/img/post-bg-universe.jpg
+header-img: img/post-bg-universe.jpg
 catalog: true
 tags:
     - Alg
