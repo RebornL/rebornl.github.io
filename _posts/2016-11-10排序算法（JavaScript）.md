@@ -16,7 +16,7 @@ tags:
 ## 前话
 最近在做面试题和去面试的时候，都有被问到排序算法的内容。因此，特意记录一下。
 
-![algorithm](https://blog.raymontech.top/img/algorithm.png)
+![algorithm](https://blog.raymondtech.top/img/algorithm.png)
 
 ## 冒泡排序
 原理：重复的走过需要排序的序列，然后一次比较两个元素，按照大小交换他们的位置，直到排序完成
