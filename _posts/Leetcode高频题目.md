@@ -247,7 +247,7 @@ public int maxArea(int[] height) {
 输出: false
 ```
 
-> 这个思路也是很简单，直接使用栈，用于存储左括号，遇到右括号就弹出
+> 这个思路也是很简单，直接使用栈，用于存储左括号，遇到右括号就弹出，采用HashMap保存，左括号为key，右括号为value，利用HashMap的containsKey判断是否为左括号。
 
 ```java
 public boolean isValid(String s) {
@@ -273,6 +273,409 @@ public boolean isValid(String s) {
     }
 
     return stack.isEmpty();
+}
+```
+
+## 21. 合并两个有序链表
+
+将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+
+**示例：**
+
+```
+输入：1->2->4, 1->3->4
+输出：1->1->2->3->4->4
+```
+
+> 思路也很简单，就是采用归并排序或者简单不省内存，先构建一个有序数组，再构建链表
+
+```java
+public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        //写一种通用的解法，采用小顶堆，用在两个链表中会超时
+//        PriorityQueue<Integer> heap = new PriorityQueue<>();
+//        while (l1 != null) {
+//            heap.add(l1.val);
+//        }
+//        while (l2 != null) {
+//            heap.add(l2.val);
+//        }
+//
+//        ListNode newHead = new ListNode(-1);
+//        ListNode temp = newHead;
+//        while (!heap.isEmpty()) {
+//            temp.next = new ListNode(heap.poll());
+//            temp = temp.next;
+//        }
+//
+//        return newHead.next;
+
+    //对于两个链表，采用简单的方式，不会超时，4ms
+    ArrayList<Integer> arr = new ArrayList<>();
+    while (l1 !=null && l2 != null) {
+        if (l1.val < l2.val) {
+            arr.add(l1.val);
+            l1 = l1.next;
+        } else {
+            arr.add(l2.val);
+            l2 = l2.next;
+        }
+    }
+
+    while (l1 != null) {
+        arr.add(l1.val);
+        l1 = l1.next;
+    }
+
+    while (l2 != null) {
+        arr.add(l2.val);
+        l2 = l2.next;
+    }
+
+    // int size = arr.size();
+    ListNode newHead = new ListNode(-1);
+    ListNode temp = newHead;
+    for (int num: arr) {
+        temp.next = new ListNode(num);
+        temp = temp.next;
+    }
+
+    return newHead.next;
+}
+```
+
+## 22. 括号生成
+
+给出 *n* 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且**有效的**括号组合。
+
+例如，给出 *n* = 3，生成结果为：
+
+```
+[
+  "((()))",
+  "(()())",
+  "(())()",
+  "()(())",
+  "()()()"
+]
+```
+
+> 思路：应该怎么说呢，就是采用递归方式，产生排列组合，递归结束的条件就是左右括号生成的字符串长度等于2n，用两个变量分别表示左右括号的数量。
+
+```java
+public List<String> generateParenthesis(int n) {
+    int left = n, right = n;
+    List<String> result = new ArrayList<>();
+    String temp = "(";
+    generate(left - 1, right, result, temp);
+    return result;
+}
+
+public void generate(int left, int right, List<String> result, String temp) {
+    if(left == 0 && right == 0) result.add(temp);
+
+    if(left > 0) {
+        generate(left-1, right, result, temp+"(");
+    }
+
+    if(right > 0 && right > left) {//要在有左括号的情况，才能添加右括号
+        generate(left, right-1, result, temp+")");
+    }
+
+}
+```
+
+## 46. 全排列
+
+给定一个**没有重复**数字的序列，返回其所有可能的全排列。
+
+**示例:**
+
+```
+输入: [1,2,3]
+输出:
+[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+```
+
+> 还是回溯法
+
+```java
+public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        
+        if(nums == null && nums.length == 0) return result;
+
+        exchange(nums, 0, result);
+
+        return result;
+    }
+
+    public void exchange(int[] nums, int index, List<List<Integer>> result) {
+        if(index == nums.length-1) {
+            List<Integer> temp = new ArrayList<>(nums.length);
+            for(int n: nums) {
+                temp.add(n);
+            }
+            result.add(temp);
+            return;
+        }
+
+        for(int i = index; i < nums.length; i++) {
+            swap(nums, index, i);//跟后面的元素交换
+            exchange(nums, index+1, result);//探索下一种情况
+            swap(nums, i, index);//交换，恢复回来的顺序，再去跟后面的其他元素交换，即固定在一个位置上不断跟其他元素进行交换
+        }
+    }
+
+    public void swap(int[] nums, int i, int j) {
+        int num = nums[i];
+        nums[i] = nums[j];
+        nums[j] = num;
+    }
+```
+
+第二种回溯比较简洁，利用标志位判断是否遍历过。
+
+```java
+public List<List<Integer>> permute(int[] nums) {
+    //第二种做法
+    if (nums == null || nums.length == 0) return new ArrayList<>();
+
+    List<List<Integer>> result = new ArrayList<>();
+    List<Integer> temp = new ArrayList<>();
+    if (nums.length == 1) {
+        temp.add(nums[0]);
+        result.add(temp);
+        return result;
+    }
+
+    boolean[] flags = new boolean[nums.length];
+    permute(nums, flags, temp, result);
+    return result;
+}
+
+private void permute(int[] nums, boolean[] flags, List<Integer> temp, List<List<Integer>> result) {
+    if (temp.size() == nums.length) {
+        result.add(new ArrayList<>(temp));
+    }
+
+    for (int i = 0; i < nums.length; i++) {
+        if (flags[i]) continue;
+        flags[i] = true;
+        temp.add(nums[i]);
+        permute(nums, flags, temp, result);
+        temp.remove(temp.size()-1);
+        flags[i] = false;
+    }
+
+}
+```
+
+## 53. 最大子序和
+
+给定一个整数数组 `nums` ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+
+**示例:**
+
+```
+输入: [-2,1,-3,4,-1,2,1,-5,4],
+输出: 6
+解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+```
+
+```java
+public int maxSubArray(int[] nums) {
+    //这道题有点像贪心算法
+    if (nums == null && nums.length == 0) return 0;
+    if (nums.length == 1) return nums[0];
+
+    int sum = nums[0];
+    int max = nums[0];
+    for (int i = 1; i < nums.length; i++) {
+        if(sum > 0) sum += nums[i];
+        else sum = nums[i];
+
+        max = Math.max(sum, max);
+
+    }
+    System.out.println(max);
+    return max;
+}
+```
+
+## 70.爬楼梯
+
+假设你正在爬楼梯。需要 *n* 阶你才能到达楼顶。
+
+每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+
+**注意：**给定 *n* 是一个正整数。
+
+**示例 1：**
+
+```
+输入： 2
+输出： 2
+解释： 有两种方法可以爬到楼顶。
+1.  1 阶 + 1 阶
+2.  2 阶
+```
+
+**示例 2：**
+
+```
+输入： 3
+输出： 3
+解释： 有三种方法可以爬到楼顶。
+1.  1 阶 + 1 阶 + 1 阶
+2.  1 阶 + 2 阶
+3.  2 阶 + 1 阶
+```
+
+> 跟斐波那契数列类似，推到
+>
+> f(1)=1, f(2)=2, f(3)=f(1)+f(2)=3, f(4) = f(3)+f(2)=5.....
+
+```java
+private int[] f = new int[1024];
+public int climbStairs(int n) {
+    if(f[n]!=0) return f[n];
+    f[0] = 1;
+    f[1] = 1;
+    f[2] = 2;
+    for(int i = 3; i<=n; i++) {
+        f[i] = f[i-1]+f[i-2];
+    }
+    return f[n];
+}
+```
+
+## 94. 二叉树的中序遍历
+
+给定一个二叉树，返回它的*中序* 遍历。
+
+**示例:**
+
+```
+输入: [1,null,2,3]
+   1
+    \
+     2
+    /
+   3
+
+输出: [1,3,2]
+```
+
+> 思路很简单，就按照中序遍历的思想，递归调用比较简洁，非递归调用，可以采用队列暂存节点，当遍历，再把值取出来即可。
+
+```java
+//递归方式
+public List<Integer> inorderTraversal(TreeNode root) {
+    //递归调用方式
+    if (root == null) return result;
+    if (root.left != null) inorderTraversal(root.left);
+    result.add(root.val);
+    if (root.right != null) inorderTraversal(root.right);
+    return result;
+}
+
+//非递归方式
+List<Integer> inorderLoop = new ArrayList<>();
+Deque<TreeNode> nodeQueue = new ArrayDeque<>();
+TreeNode point = root;
+while(point!=null || !nodeQueue.isEmpty()) {
+    // inorderLoop.add(nodeQueue.pop().val);
+    while(point!=null) {
+        nodeQueue.push(point);
+        point = point.left;
+    }
+    TreeNode tmp = nodeQueue.pop();
+    inorderLoop.add(tmp.val);
+    point = tmp.right;
+}
+return inorderLoop;
+```
+
+## 101.对称二叉树
+
+给定一个二叉树，检查它是否是镜像对称的。
+
+例如，二叉树 `[1,2,2,3,4,4,3]` 是对称的。
+
+```
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+```
+
+但是下面这个 `[1,2,2,null,3,null,3]` 则不是镜像对称的:
+
+```
+    1
+   / \
+  2   2
+   \   \
+   3    3
+```
+
+```java
+public boolean isSymmetric(TreeNode root) {
+    if (root == null) return true;
+    if (root.left == null && root.right == null) return true;
+    if (root.left == null || root.right == null) return false;
+
+    return isSymmetric(root.left, root.right);
+}
+
+private boolean isSymmetric(TreeNode left, TreeNode right) {
+    if (left == null && right == null) return true;
+    if (left == null || right == null) return false;
+
+    if (left.val != right.val) return false;
+
+    return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);
+
+}
+```
+
+## 104.二叉树的最大深度
+
+给定一个二叉树，找出其最大深度。
+
+二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+
+**说明:** 叶子节点是指没有子节点的节点。
+
+**示例：**
+给定二叉树 `[3,9,20,null,null,15,7]`，
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+返回它的最大深度 3 。
+
+> 还是递归操作。
+
+```java
+public int maxDepth(TreeNode root) {
+    if (root == null) return 0;
+    if (root.left == null && root.right == null) return 1;
+
+    return Math.max(maxDepth(root.left), maxDepth(root.right))+1;
 }
 ```
 
