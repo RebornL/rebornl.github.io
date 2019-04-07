@@ -679,3 +679,271 @@ public int maxDepth(TreeNode root) {
 }
 ```
 
+
+
+## 110.平衡二叉树
+
+给定一个二叉树，判断它是否是高度平衡的二叉树。
+
+本题中，一棵高度平衡二叉树定义为：
+
+> 一个二叉树*每个节点* 的左右两个子树的高度差的绝对值不超过1。
+
+**示例 1:**
+
+给定二叉树 `[3,9,20,null,null,15,7]`
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+返回 `true` 。
+
+**示例 2:**
+
+给定二叉树 `[1,2,2,3,3,null,null,4,4]`
+
+```
+       1
+      / \
+     2   2
+    / \
+   3   3
+  / \
+ 4   4
+```
+
+返回 `false` 。
+
+> 这道题考察就是递归的使用获取树的最大高度。
+
+```java
+public boolean isBalanced(TreeNode root) {
+    if(root == null) return true;
+    if(root.left == null && root.right == null) return true;
+
+    int left = getHeight(root.left);
+    int right = getHeight(root.right);
+
+    if (Math.abs(left-right) <= 1) return isBalanced(root.left) && isBalanced(root.right);
+    else return false;
+
+}
+
+private int getHeight(TreeNode root) {
+    if(root == null) return 0;
+    if(root.left == null && root.right == null) return 1;
+
+    return Math.max(getHeight(root.left), getHeight(root.right))+1;
+}
+```
+
+
+
+## 111. 二叉树的最小深度
+
+给定一个二叉树，找出其最小深度。
+
+最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
+
+**说明:** 叶子节点是指没有子节点的节点。
+
+**示例:**
+
+给定二叉树 `[3,9,20,null,null,15,7]`,
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+> 思路：同上一题类似，但是要考虑题目说的从根节点到叶子节点的最短路径。
+
+```java
+public int minDepth(TreeNode root) {
+        return getHeight(root);
+
+    }
+
+    private int getHeight(TreeNode root) {
+        if(root == null) return 0;
+        if(root.left == null && root.right == null) return 1;
+        
+        int left, right;
+        if(root.left == null) left = Integer.MAX_VALUE;
+        else left = getHeight(root.left);
+        if(root.right == null) right = Integer.MAX_VALUE;
+        else right = getHeight(root.right);
+        
+        return Math.min(left, right)+1;
+    }
+```
+
+
+
+##  124.二叉树中的最大路径和
+
+给定一个**非空**二叉树，返回其最大路径和。
+
+本题中，路径被定义为一条从树中任意节点出发，达到任意节点的序列。该路径**至少包含一个**节点，且不一定经过根节点。
+
+**示例 1:**
+
+```
+输入: [1,2,3]
+
+       1
+      / \
+     2   3
+
+输出: 6
+```
+
+**示例 2:**
+
+```
+输入: [-10,9,20,null,null,15,7]
+
+   -10
+   / \
+  9  20
+    /  \
+   15   7
+
+输出: 42
+```
+
+> 思路：递归获取在每个节点能获得最大路径和的值，从下往上推，全局变量实时记录所有路径和的最大。
+
+```java
+private int max = Integer.MIN_VALUE;
+    public int maxPathSum(TreeNode root) {
+        // if(root==null) return 0;
+        getMax(root);
+        return max;
+    }
+    
+    private int getMax(TreeNode root) {
+        if(root == null) return 0;
+        int left = getMax(root.left);
+        int right = getMax(root.right);
+        max = Math.max(Math.max(max, left+right+root.val), Math.max(left, right)+root.val);
+        max = Math.max(max, root.val);
+        return Math.max(root.val, Math.max(left, right)+root.val);//返回从该节点能获取的最大值
+    }
+```
+
+
+
+## 136.只出现一次的数字
+
+给定一个**非空**整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+
+**说明：**
+
+你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？
+
+**示例 1:**
+
+```
+输入: [2,2,1]
+输出: 1
+```
+
+**示例 2:**
+
+```
+输入: [4,1,2,1,2]
+输出: 4
+```
+
+> 普通的for循环用在数组上的速度比foreach快一点
+>
+> ^= 相对耗内存一点，num1^num2则相对好一点
+>
+> 思路：两个相同的数字异或为0
+
+```java
+public int singleNumber(int[] nums) {
+    int result = 0;
+    for (int i = 0; i < nums.length; i++) {
+        result = result ^ nums[i];
+    }
+    return result;
+}
+```
+
+
+
+## 141.环形链表
+
+给定一个链表，判断链表中是否有环。
+
+为了表示给定链表中的环，我们使用整数 `pos` 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 `pos` 是 `-1`，则在该链表中没有环。
+
+ 
+
+**示例 1：**
+
+```
+输入：head = [3,2,0,-4], pos = 1
+输出：true
+解释：链表中有一个环，其尾部连接到第二个节点。
+```
+
+![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist.png)
+
+**示例 2：**
+
+```
+输入：head = [1,2], pos = 0
+输出：true
+解释：链表中有一个环，其尾部连接到第一个节点。
+```
+
+![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png)
+
+**示例 3：**
+
+```
+输入：head = [1], pos = -1
+输出：false
+解释：链表中没有环。
+```
+
+![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png)
+
+ 
+
+**进阶：**
+
+你能用 *O(1)*（即，常量）内存解决此问题吗？
+
+> 思路：快慢指针即可，在环中，快慢指针必然相遇。
+
+```java
+public boolean hasCycle(ListNode head) {
+    if(head == null || head.next == null) return false;
+
+    ListNode slow = head, fast = head.next != null ? head.next.next : null;
+    while(slow!=null && fast != null) {
+        if (slow == fast) return true;
+
+        slow = slow.next;
+        if (fast.next != null) fast = fast.next.next;
+        else fast = null;
+    }
+    return false;
+}
+```
+
+
+
+## 
