@@ -946,4 +946,587 @@ public boolean hasCycle(ListNode head) {
 
 
 
-## 
+## 146. LRU缓存机制
+
+运用你所掌握的数据结构，设计和实现一个  [LRU (最近最少使用) 缓存机制](https://baike.baidu.com/item/LRU)。它应该支持以下操作： 获取数据 `get` 和 写入数据 `put` 。
+
+获取数据 `get(key)` - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。
+写入数据 `put(key, value)` - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最近最少使用的数据值，从而为新的数据值留出空间。
+
+**进阶:**
+
+你是否可以在 **O(1)** 时间复杂度内完成这两种操作？
+
+**示例:**
+
+```
+LRUCache cache = new LRUCache( 2 /* 缓存容量 */ );
+
+cache.put(1, 1);
+cache.put(2, 2);
+cache.get(1);       // 返回  1
+cache.put(3, 3);    // 该操作会使得密钥 2 作废
+cache.get(2);       // 返回 -1 (未找到)
+cache.put(4, 4);    // 该操作会使得密钥 1 作废
+cache.get(1);       // 返回 -1 (未找到)
+cache.get(3);       // 返回  3
+cache.get(4);       // 返回  4
+```
+
+> 思路：用HashMap存储Key-Value值，用链表保持顺序，节点插入采用头插法，获取数据后需要将该节点放到头部，插入节点时需要考虑容量大小，当超过时，删除尾节点，在添加新的节点
+
+
+
+## 150. 逆波兰表达式求值
+
+根据[逆波兰表示法](https://baike.baidu.com/item/%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/128437)，求表达式的值。
+
+有效的运算符包括 `+`, `-`, `*`, `/` 。每个运算对象可以是整数，也可以是另一个逆波兰表达式。
+
+**说明：**
+
+- 整数除法只保留整数部分。
+- 给定逆波兰表达式总是有效的。换句话说，表达式总会得出有效数值且不存在除数为 0 的情况。
+
+**示例 1：**
+
+```
+输入: ["2", "1", "+", "3", "*"]
+输出: 9
+解释: ((2 + 1) * 3) = 9
+```
+
+**示例 2：**
+
+```
+输入: ["4", "13", "5", "/", "+"]
+输出: 6
+解释: (4 + (13 / 5)) = 6
+```
+
+> 这个思路很简单，就是用一个栈专门用来存储一个数字，当遇到运算符号时，就弹出栈中前两个数字，进行运算即可，再将其压回栈中。
+
+```java
+public int evalRPN(String[] tokens) {
+    Stack<Integer> s = new Stack<>();
+    int len = tokens.length;
+    int temp1 = 0;
+    int temp2 = 0;
+    for(int i = 0; i < len; i++) {
+        if("*".equals(tokens[i])) {
+            temp1 = s.pop();
+            temp2 = s.pop();
+            s.push(temp1*temp2);
+        } else if("/".equals(tokens[i])) {
+            temp1 = s.pop();
+            temp2 = s.pop();
+            s.push(temp2/temp1);
+        } else if("+".equals(tokens[i])) {
+            temp1 = s.pop();
+            temp2 = s.pop();
+            s.push(temp1+temp2);
+        } else if("-".equals(tokens[i])) {
+            temp1 = s.pop();
+            temp2 = s.pop();
+            s.push(temp2-temp1);
+        } else {
+            s.push(Integer.parseInt(tokens[i]));
+        }
+    }
+    return s.pop();
+}
+```
+
+
+
+## 121. 买卖股票的最佳时机
+
+给定一个数组，它的第 *i* 个元素是一支给定股票第 *i* 天的价格。
+
+如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。
+
+注意你不能在买入股票前卖出股票。
+
+**示例 1:**
+
+```
+输入: [7,1,5,3,6,4]
+输出: 5
+解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格。
+```
+
+**示例 2:**
+
+```
+输入: [7,6,4,3,1]
+输出: 0
+解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
+```
+
+> 思路：记录最小值，计算当前值到最小值的获利
+
+```java
+public int maxProfit(int[] prices) {
+    if (prices == null || prices.length <= 1) return 0;
+
+    int min = prices[0], maxPro = 0;
+    for (int i = 1; i < prices.length; i++) {
+        maxPro = Math.max(prices[i]-min, maxPro);
+        min = Math.min(min, prices[i]);
+    }
+
+    return maxPro;
+}
+```
+
+
+
+## 155.最小栈
+
+设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。
+
+- push(x) -- 将元素 x 推入栈中。
+- pop() -- 删除栈顶的元素。
+- top() -- 获取栈顶元素。
+- getMin() -- 检索栈中的最小元素。
+
+**示例:**
+
+```
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.getMin();   --> 返回 -3.
+minStack.pop();
+minStack.top();      --> 返回 0.
+minStack.getMin();   --> 返回 -2.
+```
+
+> 思路：构造两个栈，一个用于存储数据，另外一个则用来存储最小
+
+```java
+class MinStack {
+
+    Stack<Integer> stack, minStack;
+
+    /** initialize your data structure here. */
+    public MinStack() {
+        stack = new Stack<>();
+        minStack = new Stack<>();
+    }
+
+    public void push(int x) {
+        stack.push(x);
+
+        if (minStack.isEmpty() || minStack.peek()>=x) {
+            minStack.push(x);
+        }
+
+    }
+
+    public void pop() {
+        int popNum = stack.pop();
+        if (minStack.peek()==popNum) {
+            minStack.pop();
+        }
+    }
+
+    public int top() {
+        return stack.peek();
+    }
+
+    public int getMin() {
+        return minStack.peek();
+    }
+}
+```
+
+
+
+## 160.相交链表
+
+编写一个程序，找到两个单链表相交的起始节点。
+
+如下面的两个链表**：**
+
+[![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png)](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png)
+
+在节点 c1 开始相交。
+
+**示例 1：**
+
+[![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_1.png)](https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png)
+
+```
+输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
+输出：Reference of the node with value = 8
+输入解释：相交节点的值为 8 （注意，如果两个列表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+```
+
+**示例 2：**
+
+[![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_2.png)](https://assets.leetcode.com/uploads/2018/12/13/160_example_2.png)
+
+```
+输入：intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+输出：Reference of the node with value = 2
+输入解释：相交节点的值为 2 （注意，如果两个列表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [0,9,1,2,4]，链表 B 为 [3,2,4]。在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。
+```
+
+ 
+
+**示例 3：**
+
+[![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_3.png)](https://assets.leetcode.com/uploads/2018/12/13/160_example_3.png)
+
+```
+输入：intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+输出：null
+输入解释：从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。
+解释：这两个链表不相交，因此返回 null。
+```
+
+**注意：**
+
+- 如果两个链表没有交点，返回 `null`.
+- 在返回结果后，两个链表仍须保持原有的结构。
+- 可假定整个链表结构中没有循环。
+- 程序尽量满足 O(*n*) 时间复杂度，且仅用 O(*1*) 内存。
+
+>思路：这道题的想法跟有环的链表类似。设A从初始节点到相交点的距离为a，B从初始节点到相交节点的距离为b，公共节点为c，相交的话必然有a+c+b = b+c+a。
+
+```java
+public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    ListNode l1 = headA, l2 = headB;
+    while (l1 != l2) {
+        l1 = (l1 == null) ? headB : l1.next;
+        l2 = (l2 == null) ? headA : l2.next;
+    }
+    return l1;
+}
+```
+
+
+
+## 169.求众数
+
+给定一个大小为 *n* 的数组，找到其中的众数。众数是指在数组中出现次数**大于** `⌊ n/2 ⌋` 的元素。
+
+你可以假设数组是非空的，并且给定的数组总是存在众数。
+
+**示例 1:**
+
+```
+输入: [3,2,3]
+输出: 3
+```
+
+**示例 2:**
+
+```
+输入: [2,2,1,1,1,2,2]
+输出: 2
+```
+
+> 可以排序后，获取中间值，也可以通过计数的方式获得众数
+
+```java
+public int majorityElement(int[] nums) {
+	int count = 0, result = nums[0];
+    for(int num: nums) {
+        if (count == 0) {
+            result = num;
+            count++;
+        } else {
+            if(result == num) count++;
+            else count--;
+        }
+    }
+    return result;
+}
+```
+
+
+
+## [198. 打家劫舍](https://leetcode-cn.com/problems/house-robber/)
+
+你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，**如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警**。
+
+给定一个代表每个房屋存放金额的非负整数数组，计算你**在不触动警报装置的情况下，**能够偷窃到的最高金额。
+
+**示例 1:**
+
+```
+输入: [1,2,3,1]
+输出: 4
+解释: 偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
+     偷窃到的最高金额 = 1 + 3 = 4 。
+```
+
+**示例 2:**
+
+```
+输入: [2,7,9,3,1]
+输出: 12
+解释: 偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)，接着偷窃 5 号房屋 (金额 = 1)。
+     偷窃到的最高金额 = 2 + 9 + 1 = 12 。
+```
+
+> 用两个变量记录相隔能获取的最大值，rob为前两间之前能获得最大值，pass为其前一间之前获的最大值
+
+```java
+public int rob(int[] nums) {
+    if (nums == null || nums.length == 0) return 0;
+    if (nums.length <= 2) return nums.length == 1 ? nums[0] : Math.max(nums[1], nums[0]);
+
+    int rob = nums[0], pass = Math.max(nums[1], nums[0]);
+    for (int i = 2; i < nums.length; i++) {
+        int temp = pass;
+        pass = Math.max(pass, rob+nums[i]);
+        rob = temp;
+    }
+    return pass;
+
+}
+```
+
+> 摘抄自别的博客，解释的更清楚：解释： 
+> 一看到求最大值最小值或者子字符串种类应该首先想到动态规划，一看这道题目是求money的最大值，使用动态规划一维即可解决，现在主要的难题是求出状态转移方程，题目要求是不能相邻，可得出dp[0]=nums[0]，dp[1] = max(dp[0],dp[1]) 。现在对于第i个数有两种选择要么选要么不选，因此求出选和不选的最大值即可，得dp[i] = max(dp[i-2]+nums[i],dp[i-1])
+
+
+
+## [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
+
+反转一个单链表。
+
+**示例:**
+
+```
+输入: 1->2->3->4->5->NULL
+输出: 5->4->3->2->1->NULL
+```
+
+**进阶:**
+你可以迭代或递归地反转链表。你能否用两种方法解决这道题？
+
+> 头插法实现迭代反转翻转
+
+```java
+public ListNode reverseList(ListNode head) {
+    if (head == null || head.next == null) return head;
+
+    ListNode temp1 = null;
+    ListNode node = head;
+    ListNode next = null;
+    while (node != null) {
+        next = node.next;
+        node.next = temp1;
+        temp1 = node;
+        node = next;
+    }
+
+    return temp1;
+}
+```
+
+
+
+## 226.翻转二叉树
+
+翻转一棵二叉树。
+
+**示例：**
+
+输入：
+
+```
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+```
+
+输出：
+
+```
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+```
+
+```java
+public TreeNode invertTree(TreeNode root) {
+    if (root == null) return root;
+    if (root.left == null && root.right == null) return root;
+
+    TreeNode left = root.left;
+    root.left = root.right;
+    root.right = left;
+    invertTree(root.left);
+    invertTree(root.right);
+    return root;
+}
+```
+
+
+
+## 234.回转链表
+
+请判断一个链表是否为回文链表。
+
+**示例 1:**
+
+```
+输入: 1->2
+输出: false
+```
+
+**示例 2:**
+
+```
+输入: 1->2->2->1
+输出: true
+```
+
+**进阶：**
+你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？
+
+> 使用辅助空间，可以用数组和栈解决。不使用辅助空间的话，可以使用反转链表方式。
+
+```java
+//使用辅助空间
+public boolean isPalindrome(ListNode head) {
+    if (head == null || head.next == null) return true;
+
+    ListNode temp1 = head;
+    Stack<Integer> s = new Stack<>();
+    while (temp1 != null) {
+        s.push(temp1.val);
+        temp1 = temp1.next;
+    }
+
+    int size = s.size();
+    for (int i = 0; i < size/2; i++) {
+        if (!s.get(i).equals(s.pop())) return false;
+    }
+
+    return s.size()==size/2 || s.size()==(size/2+1);
+}
+```
+
+```java
+//不使用辅助空间
+public boolean isPalindrome(ListNode head) {
+    if(head == null || head.next == null) {
+        return true;
+    }
+
+    ListNode p1 = head;
+    ListNode p2 = head;
+    //快慢指针寻找重点
+    while(p2.next != null && p2.next.next != null) {
+        p1 = p1.next;
+        p2 = p2.next.next;
+    }
+
+    //反转后半段链表
+    p1 = p1.next;
+    ListNode prev = null;
+    while(p1 != null) {
+        ListNode temp = p1.next;
+        p1.next = prev;
+        prev = p1;
+        p1 = temp;
+    }
+
+    //prev指向尾节点
+    p1 = prev;
+    p2 = head;
+    while(p1 != null && p2 != null) {
+        if(p1.val != p2.val) {
+            return false;
+        }
+        p1 = p1.next;
+        p2 = p2.next;
+    }
+
+    return p1==null;
+}
+```
+
+
+
+## [238. 除自身以外数组的乘积](https://leetcode-cn.com/problems/product-of-array-except-self/)
+
+给定长度为 *n* 的整数数组 `nums`，其中 *n* > 1，返回输出数组 `output` ，其中 `output[i]` 等于 `nums` 中除 `nums[i]` 之外其余各元素的乘积。
+
+**示例:**
+
+```
+输入: [1,2,3,4]
+输出: [24,12,8,6]
+```
+
+**说明:** 请**不要使用除法，**且在 O(*n*) 时间复杂度内完成此题。
+
+**进阶：**你可以在常数空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组**不被视为**额外空间。）
+
+```java
+public int[] productExceptSelf(int[] nums) {
+    int[] result = new int[nums.length];
+    // Arrays.fill(result, 1);
+    result[0] = 1;
+    for (int i = 1; i < nums.length; i++) {
+        result[i] = result[i-1]*nums[i-1];//获取相乘的结果
+    }
+    int temp = 1;
+    for (int i = nums.length-2; i >= 0; i--) {
+        temp *= nums[i+1];
+        result[i] *= temp;
+    }
+    return result;
+}
+```
+
+
+
+## [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/)
+
+给定一个数组 `nums`，编写一个函数将所有 `0` 移动到数组的末尾，同时保持非零元素的相对顺序。
+
+**示例:**
+
+```
+输入: [0,1,0,3,12]
+输出: [1,3,12,0,0]
+```
+
+**说明**:
+
+1. 必须在原数组上操作，不能拷贝额外的数组。
+2. 尽量减少操作次数。
+
+> 思路：就是直接把非零数字往前移，然后剩下的填0	
+
+```java
+public void moveZeroes(int[] nums) {
+    int j = 0;
+    int len = nums.length;
+    for (int i = 0; i<len; i++) {
+        if(nums[i]!=0) {
+            nums[j++] = nums[i];
+        }
+    }
+    while(j < len) {
+        nums[j++] = 0;
+    }
+}
+```
+
+
+
