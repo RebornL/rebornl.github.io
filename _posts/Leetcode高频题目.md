@@ -1705,3 +1705,83 @@ private void countSumWays(int[] nums, int s, int index, int sum) {
 
 
 
+## [543. 二叉树的直径](https://leetcode-cn.com/problems/diameter-of-binary-tree/)
+
+给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过根结点。
+
+**示例 :**
+给定二叉树
+
+```
+          1
+         / \
+        2   3
+       / \     
+      4   5    
+```
+
+返回 **3**, 它的长度是路径 [4,2,1,3] 或者 [5,2,1,3]。
+
+**注意：**两结点之间的路径长度是以它们之间边的数目表示。
+
+> 思路：对于每一个结点，经过它的最长路径的长度 = 它的左子树的最大深度 + 右子树的最大深度。
+
+private int maxDiameter = 0;
+
+```Java
+public int diameterOfBinaryTree(TreeNode root) {
+    if (root == null) return 0;
+    if (root.left == null && root.right == null) return 0;
+
+    maxDepth2(root);
+    return maxDiameter;
+}
+
+private int maxDepth2(TreeNode root) {
+    if (root == null) return 0;
+    if (root.left == null && root.right == null) return 1;
+
+    int left = maxDepth2(root.left);
+    int right = maxDepth2(root.right);
+
+    this.maxDiameter = Math.max(this.maxDiameter, left+right);
+
+    return Math.max(left, right)+1;
+}
+```
+
+
+## [560. 和为K的子数组](https://leetcode-cn.com/problems/subarray-sum-equals-k/)
+
+给定一个整数数组和一个整数 **k，**你需要找到该数组中和为 **k** 的连续的子数组的个数。
+
+**示例 1 :**
+
+```
+输入:nums = [1,1,1], k = 2
+输出: 2 , [1,1] 与 [1,1] 为两种不同的情况。
+```
+
+**说明 :**
+
+1. 数组的长度为 [1, 20,000]。
+2. 数组中元素的范围是 [-1000, 1000] ，且整数 **k** 的范围是 [-1e7, 1e7]。
+
+> 思路：除了暴力搜索之外，还可以使用hashMap来保存得到的sum的次数，key为sum值，value为次数值，查找sum-k在hashmap中是否有对应的值，就知道有没有对应的连续连续数组。
+
+```java
+public int subarraySum(int[] nums, int k) {
+    //HashMap存储出现过的sum
+    HashMap<Integer, Integer> map = new HashMap<>();
+    int sum = 0;
+    int count = 0;
+    for (int num: nums) {
+        sum += num;
+        if (map.containsKey(sum-k)) {
+            count += map.get(sum-k);
+        }
+        map.put(sum, map.getOrDefault(sum, 0)+1);
+    }
+    return count;
+}
+```
