@@ -1530,3 +1530,178 @@ public void moveZeroes(int[] nums) {
 
 
 
+## [338. 比特位计数](https://leetcode-cn.com/problems/counting-bits/)
+
+给定一个非负整数 **num**。对于 **0 ≤ i ≤ num** 范围中的每个数字 **i** ，计算其二进制数中的 1 的数目并将它们作为数组返回。
+
+**示例 1:**
+
+```
+输入: 2
+输出: [0,1,1]
+```
+
+**示例 2:**
+
+```
+输入: 5
+输出: [0,1,1,2,1,2]
+```
+
+> 使用自带的内置函数Integer.bitCount(int n)，可以直接获取二进制1的个数。
+>
+> 第二种方法就是发现规律：result[i] = result[i/2]+(i%2)。
+
+```java
+public int[] countBits(int num) {
+    int[] result = new int[num+1];
+    result[0] = 0;
+    for(int i = 1; i <= num; i++) {
+		result[i] = Integer.bitCount(i);
+        //result[i] = result[i/2]+(i%2);
+    }
+    return result;
+}
+```
+
+
+
+## [448. 找到所有数组中消失的数字](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/)
+
+给定一个范围在  1 ≤ a[i] ≤ *n* ( *n* = 数组大小 ) 的 整型数组，数组中的元素一些出现了两次，另一些只出现一次。
+
+找到所有在 [1, *n*] 范围之间没有出现在数组中的数字。
+
+您能在不使用额外空间且时间复杂度为*O(n)*的情况下完成这个任务吗? 你可以假定返回的数组不算在额外空间内。
+
+**示例:**
+
+```
+输入:
+[4,3,2,7,8,2,3,1]
+
+输出:
+[5,6]
+```
+
+> 思路：新建一个新的数组，数组存储的值代表着下标数字出现的次数，次数为0，即该数字不存在。
+
+```java
+public List<Integer> findDisappearedNumbers(int[] nums) {
+    List<Integer> result = new ArrayList<>();
+    int[] index = new int[nums.length+1];
+    for (int num: nums) {
+        index[num] += 1;
+    }
+    for (int i = 1; i <= nums.length; i++) {
+        if (index[i]==0) result.add(i);
+    }
+    return result;
+}
+```
+
+
+
+
+
+## [463. 岛屿的周长](https://leetcode-cn.com/problems/island-perimeter/)
+
+给定一个包含 0 和 1 的二维网格地图，其中 1 表示陆地 0 表示水域。
+
+网格中的格子水平和垂直方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。
+
+岛屿中没有“湖”（“湖” 指水域在岛屿内部且不和岛屿周围的水相连）。格子是边长为 1 的正方形。网格为长方形，且宽度和高度均不超过 100 。计算这个岛屿的周长。
+
+ 
+
+**示例 :**
+
+> 输入:
+> [[0,1,0,0],
+>  [1,1,1,0],
+>  [0,1,0,0],
+>  [1,1,0,0]]
+>
+> 输出: 16
+>
+> 解释: 它的周长是下面图片中的 16 个黄色的边：
+>
+> ![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/island.png)
+
+> 思路：扩展边界，便于处理边界条件
+
+```java
+public int islandPerimeter(int[][] grid) {
+    int row = grid.length, col = grid[0].length;
+    int[][] newgrid = new int[row+2][col+2];
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            newgrid[i+1][j+1] = grid[i][j];
+        }
+    }
+
+
+    int result = 0;
+    for (int i = 1; i < row+2; i++) {
+        for (int j = 1; j < col+2; j++) {
+            if (newgrid[i][j] == 1){
+                if (newgrid[i-1][j] == 0) result++;// 若1的上边是0，则周长加1
+                if (newgrid[i][j+1] == 0) result++;// 若1的右边是0，则周长加1
+                if (newgrid[i+1][j] == 0) result++;// 若1的下边是0，则周长加1
+                if (newgrid[i][j-1] == 0) result++;// 若1的左边是0，则周长加1
+            }
+        }
+    }
+
+    return result;
+}
+```
+
+
+
+## [494. 目标和](https://leetcode-cn.com/problems/target-sum/)
+
+给定一个非负整数数组，a1, a2, ..., an, 和一个目标数，S。现在你有两个符号 `+` 和 `-`。对于数组中的任意一个整数，你都可以从 `+` 或 `-`中选择一个符号添加在前面。
+
+返回可以使最终数组和为目标数 S 的所有添加符号的方法数。
+
+**示例 1:**
+
+```
+输入: nums: [1, 1, 1, 1, 1], S: 3
+输出: 5
+解释: 
+
+-1+1+1+1+1 = 3
++1-1+1+1+1 = 3
++1+1-1+1+1 = 3
++1+1+1-1+1 = 3
++1+1+1+1-1 = 3
+
+一共有5种方法让最终目标和为3。
+```
+
+> 思路：使用递归（不过看了别人的解答，发现别的耗时都很短，而且思路完全不同）
+
+```java
+private int counter = 0;
+public int findTargetSumWays(int[] nums, int S) {
+    countSumWays(nums, S, 0, 0);
+    return counter;
+}
+
+private void countSumWays(int[] nums, int s, int index, int sum) {
+    if (sum == s && index == nums.length) {
+        counter++;
+    } else {
+        if (index < nums.length) {
+            countSumWays(nums, s, index+1, sum+nums[index]);
+            countSumWays(nums, s, index+1, sum-nums[index]);
+        }
+    }
+
+}
+```
+
+
+
