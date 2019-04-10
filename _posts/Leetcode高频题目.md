@@ -1785,3 +1785,236 @@ public int subarraySum(int[] nums, int k) {
     return count;
 }
 ```
+
+
+
+## [547. 朋友圈](https://leetcode-cn.com/problems/friend-circles/)
+
+班上有 **N** 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。
+
+给定一个 **N \* N** 的矩阵 **M**，表示班级中学生之间的朋友关系。如果M[i][j] = 1，表示已知第 i 个和 j 个学生**互为**朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。
+
+**示例 1:**
+
+```
+输入: 
+[[1,1,0],
+ [1,1,0],
+ [0,0,1]]
+输出: 2 
+说明：已知学生0和学生1互为朋友，他们在一个朋友圈。
+第2个学生自己在一个朋友圈。所以返回2。
+```
+
+**示例 2:**
+
+```
+输入: 
+[[1,1,0],
+ [1,1,1],
+ [0,1,1]]
+输出: 1
+说明：已知学生0和学生1互为朋友，学生1和学生2互为朋友，所以学生0和学生2也是朋友，所以他们三个在一个朋友圈，返回1。
+```
+
+**注意：**
+
+1. N 在[1,200]的范围内。
+2. 对于所有学生，有M\[i][i] = 1。
+3. 如果有M\[i][j] = 1，则有M\[j][i] = 1。
+
+> 思路：使用深度遍历搜索即可，查找到该节点后，得到与之相关联的节点，继续查找该节点
+
+```java
+public int findCircleNum(int[][] M) {
+    boolean[] visit = new boolean[M.length];
+    int count = 0;
+    for (int i = 0; i < M.length; i++) {
+        if (!visit[i]) {
+            count++;
+            visit[i] = true;
+            dfs(M, visit, i);
+        }
+    }
+    return count;
+}
+
+private void dfs(int[][] m, boolean[] visit, int i) {
+    int len = m[i].length;
+    for (int j = 0; j < len; j++) {
+        if (!visit[j] && m[i][j] == 1) {
+            visit[j] = true;//找到与之关联的节点
+            dfs(m, visit, j);//继续查找与该关联节点相连的节点
+        }
+    }
+}
+
+```
+
+
+
+## [572. 另一个树的子树](https://leetcode-cn.com/problems/subtree-of-another-tree/)
+
+给定两个非空二叉树 **s** 和 **t**，检验 **s** 中是否包含和 **t** 具有相同结构和节点值的子树。**s** 的一个子树包括 **s**的一个节点和这个节点的所有子孙。**s** 也可以看做它自身的一棵子树。
+
+**示例 1:**
+给定的树 s:
+
+```
+     3
+    / \
+   4   5
+  / \
+ 1   2
+```
+
+给定的树 t：
+
+```
+   4 
+  / \
+ 1   2
+```
+
+返回 **true**，因为 t 与 s 的一个子树拥有相同的结构和节点值。
+
+**示例 2:**
+给定的树 s：
+
+```
+     3
+    / \
+   4   5
+  / \
+ 1   2
+    /
+   0
+```
+
+给定的树 t：
+
+```
+   4
+  / \
+ 1   2
+```
+
+返回 **false**。
+
+> 对于树结构，常用迭代的方式快速查找
+
+```java
+public boolean isSubtree(TreeNode s, TreeNode t) {
+    boolean result = false;
+    if (s != null && t != null) {
+        if (s.val == t.val) result = equalCheck(s, t);
+        if (!result) {
+            result = isSubtree(s.left, t);
+        }
+        if (!result) {
+            result = isSubtree(s.right, t);
+        }
+    }
+    return result;
+}
+
+private boolean equalCheck(TreeNode s, TreeNode t) {
+    if (s == null && t == null) return true;
+    if (s == null || t == null) return false;
+
+    if (s.val != t.val) return false;
+
+    return equalCheck(s.left, t.left) && equalCheck(s.right, t.right);
+}
+```
+
+#### [581. 最短无序连续子数组](https://leetcode-cn.com/problems/shortest-unsorted-continuous-subarray/)
+
+给定一个整数数组，你需要寻找一个**连续的子数组**，如果对这个子数组进行升序排序，那么整个数组都会变为升序排序。
+
+你找到的子数组应是**最短**的，请输出它的长度。
+
+**示例 1:**
+
+```
+输入: [2, 6, 4, 8, 10, 9, 15]
+输出: 5
+解释: 你只需要对 [6, 4, 8, 10, 9] 进行升序排序，那么整个表都会变为升序排序。
+```
+
+**说明 :**
+
+1. 输入的数组长度范围在 [1, 10,000]。
+2. 输入的数组可能包含**重复**元素 ，所以**升序**的意思是**<=。**
+
+> 发现规律： 
+> 起始点的特征，右边存在小于其的元素； 
+> 终止点的特征，左边存在大于其的元素。
+>
+> (这道题很神奇，一开始都不明白题目的意思，看了别人解释，才知道是要寻找一个起始点【右边比存在一个小于它的】，另外一个终止点【左边元素必然有一个大于它的】)
+
+```java
+public int findUnsortedSubarray(int[] nums) {
+    if (nums == null || nums.length <= 1) return 0;
+
+    int max = nums[0];
+    int min = nums[nums.length-1];
+    int start = 0, end = 0;
+    for (int i = 1; i < nums.length; i++) {
+        max = Math.max(max, nums[i]);
+        if (nums[i]<max) end = i;
+    }
+
+    for (int j = nums.length-2; j >= 0; j--) {
+        min = Math.min(min, nums[j]);
+        if (nums[j]>min) start = j;
+    }
+
+    return end==0? 0 : end-start+1;
+}
+```
+
+
+
+## [617. 合并二叉树](https://leetcode-cn.com/problems/merge-two-binary-trees/)
+
+给定两个二叉树，想象当你将它们中的一个覆盖到另一个上时，两个二叉树的一些节点便会重叠。
+
+你需要将他们合并为一个新的二叉树。合并的规则是如果两个节点重叠，那么将他们的值相加作为节点合并后的新值，否则**不为** NULL 的节点将直接作为新二叉树的节点。
+
+**示例 1:**
+
+```
+输入: 
+	Tree 1                     Tree 2                  
+          1                         2                             
+         / \                       / \                            
+        3   2                     1   3                        
+       /                           \   \                      
+      5                             4   7                  
+输出: 
+合并后的树:
+	     3
+	    / \
+	   4   5
+	  / \   \ 
+	 5   4   7
+```
+
+**注意:** 合并必须从两个树的根节点开始。
+
+> 二叉树的题目常用方法就是递归法。需要考虑好递归的结束条件。
+
+```java
+public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+    if (t1 == null) return t2;
+    if (t2 == null) return t1;
+
+
+    TreeNode root = new TreeNode(t1.val+t2.val);
+    root.left = mergeTrees(t1.left, t2.left);
+    root.right = mergeTrees(t1.right, t2.right);
+    return root;
+}
+```
+
