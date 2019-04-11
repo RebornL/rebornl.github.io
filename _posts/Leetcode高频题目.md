@@ -15,23 +15,21 @@ return [0, 1].
 > 思路：直接用HashMap存储差值，之后遍历找到这个差值即可返回。
 
 ```java
-public int[] twoSum(int[] nums, int target) {
-        
-        Map<Integer, Integer> numToIndex = new HashMap<>();
-        int len = nums.length;
-        int[] result = new int[2];
-        for (int i = 0; i < len; i++) {
-            if (numToIndex.containsKey(nums[i])) {
-                result[0] = numToIndex.get(nums[i]);
-                result[1] = i;
-                return result;
-            } else {
-                numToIndex.put(target-nums[i], i);
-            }
+public int[] twoSum(int[] nums, int target) {      
+    Map<Integer, Integer> numToIndex = new HashMap<>();
+    int len = nums.length;
+    int[] result = new int[2];
+    for (int i = 0; i < len; i++) {
+        if (numToIndex.containsKey(nums[i])) {
+            result[0] = numToIndex.get(nums[i]);
+            result[1] = i;
+            return result;
+        } else {
+            numToIndex.put(target-nums[i], i);
         }
-        return new int[2];
     }
-
+    return new int[2];
+}
 ```
 
 ## 002 Add Two Numbers
@@ -110,9 +108,9 @@ public int lengthOfLongestSubstring(String s) {
             //跳过重复的字符串，重新设定新的head
             head = Math.max(hashMap.get(s.charAt(i))+1, head);
         }
-        
+        //实时更新最长不重复字符串
         max = Math.max(i-head+1, max);
-        
+        //重置每个字符最后出现的位置
         hashMap.put(s.charAt(i), i);
     }
     
@@ -1566,6 +1564,105 @@ public int[] countBits(int num) {
 
 
 
+## [394. 字符串解码](https://leetcode-cn.com/problems/decode-string/)
+
+给定一个经过编码的字符串，返回它解码后的字符串。
+
+编码规则为: `k[encoded_string]`，表示其中方括号内部的 *encoded_string* 正好重复 *k* 次。注意 *k* 保证为正整数。
+
+你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。
+
+此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 *k* ，例如不会出现像 `3a` 或 `2[4]` 的输入。
+
+**示例:**
+
+```
+s = "3[a]2[bc]", 返回 "aaabcbc".
+s = "3[a2[c]]", 返回 "accaccacc".
+s = "2[abc]3[cd]ef", 返回 "abcabccdcdcdef".
+```
+
+> 思路：利用栈，一个栈存储数字，另一个栈存储字符串，遇到数字时，将其存储到数字栈中，遇到'['开始遇到需要重复的字段，将原有字符串暂存到字符串栈中，遇到']'，取出字符串栈中缓存的字符串，添加需要重复的字符串。
+
+```java
+public String decodeString(String s) {
+    int len = s.length();
+    int index = 0;
+    Stack<Integer> repeatStack = new Stack<>();
+    Stack<String> strStack = new Stack<>();
+    String res = "";
+    while (index < len) {
+        if (Character.isDigit(s.charAt(index))) {
+            int repeat = 0;
+            while (Character.isDigit(s.charAt(index))) {
+                repeat = repeat*10 + Integer.parseInt(s.substring(index, index+1));
+                index++;
+            }
+            repeatStack.add(repeat);
+        } else if (s.charAt(index)=='[') {
+            strStack.add(res);
+            res = "";
+            index++;
+        } else if (s.charAt(index)==']') {
+            StringBuilder temp = new StringBuilder(strStack.pop());
+            int repeat = repeatStack.pop();
+            while (repeat-->0) temp.append(res);
+            res = temp.toString();
+            index++;
+        } else {
+            res += s.charAt(index++);
+        }
+    }
+    return res;
+}
+```
+
+
+
+
+
+
+
+## [406. 根据身高重建队列](https://leetcode-cn.com/problems/queue-reconstruction-by-height/)
+
+假设有打乱顺序的一群人站成一个队列。 每个人由一个整数对`(h, k)`表示，其中`h`是这个人的身高，`k`是排在这个人前面且身高大于或等于`h`的人数。 编写一个算法来重建这个队列。
+
+**注意：**
+总人数少于1100人。
+
+**示例**
+
+```
+输入:
+[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]
+
+输出:
+[[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]
+```
+
+> 首先进行排序，身高按照降序排列，k按照升序排列，最后按照排序后列表，根据k插入到列表中
+
+```java
+public int[][] reconstructQueue(int[][] people) {
+    if(people == null || people.length == 0) return new int[0][];
+    Arrays.sort(people, new Comparator<int[]>() {
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return o1[0]==o2[0] ? o1[1]-o2[1] : o2[0]-o1[1];
+        }
+    });//建议使用Comparator，速度比lambda更快
+    ArrayList<int[]> result = new ArrayList<>();
+    for(int[] p : people) {
+        result.add(p[1], p);
+    }
+    return result.toArray(new int[result.size()][]);
+}
+```
+
+
+
+
+
 ## [416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/)
 
 给定一个**只包含正整数**的**非空**数组。是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。
@@ -1647,12 +1744,6 @@ private boolean dfs(int[] nums, int index, int sum) {
     return dfs(nums, index-1, sum-nums[index]) || dfs(nums, index-1, sum);
 }
 ```
-
-
-
-
-
-
 
 
 
