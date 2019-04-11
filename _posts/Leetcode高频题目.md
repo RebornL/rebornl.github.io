@@ -1566,6 +1566,221 @@ public int[] countBits(int num) {
 
 
 
+## [416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/)
+
+给定一个**只包含正整数**的**非空**数组。是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。
+
+**注意:**
+
+1. 每个数组中的元素不会超过 100
+2. 数组的大小不会超过 200
+
+**示例 1:**
+
+```
+输入: [1, 5, 11, 5]
+
+输出: true
+
+解释: 数组可以分割成 [1, 5, 5] 和 [11].
+```
+
+**示例 2:**
+
+```
+输入: [1, 2, 3, 5]
+
+输出: false
+
+解释: 数组不能分割成两个元素和相等的子集.
+```
+
+> 可以使用动态规划，dp\[i][j]表示的是前面i在包的大小为j的情况能获得的最大值。
+>
+> 另外一种比较简答是的是采用DFS深度搜索遍历。
+
+```java
+public boolean canPartition(int[] nums) {
+    int sum=0;
+    for(int i=0;i<nums.length;i++) {
+        sum+=nums[i];
+    }
+    if (sum % 2 == 1) return false;
+    sum /= 2;
+    int n = nums.length;
+    int[][] dp = new int[n][sum+1];
+    for (int i = nums[0]; i <= sum; i++) {
+        dp[0][i] = nums[0];//从0开始计数， 从0开始的最大可获得的价值，只有nums[0]
+    }
+	//采用动态规划的方法
+    for (int i = 1; i < n; i++) {
+        for (int j = nums[i]; j <= sum; j++) {
+            dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-nums[i]]+nums[i]);//这里判断取不取当前的商品，不取为dp[i-1][j]
+        }
+    }
+
+    return dp[n-1][sum] == sum;//最后判断前n件中的获取的商品的值是否为有等于sum,其实是一半
+}
+```
+
+```java
+//dfs方式
+public boolean canPartition(int[] nums) {
+    int sum=0;
+    for(int i=0;i<nums.length;i++) {
+        sum+=nums[i];
+    }
+    if (sum % 2 == 1) return false;
+    sum /= 2;
+    int n = nums.length;
+
+    return dfs(nums, nums.length-1, sum);
+}
+
+private boolean dfs(int[] nums, int index, int sum) {
+    if(sum == 0) return true;
+
+    if(index < 0 || sum < 0 || sum < nums[index]) {
+        return false;
+    }
+
+    return dfs(nums, index-1, sum-nums[index]) || dfs(nums, index-1, sum);
+}
+```
+
+
+
+
+
+
+
+
+
+## [437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)
+
+给定一个二叉树，它的每个结点都存放着一个整数值。
+
+找出路径和等于给定数值的路径总数。
+
+路径不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。
+
+二叉树不超过1000个节点，且节点数值范围是 [-1000000,1000000] 的整数。
+
+**示例：**
+
+```
+root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
+
+      10
+     /  \
+    5   -3
+   / \    \
+  3   2   11
+ / \   \
+3  -2   1
+
+返回 3。和等于 8 的路径有:
+
+1.  5 -> 3
+2.  5 -> 2 -> 1
+3.  -3 -> 11
+```
+
+```java
+public int pathSum(TreeNode root, int sum) {
+    if (root == null) return 0;
+    return checkPathSum(root, sum)+pathSum(root.left, sum)+pathSum(root.right, sum);
+}
+
+private int checkPathSum(TreeNode root, int sum) {
+    int res = 0;
+
+    if (root == null) return res;
+    if (sum == root.val) {
+        res++;
+    }
+
+    res += checkPathSum(root.left, sum-root.val);
+    res += checkPathSum(root.right, sum-root.val);
+
+    return res;
+}
+```
+
+
+
+
+
+## [438. 找到字符串中所有字母异位词](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/)
+
+给定一个字符串 **s** 和一个非空字符串 **p**，找到 **s** 中所有是 **p** 的字母异位词的子串，返回这些子串的起始索引。
+
+字符串只包含小写英文字母，并且字符串 **s** 和 **p** 的长度都不超过 20100。
+
+**说明：**
+
+- 字母异位词指字母相同，但排列不同的字符串。
+- 不考虑答案输出的顺序。
+
+**示例 1:**
+
+```
+输入:
+s: "cbaebabacd" p: "abc"
+
+输出:
+[0, 6]
+
+解释:
+起始索引等于 0 的子串是 "cba", 它是 "abc" 的字母异位词。
+起始索引等于 6 的子串是 "bac", 它是 "abc" 的字母异位词。
+```
+
+ **示例 2:**
+
+```
+输入:
+s: "abab" p: "ab"
+
+输出:
+[0, 1, 2]
+
+解释:
+起始索引等于 0 的子串是 "ab", 它是 "ab" 的字母异位词。
+起始索引等于 1 的子串是 "ba", 它是 "ab" 的字母异位词。
+起始索引等于 2 的子串是 "ab", 它是 "ab" 的字母异位词。
+```
+
+```java
+public List<Integer> findAnagrams(String s, String p) {
+    if(p.length() > s.length()) return new ArrayList<>();
+
+    List<Integer> result = new ArrayList<>();
+    int[] arr = new int[26];//记录p中出现的字母
+    int len = p.length();
+    for (int i = 0; i < len; i++) {
+        arr[p.charAt(i)-'a'] += 1;
+    }
+
+    int[] temp = arr;
+    for (int i = 0; i < s.length()-len+1; i++) {
+        arr = temp.clone();
+        if (arr[s.charAt(i)-'a']==0) continue;
+        else {
+            for (int j = i; j < i+len; j++) {
+                if (arr[s.charAt(j)-'a']==0) break;
+                else arr[s.charAt(j)-'a'] -= 1;
+                if (j==i+len-1) result.add(i);
+            }
+        }
+    }
+
+    return result;
+}
+```
+
+
+
 ## [448. 找到所有数组中消失的数字](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/)
 
 给定一个范围在  1 ≤ a[i] ≤ *n* ( *n* = 数组大小 ) 的 整型数组，数组中的元素一些出现了两次，另一些只出现一次。
@@ -1705,6 +1920,61 @@ private void countSumWays(int[] nums, int s, int index, int sum) {
 
 
 
+## [538. 把二叉搜索树转换为累加树](https://leetcode-cn.com/problems/convert-bst-to-greater-tree/)
+
+给定一个二叉搜索树（Binary Search Tree），把它转换成为累加树（Greater Tree)，使得每个节点的值是原来的节点值加上所有大于它的节点值之和。
+
+**例如：**
+
+```
+输入: 二叉搜索树:
+              5
+            /   \
+           2     13
+
+输出: 转换为累加树:
+             18
+            /   \
+          20     13
+```
+
+> 思路：中序遍历
+
+```java
+
+
+private int sum = 0;
+public TreeNode convertBST(TreeNode root) {
+    if (root == null) return root;
+
+    inorderSum(root);
+    inorderConvertBST(root);
+    return root;
+}
+
+private void inorderConvertBST(TreeNode root) {
+    if (root == null) return;
+
+    inorderConvertBST(root.left);
+    int temp = root.val;
+    root.val = sum;
+    sum -= temp;
+    inorderConvertBST(root.right);
+}
+
+private void inorderSum(TreeNode root) {
+    if (root == null) return;
+    inorderSum(root.left);
+    sum+=root.val;
+    inorderSum(root.right);
+
+}
+```
+
+
+
+
+
 ## [543. 二叉树的直径](https://leetcode-cn.com/problems/diameter-of-binary-tree/)
 
 给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过根结点。
@@ -1726,9 +1996,8 @@ private void countSumWays(int[] nums, int s, int index, int sum) {
 
 > 思路：对于每一个结点，经过它的最长路径的长度 = 它的左子树的最大深度 + 右子树的最大深度。
 
-private int maxDiameter = 0;
-
 ```Java
+private int maxDiameter = 0;
 public int diameterOfBinaryTree(TreeNode root) {
     if (root == null) return 0;
     if (root.left == null && root.right == null) return 0;
@@ -2015,6 +2284,175 @@ public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
     root.left = mergeTrees(t1.left, t2.left);
     root.right = mergeTrees(t1.right, t2.right);
     return root;
+}
+```
+
+
+
+## [621. 任务调度器](https://leetcode-cn.com/problems/task-scheduler/)
+
+给定一个用字符数组表示的 CPU 需要执行的任务列表。其中包含使用大写的 A - Z 字母表示的26 种不同种类的任务。任务可以以任意顺序执行，并且每个任务都可以在 1 个单位时间内执行完。CPU 在任何一个单位时间内都可以执行一个任务，或者在待命状态。
+
+然而，两个**相同种类**的任务之间必须有长度为 **n** 的冷却时间，因此至少有连续 n 个单位时间内 CPU 在执行不同的任务，或者在待命状态。
+
+你需要计算完成所有任务所需要的**最短时间**。
+
+**示例 1：**
+
+```
+输入: tasks = ["A","A","A","B","B","B"], n = 2
+输出: 8
+执行顺序: A -> B -> (待命) -> A -> B -> (待命) -> A -> B.
+```
+
+**注：**
+
+1. 任务的总个数为 [1, 10000]。
+2. n 的取值范围为 [0, 100]。
+
+> 思路只需要考虑出现频率最多的任务，对其进行安排即可得到最短时间，在冷却时间插入其他任务。
+
+```java
+public int leastInterval(char[] tasks, int n) {
+    int[] count = new int[26];
+
+    for(char task: tasks) {
+        count[task-'A']++;
+    }
+
+    Arrays.sort(count);
+    int highIndex = 25;//判断有多少个相同频率的字符
+
+    while(highIndex >= 0 && count[25]==count[highIndex]) {
+        highIndex--;
+    }
+    //只需要考虑出现的最多的任务需要的次数即可,(count[25]-1)*(n+1)是至少需要出现的次数，而25-highIndex则是出现最多次数的任务最后执行的次数。
+    return Math.max((count[25]-1)*(n+1)+25-highIndex, tasks.length);
+}
+```
+
+
+
+## [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/)
+
+给定一个字符串，你的任务是计算这个字符串中有多少个回文子串。
+
+具有不同开始位置或结束位置的子串，即使是由相同的字符组成，也会被计为是不同的子串。
+
+**示例 1:**
+
+```
+输入: "abc"
+输出: 3
+解释: 三个回文子串: "a", "b", "c".
+```
+
+**示例 2:**
+
+```
+输入: "aaa"
+输出: 6
+说明: 6个回文子串: "a", "a", "a", "aa", "aa", "aaa".
+```
+
+**注意:**
+
+1. 输入的字符串长度不会超过1000。
+
+```java
+//version1: 使用两重循环
+public int countSubstrings(String s) {
+    int len = s.length();
+    if (len == 0) return 0;
+    boolean[][] paliFlags = new boolean[len][len];
+    for (int i = 0; i < len; i++) {
+        for (int j = i; j < len; j++) {
+            if (i==j) paliFlags[i][j] = true;
+            else checkPali(s, paliFlags, i, j);
+        }
+    }
+    int count = 0;
+    for (int i = 0; i < len; i++) {
+        for (int j = 0; j < len; j++) {
+            if (paliFlags[i][j]) count++;
+        }
+    }
+    return count;
+}
+
+private void checkPali(String s, boolean[][] paliFlags, int i, int j) {
+    int left = i, right = j;
+    while (left <= right) {
+        if (s.charAt(left++) != s.charAt(right--)) return;
+    }
+    paliFlags[i][j] = true;
+
+}
+```
+
+```java
+//version2：更节约时间
+private int count = 0;
+public int countSubstrings(String s) {
+    int len = s.length();
+    if (len == 0) return 0;
+    for (int i = 0; i < len; i++) {
+        checkPali(s, i, i);
+        checkPali(s, i, i+1);
+    }
+    return count;
+}
+
+private void checkPali(String s, int i, int j) {
+    while (i >= 0 && j < s.length() && s.charAt(i) == s.charAt(j)) {
+        count++;
+        i--;
+        j++;
+    }
+}
+```
+
+
+
+## [771. 宝石与石头](https://leetcode-cn.com/problems/jewels-and-stones/)
+
+ 给定字符串`J` 代表石头中宝石的类型，和字符串 `S`代表你拥有的石头。 `S` 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。
+
+`J` 中的字母不重复，`J` 和 `S`中的所有字符都是字母。字母区分大小写，因此`"a"`和`"A"`是不同类型的石头。
+
+**示例 1:**
+
+```
+输入: J = "aA", S = "aAAbbbb"
+输出: 3
+```
+
+**示例 2:**
+
+```
+输入: J = "z", S = "ZZ"
+输出: 0
+```
+
+**注意:**
+
+- `S` 和 `J` 最多含有50个字母。
+-  `J` 中的字符不重复。
+
+> 思路：直接统计S中字母出现次数，然后再把J中出现的字母的次数加起来即可。
+
+```java
+public int numJewelsInStones(String J, String S) {
+    int[] arr = new int[58];
+    int len = S.length();
+    for (int i = 0; i < len; i++) {
+        arr[S.charAt(i)-'A'] += 1;
+    }
+    int count = 0;
+    for(int i = 0; i < J.length(); i++) {
+        count += arr[J.charAt(i)-'A'];
+    }
+    return count;
 }
 ```
 
