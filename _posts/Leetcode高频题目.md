@@ -1528,6 +1528,109 @@ public void moveZeroes(int[] nums) {
 
 
 
+## [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
+
+给定一个整数数组，其中第 *i* 个元素代表了第 *i* 天的股票价格 。
+
+设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:
+
+- 你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
+- 卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。
+
+**示例:**
+
+```
+输入: [1,2,3,0,2]
+输出: 3 
+解释: 对应的交易状态为: [买入, 卖出, 冷冻期, 买入, 卖出]
+```
+
+> 动态规划：<https://zhuanlan.zhihu.com/p/46098185>
+
+```Java
+public int maxProfit2(int[] prices) {
+    if (prices.length <= 1) {
+        return 0;
+    }
+
+    if (prices.length == 2) {
+        return prices[1]-prices[0]<0 ? 0 : prices[1]-prices[0];
+    }
+
+    int len = prices.length;
+    int[] dp1 = new int[len];//当天未持有股票的情况
+    int[] dp2 = new int[len];//当天持有股票的情况
+
+    dp2[0] = 0 - prices[0];
+    for (int i = 1; i < len; i++) {
+        dp1[i] = Math.max(dp1[i-1], dp2[i-1]+prices[i]);
+        int temp = 0;
+        if (i >= 2) {
+            temp = dp1[i-2];
+        }
+        dp2[i] = Math.max(dp2[i-1], temp-prices[i]);
+    }
+
+    return Math.max(dp1[len-1], dp2[len-1]);
+}
+```
+
+
+
+## [312. 戳气球](https://leetcode-cn.com/problems/burst-balloons/)
+
+有 `n` 个气球，编号为`0` 到 `n-1`，每个气球上都标有一个数字，这些数字存在数组 `nums` 中。
+
+现在要求你戳破所有的气球。每当你戳破一个气球 `i` 时，你可以获得 `nums[left] * nums[i] * nums[right]` 个硬币。 这里的 `left` 和 `right` 代表和 `i` 相邻的两个气球的序号。注意当你戳破了气球 `i` 后，气球 `left` 和气球 `right` 就变成了相邻的气球。
+
+求所能获得硬币的最大数量。
+
+**说明:**
+
+- 你可以假设 `nums[-1] = nums[n] = 1`，但注意它们不是真实存在的所以并不能被戳破。
+- 0 ≤ `n` ≤ 500, 0 ≤ `nums[i]` ≤ 100
+
+**示例:**
+
+```
+输入: [3,1,5,8]
+输出: 167 
+解释: nums = [3,1,5,8] --> [3,5,8] -->   [3,8]   -->  [8]  --> []
+     coins =  3*1*5      +  3*5*8    +  1*3*8      + 1*8*1   = 167
+```
+
+> 这个动态规划还得考虑间隔，比较复杂，
+>
+> 详细可查看这几位博客：
+>
+> <https://blog.csdn.net/jmspan/article/details/51208865>
+>
+> <https://blog.csdn.net/XX_123_1_RJ/article/details/81638353>
+
+```java
+public int maxCoins(int[] nums) {
+    int[] dpnums = new int[nums.length+2];
+    dpnums[0] = 1;
+    dpnums[nums.length+1] = 1;
+    System.arraycopy(nums, 0, dpnums, 1, nums.length);
+
+    int[][] coins = new int[dpnums.length][dpnums.length];
+    for (int i = 2; i < dpnums.length; i++) {
+        for (int j = i-2; j >= 0; j--) {
+            for (int k = i-1; k > j; k--) {
+                coins[j][i] = Math.max(coins[j][i], coins[j][k]+dpnums[j]*dpnums[k]*dpnums[i]+coins[k][i]);
+            }
+        }
+    }
+
+    return coins[0][dpnums.length-1];
+}
+```
+
+
+
+
+
 ## [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/)
 
 给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 `-1`。
@@ -1633,12 +1736,6 @@ public int rob(TreeNode root) {
 
 
 
-
-
-
-
-
-
 ## [338. 比特位计数](https://leetcode-cn.com/problems/counting-bits/)
 
 给定一个非负整数 **num**。对于 **0 ≤ i ≤ num** 范围中的每个数字 **i** ，计算其二进制数中的 1 的数目并将它们作为数组返回。
@@ -1734,10 +1831,6 @@ public List<Integer> topKFrequent(int[] nums, int k) {
     return result;
 }
 ```
-
-
-
-
 
 
 
