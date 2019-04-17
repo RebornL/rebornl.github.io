@@ -1493,6 +1493,66 @@ public int[] productExceptSelf(int[] nums) {
 
 
 
+## [279. 完全平方数](https://leetcode-cn.com/problems/perfect-squares/)
+
+给定正整数 *n*，找到若干个完全平方数（比如 `1, 4, 9, 16, ...`）使得它们的和等于 *n*。你需要让组成和的完全平方数的个数最少。
+
+**示例 1:**
+
+```
+输入: n = 12
+输出: 3 
+解释: 12 = 4 + 4 + 4.
+```
+
+**示例 2:**
+
+```
+输入: n = 13
+输出: 2
+解释: 13 = 4 + 9.
+```
+
+> 思路：动态规划，从小到大往前推，dp[i]表示前i个可以有多少个平方数组成。
+>
+> 另外一种思路就是数学定理，由完全平方数组成的情况只有四种情况1，2，3，4
+
+```java
+public int numSquares(int n) {
+    /*动态规划*/
+    int[] dp = new int[n+1];//dp[i]表示i这个这个数可以分为多少个正整数的组合
+    List<Integer> squares = getSquaresNumbers(n);
+
+    for (int i = 1; i <= n; i++) {
+        int min = Integer.MAX_VALUE;
+        for (int square: squares) {
+            if (square > i) break;
+            min = Math.min(min, dp[i-square]+1);
+        }
+        dp[i] = min;
+    }
+
+    return dp[n];
+}
+
+private List<Integer> getSquaresNumbers(int n) {
+    int end = (int) Math.sqrt(n);
+    List<Integer> result = new ArrayList<>();
+    for (int i = 1; i <= end; i++) {
+        result.add(i*i);
+    }
+
+    return result;
+
+}
+```
+
+
+
+
+
+
+
 ## [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/)
 
 给定一个数组 `nums`，编写一个函数将所有 `0` 移动到数组的末尾，同时保持非零元素的相对顺序。
@@ -1523,6 +1583,98 @@ public void moveZeroes(int[] nums) {
     while(j < len) {
         nums[j++] = 0;
     }
+}
+```
+
+
+
+## [287. 寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/)
+
+给定一个包含 *n* + 1 个整数的数组 *nums*，其数字都在 1 到 *n* 之间（包括 1 和 *n*），可知至少存在一个重复的整数。假设只有一个重复的整数，找出这个重复的数。
+
+**示例 1:**
+
+```
+输入: [1,3,4,2,2]
+输出: 2
+```
+
+**示例 2:**
+
+```
+输入: [3,1,3,4,2]
+输出: 3
+```
+
+**说明：**
+
+1. **不能**更改原数组（假设数组是只读的）。
+2. 只能使用额外的 *O*(1) 的空间。
+3. 时间复杂度小于 *O*(*n*2) 。
+4. 数组中只有一个重复的数字，但它可能不止重复出现一次。
+
+> 思路：可以将其画成一个有环的链表，重复的数就相当于环的入口。使用快慢指针解决。
+
+```java
+public int findDuplicate(int[] nums) {
+    if (nums == null) return 0;
+    int len = nums.length;
+    int slow = nums[0], fast = nums[0];
+    do {
+        slow = nums[slow];
+        fast = nums[nums[fast]];
+    } while (slow!=fast);//在环中相遇
+
+    fast = nums[0];
+    while (fast != slow) {
+        slow = nums[slow];
+        fast = nums[fast];
+    }
+
+    return slow;
+}
+```
+
+
+
+## [300. 最长上升子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
+
+给定一个无序的整数数组，找到其中最长上升子序列的长度。
+
+**示例:**
+
+```
+输入: [10,9,2,5,3,7,101,18]
+输出: 4 
+解释: 最长的上升子序列是 [2,3,7,101]，它的长度是 4。
+```
+
+**说明:**
+
+- 可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。
+- 你算法的时间复杂度应该为 O(*n2*) 。
+
+**进阶:** 你能将算法的时间复杂度降低到 O(*n* log *n*) 吗?
+
+> 这可以用动态规划解决，result[i]代表着前i个数字中最长的子序列
+
+```java
+public int lengthOfLIS(int[] nums) {
+    if (nums == null) return 0;
+    if (nums.length <= 1) return nums.length;
+
+    int len = nums.length;
+    int[] result = new int[len];
+    Arrays.fill(result, 1);
+    int maxLength = 0;
+    for (int i = 1; i < len; i++) {
+        for (int j = 0; j < i; j++) {
+            result[i] = Math.max(result[i], result[j]+1);
+        }
+        maxLength = Math.max(maxLength, result[i]);
+    }
+
+    return maxLength;
 }
 ```
 
