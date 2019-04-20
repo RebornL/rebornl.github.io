@@ -1295,6 +1295,86 @@ public int rob(int[] nums) {
 
 
 
+## [200. 岛屿的个数](https://leetcode-cn.com/problems/number-of-islands/)
+
+给定一个由 `'1'`（陆地）和 `'0'`（水）组成的的二维网格，计算岛屿的数量。一个岛被水包围，并且它是通过水平方向或垂直方向上相邻的陆地连接而成的。你可以假设网格的四个边均被水包围。
+
+**示例 1:**
+
+```
+输入:
+11110
+11010
+11000
+00000
+
+输出: 1
+```
+
+**示例 2:**
+
+```
+输入:
+11000
+11000
+00100
+00011
+
+输出: 3
+```
+
+> 思路：深度搜索遍历，将是岛屿的周围都遍历一遍即可。
+
+```java
+public int numIslands(char[][] grid) {
+    if(grid == null || grid.length == 0) return 0;
+
+    int row = grid.length;
+    int col = grid[0].length;
+
+    int islandNums = 0;
+    for(int i = 0; i < row; i++) {
+        for(int j = 0; j < col; j++) {
+            if(grid[i][j] == '1') {
+                //发现岛屿时
+                islandNums++;
+                //判断四周是否有岛屿
+                checkIsland(grid, i, j, row, col);
+
+            }
+        }
+    }
+
+    return islandNums;
+}
+
+public void checkIsland(char[][] grid, int i, int j, int row, int col) {
+    grid[i][j] = '0';
+    //检测右方
+    if(j+1<col && grid[i][j+1]=='1') {
+        checkIsland(grid, i, j+1, row, col);
+    }
+    //检测下方
+    if(i+1<row && grid[i+1][j]=='1') {
+        checkIsland(grid, i+1, j, row, col);
+    }
+    //检测左方
+    if(j>0 && grid[i][j-1]=='1') {
+        checkIsland(grid, i, j-1, row, col);
+    }
+    //检测上方
+    if(i>0 && grid[i-1][j]=='1') {
+        checkIsland(grid, i-1, j, row, col);
+    }
+}
+```
+
+
+
+
+
+
+
 ## [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
 
 反转一个单链表。
@@ -1328,6 +1408,105 @@ public ListNode reverseList(ListNode head) {
     return temp1;
 }
 ```
+
+
+
+## [215. 数组中的第K个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
+
+在未排序的数组中找到第 **k** 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
+
+**示例 1:**
+
+```
+输入: [3,2,1,5,6,4] 和 k = 2
+输出: 5
+```
+
+**示例 2:**
+
+```
+输入: [3,2,3,1,2,4,5,5,6] 和 k = 4
+输出: 4
+```
+
+**说明:**
+
+你可以假设 k 总是有效的，且 1 ≤ k ≤ 数组的长度。
+
+> 直接小顶堆实现即可，用Java中PriorityQueue实现。另外还可以用快速排序法实现
+
+```java
+public int findKthLargest(int[] nums, int k) {
+    PriorityQueue<Integer> pQueue = new PriorityQueue<>(k);
+    for(int num : nums) {
+        if(pQueue.size() < k) pQueue.offer(num);
+        else {
+            if(num>pQueue.peek()) {
+                pQueue.poll();
+                pQueue.offer(num);
+            }
+        }
+    }
+    return pQueue.peek();
+}
+```
+
+
+
+
+
+## [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/)
+
+在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。
+
+**示例:**
+
+```
+输入: 
+
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
+
+输出: 4
+```
+
+```java
+public int maximalSquare(char[][] matrix) {
+    if (matrix == null || matrix.length==0 || matrix[0].length == 0) return 0;
+
+    int[][] dp = new int[matrix.length][matrix[0].length];
+    int result = 0;
+    for (int i = 0; i < matrix[0].length; i++) {
+        if (matrix[0][i] == '1') {
+            dp[0][i] = 1;
+            result = 1;
+        }
+
+    }
+
+    for (int j = 0; j < matrix.length; j++) {
+        if (matrix[j][0] == '1') {
+            dp[j][0] = 1;
+            result = 1;
+        }
+    }
+
+    for (int i = 1; i < matrix.length; i++) {
+        for (int j = 1; j < matrix[0].length; j++) {
+            //扫描每一行，看看结果
+            if (matrix[i][j] == '1') {
+                dp[i][j] = Math.min(dp[i-1][j-1], Math.min(dp[i][j-1], dp[i-1][j]))+1;
+                result = Math.max(dp[i][j], result);
+            }
+        }
+    }
+    return result*result;
+}
+```
+
+
 
 
 
@@ -1456,6 +1635,211 @@ public boolean isPalindrome(ListNode head) {
     return p1==null;
 }
 ```
+
+
+
+## [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+
+给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
+
+[百度百科](https://baike.baidu.com/item/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/8918834?fr=aladdin)中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（**一个节点也可以是它自己的祖先**）。”
+
+例如，给定如下二叉树:  root = [3,5,1,6,2,0,8,null,null,7,4]
+
+![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/15/binarytree.png)
+
+ 
+
+**示例 1:**
+
+```
+输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+输出: 3
+解释: 节点 5 和节点 1 的最近公共祖先是节点 3。
+```
+
+**示例 2:**
+
+```
+输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
+输出: 5
+解释: 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。
+```
+
+**说明:**
+
+- 所有节点的值都是唯一的。
+- p、q 为不同节点且均存在于给定的二叉树中。
+
+> 递归查找，当在左右子树找到自身时，表明公共节点为根节点，否则全都在左子树或右子树，为其自身。
+>
+> - 判断当期节点是否是待判断节点中的一个，如果是，返回当前节点
+> - 判断左子树
+> - 判断右子树
+> - 如果左右子树都不是空，返回root
+> - 如果其中一个为空，返回不为空的那个
+
+```java
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    if (root == null || root == p || root == q) return root;
+
+    TreeNode leftNode = lowestCommonAncestor(root.left, p, q);
+    TreeNode rightNode = lowestCommonAncestor(root.right, p, q);
+
+    if (leftNode!=null && rightNode!=null) return root;
+    if (leftNode == null) return rightNode;
+    return leftNode;
+}
+```
+
+
+
+
+
+## [238. 除自身以外数组的乘积](https://leetcode-cn.com/problems/product-of-array-except-self/)
+
+给定长度为 *n* 的整数数组 `nums`，其中 *n* > 1，返回输出数组 `output` ，其中 `output[i]` 等于 `nums` 中除 `nums[i]` 之外其余各元素的乘积。
+
+**示例:**
+
+```
+输入: [1,2,3,4]
+输出: [24,12,8,6]
+```
+
+**说明:** 请**不要使用除法，**且在 O(*n*) 时间复杂度内完成此题。
+
+**进阶：**
+你可以在常数空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组**不被视为**额外空间。）
+
+```java
+public int[] productExceptSelf(int[] nums) {
+    int[] result = new int[nums.length];
+    result[nums.length-1] = 1;
+    for(int i = nums.length-2; i >= 0; i--) {
+        result[i] = nums[i+1]*result[i+1];
+    }
+
+    for(int i = 1; i < nums.length; i++) {
+        result[i] *= nums[i-1];
+        nums[i] *= nums[i-1];
+    }
+
+    return result;
+}
+```
+
+
+
+## [239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/)
+
+给定一个数组 *nums*，有一个大小为 *k* 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口 *k* 内的数字。滑动窗口每次只向右移动一位。
+
+返回滑动窗口最大值。
+
+**示例:**
+
+```
+输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
+输出: [3,3,5,5,6,7] 
+解释: 
+
+  滑动窗口的位置                最大值
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
+```
+
+**注意：**
+
+你可以假设 *k* 总是有效的，1 ≤ k ≤ 输入数组的大小，且输入数组不为空。
+
+**进阶：**
+
+你能在线性时间复杂度内解决此题吗？
+
+```java
+public int[] maxSlidingWindow(int[] nums, int k) {
+    if(k==0) return new int[]{};
+    if(k==1) return nums;
+    int max = nums[0];
+    int len = nums.length;
+    int[] result = new int[len-k+1];
+    for (int i = 1; i < k; i++) {
+        max = Math.max(nums[i], max);
+    }
+    result[0] = max;
+    for (int i = 1; i < len-k+1; i++) {
+        if (nums[i+k-1]>max) max = nums[i+k-1];//因为localmax能覆盖他所在的好几个区间，但却没有和i+k-1这个值比较过
+        else if (nums[i-1] == max) {
+            //max不在接下来这个区间重新判断
+            max = nums[i];
+            for (int j = i+1; j < i+k; j++) {
+                max = Math.max(nums[j], max);
+            }
+        }
+        result[i] = max;
+    }
+
+    return result;
+}
+```
+
+
+
+
+
+
+
+## [240. 搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/)
+
+编写一个高效的算法来搜索 *m* x *n* 矩阵 matrix 中的一个目标值 target。该矩阵具有以下特性：
+
+- 每行的元素从左到右升序排列。
+- 每列的元素从上到下升序排列。
+
+**示例:**
+
+现有矩阵 matrix 如下：
+
+```
+[
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
+```
+
+给定 target = `5`，返回 `true`。
+
+给定 target = `20`，返回 `false`。
+
+> 根据从左到右，元素升序，从上到下，元素升序的特点，从右上角开始比较，如果比右上角元素小，必然在这一行；若大于右上角，则继续往下走
+
+```java
+public boolean searchMatrix(int[][] matrix, int target) {
+    if(matrix == null || matrix.length == 0 || matrix[0] == null) return false;
+    int row = matrix.length;
+    int col = matrix[0].length;
+    
+    int i = 0, j = col-1;
+    while(j >= 0 && i < row) {
+        if(matrix[i][j] == target) return true;
+        else if(matrix[i][j] > target) j--;
+        else if(matrix[i][j] < target) i++;
+    }
+    
+    return false;
+}
+```
+
+
 
 
 
