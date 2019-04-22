@@ -1080,6 +1080,181 @@ public int maxProfit(int[] prices) {
 
 
 
+## [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
+
+给定一个链表，判断链表中是否有环。
+
+为了表示给定链表中的环，我们使用整数 `pos` 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 `pos` 是 `-1`，则在该链表中没有环。
+
+ 
+
+**示例 1：**
+
+```
+输入：head = [3,2,0,-4], pos = 1
+输出：true
+解释：链表中有一个环，其尾部连接到第二个节点。
+```
+
+![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist.png)
+
+**示例 2：**
+
+```
+输入：head = [1,2], pos = 0
+输出：true
+解释：链表中有一个环，其尾部连接到第一个节点。
+```
+
+![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png)
+
+**示例 3：**
+
+```
+输入：head = [1], pos = -1
+输出：false
+解释：链表中没有环。
+```
+
+![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png)
+
+> 使用快慢指针便可
+
+```java
+public boolean hasCycle(ListNode head) {
+    if (head == null || head.next == null) return false;
+
+    ListNode fast = head, slow = head;
+    do {
+        fast = fast.next.next;
+        slow = slow.next;
+    } while(fast != null && fast.next != null && fast != slow);
+
+    return slow == fast;
+}
+```
+
+
+
+
+
+## [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+
+给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 `null`。
+
+为了表示给定链表中的环，我们使用整数 `pos` 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 `pos` 是 `-1`，则在该链表中没有环。
+
+**说明：**不允许修改给定的链表。
+
+ 
+
+**示例 1：**
+
+```
+输入：head = [3,2,0,-4], pos = 1
+输出：tail connects to node index 1
+解释：链表中有一个环，其尾部连接到第二个节点。
+```
+
+![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist.png)
+
+**示例 2：**
+
+```
+输入：head = [1,2], pos = 0
+输出：tail connects to node index 0
+解释：链表中有一个环，其尾部连接到第一个节点。
+```
+
+![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png)
+
+**示例 3：**
+
+```
+输入：head = [1], pos = -1
+输出：no cycle
+解释：链表中没有环。
+```
+
+![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png)
+
+> 思路：使用快慢指针先判断是不是有环的存在，环存在的话，那么将快指针重置即可，快慢指针按照相同步速前进直至相遇，即为入口。
+
+```java
+public ListNode detectCycle(ListNode head) {
+    if(head == null || head.next == null) return null;
+
+    ListNode slow = head, fast = head;
+
+    while(fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+
+        if(fast == slow) break;//找到环了
+    }
+
+    if(fast == null || fast.next == null) return null;//不存在环
+
+    fast = head;
+    while(fast!=slow) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+    return slow;
+}
+```
+
+
+
+
+
+## [152. 乘积最大子序列](https://leetcode-cn.com/problems/maximum-product-subarray/)
+
+给定一个整数数组 `nums` ，找出一个序列中乘积最大的连续子序列（该序列至少包含一个数）。
+
+**示例 1:**
+
+```
+输入: [2,3,-2,4]
+输出: 6
+解释: 子数组 [2,3] 有最大乘积 6。
+```
+
+**示例 2:**
+
+```
+输入: [-2,0,-1]
+输出: 0
+解释: 结果不能为 2, 因为 [-2,-1] 不是子数组。
+```
+
+> 大致思路是这样的，最大值可能由最小值乘以一个负数变成最大，而最小值有可能是最大值乘以一个负数变成服务。使用动态规划构建两个数组max[i],min[i]，表示前i个数字的最大值和最小值。
+
+```java
+public int maxProduct(int[] nums) {
+    if (nums.length == 1) return nums[0];
+
+    int len = nums.length;
+    int[] max = new int[len];
+    int[] min = new int[len];
+    max[0] = nums[0];
+    min[0] = nums[0];
+
+    int result = max[0];
+    for (int i = 1; i < len; i++) {
+        max[i] = Math.max(nums[i], Math.max(nums[i]*max[i-1], nums[i]*min[i-1]));
+        min[i] = Math.min(nums[i], Math.max(nums[i]*max[i-1], nums[i]*min[i-1]));
+        result = Math.max(result, max[i]);
+    }
+
+    return result;
+}
+```
+
+
+
+
+
 ## 155.最小栈
 
 设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。
