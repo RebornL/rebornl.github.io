@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      LeetCodeTop100题目解答
+subtitle:   已经完成大部分
+date:       2019-04-01
+update:  2019-04-23
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Leetcode
+---
+
 ## 001 Two Sum
 
 **题目**
@@ -679,6 +692,63 @@ public int maxDepth(TreeNode root) {
 
 
 
+## [105. 从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+
+根据一棵树的前序遍历与中序遍历构造二叉树。
+
+**注意:**
+你可以假设树中没有重复的元素。
+
+例如，给出
+
+```
+前序遍历 preorder = [3,9,20,15,7]
+中序遍历 inorder = [9,3,15,20,7]
+```
+
+返回如下的二叉树：
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+> 前序遍历：根，左节点，右节点；中序遍历：左节点，根，右节点。
+
+```java
+public TreeNode buildTree(int[] preorder, int[] inorder) {
+    return build(preorder, inorder, 0, 0, inorder.length-1);
+}
+
+private TreeNode build(int[] preorder, int[] inorder, int preStart, int inStart, int inEnd) {
+
+    if (preStart > preorder.length - 1 || inStart > inEnd) {
+        return null;
+    }
+
+    TreeNode root = new TreeNode(preorder[preStart]);
+    int inRootIndex = inStart;
+    while (inRootIndex <= inEnd && inorder[inRootIndex] != preorder[preStart]) inRootIndex++;
+
+    int leftTreeLen = inRootIndex-inStart;//左子树长度
+
+    int preLeftStart = preStart+1;
+    int preRightStart = preStart+leftTreeLen+1;
+
+    root.left = build(preorder, inorder, preLeftStart, inStart, inRootIndex-1);
+    root.right = build(preorder, inorder, preRightStart, inRootIndex+1, inEnd);
+
+    return root;
+}
+```
+
+
+
+
+
 ## 110.平衡二叉树
 
 给定一个二叉树，判断它是否是高度平衡的二叉树。
@@ -742,7 +812,7 @@ private int getHeight(TreeNode root) {
 
 
 
-## 111. 二叉树的最小深度
+## [111. 二叉树的最小深度](<https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/>)
 
 给定一个二叉树，找出其最小深度。
 
@@ -786,7 +856,100 @@ public int minDepth(TreeNode root) {
 
 
 
-##  124.二叉树中的最大路径和
+## [114. 二叉树展开为链表](https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/)
+
+给定一个二叉树，[原地](https://baike.baidu.com/item/原地算法/8010757)将它展开为链表。
+
+例如，给定二叉树
+
+```
+    1
+   / \
+  2   5
+ / \   \
+3   4   6
+```
+
+将其展开为：
+
+```
+1
+ \
+  2
+   \
+    3
+     \
+      4
+       \
+        5
+         \
+          6
+```
+
+> 迭代处理即可
+
+```java
+public void flatten(TreeNode root) {
+    if(root == null) return;
+    while(root.left != null || root.right != null) {
+        if(root.left != null) {
+            TreeNode temp = root.left;
+            while(temp.right != null) temp =temp.right;
+            temp.right = root.right;
+            root.right = root.left;
+            root.left = null;
+        }
+        root = root.right;
+    }
+}
+```
+
+
+
+## [121. 买卖股票的最佳时机](https://leetcode.com/problems/best-time-to-buy-and-sell-stock)
+
+给定一个数组，它的第 *i* 个元素是一支给定股票第 *i* 天的价格。
+
+如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。
+
+注意你不能在买入股票前卖出股票。
+
+**示例 1:**
+
+```
+输入: [7,1,5,3,6,4]
+输出: 5
+解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格。
+```
+
+**示例 2:**
+
+```
+输入: [7,6,4,3,1]
+输出: 0
+解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
+```
+
+> 思路：记录最小值，计算当前值到最小值的获利
+
+```java
+public int maxProfit(int[] prices) {
+    if (prices == null || prices.length <= 1) return 0;
+
+    int min = prices[0], maxPro = 0;
+    for (int i = 1; i < prices.length; i++) {
+        maxPro = Math.max(prices[i]-min, maxPro);
+        min = Math.min(min, prices[i]);
+    }
+
+    return maxPro;
+}
+```
+
+
+
+##  [124.二叉树中的最大路径和](https://leetcode.com/problems/binary-tree-maximum-path-sum)
 
 给定一个**非空**二叉树，返回其最大路径和。
 
@@ -840,7 +1003,46 @@ private int max = Integer.MIN_VALUE;
 
 
 
-## 136.只出现一次的数字
+## [128. 最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/)
+
+给定一个未排序的整数数组，找出最长连续序列的长度。
+
+要求算法的时间复杂度为 *O(n)*。
+
+**示例:**
+
+```
+输入: [100, 4, 200, 1, 3, 2]
+输出: 4
+解释: 最长连续序列是 [1, 2, 3, 4]。它的长度为 4。
+```
+
+> 思路：非O(n)算法的话，直接用Arrays.sort方法，然后遍历一边就OK，速度很快，可能因为Arrays.sort方法的优化。O(n)算法的话，采用HashMap记录值和他对应的连续子串的大小即可。
+
+```java
+public int longestConsecutive(int[] nums) {
+    HashMap<Integer, Integer> map = new HashMap<>(nums.length);
+    int max = 0;
+    for (int i = 0; i < nums.length; i++) {
+        if (map.getOrDefault(nums[i], 0) == 0) {
+            //这样判断也可以跳过相同的字符
+            int left = map.getOrDefault(nums[i]-1, 0);
+            int right = map.getOrDefault(nums[i]+1, 0);
+            map.put(nums[i], left+right+1);
+            map.put(nums[i]-left, right+left+1);//更新这两个位置值
+            map.put(nums[i]+right, right+left+1);
+
+            max = Math.max(max, right+left+1);
+        }
+    }
+
+    return max;
+}
+```
+
+
+
+## [136. 只出现一次的数字](https://leetcode-cn.com/problems/single-number/)
 
 给定一个**非空**整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
 
@@ -880,201 +1082,56 @@ public int singleNumber(int[] nums) {
 
 
 
-## 141.环形链表
+## [139. 单词拆分](https://leetcode-cn.com/problems/word-break/)
 
-给定一个链表，判断链表中是否有环。
+给定一个**非空**字符串 *s* 和一个包含**非空**单词列表的字典 *wordDict*，判定 *s* 是否可以被空格拆分为一个或多个在字典中出现的单词。
 
-为了表示给定链表中的环，我们使用整数 `pos` 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 `pos` 是 `-1`，则在该链表中没有环。
+**说明：**
 
- 
+- 拆分时可以重复使用字典中的单词。
+- 你可以假设字典中没有重复的单词。
 
 **示例 1：**
 
 ```
-输入：head = [3,2,0,-4], pos = 1
-输出：true
-解释：链表中有一个环，其尾部连接到第二个节点。
+输入: s = "leetcode", wordDict = ["leet", "code"]
+输出: true
+解释: 返回 true 因为 "leetcode" 可以被拆分成 "leet code"。
 ```
-
-![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist.png)
 
 **示例 2：**
 
 ```
-输入：head = [1,2], pos = 0
-输出：true
-解释：链表中有一个环，其尾部连接到第一个节点。
+输入: s = "applepenapple", wordDict = ["apple", "pen"]
+输出: true
+解释: 返回 true 因为 "applepenapple" 可以被拆分成 "apple pen apple"。
+     注意你可以重复使用字典中的单词。
 ```
-
-![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png)
 
 **示例 3：**
 
 ```
-输入：head = [1], pos = -1
-输出：false
-解释：链表中没有环。
+输入: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
+输出: false
 ```
-
-![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png)
-
- 
-
-**进阶：**
-
-你能用 *O(1)*（即，常量）内存解决此问题吗？
-
-> 思路：快慢指针即可，在环中，快慢指针必然相遇。
 
 ```java
-public boolean hasCycle(ListNode head) {
-    if(head == null || head.next == null) return false;
+public boolean wordBreak(String s, List<String> wordDict) {
+    if (wordDict == null || wordDict.size() == 0) return false;
 
-    ListNode slow = head, fast = head.next != null ? head.next.next : null;
-    while(slow!=null && fast != null) {
-        if (slow == fast) return true;
+    int len = s.length();
+    boolean[] dp = new boolean[len+1];
+    dp[0] = true;
 
-        slow = slow.next;
-        if (fast.next != null) fast = fast.next.next;
-        else fast = null;
-    }
-    return false;
-}
-```
-
-
-
-## 146. LRU缓存机制
-
-运用你所掌握的数据结构，设计和实现一个  [LRU (最近最少使用) 缓存机制](https://baike.baidu.com/item/LRU)。它应该支持以下操作： 获取数据 `get` 和 写入数据 `put` 。
-
-获取数据 `get(key)` - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。
-写入数据 `put(key, value)` - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最近最少使用的数据值，从而为新的数据值留出空间。
-
-**进阶:**
-
-你是否可以在 **O(1)** 时间复杂度内完成这两种操作？
-
-**示例:**
-
-```
-LRUCache cache = new LRUCache( 2 /* 缓存容量 */ );
-
-cache.put(1, 1);
-cache.put(2, 2);
-cache.get(1);       // 返回  1
-cache.put(3, 3);    // 该操作会使得密钥 2 作废
-cache.get(2);       // 返回 -1 (未找到)
-cache.put(4, 4);    // 该操作会使得密钥 1 作废
-cache.get(1);       // 返回 -1 (未找到)
-cache.get(3);       // 返回  3
-cache.get(4);       // 返回  4
-```
-
-> 思路：用HashMap存储Key-Value值，用链表保持顺序，节点插入采用头插法，获取数据后需要将该节点放到头部，插入节点时需要考虑容量大小，当超过时，删除尾节点，在添加新的节点
-
-
-
-## 150. 逆波兰表达式求值
-
-根据[逆波兰表示法](https://baike.baidu.com/item/%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/128437)，求表达式的值。
-
-有效的运算符包括 `+`, `-`, `*`, `/` 。每个运算对象可以是整数，也可以是另一个逆波兰表达式。
-
-**说明：**
-
-- 整数除法只保留整数部分。
-- 给定逆波兰表达式总是有效的。换句话说，表达式总会得出有效数值且不存在除数为 0 的情况。
-
-**示例 1：**
-
-```
-输入: ["2", "1", "+", "3", "*"]
-输出: 9
-解释: ((2 + 1) * 3) = 9
-```
-
-**示例 2：**
-
-```
-输入: ["4", "13", "5", "/", "+"]
-输出: 6
-解释: (4 + (13 / 5)) = 6
-```
-
-> 这个思路很简单，就是用一个栈专门用来存储一个数字，当遇到运算符号时，就弹出栈中前两个数字，进行运算即可，再将其压回栈中。
-
-```java
-public int evalRPN(String[] tokens) {
-    Stack<Integer> s = new Stack<>();
-    int len = tokens.length;
-    int temp1 = 0;
-    int temp2 = 0;
-    for(int i = 0; i < len; i++) {
-        if("*".equals(tokens[i])) {
-            temp1 = s.pop();
-            temp2 = s.pop();
-            s.push(temp1*temp2);
-        } else if("/".equals(tokens[i])) {
-            temp1 = s.pop();
-            temp2 = s.pop();
-            s.push(temp2/temp1);
-        } else if("+".equals(tokens[i])) {
-            temp1 = s.pop();
-            temp2 = s.pop();
-            s.push(temp1+temp2);
-        } else if("-".equals(tokens[i])) {
-            temp1 = s.pop();
-            temp2 = s.pop();
-            s.push(temp2-temp1);
-        } else {
-            s.push(Integer.parseInt(tokens[i]));
+    for (int i = 1; i <= len; i++) {
+        for (int j = 0; j < i; j++) {
+            if (dp[j] && wordDict.contains(s.substring(j, i))) {
+                dp[i] = true;
+                break;//不加break会超时的
+            }
         }
     }
-    return s.pop();
-}
-```
-
-
-
-## 121. 买卖股票的最佳时机
-
-给定一个数组，它的第 *i* 个元素是一支给定股票第 *i* 天的价格。
-
-如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。
-
-注意你不能在买入股票前卖出股票。
-
-**示例 1:**
-
-```
-输入: [7,1,5,3,6,4]
-输出: 5
-解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
-     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格。
-```
-
-**示例 2:**
-
-```
-输入: [7,6,4,3,1]
-输出: 0
-解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
-```
-
-> 思路：记录最小值，计算当前值到最小值的获利
-
-```java
-public int maxProfit(int[] prices) {
-    if (prices == null || prices.length <= 1) return 0;
-
-    int min = prices[0], maxPro = 0;
-    for (int i = 1; i < prices.length; i++) {
-        maxPro = Math.max(prices[i]-min, maxPro);
-        min = Math.min(min, prices[i]);
-    }
-
-    return maxPro;
+    return dp[len];
 }
 ```
 
@@ -1205,6 +1262,97 @@ public ListNode detectCycle(ListNode head) {
 ```
 
 
+
+## 146. LRU缓存机制
+
+运用你所掌握的数据结构，设计和实现一个  [LRU (最近最少使用) 缓存机制](https://baike.baidu.com/item/LRU)。它应该支持以下操作： 获取数据 `get` 和 写入数据 `put` 。
+
+获取数据 `get(key)` - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。
+写入数据 `put(key, value)` - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最近最少使用的数据值，从而为新的数据值留出空间。
+
+**进阶:**
+
+你是否可以在 **O(1)** 时间复杂度内完成这两种操作？
+
+**示例:**
+
+```
+LRUCache cache = new LRUCache( 2 /* 缓存容量 */ );
+
+cache.put(1, 1);
+cache.put(2, 2);
+cache.get(1);       // 返回  1
+cache.put(3, 3);    // 该操作会使得密钥 2 作废
+cache.get(2);       // 返回 -1 (未找到)
+cache.put(4, 4);    // 该操作会使得密钥 1 作废
+cache.get(1);       // 返回 -1 (未找到)
+cache.get(3);       // 返回  3
+cache.get(4);       // 返回  4
+```
+
+> 思路：用HashMap存储Key-Value值，用链表保持顺序，节点插入采用头插法，获取数据后需要将该节点放到头部，插入节点时需要考虑容量大小，当超过时，删除尾节点，在添加新的节点
+
+
+
+## 150. 逆波兰表达式求值
+
+根据[逆波兰表示法](https://baike.baidu.com/item/%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/128437)，求表达式的值。
+
+有效的运算符包括 `+`, `-`, `*`, `/` 。每个运算对象可以是整数，也可以是另一个逆波兰表达式。
+
+**说明：**
+
+- 整数除法只保留整数部分。
+- 给定逆波兰表达式总是有效的。换句话说，表达式总会得出有效数值且不存在除数为 0 的情况。
+
+**示例 1：**
+
+```
+输入: ["2", "1", "+", "3", "*"]
+输出: 9
+解释: ((2 + 1) * 3) = 9
+```
+
+**示例 2：**
+
+```
+输入: ["4", "13", "5", "/", "+"]
+输出: 6
+解释: (4 + (13 / 5)) = 6
+```
+
+> 这个思路很简单，就是用一个栈专门用来存储一个数字，当遇到运算符号时，就弹出栈中前两个数字，进行运算即可，再将其压回栈中。
+
+```java
+public int evalRPN(String[] tokens) {
+    Stack<Integer> s = new Stack<>();
+    int len = tokens.length;
+    int temp1 = 0;
+    int temp2 = 0;
+    for(int i = 0; i < len; i++) {
+        if("*".equals(tokens[i])) {
+            temp1 = s.pop();
+            temp2 = s.pop();
+            s.push(temp1*temp2);
+        } else if("/".equals(tokens[i])) {
+            temp1 = s.pop();
+            temp2 = s.pop();
+            s.push(temp2/temp1);
+        } else if("+".equals(tokens[i])) {
+            temp1 = s.pop();
+            temp2 = s.pop();
+            s.push(temp1+temp2);
+        } else if("-".equals(tokens[i])) {
+            temp1 = s.pop();
+            temp2 = s.pop();
+            s.push(temp2-temp1);
+        } else {
+            s.push(Integer.parseInt(tokens[i]));
+        }
+    }
+    return s.pop();
+}
+```
 
 
 
