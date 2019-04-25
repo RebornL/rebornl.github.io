@@ -5,7 +5,7 @@ header-img: img/post-bg-desk.jpg
 email: liuqingbin100@gmail.com
 description: "Every failure is leading towards success."
 keyword: "raymond, RebornL Blog, raymondtech, developer"
-url: "http://rebornl.github.io"          # your host, for absolute URL
+url: "http://blog.raymondtech.top"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/RebornL/rebornl.github.io.git" # you code repository
 
