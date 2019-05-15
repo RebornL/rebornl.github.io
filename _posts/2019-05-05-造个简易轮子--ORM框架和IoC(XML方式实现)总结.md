@@ -72,11 +72,190 @@ public @interface Column {
 
 #### 数据库连接
 
-在properties中定义数据库连接属性和Bean的包名
+在properties中定义数据库连接属性和Bean的包名，DBSource会自动获取
+
+```properties
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/orm_test?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+username=root
+password=root123
+# bean的包名
+package=com.tinymvc.orm.bean
+```
+
+DBSource的实现如下，主要用来**连接数据库**，最后**返回数据库连接**
+
+```java
+public class DBSource {
+    private String driver;
+    private String url;
+    private String username;
+    private String password;
+
+    public DBSource() {}
+
+    public DBSource(Properties props) {
+        this.driver = props.getProperty("driver");
+        this.url = props.getProperty("url");
+        this.username = props.getProperty("username");
+        this.password = props.getProperty("password");
+    }
+
+    public Connection openConnection() throws ClassNotFoundException, SQLException {
+//        Class.forName(driver);//新版驱动都不需要
+        return DriverManager.getConnection(url, username, password);
+    }
+    
+    //getter，setter方法省略
+}
+```
+
+
 
 #### 注解解析
 
-`ORMAnnoHelper`时
+`ORMAnnoHelper`是用来解析使用了注解的类，主要是通过**[反射](<https://www.sczyh30.com/posts/Java/java-reflection-1/>)**实现的，其中的`getAnnotation(Class)`获取对应的注解是什么
+
+```java
+public class ORMAnnoHelper {
+
+    /*
+    * 获取表名
+    * */
+    public static String getTableName(Class<?> beanCls) {
+        Table table = beanCls.getAnnotation(Table.class);
+        if (null == table) {
+            //类的简称即为对应的表名
+            return beanCls.getSimpleName().toLowerCase();
+        } else {
+            return table.value();
+        }
+    }
+
+    /*
+     * 获取列属性名字
+     * */
+    public static String getColumnName(Field field) {
+        Column column = field.getAnnotation(Column.class);
+        if (null == column) {
+            return field.getName().toLowerCase();
+        } else {
+            return column.value();
+        }
+    }
+
+    /*
+     * 获取列属性的数据类型
+     * */
+    public static String getColumnType(Field field) {
+        Column column = field.getAnnotation(Column.class);
+        if (null == column) {
+            return "varchar";
+        } else {
+            return column.type();
+        }
+    }
+
+    /*
+     * 判断列属性是否可以为空
+     * */
+    public static boolean isNull(Field field) {
+        Column column = field.getAnnotation(Column.class);
+        if (null == column) {
+            return false;
+        }
+        return column.isNull();
+    }
+
+    /*
+     * 获取为主键的Field
+     * */
+    public static Field findIdField(Class<?> cls) {
+        for (Field f: cls.getDeclaredFields()) {
+            if (isId(f)) {
+                return f;
+            }
+        }
+        return null;
+    }
+
+    /*
+     * 判断Field是否为主键
+     * */
+    public static boolean isId(Field field) {
+        Column columnAnno = field.getAnnotation(Column.class);
+        if (null != columnAnno) {
+            return columnAnno.isId();
+        }
+        return false;
+    }
+
+    /*
+     * 获取包路径下所有类名
+     * */
+    public static List<Class<?>> getClasses(String packageName) {
+        List<Class<?>> classes = new ArrayList<>();
+        boolean recursive = true;
+        String packageDirName = packageName.replace('.', '/');
+        Enumeration<URL> dirs = null;
+        try {
+            dirs = Thread.currentThread().getContextClassLoader().getResources(packageDirName);
+            while (dirs.hasMoreElements()) {
+                URL url = dirs.nextElement();
+                String protocol = url.getProtocol();
+                if ("file".equals(protocol)) {
+                    String filePath = URLDecoder.decode(url.getFile(), "UTF-8");
+                    findAndAddClassesInPackageByFile(packageName, filePath, recursive, classes);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return classes;
+    }
+
+    /*
+     * 通过文件路径查找所有类名
+     * */
+    private static void findAndAddClassesInPackageByFile(String packageName, String filePath, boolean recursive, List<Class<?>> classes) {
+        File dir = new File(filePath);
+        if (!dir.exists() || !dir.isDirectory()) {
+            return;
+        }
+
+        File[] dirFiles = dir.listFiles(new FileFilter() {
+
+            @Override
+            public boolean accept(File file) {
+                return (recursive && file.isDirectory()) || (file.getName().endsWith(".class"));
+            }
+        });
+
+        for (File file : dirFiles) {
+            if (file.isDirectory()) {
+                findAndAddClassesInPackageByFile(packageName+"."+file.getName(), file.getAbsolutePath(), recursive,
+                        classes);
+            } else {
+                String className = file.getName().substring(0, file.getName().length()-6);
+                try {
+                    classes.add(Thread.currentThread().getContextClassLoader().loadClass(packageName+"."+className));
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+}
+```
+
+#### 数据库操作工厂类
+
+`DBSessionFactory`主要用来加载数据库配置文件和返回数据库操作类。`DBSession`定义在`DBSessionFactory`中，封装一系列的数据库CURD的操作。
+
+```java
+
+```
 
 
 
