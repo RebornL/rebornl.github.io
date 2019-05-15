@@ -254,14 +254,522 @@ public class ORMAnnoHelper {
 `DBSessionFactory`主要用来加载数据库配置文件和返回数据库操作类。`DBSession`定义在`DBSessionFactory`中，封装一系列的数据库CURD的操作。
 
 ```java
+public class DBSessionFactory {
 
+    private DBSource dbSource;
+    private Properties props;
+    private DBSession dbSession;
+
+    public DBSessionFactory() {
+        //加载配置，新建DBSource
+        props = new Properties();
+        try {
+            props.load(ClassLoader.getSystemResourceAsStream("config.properties"));
+
+            dbSource = new DBSource(props);
+            // 打开数据库连接
+            Connection conn = dbSource.openConnection();
+            dbSession = new DBSession(conn);
+            dbSession.scanAndCreateTable(props.getProperty("package"));
+//            System.out.println(props.getProperty("driver"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // 打开数据库连接
+    public DBSession openSession() throws SQLException, ClassNotFoundException {
+        return new DBSession(dbSource.openConnection());
+    }
+
+    /*
+    * 操作数据库类
+    * */
+    public static class DBSession {
+        private Connection conn;
+        private DBSession(Connection conn) {
+            this.conn = conn;
+        }
+
+         /*
+        * 扫描并创建不存在的表
+        * */
+        public void scanAndCreateTable(String packageName) throws SQLException {
+            String createTableSql = "CREATE TABLE IF NOT EXISTS `%s`(%s)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 " +
+                    "COLLATE=utf8_unicode_ci;";
+            List<Class<?>> tableClasses = ORMAnnoHelper.getClasses(packageName);
+            List<String> sqls = new ArrayList<>(tableClasses.size());
+            for (Class<?> cls: tableClasses) {
+                String sqltemp = createTableSql;
+                String tableName = ORMAnnoHelper.getTableName(cls);
+                StringBuilder column = new StringBuilder();
+                Field[] fs = cls.getDeclaredFields();
+                for (int i = 0, len = fs.length; i < len; i++) {
+                    column.append("`"+ORMAnnoHelper.getColumnName(fs[i])+"` "+ORMAnnoHelper.getColumnType(fs[i]));
+
+                    if (!ORMAnnoHelper.isNull(fs[i])) {
+                        column.append(" NOT NULL");
+                    }
+
+                    if (ORMAnnoHelper.isId(fs[i])) {
+                        column.append(" PRIMARY KEY");
+                    }
+
+                    if (i < len-1) {
+                        column.append(", ");
+                    }
+
+                }
+                sqltemp = String.format(sqltemp, tableName, column);
+                System.out.println(sqltemp);
+                sqls.add(sqltemp);
+            }
+
+            Statement stmt = conn.createStatement();
+            for (String sql: sqls) {
+                stmt.executeUpdate(sql);
+            }
+            stmt.close();
+
+        }
+
+        /*
+         * 查询操作
+         * */
+        public <T> List<T> list(Class<T> cls) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, SQLException {
+            // 获取SQL语句
+            String sql = "select %s from %s";
+            StringBuilder columns = new StringBuilder();
+            Field[] fs = cls.getDeclaredFields();
+            for (int i = 0, len = fs.length; i < len; i++) {
+                columns.append(ORMAnnoHelper.getColumnName(fs[i]));
+                if (i!=len-1) {
+                    columns.append(",");
+                }
+            }
+
+            sql = String.format(sql, columns.toString(), ORMAnnoHelper.getTableName(cls));
+
+            // 创建执行SQL语句对象
+            Statement statement = conn.createStatement();
+//            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+//            preparedStatement.s
+            ResultSet rs = statement.executeQuery(sql);
+
+            List<T> list = listResultHandler(cls, rs);
+
+            statement.close();
+
+            return list;
+        }
+
+        private <T> List<T> listResultHandler(Class<T> cls, ResultSet rs) throws IllegalAccessException,
+                InstantiationException, SQLException, NoSuchMethodException, InvocationTargetException {
+            List<T> list = new ArrayList<>();
+            T obj = null;
+            Field[] fs = cls.getDeclaredFields();
+            while (rs.next()) {
+                obj = getObjFromResultSet(cls, fs, rs);
+                list.add(obj);
+            }
+
+            return list;
+        }
+
+        private <T> T getObjFromResultSet(Class<T> cls, Field[] fs, ResultSet rs) throws IllegalAccessException,
+                InstantiationException, SQLException, NoSuchMethodException, InvocationTargetException {
+            T obj = cls.getDeclaredConstructor().newInstance();
+            for (Field field: fs) {
+                field.setAccessible(true);
+                Class<?> type = field.getType();
+                if (String.class == type) {
+                    field.set(obj, rs.getString(ORMAnnoHelper.getColumnName(field)));
+                } else if (int.class == type || Integer.class == type) {
+                    field.set(obj, rs.getInt(ORMAnnoHelper.getColumnName(field)));
+                } else if (double.class == type || Double.class == type) {
+                    field.set(obj, rs.getDouble(ORMAnnoHelper.getColumnName(field)));
+                } else if (long.class == type || Long.class == type) {
+                    field.set(obj, rs.getLong(ORMAnnoHelper.getColumnName(field)));
+                } else if (Date.class == type) {
+                    field.set(obj, rs.getDate(ORMAnnoHelper.getColumnName(field)));
+                }
+            }
+            return obj;
+        }
+
+        private <T> T oneResultHandler(Class<T> cls, ResultSet rs) throws IllegalAccessException,
+                InstantiationException, SQLException, NoSuchMethodException, InvocationTargetException {
+
+            T obj = null;
+            Field[] fs = cls.getDeclaredFields();
+            while (rs.next()) {
+                obj = getObjFromResultSet(cls, fs, rs);
+
+            }
+
+            return obj;
+        }
+
+        /*
+         * 插入操作
+         * */
+        public int insert(Object obj) throws SQLException, IllegalAccessException {
+            String sql = "insert %s(%s) values(%s)";
+            StringBuilder columns = new StringBuilder();
+            StringBuilder params = new StringBuilder();
+
+            Field[] fs = obj.getClass().getDeclaredFields();
+            List<Field> insertFields = new ArrayList<>();
+            for (int i = 0, len = fs.length; i < len; i++) {
+                columns.append(ORMAnnoHelper.getColumnName(fs[i]));
+                params.append("?");
+
+                if (i != len-1) {
+                    columns.append(",");
+                    params.append(",");
+                }
+
+                insertFields.add(fs[i]);
+
+            }
+
+            sql = String.format(sql, ORMAnnoHelper.getTableName(obj.getClass()), columns.toString(), params.toString());
+
+            System.out.println(sql);
+            // 预处理的SQL语句
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            paramHandler(insertFields, obj, preparedStatement);
+
+            int row = preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            return row;
+        }
+
+        /*
+        * 更新操作
+        * */
+        public int update(Object obj) throws IllegalAccessException, SQLException {
+            // update: update tableName set %s=%s... where id = %s;
+            List<Field> updateFields = new ArrayList<>();
+            String sql = "update %s set %s where %s";
+            StringBuilder columns = new StringBuilder();
+            StringBuilder id = new StringBuilder();
+            Field[] fs = obj.getClass().getDeclaredFields();
+            for (int i = 0, len = fs.length; i < len; i++) {
+                fs[i].setAccessible(true);
+                if (ORMAnnoHelper.isId(fs[i])) {
+                    id.append(ORMAnnoHelper.getColumnName(fs[i]));
+                    id.append("=");
+                    if (String.class == fs[i].getType()) {
+                        id.append("'"+String.valueOf(fs[i].get(obj))+"'");
+                    } else {
+                        id.append(fs[i].get(obj));
+
+                    }
+                }
+                columns.append(ORMAnnoHelper.getColumnName(fs[i]));
+                columns.append("=?");
+                if (i < len-1) {
+                    columns.append(",");
+                }
+                // 添加更新的字段到集合中
+                updateFields.add(fs[i]);
+
+            }
+
+            sql = String.format(sql, ORMAnnoHelper.getTableName(obj.getClass()), columns.toString(), id.toString());
+            System.out.println(sql);
+
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            paramHandler(updateFields, obj, preparedStatement);
+
+
+            int row = preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            return 0;
+        }
+
+        private void paramHandler(List<Field> fields, Object obj, PreparedStatement preparedStatement) throws IllegalAccessException, SQLException {
+            Field field = null;
+            Class<?> type = null;
+            for (int i = 0, len = fields.size(); i < len; i++) {
+                field = fields.get(i);
+                field.setAccessible(true);
+                type = field.getType();
+                if (String.class == type) {
+                    preparedStatement.setString(i+1, String.valueOf(field.get(obj)));
+                } else if (int.class == type || Integer.class == type) {
+                    preparedStatement.setInt(i+1, field.getInt(obj));
+                } else if (double.class == type || Double.class == type) {
+                    preparedStatement.setDouble(i+1, field.getDouble(obj));
+                } else if (long.class == type || Long.class == type) {
+                    preparedStatement.setLong(i+1, field.getLong(obj));
+                } else if (Date.class == type) {
+                    Date date = (Date)field.get(obj);
+                    preparedStatement.setDate(i++, new java.sql.Date(date.getTime()));
+                }
+            }
+        }
+
+        public <T> T getById(Class<T> cls, Object id) throws SQLException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+            Field idField = ORMAnnoHelper.findIdField(cls);
+            String where = idField.getName()+"=";
+            if (String.class == idField.getType()) {
+                where += "'"+id+"'";
+            } else {
+                where += id;
+            }
+            String sql = String.format("select * from %s where %s", ORMAnnoHelper.getTableName(cls),
+                    where);
+            System.out.println(sql);
+
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+
+            T result = oneResultHandler(cls, rs);
+
+            return result;
+        }
+
+        /*
+        * 删除操作
+        * */
+        public int delete(Class<?> cls, Object id) throws SQLException {
+            Field idField = ORMAnnoHelper.findIdField(cls);
+            String where = ORMAnnoHelper.getColumnName(idField)+"=";
+            if (String.class == id.getClass()) {
+                where += ("'"+id+"'");
+            } else {
+                where += id;
+            }
+            String sql = "delete from %s where %s";
+            sql = String.format(sql, ORMAnnoHelper.getTableName(cls), where);
+            System.out.println(sql);
+            Statement statement = conn.createStatement();
+            int row = statement.executeUpdate(sql);
+            return row;
+//            return 0;
+        }
+
+        public void close() {
+            if (null != conn) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
 ```
 
 
 
+## IoC实现（XML方式）
 
+IoC实现可以采用跟ORM一样注解方式实现，这里采用XML方式，类似Spring那种通过XML定义Bean。
 
+![](https://raw.githubusercontent.com/RebornL/picbed/master/20190515132139.png)
 
+另外还需要在resources中定义dtd和beans.xml
+
+### 实现具体
+
+#### DTD定义和使用
+
+factory.dtd文件
+
+```xml-dtd
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--这个表示beans节点可以包含很多bean-->
+<!ELEMENT beans (bean*) >
+<!--这个表示bean节点里面可以包含很多property-->
+<!ELEMENT bean (property*)>
+<!--定义bean节点中属性值-->
+<!ATTLIST bean
+        id ID #REQUIRED
+        class CDATA #REQUIRED
+        scope (singleton | prototype | session| request) "singleton">
+<!ELEMENT property (#PCDATA)>
+<!ATTLIST property
+        name CDATA #REQUIRED
+        value CDATA #REQUIRED
+        type (string|int|long|double|float) #IMPLIED>
+```
+
+beans.xml文件
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--本地通过绝对路径引入-->
+<!DOCTYPE beans SYSTEM "D:\project\tingmvc\src\main\resources\factory.dtd">
+
+<beans>
+    <bean id="test" class="com.tinymvc.xml.test.User">
+        <property name="id" value="10000" type="long"/>
+        <property name="name" value="test"/>
+        <property name="phone" value="1231231"/>
+    </bean>
+
+    <bean id="ordertest" class="com.tinymvc.xml.Order">
+        <property name="" value=""/>
+    </bean>
+</beans>
+```
+
+#### Bean和Property对应实现
+
+```java
+public class BeanInfo {
+
+    private String id;
+    private String clsName;//对应class属性
+    private String scope;
+
+    private List<PropsInfo> props;
+    // 构造器和getter，setter方法省略
+}
+
+public class PropsInfo {
+
+    private String name;
+    private String value;
+    private String type;
+
+    // 构造器和getter，setter方法省略
+}
+```
+
+#### 解析XML和构造Bean
+
+主要采用SAXParser解析XML，很方便（qName为标签名，attributes为属性值）
+
+```java
+public class FactoryBuilder {
+
+    private HashMap<String, BeanInfo> beanMap;
+
+    public FactoryBuilder(String xmlPath) {
+        try {
+            File file = new File(xmlPath);
+            if (!file.exists()) {
+                throw new FileNotFoundException("文件不存在，请检查xml的路径");
+            }
+
+            //1.SAXParser解析器工厂对象
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            //2.创建解析器对象
+            SAXParser parser = factory.newSAXParser();
+            //3.开始解析XML文件
+            parser.parse(new FileInputStream(xmlPath), new DefaultHandler() {
+                private BeanInfo beanInfo;
+
+                @Override
+                public void startDocument() throws SAXException {
+                    //文档开始
+                    beanMap = new HashMap<>();
+                }
+
+                @Override
+                public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+                    //标签开始
+                    if ("bean".equals(qName)) {
+                        beanInfo = new BeanInfo();
+                        beanInfo.setId(attributes.getValue("id"));
+                        beanInfo.setClsName(attributes.getValue("class"));
+                        beanInfo.setScope(attributes.getValue("scope"));
+
+                        beanInfo.setProps(new ArrayList<PropsInfo>());
+                    } else if("property".equals(qName)) {
+                        beanInfo.getProps().add(new PropsInfo(
+                                attributes.getValue("name"),
+                                attributes.getValue("value"),
+                                attributes.getValue("type")
+                        ));
+                    }
+                }
+
+                @Override
+                public void endElement(String uri, String localName, String qName) throws SAXException {
+                    //标签结束
+                    if ("bean".equals(qName)) {
+                        beanMap.put(beanInfo.getId(), beanInfo);
+                        beanInfo = null;
+                    }
+                }
+            });
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Factory newFactory() {
+        return new Factory();
+    }
+    /*
+    * 这个factory使用获取HashMap中Java对象
+    * */
+    public class Factory {
+        private Factory(){}
+
+        /*根据id获取Bean类对象*/
+        public Object getBeanById(String id) {
+            BeanInfo beanInfo = beanMap.get(id);
+            if (beanInfo == null) return null;
+            Object obj = null;
+            //通过反射实例化Bean标签的class属性指定的类对象
+            try {
+                Class cls = Class.forName(beanInfo.getClsName());
+                obj = cls.getDeclaredConstructor().newInstance();
+                for (PropsInfo pi: beanInfo.getProps()) {
+                    Field field = cls.getDeclaredField(pi.getName());
+                    field.setAccessible(true);//设置可访问性
+                    //向字段注入属性值
+                    if ("long".equals(pi.getType())) {
+                        field.set(obj, Long.parseLong(pi.getValue()));
+                    } else if ("int".equals(pi.getType())) {
+                        field.set(obj, Integer.parseInt(pi.getValue()));
+                    } else if ("double".equals(pi.getType())) {
+                        field.set(obj, Double.parseDouble(pi.getValue()));
+                    } else if ("float".equals(pi.getType())) {
+                        field.set(obj, Float.parseFloat(pi.getValue()));
+                    } else {
+                        field.set(obj, pi.getValue());
+                    }
+                }
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+
+            return obj;
+        }
+    }
+}
+```
 
 
 
