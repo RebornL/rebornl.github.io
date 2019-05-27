@@ -8,6 +8,10 @@
 
 
 
+2019-05-27：发现AS有时候设置了proxy（v2ray开全局，1080），依旧是没响应。后来换Brook，设置2080端口，很顺利。不知道是VPN的原因还是端口。
+
+
+
 ## 2. 遇到`java.lang.IllegalStateException: You need to use a Theme.AppCompat theme (or descendant) with this activity.`这样的错误
 
 在app/src/main/AndroidManifest.xml中，我对注册的activity加了`android:theme`这个属性，如下所示：
@@ -27,3 +31,6 @@
            android:theme="@style/Theme.AppCompat.Dialog"/>
 ```
 
+## 3. AndroidStudio3.4遇到`Caused by: java.lang.IllegalArgumentException: Unexpected type tag 67 found.`
+
+解决办法：重启Android Studio。（只想说重启大法真香）
