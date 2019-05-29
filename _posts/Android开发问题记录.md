@@ -34,3 +34,9 @@
 ## 3. AndroidStudio3.4遇到`Caused by: java.lang.IllegalArgumentException: Unexpected type tag 67 found.`
 
 解决办法：重启Android Studio。（只想说重启大法真香）
+
+
+
+## 4. Android8以上的广播失效的问题？`Background execution not allowed: receiving Intent`
+
+因为我看的《第一行代码》第二版用的最高安卓版本是Android7，内容有点旧。广播的写法有所改变，是因为Android8以上对广播进行改造有所限制造成。
