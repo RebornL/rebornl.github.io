@@ -56,9 +56,11 @@
 
 ![](https://raw.githubusercontent.com/RebornL/picbed/master/20190529164655.png)
 
-3. 在AndroidStudio中打开plugin，搜索`genymotion`插件安装。
+3. 在AndroidStudio中打开plugin，搜索`genymotion`插件安装，安装完成后，在settings中设置genymotion的路径。
 
 ![](https://raw.githubusercontent.com/RebornL/picbed/master/20190529165216.png)
+
+![](https://raw.githubusercontent.com/RebornL/picbed/master/20190529201433.png)
 
 4. 点击AndroidStudio中View菜单，勾选toolbars之后，就能看到genymotion管理按钮，点开之后，选择你的模拟器，点击start按钮即可
 
