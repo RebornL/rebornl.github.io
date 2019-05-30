@@ -74,7 +74,9 @@
 
 
 
+## 6. `@androidx.annotation.Nullable`没有找到的红色提示？
 
+首先导入对应的包（Alt+Enter快捷键）， 之后点击菜单栏中的Refactor选择`Migrate to AndroidX`，重新build之后，就OK了。
 
 
 
