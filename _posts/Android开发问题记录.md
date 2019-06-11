@@ -10,6 +10,8 @@
 
 2019-05-27：发现AS有时候设置了proxy（v2ray开全局，1080），依旧是没响应。后来换Brook，设置2080端口，很顺利。不知道是VPN的原因还是端口。
 
+2019-06-11：使用v2ray设置1080端口，还得修改“C:\Users\用户名\\.gradle\gradle.properties"，把systemProp.https.proxyPort和systemProp.https.proxyHost的关于https的代理加 “#” 注销，就正常了。
+
 
 
 ## 2. 遇到`java.lang.IllegalStateException: You need to use a Theme.AppCompat theme (or descendant) with this activity.`这样的错误
