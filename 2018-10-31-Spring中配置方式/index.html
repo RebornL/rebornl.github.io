@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Spring中配置方式 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="Spring中常见注解
+
+
+@Component:标注一个普通的Spring Bean类
+
+
+@Respository：标注一个DAO的组件类
+
+
+@Service：标注一个业务逻辑组件类
+
+
+@Controller：标注一个控制器组件类
+..." />
+    <meta name="keywords" content="Spring,Java Web" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Spring中配置方式</h2>
+            <div class="post-date">2018-10-31</div>
+            
+            <div class="post-content" v-pre>
+              <h2 id="spring中常见注解">Spring中常见注解</h2>
+<ul>
+<li>
+<p>@Component:标注一个普通的Spring Bean类</p>
+</li>
+<li>
+<p>@Respository：标注一个DAO的组件类</p>
+</li>
+<li>
+<p>@Service：标注一个业务逻辑组件类</p>
+</li>
+<li>
+<p>@Controller：标注一个控制器组件类</p>
+</li>
+<li>
+<p>@Autowired：可用于为类的属性、构造器、方法进行注值</p>
+</li>
+</ul>
+<h2 id="spring技术">Spring技术：</h2>
+<ul>
+<li>依赖注入（DI）：控制反转（IOC）的一种具体实现</li>
+</ul>
+<p>​	注入方式有：通过构造函数传递参数的方式，通过使用setter方法的等等</p>
+<ul>
+<li>
+<p>面向切面的编程（AOP）：一个程序中跨越多个点的功能称为<strong>横切关注点</strong> ，独立于业务逻辑，如日志记录、声明性事物、安全性以及缓存等等。</p>
+<p>AOP将横切关注点从他们所影响的对象中分离出来，DI则将应用程序彼此分离出来。</p>
+</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/springkuangjia.png" alt="spring4.0" loading="lazy"></figure>
+<p>Spring Hello World实例：</p>
+<p>首先定义一个HelloWorld类，有message属性以及相关的setter和getter方法，然后在MainApp文件中使用<code>ClassPathXmlApplicationContext(“xxx.xml”)</code>创建应用程序的上下文，创建初始化beans的配置文件所有的对象，之后可以通过getBean方法获取所需要的bean，根据bean的ID获取对象。在xml配置文件创建自己需要的实例化对象，从而不需要修改HelloWorld.java和MainApp.java文件。</p>
+<p>Spring的<code>BeanFactory</code>容器：常用在移动设备和applet的应用中,最常用的<code>XmlBeanFactory</code>，通过xml加载初始化bean</p>
+<p>Spring的ApplicationContext容器：</p>
+<p>常用的：</p>
+<ul>
+<li>
+<p><strong>FileSystemXmlApplicationContext</strong>：需要提供xml文件的绝对路径，该容器会从xml中加载已被定义的bean，</p>
+</li>
+<li>
+<p><strong>ClassPathXmlApplicationContext</strong>：在CLASSPATH环境变量中搜索XML配置文件，该容器就会从xml中加载配置文件，</p>
+</li>
+<li>
+<p><strong>WebXmlApplicationContext</strong>：在web应用程序的范围内加载xml配置文件</p>
+</li>
+</ul>
+<p>Bean：</p>
+<p>​	bean是一个被实例化，组装，并且被Spring IOC容器所管理的对象。bean是由容器通过配置元数据创建的。</p>
+<p>配置元数据对应bean定义的属性：</p>
+<figure data-type="image" tabindex="2"><img src="../img/bean-property.png" alt="bean" loading="lazy"></figure>
+<h2 id="spring配置元数据">Spring配置元数据：</h2>
+<h3 id="xml方式">XML方式：</h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;
+
+   &lt;bean id=&quot;helloWorld&quot; class=&quot;com.tutorialspoint.HelloWorld&quot; lazy-init=&quot;true&quot; lazy-method=&quot;...&quot; destroy-method=&quot;...&quot;&gt;
+       &lt;property name=&quot;message&quot; value=&quot;Hello World!&quot;/&gt;
+   &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+<h3 id="基于注解的配置方式">基于注解的配置方式：</h3>
+<ul>
+<li>@Require：应用于bean属性的setter方法。</li>
+<li>@Autowired：应用于bean属性的setter方法和非setter方法，构造函数和属性。</li>
+<li>@Qualifier：通过指定确切的将被连线的bean，通常和@Autowired一起使用来删除混乱。</li>
+<li>JSR-250 Annotation</li>
+</ul>
+<p>在IoC容器可以看到实例。</p>
+<h3 id="基于java的配置方式">基于Java的配置方式：</h3>
+<p>以上两种方式都是需要配置xml的基础上编写spring bean，但是基于java config，可以在不用编写xml上完成spring bean的配置。</p>
+<ul>
+<li>@Configuration：表明该类可以使用Spring IoC容器作为bean的定义来源</li>
+<li>@Bean：将方法名作为bean的id</li>
+<li>@Import(xxx.class)：允许加载另外一个配置类@Bean定义</li>
+<li>生命周期回调：@Bean(initMethod=&quot;xxx&quot;, destoryMethod=&quot;xxx&quot;)</li>
+<li>@Bean注解下可以使用@Scope注解指定Bean的范围</li>
+</ul>
+<h3 id="ioc容器">IoC容器</h3>
+<p>Bean的scope属性：</p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/scope-property.png" alt="scope" loading="lazy"></figure>
+<pre><code class="language-xml">&lt;bean id=&quot;helloWorld&quot; scope=&quot;singleton&quot;&gt;
+       &lt;property name=&quot;message&quot; value=&quot;Hello World!&quot;/&gt;
+ &lt;/bean&gt;
+</code></pre>
+<p>Bean的生命周期：</p>
+<p>​	初始化回调：类可以通过实现<em>org.springframework.beans.factory.InitializingBean</em> 的void afterPropertiesSet()，也可以通过XML的配置元数据中init-method指定一个void无参方法。</p>
+<pre><code class="language-java">public class ExampleBean implements InitializingBean {
+   @Overwrite	
+   public void afterPropertiesSet() {
+      // do some initialization work
+   }
+}
+</code></pre>
+<pre><code class="language-java">&lt;bean id=&quot;exampleBean&quot; 
+         class=&quot;examples.ExampleBean&quot; init-method=&quot;init&quot;/&gt;
+         
+//在类中定义一下方法
+public class ExampleBean {
+    public void init() {}
+}
+</code></pre>
+<p>​	销毁回调：通过可以通过实现<em>org.springframework.beans.factory.DisposableBean</em>的destory方法，亦或者在xml中配置destory-method属性</p>
+<pre><code class="language-java">public class ExampleBean implements DisposableBean {
+   @Overwrite
+   public void destroy() {
+      // do some destruction work
+   }
+}
+</code></pre>
+<pre><code class="language-java">&lt;bean id=&quot;exampleBean&quot;
+         class=&quot;examples.ExampleBean&quot; destroy-method=&quot;destroy&quot;/&gt;
+         
+public class ExampleBean {
+   public void destroy() {
+      // do some destruction work
+   }
+}
+</code></pre>
+<p>Spring的BeanPostProcessor:Bean的后置处理器</p>
+<p>​	BeanPostProcessor接口定义了回调方法，可以通过这些方法实现自己的实例化逻辑，依赖解析等等，也可以对bean对象实例进行操作。</p>
+<pre><code class="language-java">/*HelloWorld.java*/
+public class HelloWorld {
+   private String message;
+   public void setMessage(String message){
+      this.message  = message;
+   }
+   public void getMessage(){
+      System.out.println(&quot;Your Message : &quot; + message);
+   }
+   public void init(){
+      System.out.println(&quot;Bean is going through init.&quot;);
+   }
+   public void destroy(){
+      System.out.println(&quot;Bean will destroy now.&quot;);
+   }
+}
+/*InitHelloWorld.java*/
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.BeansException;
+public class InitHelloWorld implements BeanPostProcessor {
+   public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+      System.out.println(&quot;BeforeInitialization : &quot; + beanName);
+      return bean;  // you can return any other object as well
+   }
+   public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+      System.out.println(&quot;AfterInitialization : &quot; + beanName);
+      return bean;  // you can return any other object as well
+   }
+}
+/*MainApp.java*/
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class MainApp {
+   public static void main(String[] args) {
+      AbstractApplicationContext context = new ClassPathXmlApplicationContext(&quot;Beans.xml&quot;);
+      HelloWorld obj = (HelloWorld) context.getBean(&quot;helloWorld&quot;);
+      obj.getMessage();
+      context.registerShutdownHook();//关闭hook，确保bean被销毁
+   }
+}
+
+/*Beans.xml*/
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;
+
+   &lt;bean id=&quot;helloWorld&quot; class=&quot;com.tutorialspoint.HelloWorld&quot;
+       init-method=&quot;init&quot; destroy-method=&quot;destroy&quot;&gt;
+       &lt;property name=&quot;message&quot; value=&quot;Hello World!&quot;/&gt;
+   &lt;/bean&gt;
+
+   &lt;bean class=&quot;com.tutorialspoint.InitHelloWorld&quot; order=&quot;..可以用来定义执行前后的顺序...&quot;/&gt;
+
+&lt;/beans&gt;
+</code></pre>
+<p>依赖注入（DI）：</p>
+<ul>
+<li>构造器式注入：依赖性更强，传递参数可通过按顺序，传递参数属性亦或着索引。</li>
+</ul>
+<pre><code class="language-java">public class TextEditor {
+   private SpellChecker spellChecker;
+   private String name;
+   public TextEditor( SpellChecker spellChecker, String name ) {
+      this.spellChecker = spellChecker;
+      this.name = name;
+   }
+   public SpellChecker getSpellChecker() {
+      return spellChecker;
+   }
+   public String getName() {
+      return name;
+   }
+   public void spellCheck() {
+      spellChecker.checkSpelling();
+   }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;
+
+   &lt;!-- Definition for textEditor bean --&gt;
+   &lt;bean id=&quot;textEditor&quot; class=&quot;com.tutorialspoint.TextEditor&quot; 
+      autowire=&quot;constructor&quot;&gt;
+      &lt;constructor-arg value=&quot;Generic Text Editor&quot;/&gt;
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for spellChecker bean --&gt;
+   &lt;bean id=&quot;SpellChecker&quot; class=&quot;com.tutorialspoint.SpellChecker&quot;&gt;
+   &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+<ul>
+<li>setter方式注入：可解耦合性更高</li>
+</ul>
+<pre><code class="language-java">public class Foo {
+   public Foo(Bar bar, Baz baz) {
+      // ...
+   }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;
+
+   &lt;bean id=&quot;john-classic&quot; class=&quot;com.example.Person&quot;&gt;
+      &lt;property name=&quot;bar&quot; ref=&quot;bar&quot;/&gt;
+   &lt;/bean&gt;
+
+   &lt;bean name=&quot;bar&quot; class=&quot;com.example.Bar&quot;&gt;
+   &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+<p>注入内部Bean方式</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;
+
+   &lt;bean id=&quot;john-classic&quot; class=&quot;com.example.Person&quot;&gt;
+       &lt;property name=&quot;bar&quot; ref=&quot;bar&quot;&gt;
+       		&lt;bean name=&quot;bar&quot; class=&quot;com.example.Bar&quot;&gt;&lt;/bean&gt;
+       &lt;/property&gt;
+   &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+<p>集合类的注入有特定赋值方式，具体可见这个<a href="https://www.w3cschool.cn/wkspring/kp5i1ico.html">链接</a>。</p>
+<p>以上的xml配置，均为显示注入依赖，Beans还可以通过指定bean的autowire属性为一个bean定义一个自动装配的模式：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/bean-way.png" alt="beans模式" loading="lazy"></p>
+<p>@Required注解</p>
+<pre><code class="language-java">import org.springframework.beans.factory.annotation.Required;
+public class Student {
+    private Integer age;
+    
+    @Required
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+    public Integer getAge() {
+        return age;
+    }
+}
+</code></pre>
+<p>对应的xml文件</p>
+<pre><code class="language-xml">&lt;bean id=&quot;student&quot; class=&quot;com.tutorialspoint.Student&quot;&gt;
+    &lt;property name=&quot;name&quot;  value=&quot;Zara&quot; /&gt;
+
+    &lt;!-- try without passing age and check the result --&gt;
+    &lt;!-- property name=&quot;age&quot;  value=&quot;11&quot;--&gt;
+&lt;/bean&gt;
+</code></pre>
+<p>对应的property一定要写，否则会报以下错误</p>
+<blockquote>
+<p>Property 'age' is required for bean 'student'</p>
+</blockquote>
+<p>@Autowired注解</p>
+<ul>
+<li>可以实现bean的autowired属性的功能</li>
+<li>可以去除setter方法，直接给需要注入的属性加上@Autowired注解即可</li>
+<li>可以用在构造器方法上</li>
+<li>默认此依赖是必须，可以通过@Autowired(required=false)关闭默认行为</li>
+</ul>
+<p>@Qualifier(&quot;&quot;)：指定具体对象注入</p>
+<pre><code class="language-java">//Profile.java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+public class Profile {
+   @Autowired
+   @Qualifier(&quot;student1&quot;)//指定注入id为student1的bean
+   private Student student;
+   public Profile(){
+      System.out.println(&quot;Inside Profile constructor.&quot; );
+   }
+   public void printAge() {
+      System.out.println(&quot;Age : &quot; + student.getAge() );
+   }
+   public void printName() {
+      System.out.println(&quot;Name : &quot; + student.getName() );
+   }
+}
+</code></pre>
+<pre><code class="language-java">//MainApp.java
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = new ClassPathXmlApplicationContext(&quot;Beans.xml&quot;);
+      Profile profile = (Profile) context.getBean(&quot;profile&quot;);
+      profile.printAge();
+      profile.printName();
+   }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;!-- Definition for student1 bean --&gt;
+&lt;bean id=&quot;student1&quot; class=&quot;com.tutorialspoint.Student&quot;&gt;
+    &lt;property name=&quot;name&quot;  value=&quot;Zara&quot; /&gt;
+    &lt;property name=&quot;age&quot;  value=&quot;11&quot;/&gt;
+&lt;/bean&gt;
+
+&lt;!-- Definition for student2 bean --&gt;
+&lt;bean id=&quot;student2&quot; class=&quot;com.tutorialspoint.Student&quot;&gt;
+    &lt;property name=&quot;name&quot;  value=&quot;Nuha&quot; /&gt;
+    &lt;property name=&quot;age&quot;  value=&quot;2&quot;/&gt;
+&lt;/bean&gt;
+</code></pre>
+<p>输出结果：</p>
+<pre><code>Inside Profile constructor.
+Age : 11
+Name : Zara
+</code></pre>
+<h3 id="java-config方式配置示例">Java Config方式配置示例</h3>
+<pre><code class="language-java">import org.springframework.context.annotation.*;
+@Configuration
+public class HelloWorldConfig {
+   @Bean 
+   public HelloWorld helloWorld(){
+      return new HelloWorld();
+   }
+}
+
+//以上代码等同于如下的xml配置
+&lt;beans&gt;
+   &lt;bean id=&quot;helloWorld&quot; class=&quot;com.tutorialspoint.HelloWorld&quot; /&gt;
+&lt;/beans&gt;
+</code></pre>
+<pre><code class="language-java">//mainApp.java
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.*;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext ctx = 
+      new AnnotationConfigApplicationContext(HelloWorldConfig.class);
+	 /*也可以通过如下方式加载多个配置文件
+	  ApplicationContext ctx = new AnnotationConfigApplicationContext();
+	  ctx.register(AppConfig.class, OtherConfig.class);
+   	  ctx.register(AdditionalConfig.class);
+   	  ctx.refresh();
+	 */	
+      HelloWorld helloWorld = ctx.getBean(HelloWorld.class);
+
+      helloWorld.setMessage(&quot;Hello World!&quot;);
+      helloWorld.getMessage();
+   }
+}
+</code></pre>
+<h2 id="spring框架的aop">Spring框架的AOP</h2>
+<p>AOP：面向切面编程，横切关注点是指跨一个应用程序多个点的功能，例如日志记录、审计、安全性和缓存等等。</p>
+<h4 id="基于xml配置的实例">基于XML配置的实例</h4>
+<pre><code class="language-xml">&lt;aop:config&gt;
+   &lt;aop:aspect id=&quot;myAspect&quot; ref=&quot;aBean&quot;&gt;
+      &lt;aop:pointcut id=&quot;businessService&quot;
+         expression=&quot;execution(* com.xyz.myapp.service.*.*(..))&quot;/&gt;
+      &lt;!-- a before advice definition --&gt;
+      &lt;aop:before pointcut-ref=&quot;businessService&quot; 
+         method=&quot;doRequiredTask&quot;/&gt;
+      &lt;!-- an after advice definition --&gt;
+      &lt;aop:after pointcut-ref=&quot;businessService&quot; 
+         method=&quot;doRequiredTask&quot;/&gt;
+      &lt;!-- an after-returning advice definition --&gt;
+      &lt;!--The doRequiredTask method must have parameter named retVal --&gt;
+      &lt;aop:after-returning pointcut-ref=&quot;businessService&quot;
+         returning=&quot;retVal&quot;
+         method=&quot;doRequiredTask&quot;/&gt;
+      &lt;!-- an after-throwing advice definition --&gt;
+      &lt;!--The doRequiredTask method must have parameter named ex --&gt;
+      &lt;aop:after-throwing pointcut-ref=&quot;businessService&quot;
+         throwing=&quot;ex&quot;
+         method=&quot;doRequiredTask&quot;/&gt;
+      &lt;!-- an around advice definition --&gt;
+      &lt;aop:around pointcut-ref=&quot;businessService&quot; 
+         method=&quot;doRequiredTask&quot;/&gt;
+   ...
+   &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+&lt;bean id=&quot;aBean&quot; class=&quot;...&quot;&gt;
+...
+&lt;/bean&gt;
+</code></pre>
+<h4 id="使用aspect">使用@Aspect</h4>
+<p>在xml配置中只需要配置bean即可，以及在xml上加上&lt;<a href="aop:aspectj-autoproxy/">aop:aspectj-autoproxy/</a>&gt;配置</p>
+<pre><code class="language-java">import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
+@Aspect
+public class Logging2 {
+    /** Following is the definition for a pointcut to select
+     *  all the methods available. So advice will be called
+     *  for all the methods.
+     */
+    @Pointcut(&quot;execution(* main.java.com.lqb.demo1.aop.*(..))&quot;)
+    private void selectAll(){}
+    /**
+     * This is the method which I would like to execute
+     * before a selected method execution.
+     */
+    @Before(&quot;selectAll()&quot;)
+    public void beforeAdvice(){
+        System.out.println(&quot;Going to setup student profile.&quot;);
+    }
+    /**
+     * This is the method which I would like to execute
+     * after a selected method execution.
+     */
+    @After(&quot;selectAll()&quot;)
+    public void afterAdvice(){
+        System.out.println(&quot;Student profile has been setup.&quot;);
+    }
+    /**
+     * This is the method which I would like to execute
+     * when any method returns.
+     */
+    @AfterReturning(pointcut = &quot;selectAll()&quot;, returning=&quot;retVal&quot;)
+    public void afterReturningAdvice(Object retVal){
+        System.out.println(&quot;Returning:&quot; + retVal.toString() );
+    }
+    /**
+     * This is the method which I would like to execute
+     * if there is an exception raised by any method.
+     */
+    @AfterThrowing(pointcut = &quot;selectAll()&quot;, throwing = &quot;ex&quot;)
+    public void AfterThrowingAdvice(IllegalArgumentException ex){
+        System.out.println(&quot;There has been an exception: &quot; + ex.toString());
+    }
+}
+</code></pre>
+<h2 id="spring-mvc">Spring MVC</h2>
+<ul>
+<li><strong>模型</strong>封装了应用程序数据，它们一般有POJO组成</li>
+<li><strong>视图</strong>用于呈现模型数据，一般由它生成客户端（浏览器）可以解析的HTML代码</li>
+<li><strong>控制器</strong>用于处理用户请求，并返回合适的数据给视图</li>
+</ul>
+<p>整体框架围绕DispatcherServlet设计，<img src="https://raw.githubusercontent.com/RebornL/picbed/master/1554684539358.png" alt="1554684539358" loading="lazy"></p>
+<p>(此图来自w3cschool, 侵权即删)</p>
+<p>简略流程：</p>
+<ul>
+<li>收到一个 HTTP 请求后，<em>DispatcherServlet</em> 根据 <em>HandlerMapping</em> 来选择并且调用适当的<em>控制器</em>。</li>
+<li><em>控制器</em>接受请求，并基于使用的 GET 或 POST 方法来调用适当的 service 方法。Service 方法将设置基于定义的业务逻辑的模型数据，并返回视图名称到 <em>DispatcherServlet</em> 中。</li>
+<li><em>DispatcherServlet</em> 会从 <em>ViewResolver</em> 获取帮助，为请求检取定义视图。</li>
+<li>一旦确定视图，<em>DispatcherServlet</em> 将把模型数据传递给视图，最后呈现在浏览器中。</li>
+</ul>
+<p>spring mvc通过web.xml，配置url请求和处理</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/-BZfkIl7is/" class="tag">
+                    Spring
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="tag">
+                    Java Web
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-10-31-《大型网站与Java中间件实践》--读书记录/">
+                  <h3 class="post-title">
+                    《大型网站系统与Java中间件实践》--读书记录
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

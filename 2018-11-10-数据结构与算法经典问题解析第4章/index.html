@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>《数据结构与算法经典问题解析》--第四章 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="栈
+栈是一种线性表结构，只允许在表的一段（栈顶，top）插入和删除元素，因此栈是一种后进先出（LIFO）的线性表。
+
+专有名词概念：
+
+入栈（push）：在栈中插入一个元素
+出栈（pop）：在栈顶删除元素
+下溢（underflow）：在空栈..." />
+    <meta name="keywords" content="Alg" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">《数据结构与算法经典问题解析》--第四章</h2>
+            <div class="post-date">2018-11-10</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="栈">栈</h1>
+<p>栈是一种线性表结构，只允许在表的一段（栈顶，top）插入和删除元素，因此栈是一种后进先出（LIFO）的线性表。</p>
+<ul>
+<li>专有名词概念：
+<ul>
+<li>入栈（push）：在栈中插入一个元素</li>
+<li>出栈（pop）：在栈顶删除元素</li>
+<li>下溢（underflow）：在空栈中执行删除操作</li>
+<li>溢出（overflow）：试图对一个满栈执行入栈操作</li>
+</ul>
+</li>
+<li>应用：符号匹配，中缀表达式转换成后缀表达式，网页浏览器中以访问页面的历史记录等等</li>
+<li>实现：简单数组的实现，动态数组的实现，基于链表的实现</li>
+<li>关于递增策略和倍增策略的比较：
+<ul>
+<li>递增：实现push操作的平摊时间开销为O(n)[O(n^2)/n]</li>
+<li>倍增：实现push操作的平摊时间开销为O(1)[O(n)/n]</li>
+</ul>
+</li>
+<li>数组和链表实现区别
+<ul>
+<li>数组：倍增操作开销较大</li>
+<li>链表：每个操作都要使用额外的空间和时间开销来处理指针</li>
+</ul>
+</li>
+</ul>
+<h2 id="问题">问题</h2>
+<ol>
+<li>
+<p>判断一个含有特殊字符X的字符串是否为回文，使用栈？</p>
+<pre><code class="language-java">boolean isPalindrome(String inputStr) {
+    char inputChar[] = inputStr.toCharArray();
+    Stack s = new LLStack();
+    int i = 0;
+    while(inputChar[i]!='X') {
+        s.push(inputChar[i]);
+        i++;
+    }
+    i++;
+    while(i &lt; inputChar.length) {
+        if(s.isEmpty()) return false;
+        if(inputChar[i]!=((Character)s.pop()).charValue()) return false;
+    }
+    return true;
+}
+</code></pre>
+</li>
+<li>
+<p>只使用一个栈进行置换？</p>
+<p>时间复杂度O(n^2)，空间复杂度O(n)</p>
+<pre><code class="language-java">//采用递归出栈
+public class StackReversal {
+    public static void reverseStack(Stack stack) {
+        if(stack.isEmpty()) return;
+        int temp = stack.pop();
+        reverseStack(stack);
+        insertAtBottom(stack, temp);
+    }
+    
+    private static void insertAtBottom(Stack stack, int data) {
+        if(stack.isEmpty()) {
+            stack.push(data);
+            return;
+        }
+        int temp = stack.pop();
+        insertAtBottom(stack, data);
+        stack.push(temp);
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>给定一个数字数组，删除所有相邻重复元素，如下图所示</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/stackp1.png" alt="" loading="lazy"></figure>
+<pre><code class="language-java">public class RemoveAdjacentDuplicates {
+    public int removeAdjacentDuplicates(int[] A) {
+        int stkptr = -1;
+        int i = 0;
+        while(i &lt; A.length) {
+            if(sthptr == -1 || A[stkptr] != A[i])
+        }
+    }
+}
+</code></pre>
+</li>
+</ol>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="tag">
+                    Alg
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-11-10-数据结构与算法经典问题解析第5章/">
+                  <h3 class="post-title">
+                    《数据结构与算法经典问题解析》--第五章
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

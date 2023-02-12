@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>2019-09-23-马蜂窝笔试记录 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="2019-09-23-马蜂窝笔试记录
+
+马蜂窝的难度适中，编程题第二题出的有问题。
+
+
+
+排序算法的稳定性，直接见下表
+
+
+
+分支限界法：是指一种在问题的解空间树T上搜索问题解的算法，与回溯法不同，回溯法的求解目标找出T中满足约束条件的所有..." />
+    <meta name="keywords" content="面试" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">2019-09-23-马蜂窝笔试记录</h2>
+            <div class="post-date">2019-09-23</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="2019-09-23-马蜂窝笔试记录">2019-09-23-马蜂窝笔试记录</h1>
+<blockquote>
+<p>马蜂窝的难度适中，编程题第二题出的有问题。</p>
+</blockquote>
+<ol>
+<li>
+<p>排序算法的稳定性，直接见下表</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master//algorithm.png" alt="algorithm" loading="lazy"></figure>
+</li>
+<li>
+<p>分支限界法：是指一种在问题的解空间树T上搜索问题解的算法，与回溯法不同，回溯法的求解目标找出T中满足约束条件的<strong>所有解</strong>，而分支限界法则是找出满足约束条件的一个解。回溯法以<strong>深度优先</strong>的方式搜索解空间树T，而分支限界法则是以<strong>广度优先</strong>或者<strong>最小耗费优先</strong>的方式求解。</p>
+</li>
+<li>
+<p>完全二叉树和满二叉树：</p>
+<ul>
+<li>完全二叉树：一颗k层高的树，叶子结点只存在第k或者k-1层，而且第k层的节点存在最左边。</li>
+<li>满二叉树：一颗k层高的树，叶子结点只存在第k层，每一层的节点数为2^(k-1) ，总结点数为2^k - 1。</li>
+</ul>
+</li>
+</ol>
+<h1 id="2019-09-19-微众银行笔试部分记录">2019-09-19-微众银行笔试部分记录</h1>
+<ol>
+<li>计算作业平均周转时间：可以详细查看<a href="https://blog.csdn.net/u011080472/article/details/51218538">这篇文章</a>，其中平均周转时间是每个结束点总和除以线程数。</li>
+<li>执行最小乘法数：</li>
+</ol>
+<h1 id="2019-09-06-招行网络科技笔试记录">2019-09-06-招行网络科技笔试记录</h1>
+<blockquote>
+<p>招行网络科技的选择真的挺难，另外以为看懂了KMP算法，谁知道还是很不熟悉，一到选择题和一道编程题都是KMP算法|^|</p>
+</blockquote>
+<ul>
+<li>
+<p>堆利用率不高的原因：主要原因是因为产生了内存碎片，因为内存分配必须起始于可被4,8或16整除（这与处理器体系结构有关），但没有分配合适的内存时候，往往会分配比实际大的一点内存空间，多余的空间就为内存碎片。</p>
+</li>
+<li>
+<p>存储过程：MySQL5.0开始支持，是一种在数据库中存储复杂程序，以便外部程序调用的一种数据库对象，已经编译创建好存储在数据库中</p>
+<p>优点：</p>
+<ul>
+<li>封装性，隐藏复杂的商业逻辑</li>
+<li>可以回传值，并接受参数</li>
+<li>无法使用SELECT指令来运行</li>
+<li>安全性，可以用在数据校验，强制实行商业逻辑</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>存储过程可移植性差，与数据库相关</li>
+<li>性能调校与撰写受限于各种数据库系统（并不是说性能不好，相反比单条SQL执行的性能高）</li>
+</ul>
+</li>
+<li>
+<p>局域网常见拓扑结构：</p>
+<ul>
+<li>
+<p>总线型：</p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/20190906211408.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>星型结构：</p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/20190906211512.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>环形结构：</p>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/20190906211623.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>树形结构：</p>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/20190906211714.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>网状结构：</p>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/20190906211747.png" alt="" loading="lazy"></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>操作系统互为存在条件：<strong>并发</strong>和<strong>共享</strong>是操作系统的两个最基本的特征，互为存在的条件。资源共享是以程序进程的并发执行为条件的，若系统不允许程序并发执行，就不存在资源共享的问题；若系统不能对资源共享实施有效管理，协调好诸进程对共享资源的访问，必然影响程序并发执行的成都，甚至根本无法并发执行。</p>
+</li>
+<li>
+<p>哈夫曼树的带权路径长度的计算：可以看看这个手画版的<a href="https://blog.csdn.net/sinat_38972110/article/details/82136196">文章</a></p>
+</li>
+<li>
+<p>RPC主要采用调用代理模式，详细设计流程，可以看<a href="https://xilidou.com/2018/09/26/dourpc-remoting/">这篇文章</a></p>
+</li>
+<li>
+<p>Spring中Resources中用到了策略模式。</p>
+</li>
+<li>
+<p>关系模式中候选码：这个<a href="https://blog.csdn.net/weiyongle1996/article/details/73481163">文章</a></p>
+</li>
+<li>
+<p>KMP算法：<br>
+参考文章：<a href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html">字符串匹配的KMP算法</a>，<a href="https://www.bilibili.com/video/av3246487">汪都能听懂的KMP字符串匹配算法</a></p>
+</li>
+</ul>
+<pre><code class="language-java">// 手动实现一个
+public class KMPImpl {
+
+    private static void getNext(int[] next, @NotNull String pattern) {
+        int k = -1;
+        for (int i = 0, len = pattern.length(); i &lt; len;) {
+            if (k == -1 || pattern.charAt(k) == pattern.charAt(i)) {
+                next[i] = k+1;
+                k++;
+                i++;
+            } else {
+                if (k == 0) {
+                    next[i] = 0;
+                    i++;
+                } else {
+                    // 這一步就是返回到最開始不匹配的地方
+                    k = next[k-1];
+                }
+            }
+        }
+        System.out.println(Arrays.toString(next));
+    }
+
+    public static boolean kmlCompile(String str, String pattern) {
+        int len1 = str.length(), len2 = pattern.length();
+        if (len2 &lt;= 0) {
+            return true;
+        }
+        if (len1 &lt;= 0) {
+            return false;
+        }
+        int[] next = new int[len2];
+        getNext(next, pattern);
+        int i = 0, j = 0;
+        while (i &lt; len1 &amp;&amp; j &lt; len2) {
+            if (str.charAt(i) == pattern.charAt(j)) {
+                i++;
+                j++;
+            } else {
+                if (j != 0) {
+                    j -= (j - next[j-1]);
+                } else {
+                    i++;
+                }
+            }
+        }
+        if (j != len2) return false;
+        return true;
+    }
+
+    public static void main(String[] args) {
+        String pattern = &quot;agctagcagctagctg&quot;;
+        int[] next = new int[pattern.length()];
+        getNext(next, pattern);
+        String str = &quot;agctbcaagctagcagctagctg&quot;;
+        kmlCompile(str, pattern);
+    }
+}
+</code></pre>
+<h1 id="2019-09-05-cvte笔试记录">2019-09-05-CVTE笔试记录</h1>
+<ul>
+<li>
+<p>四个顶点的无向完全图的边数？</p>
+<p>完全图是每对顶点之间都连着一条边的简单图，那么总的边数为n(n-1)，由于是无向的完全图因此为边数为n(n-1)/2。<br>
+<img src="https://raw.githubusercontent.com/RebornL/picbed/master/20190905215652.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>MySQL慢查询分析</p>
+<ul>
+<li>show命名</li>
+<li>慢查询日志</li>
+<li>explain分析查询</li>
+<li>profiling分析查询</li>
+</ul>
+</li>
+<li>
+<p>AOP的原理</p>
+<p>AOP主要使用代理实现，Spring中会判断类是否实现接口，进而选择采用静态代理或者动态代理</p>
+<ul>
+<li>静态代理：必须实现接口</li>
+<li>动态代理：使用CGlib代理实现</li>
+</ul>
+<p>参考文章： <a href="https://juejin.im/post/5bf4fc84f265da611b57f906#heading-0">AOP如何实现及实现原理</a></p>
+</li>
+<li>
+<p>AVL树：AVL树是一种自平衡二叉查找树，左右子树的高度差不超过1。和红黑树的区别：可以看自己之前写的<a href="http://blog.raymondtech.top/2018/11/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98%E8%A7%A3%E6%9E%90%E7%AC%AC6%E7%AB%A0/#avl%E6%A0%91">笔记</a></p>
+</li>
+<li>
+<p>JVM 生命周期：和程序的生命周期是一致，当程序运行完成结束，JVM进程也会结束退出。</p>
+</li>
+</ul>
+<h1 id="2019-09-03-bigo笔试记录">2019-09-03-BIGO笔试记录</h1>
+<ul>
+<li>Spring常用注解及作用： <a href="http://blog.raymondtech.top/2018/10/31/Spring%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/">这篇文章</a></li>
+<li>死锁的四个必要条件
+<ul>
+<li>互斥</li>
+<li>不可剥夺</li>
+<li>持有和等待：一个资源可以在等待时持有资源</li>
+<li>循环等待</li>
+</ul>
+</li>
+<li>DNS服务器查询：递归式查询和交谈式查询</li>
+<li>排序算法的稳定性：详细查看<a href="http://blog.raymondtech.top/2018/11/10/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95(Java)/">这篇文章</a><br>
+只有<strong>冒泡排序</strong>、<strong>插入排序</strong>、<strong>归并排序</strong>是稳定的排序算法，其他都是不稳定排序算法。</li>
+<li>数据库完整性约束：数据完整性用于保证数据库中数据的正确性、一致性和可靠性。<a href="https://blog.csdn.net/bzhxuexi/article/details/43671251">详细链接</a>
+<ul>
+<li>实体完整性</li>
+<li>域完整性</li>
+<li>参照完整性</li>
+<li>用户定义完整性</li>
+</ul>
+</li>
+<li>IP地址中保留地址的概念：<a href="https://zh.wikipedia.org/wiki/%E4%BF%9D%E7%95%99IP%E5%9C%B0%E5%9D%80">维基百科</a><br>
+在互联网寻址结构中，互联网工程任务组（IETF）和互联网号码分配局（IANA）保留了许多用于特殊目的的网际协议（IP）地址。<br>
+可在维基百科中看列举的表格中专用网络的IP地址段。</li>
+<li>概率题：20分钟内看见一辆车的概率为0.75，假设车的速率恒定，那10分钟内看见一辆车的概率为多少？<br>
+解答可详见<a href="https://www.zhihu.com/question/19904858">此链接</a></li>
+<li>还有一道编程题--判断字符串能不能拆分中列表中的单词，LeetCode Word Break，采用动态规划</li>
+</ul>
+<h1 id="重要补充">重要补充</h1>
+<p>已经两次没有注意到了，int类型的范围为(-2147483648，2147483647)，笔试题中总是给很大的数据类型，容易超出int，当位数超过<strong>10位</strong>时要注意采用long类型，避免溢出。long类型的范围(-9223372036854774808，9223372036854774807)。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/-5I3BOZpw/" class="tag">
+                    面试
+                  </a>
+                
+              </div>
+            
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>《数据结构与算法经典问题解析》--第七章 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="优先队列和堆
+堆
+堆是一颗具有特定性质的二叉树，基本要求是所有结点的值必须大于或等于（或者小于或等于）其孩子节点的值，另外树的高度h大于0，所有结点都处于第h或h-1层时，即堆也是一颗完全二叉树。
+
+最大堆：结点的值必须大于或等于其孩子节点..." />
+    <meta name="keywords" content="Alg" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">《数据结构与算法经典问题解析》--第七章</h2>
+            <div class="post-date">2018-11-10</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="优先队列和堆">优先队列和堆</h1>
+<h2 id="堆">堆</h2>
+<p>堆是一颗具有特定性质的二叉树，基本要求是所有结点的值必须大于或等于（或者小于或等于）其孩子节点的值，另外树的高度h大于0，所有结点都处于第h或h-1层时，即堆也是一颗完全二叉树。</p>
+<ul>
+<li>最大堆：结点的值必须大于或等于其孩子节点的值</li>
+<li>最小堆：节点的值必须小于或等于其孩子节点的值</li>
+</ul>
+<h3 id="二叉堆">二叉堆</h3>
+<p>每个结点最多有两个孩子节点。</p>
+<p>储存格式，由于堆在形式上是一颗完全二叉树，因此可以采用数组形式存储它。</p>
+<p>以<strong>最大堆</strong>举例：</p>
+<pre><code class="language-java">public class Heap {
+    public int[] array;
+    public int count;//元素个数
+    public int capacity;//堆的容量
+    public int heap_type;//最大堆还是最小堆
+    public Head(int capacity, int head_type);
+    //...
+}
+</code></pre>
+<p><strong>创建堆</strong></p>
+<pre><code class="language-java">public Heap(int capacity, int heap_type) {
+    this.heap_type = heap_type;
+    this.count = count;
+    this.capacity = capacity;
+    this.array = new int[capacity];
+}
+</code></pre>
+<p><strong>节点的双亲</strong></p>
+<p>由于二叉堆是一颗完全二叉树，因此对于i位置上的节点其父节点的位置在<code>(i-1)/2</code>。</p>
+<pre><code class="language-java">public int Parent(int i) {
+    if(i &lt;= 0 || i &gt;= this.count) return -1;
+    return (i-1)/2;
+}
+</code></pre>
+<p><strong>节点的孩子</strong></p>
+<p>同上，子节点的位置为<code>2*i+1</code>和<code>2*i+2</code></p>
+<pre><code class="language-java">public int LeftChild(int i) {
+    int left = 2*i + 1;
+    if(left &gt;= this.count) return -1;
+    return left;
+}
+
+public int RightChild(int i) {
+    inr right = 2*i +2;
+    if(right &gt;= this.count) return -1;
+    return right;
+}
+</code></pre>
+<p><strong>获取堆中最大元素</strong></p>
+<p>最大堆的最大值即为根节点的值</p>
+<pre><code class="language-java">public int GetMaximum() {
+    if(this.count == 0) return -1;
+    return this.array[0];
+}
+</code></pre>
+<p><strong>堆化元素</strong></p>
+<p>将i位置移动到堆中合适的位置，自上而下，称之为<strong>堆化</strong>，或者说<strong>向下渗透</strong>。</p>
+<pre><code class="language-java">public void PercolateDown(int i) {
+    int l, r, max, temp;
+    l = LeftChild(i);
+    r = RightChild(i);
+    //对位置i的元素进行堆化，移到它合适的位置
+    if(l != -1 &amp;&amp; this.array[l]&gt;this.array[i]) max = l;
+    else max = i;//当前节点比其左节点大
+    
+    if(r != -1 &amp;&amp; this.array[r] &gt; this.array[max]) max = r;
+    
+    if(max!=i) {//交换位置
+    	temp = this.array[i];
+        this.array[i] = this.array[max];
+        this.array[max] = temp;
+    }
+    //继续堆化
+    PercolateDown(max);
+}
+</code></pre>
+<p><strong>删除元素</strong></p>
+<p>二叉堆删除只能从根节点删除元素，这是标准堆支持的唯一操作，删除根节点后，再将最后一个元素移动到根节点， 然后对根节点进行堆化。</p>
+<pre><code class="language-java">public int DeleteMax() {
+    if(this.count == 0) return -1;
+    int data = this.array[0];
+    this.array[0] = this.array[this.count - 1];
+    this.count--;//这里并没有删除最后一个元素，而是将最后一个元素复制到根节点，再将下标前移
+    PercolateDown(0);
+    return data;//返回删除的最大值
+}
+</code></pre>
+<p><strong>插入元素</strong></p>
+<p>从下往上堆化元素，称之为<strong>向上渗透</strong></p>
+<pre><code class="language-java">public int Insert(int data) {
+    int i;
+    if(this.count == this.capacity) {
+        ResizeHeap();//扩容
+    }
+    this.count++;
+    i = this.count - 1;
+    while(i &gt;= 0 &amp;&amp; data &gt; this.array[(i-1)/2]) {
+        //跟父节点比较
+        this.array[i] = this.array[(i-1)/2];
+        i = (i-1)/2;
+    }
+    this.array[i] = data;
+}
+
+public void resizeHeap() {
+    int array_old = new int[this.capacity];
+    System.arraycopy(this.array, 0, array_old, this.count-1);
+    this.array = new int[this.capacity*2];
+    if(this.array == null) {
+        System.out.println(&quot;Memory Error&quot;);
+        return;
+    }
+    for(int i = 0; i&lt;this.capacity; i++) {
+        this.array[i] = array_old[i];
+        this.capacity *= 2;
+        array_old = null;
+    }
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="tag">
+                    Alg
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-11-10-计算机基础知识/">
+                  <h3 class="post-title">
+                    计算机操作系统概念记录
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

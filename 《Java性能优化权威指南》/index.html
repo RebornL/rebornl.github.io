@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java性能优化权威指南 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="第一章：策略、方法和方法论
+Wilson和Kesselman添加性能测试分析之后的软件开发流程
+
+性能分析的两种方法
+
+自顶向下：从软件栈顶层的应用，从上往下寻找优化机会和问题。第一步对运行在特定负载之下的应用进行监控（监控操作系统资源，J..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java性能优化权威指南</h2>
+            <div class="post-date">2019-01-25</div>
+            
+            <div class="post-content" v-pre>
+              <h2 id="第一章策略-方法和方法论">第一章：策略、方法和方法论</h2>
+<p>Wilson和Kesselman添加性能测试分析之后的软件开发流程</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/20191106153205.png" alt="" loading="lazy"></figure>
+<p>性能分析的两种方法</p>
+<ul>
+<li>自顶向下：从软件栈顶层的应用，从上往下寻找优化机会和问题。第一步对运行在特定负载之下的应用进行监控（监控操作系统资源，Java虚拟机，Java EE容器以及应用的性能测量统计指标）；第二步根据监控的信息进行下一步的工作，JVM垃圾收集器调优，JVM命令行调优等等。</li>
+<li>自底向上：从软件栈最底层的CPU统计数据开始，上升到应用自身的结构或者使用方式。更侧重于关注CPU的使用。</li>
+</ul>
+<h2 id="第二章操作系统性能监控">第二章：操作系统性能监控</h2>
+<p>改善性能涉及三个方面：</p>
+<ul>
+<li>性能监控：非侵入方式手机或查看应用运行性能数据的活动</li>
+<li>性能分析：侵入式收集运行性能数据的活动，会影响应用的吞吐量或响应性</li>
+<li>性能调优：是一种为改善应用响应或吞吐量而参数、源代码或属性配置的活动</li>
+</ul>
+<p>Linux上查看<strong>CPU使用率</strong>的命令有：<code>vmstat</code>，<code>mpstat</code>，<code>top</code>等等。</p>
+<p><strong>CPU调度程序运行队列</strong>对于分辨系统是否满负荷也有重要的意义。</p>
+<p><strong>内存利用率</strong>，在系统进行页面交换或使用虚拟内存是，Java程序或JVM会表现出明显的性能问题。</p>
+<p><strong>网络I/O使用率</strong>，Linux上可以使用<code>nicstat</code></p>
+<p><strong>磁盘I/O使用率</strong>，Linux上可以使用<code>iostat</code></p>
+<h2 id="第三章jvm概览">第三章：JVM概览</h2>
+<p>HotSpot VM三个组件：</p>
+<ul>
+<li>VM运行时</li>
+<li>JIT编译器</li>
+<li>内存管理器</li>
+</ul>
+
+            </div>
+            
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

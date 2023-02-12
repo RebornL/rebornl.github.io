@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>数据结构--树 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="树
+二叉查找树
+将二叉树变成二叉查找树，对于树种每个节点X，它的左子树中所有相的值小于X中的值，右子树的所有项的值大于X中的值。
+
+
+二叉查找树的平均深度为O(logN)，所以不必担心栈内存耗尽。
+
+BinaryNode为BinarySea..." />
+    <meta name="keywords" content="Alg" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">数据结构--树</h2>
+            <div class="post-date">2018-11-10</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="树">树</h1>
+<h2 id="二叉查找树">二叉查找树</h2>
+<p>将二叉树变成二叉查找树，对于树种每个节点X，它的左子树中所有相的值小于X中的值，右子树的所有项的值大于X中的值。</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/alg1.png" alt="图来自《数据结构与算法分析》" loading="lazy"></figure>
+<blockquote>
+<p>二叉查找树的平均深度为O(logN)，所以不必担心栈内存耗尽。</p>
+</blockquote>
+<p><strong>BinaryNode</strong>为BinarySearchTree的内部嵌套类。</p>
+<pre><code class="language-java">private static class BinaryNode&lt;AnyType&gt; {
+    AnyType element;
+    BinaryNode&lt;AnyType&gt; left;
+    BinaryNode&lt;AnyType&gt; right;
+    
+    BinaryNode(AnyType theElement) {
+        this(theElement, null null);
+    }
+    BinaryNode(AnyType theElement, BinaryNode&lt;AnyType&gt; lt, BinaryNode&lt;AnyType&gt; rt) {
+        element = theElement;
+        left = lt;
+        right = rt;
+    }
+}
+</code></pre>
+<p><strong>BinarySearchTree</strong></p>
+<pre><code class="language-java">public class BinarySearchTree&lt;AnyType extends Comparable&lt;? super AnyType&gt;&gt; {
+    //二叉查找树的每个节点定义
+    private static class BinaryNode&lt;AnyType&gt; {}
+    
+    private BinaryNode&lt;AnyType&gt; root;
+    
+    public BinarySearchTree() {
+        root = null;
+    }
+    
+    public void makeEmpty() {
+        root = null;
+    }
+    public boolean isEmpty() {
+        return root == null;
+    }
+    
+    public boolean contains(AnyType x) {
+        return contains(x, root);
+    }
+    public AnyType findMin() {
+        if(isEmpty()) throws new UnderflowException();
+        return findMin(root).element;
+    }
+    public AnyType findMax() {
+        if(isEmpty()) throws new UnderflowException();
+        return findMax(root).element;
+    }
+    public void insert(AnyType x) {
+        root = insert(x, root);
+    }
+    public void remove(AnyType x) {
+        root = remove(x, root);
+    }
+    public void printTree(){}
+    
+    private boolean contains(AnyType x, BinaryNode&lt;AnyType&gt; t) {}
+    
+    private boolean contains(AnyType x, BinaryNode&lt;AnyType&gt; t) {
+        //contains方法在二叉查找树中很简单，通过递归即可实现
+        if(t == null) return false;
+        int compareResult = x.compareTo(t.element);
+        if(compareResult &lt; 0) {
+            //查找左子树
+            return contains(x, t.left);
+        } else if(compareResult &gt; 0) {
+            return contains(x, t.right);
+        } else {
+            return true;
+        }
+    }
+    private BinaryNode&lt;AnyType&gt; findMin(BinaryNode&lt;AnyType&gt; t) {
+        //findMin不断查找左子树最左的一个叶子节点，必然为最小
+        if(t == null) {return null;}
+        else if(t.left == null) {
+            return t;
+        }
+        return findMin(t.left);
+    }
+    private BinaryNode&lt;AnyType&gt; findMax(BinaryNode&lt;AnyType&gt; t) {
+        if(t != null) {
+            while(t.right != null) {
+                t = t.right;
+            }
+        }
+        return t;
+    }
+    
+    private BinaryNode&lt;AnyType&gt; insert(AnyType x, BinaryNode&lt;AnyType&gt; t) {
+        if(t == null) {
+            return new BinaryNode&lt;AnyType&gt;(x, null, null);
+        }
+        int compareResult = x.compareTo(t.element);
+        
+        if(compareResult &lt; 0) {
+            t.left = insert(x, t.left);
+        } else if(compareResult &gt; 0) {
+            t.right = insert(x, t.right);
+        }
+        
+        return t;
+    }
+    private BinaryNode&lt;AnyType&gt; remove(AnyType x, BinaryNode&lt;AnyType&gt; t) {
+        if(t == null) return t;
+        int compareResult = x.compareTo(t.element);
+        
+        if(compareResult &lt; 0) {
+            t.left = remove(x, t.left);
+        } else if(compareResult &gt; 0) {
+            t.right = remove(x, t.right);
+        } else if(t.left != null &amp;&amp; t.right != null) {
+            //第一种情况：左右子树均存在
+            t.element = findMin(t.right).element;//将右子树最小的值取代当前节点
+            t.right = remove(t.element, t.right);
+        } else {
+            //第二种情况：右子树不存在
+            t = (t.left != null) ? t.left: t.right;
+        }
+        return t;
+    }
+    private void printTree(BinaryNode&lt;AnyType&gt; t) {}
+}
+</code></pre>
+<h3 id="红黑树">红黑树</h3>
+<p>红黑树是一种自平衡的二叉查找树，解决二叉查找树在极端情况下变为线性链表的情况。红黑树有以下特点：</p>
+<ol>
+<li>红黑树是二叉搜索树。</li>
+<li><strong>根节点是黑色</strong>。</li>
+<li><strong>每个叶子节点都是黑色的空节点（NIL节点）</strong>。</li>
+<li><strong>每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)</strong></li>
+<li><strong>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点(每一条树链上的黑色节点数量（称之为“黑高”）必须相等)</strong>。</li>
+</ol>
+<p>插入流程查看：一般新插入的为红色节点，根据以下情况进行回溯</p>
+<ol>
+<li>
+<p>调整右边红色节点，如左边为黑色节点，右边为红色，将右边红色链接转到左边来，就是对下图中b节点做左旋和变色操作。</p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/1554013821223.png" alt="1554013821223" loading="lazy"></figure>
+</li>
+<li>
+<p>如果当左右叶子节点均为红色节点时，就如下图，将b节点变色，左右节点变为黑色。</p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/1554014018236.png" alt="1554014018236" loading="lazy"></figure>
+</li>
+<li>
+<p>当为连续红色节点时，如下图所示，将b节点做右旋操作和变色操作。</p>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/1554014120533.png" alt="1554014120533" loading="lazy"></figure>
+<p>基本上，感觉插入之后，变色比较麻烦，还得进行旋转操作进行位置变换。具体详细插入过程可以看看<a href="https://www.jianshu.com/p/ad5d65e7ce62">这篇文章</a>，作者良心画制，精品。</p>
+</li>
+</ol>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="tag">
+                    Alg
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-11-10-数据结构与算法经典问题解析第1章和第2章/">
+                  <h3 class="post-title">
+                    《数据结构与算法经典问题解析》--第一章和第二章
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Webpack学习使用 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="[TOC]
+webpack介绍
+webpack是最近很流行的一种前端打包神器，除了能够打包js文件之后，通过引入各种loader，可以打包css，jsx等等，让所有资源变成模块使用。
+
+webpack使用
+1.entry属性
+该属性是需要打..." />
+    <meta name="keywords" content="webpack,前端" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Webpack学习使用</h2>
+            <div class="post-date">2016-10-23</div>
+            
+            <div class="post-content" v-pre>
+              <p>[TOC]</p>
+<h2 id="webpack介绍">webpack介绍</h2>
+<p><a href="https://webpack.js.org/">webpack</a>是最近很流行的一种前端打包神器，除了能够打包js文件之后，通过引入各种loader，可以打包css，jsx等等，让所有资源变成模块使用。<br>
+<img src="https://raw.githubusercontent.com/RebornL/picbed/master/webpack.png" alt="webpack" loading="lazy"></p>
+<h2 id="webpack使用">webpack使用</h2>
+<h3 id="1entry属性">1.entry属性</h3>
+<p>该属性是需要打包的文件的入口</p>
+<p>使用方法：</p>
+<pre><code>entry: {[entryChunkName: string]: string|Array&lt;string&gt;}
+</code></pre>
+<pre><code class="language-javascript">//当只有一个页面的时候
+entry: &quot;./index.js&quot;
+//当有多个入口文件的时候
+entry: {
+    //当需要分别打包多个文件的时候，可以这样去写 name: &quot;../xx.js&quot;
+    page1: ./page1/page1.js,
+    page2: ./page2/page2.js
+}
+</code></pre>
+<h3 id="2output属性">2.output属性</h3>
+<p>该属性是配置打包文件的输出目录，<strong>path</strong>路径采用的是<strong>绝对路径</strong></p>
+<p>使用方法：（文档中还有其他属性，详见官方文档）</p>
+<pre><code class="language-javascript">//output.filename和output.path是博主现在用到的属性
+//当只有一个文件的时候
+output: {
+    filename: &quot;bundle.js&quot;,//文档中推荐打包的文件名为index.js || bundle.js || main.js
+    path: __dirname + &quot;/dist&quot;,//当前目录中的dist文件夹
+}
+
+//当需要分别打包多个文件的时候
+output: {
+    filename: &quot;[name].js&quot;,//还有其他的选项例如[id],[hash]等等
+    path: __dirname + &quot;/dist&quot;
+}
+</code></pre>
+<h3 id="3loaders加载器">3.loaders(加载器)</h3>
+<p>loader放在module中，这东西是用来加载打包css，png，jsx等其他文件的loader。对于不同loader的使用的方法，需要查看<a href="http://www.css88.com/doc/webpack2/loaders/">文档使用</a>，注意webpack1和webpack2的使用方法不一样</p>
+<p>使用方法：(在配置文件这样写之后，就不需要在命令行中加入参数编译了)</p>
+<pre><code class="language-javascript">//webpack1的写法
+module: {
+    loaders: [
+        {
+            test: /\.css/,//这里写的是正则表示，适配该类型的文件
+            loader: &quot;style-loader!css-loader&quot;//使用什么加载器进行打包
+        }
+    ]
+}
+
+//webpack2
+module: {
+    rules: [//使用rules取代原来的loaders
+        {
+            test: /\.css/,
+            use: [//使用use取代
+                {loader: &quot;style-loader&quot;},
+                {
+                    loader: &quot;css-loader&quot;,
+                    options: {
+                        modules: true
+                    }
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+<h3 id="4plugins属性">4.plugins属性</h3>
+<p>plugins属性用来实现loader不能实现的功能，具体插件见<a href="http://www.css88.com/doc/webpack2/plugins/">官方文档</a></p>
+<p>使用方法：</p>
+<pre><code class="language-javascript">plugins: {
+    new webpack.BannerPlugin(&quot;This is created by Reborn&quot;),//这是使用官方的插件，用于在打包文件顶部中输入信息
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/W_455jmEU1A/" class="tag">
+                    webpack
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/xkW7irgpbOH/" class="tag">
+                    前端
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2016-10-23-微信小程序遇到的坑/">
+                  <h3 class="post-title">
+                    微信小程序开发问题记录
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>JVM笔记2 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="类加载过程
+
+（在JDK1.8及之后，Extension Classloader变成Platform Classloader）
+
+
+加载（Loading）》验证（Vertification）》准备（Preparation）》解析（Resol..." />
+    <meta name="keywords" content="Java,JVM" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">JVM笔记2</h2>
+            <div class="post-date">2018-11-10</div>
+            
+            <div class="post-content" v-pre>
+              <h3 id="类加载过程">类加载过程</h3>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/jvm3.jpg" alt="双亲委托机制" loading="lazy"></figure>
+<p>（在JDK1.8及之后，Extension Classloader变成Platform Classloader）</p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/20190924162706.png" alt="" loading="lazy"></figure>
+<blockquote>
+<p>加载（Loading）<mark>》验证（Vertification）</mark>》准备（Preparation）<mark>》解析（Resolution）++》初始化（Initialization）</mark>》使用（Using）==》卸载（Unloading）</p>
+</blockquote>
+<ul>
+<li>
+<p>加载过程：虚拟机会做以下事情：1.通过一个类的全限定名来获取其定义的二进制字节流；2.将字节流中代表的静态存储节后转化位方法区的运行时数据结构；3.在堆中该类的Class对象，作为方法去的数据的访问入口。</p>
+</li>
+<li>
+<p>验证阶段：确保类的正确性：文件格式验证，元数据验证，字节码验证，符号引用验证</p>
+</li>
+<li>
+<p>准备阶段：为类的静态变量分配内存，并将其初始化为默认值（数据类型的默认值），除了同时被final和static修饰，那么在准备阶段变量value就会被初始化为ConstValue属性所指定的值</p>
+</li>
+<li>
+<p>解析阶段：把类中的符号引用转换为直接引用，符号引用有类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用点限定符7类符号引用；直接引用是直接指向目标的指针、相对偏移量或一个间接定位到目标的句柄。</p>
+</li>
+<li>
+<p><strong>初始化</strong></p>
+<p>（以下摘自纯洁的微笑）</p>
+<p>初始化，为类的静态变量赋予正确的初始值，JVM负责对类进行初始化，主要对类变量进行初始化。在Java中对类变量进行初始值设定有两种方式：</p>
+<ul>
+<li>①声明类变量是指定初始值</li>
+<li>②使用静态代码块为类变量指定初始值</li>
+</ul>
+<p>JVM初始化步骤</p>
+<ul>
+<li>1、假如这个类还没有被加载和连接，则程序先加载并连接该类</li>
+<li>2、假如该类的直接父类还没有被初始化，则先初始化其直接父类</li>
+<li>3、假如类中有初始化语句，则系统依次执行这些初始化语句</li>
+</ul>
+<p>类初始化时机：只有当对类的主动使用的时候才会导致类的初始化，类的主动使用包括以下六种：</p>
+<ul>
+<li>
+<p>创建类的实例，也就是new的方式</p>
+</li>
+<li>
+<p>访问某个类或接口的静态变量，或者对该静态变量赋值</p>
+</li>
+<li>
+<p>调用类的静态方法</p>
+</li>
+<li>
+<p>反射（如<code>Class.forName(“com.shengsiyuan.Test”)</code>）</p>
+</li>
+<li>
+<p>初始化某个类的子类，则其父类也会被初始化</p>
+</li>
+<li>
+<p>Java虚拟机启动时被标明为启动类的类（<code>Java Test</code>），直接使用<code>java.exe</code>命令来运行某个主类</p>
+</li>
+</ul>
+<h3 id="结束生命周期">结束生命周期</h3>
+<p>在如下几种情况下，Java虚拟机将结束生命周期</p>
+<ul>
+<li>执行了<code>System.exit()</code>方法</li>
+<li>程序正常执行结束</li>
+<li>程序在执行过程中遇到了异常或错误而异常终止</li>
+<li>由于操作系统出现错误而导致Java虚拟机进程终止</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="tag">
+                    Java
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/PXuFayfvUr/" class="tag">
+                    JVM
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-11-10-Java基础知识1/">
+                  <h3 class="post-title">
+                    Java基础知识1
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

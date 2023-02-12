@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java中线程同步辅助类 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="Java中线程同步辅助类
+CountDownLatch类
+CountDownLatch类，是用来线程同步辅助类，可用在某些线程工作前先完成某些动作或这某些线程工作完成后进行收尾工作。
+主要的两个方法：
+
+countDown()：使计数器减一..." />
+    <meta name="keywords" content="Java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java中线程同步辅助类</h2>
+            <div class="post-date">2019-02-16</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="java中线程同步辅助类">Java中线程同步辅助类</h1>
+<h2 id="countdownlatch类">CountDownLatch类</h2>
+<p>CountDownLatch类，是用来线程同步辅助类，可用在某些线程工作前先完成某些动作或这某些线程工作完成后进行收尾工作。</p>
+<p>主要的两个方法：</p>
+<ul>
+<li>countDown()：使计数器减一</li>
+<li>await()：当count为0时，等待的线程会被释放可以进行下一步操作</li>
+</ul>
+<p>简单使用：</p>
+<p>例如：有三个线程在进行爬取内容，有一个线程进行汇总。</p>
+<pre><code class="language-java">public class CountDownLatchTest {
+    public static void main(String[] args) {
+        CountDownLatch cdl = new CountDownLatch(3);
+        new Thread(new Runable() {
+            @Override
+            public void run() {
+                try {
+                    // 这里调用的是await()不是wait()
+                    cdl.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(&quot;汇总所有爬取的内容&quot;);
+            }
+        }).start();
+        
+        for(int i = 0; i &lt; 3; i++) {
+            new Thread(new Runable() {
+                @Override
+                public void run() {
+                    System.out.println(&quot;正在爬取第&quot;+i+&quot;个页面&quot;);
+                    cdl.countDown();                
+                }
+            }).start();
+        }
+    }
+}
+</code></pre>
+<h2 id="cyclicbarrier类">CyclicBarrier类</h2>
+<p>CyclicBarrier允许一组线程相互等待，直至到了公共屏障点，这组线程才可以继续执行下去。而且CycliBarrier可以被重用。</p>
+<pre><code class="language-java">public class CyclicBarrierTest {
+    // 参与者数量
+    private static int parties = 3;
+    // 创建一个新的 CyclicBarrier，它将在给定数量的参与者（线程）处于等待状态时启动
+    private static CyclicBarrier barrier = new CyclicBarrier(parties);
+    public static void main(String[] args) throws InterruptedException {
+        for (int i = 0; i &lt; parties; i++)
+            new Thread(new Task()).start();
+        Thread.sleep(1000);
+        System.out.println(&quot;getNumberWaiting()：&quot; + barrier.getNumberWaiting());
+    }
+
+    static class Task implements Runnable {
+        public void run() {
+            try {
+                System.out.println(Thread.currentThread().getName() + &quot;await&quot;);
+                // 在所有参与者都已经在此 barrier 上调用 await 方法之前，将一直等待。
+                barrier.await();
+                System.out.println(Thread.currentThread().getName() + &quot;continued&quot;);
+            } catch (BrokenBarrierException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="semaphore">Semaphore</h2>
+<p>Semaphore，其实就是信号量，内部保留一个计数count，用于控制同时访问线程个数。</p>
+<p>主要两个方法：</p>
+<ul>
+<li>acquire()：获取信号量，得到之后count减一，可以继续执行；否则会阻塞起来</li>
+<li>release()：操作完成，需要释放信号量，count加1</li>
+</ul>
+<p>举例：</p>
+<p>银行有三个窗口，每次最多只能有三个人去办理业务。</p>
+<pre><code class="language-java">public class SemaphoreTest {
+    public static void main(String[] args) {
+        int num = 10;
+        Semaphore semaphore = new Semaphore(3);
+        for(int i = 0; i &lt; num; i++) {
+            final int person = i;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        semaphore.acquire();
+                        System.out.println(&quot;第&quot;+(person+1)+&quot;位正在前台办理业务&quot;);
+                        Thread.sleep(1000);
+                        System.out.println(&quot;第&quot;+person+&quot;位办理完业务&quot;);
+                        semaphore.release();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+
+            Thread.sleep(10);
+        }
+    }
+}
+</code></pre>
+<h2 id="关于aqsabstractqueuedsynchronizer">关于AQS(AbstractQueuedSynchronizer)</h2>
+<p>AQS位于java.util.concurrent.locks，是一个用来构建锁和同步器的框架，底层采用模板方法模式，自定义同步器时，只需要覆盖重写AQS中<code>isHeldExclusively()</code>,<code>tryAcquire(int)</code>，<code>tryRelease(int)</code>，<code>tryAcquireShared(int)</code>，<code>tryReleaseShared(int)</code>这几个模板方法即可。</p>
+<p>AQS使用一个int成员变量来表示同步状态，通过内置的FIFO队列来完成获取资源线程的排队工作。AQS使用CAS对该同步状态进行原子操作实现对其值的修改。</p>
+<pre><code>private volatile int state;//共享变量，使用volatile修饰保证线程可见性
+</code></pre>
+<p>状态信息通过procted类型的getState，setState，compareAndSetState进行操作</p>
+<pre><code>//返回同步状态的当前值
+protected final int getState() {  
+        return state;
+}
+ // 设置同步状态的值
+protected final void setState(int newState) { 
+        state = newState;
+}
+//原子地（CAS操作）将同步状态值设置为给定值update如果当前同步状态的值等于expect（期望值）
+protected final boolean compareAndSetState(int expect, int update) {
+        return unsafe.compareAndSwapInt(this, stateOffset, expect, update);
+}
+</code></pre>
+<p>以上三个同步辅助类均是继承AQS实现的。</p>
+<p><strong>AQS核心思想是，如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程，并且将共享资源设置为锁定状态。如果被请求的共享资源被占用，那么就需要一套线程阻塞等待以及被唤醒时锁分配的机制，这个机制AQS是用CLH队列（这是一个虚拟队列，采用节点相连）锁实现的，即将暂时获取不到锁的线程加入到队列中。</strong></p>
+<p>2019-03-30：看到一篇讲的很好的文章，简单明了的阐述AQS，<a href="https://juejin.im/post/5c07e59cf265da617464a09c">传送门</a></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="tag">
+                    Java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2019-02-16-LinuxIO模型/">
+                  <h3 class="post-title">
+                    Linux下I/O模型介绍
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

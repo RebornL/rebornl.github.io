@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java基础面试题记录 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="1. 为什么Java只有值传递？
+Java没有指针这种说法，而且即使传递对象也并非所谓按引用传递，而是把栈中指向堆中某个地址值传递给参数，也依旧是值传递。对于基本数据类则和其他语言一样。
+example：
+public class Test..." />
+    <meta name="keywords" content="Java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java基础面试题记录</h2>
+            <div class="post-date">2018-11-10</div>
+            
+            <div class="post-content" v-pre>
+              <h2 id="1-为什么java只有值传递">1. 为什么Java只有值传递？</h2>
+<p>Java没有指针这种说法，而且即使传递对象也并非所谓按引用传递，而是把栈中指向堆中某个地址值传递给参数，也依旧是值传递。对于基本数据类则和其他语言一样。</p>
+<p>example：</p>
+<pre><code class="language-java">public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Student s1 = new Student(&quot;小张&quot;);
+		Student s2 = new Student(&quot;小李&quot;);
+		Test.swap(s1, s2);
+		System.out.println(&quot;s1:&quot; + s1.getName());
+		System.out.println(&quot;s2:&quot; + s2.getName());
+	}
+
+	public static void swap(Student x, Student y) {
+		Student temp = x;
+		x = y;
+		y = temp;
+		System.out.println(&quot;x:&quot; + x.getName());
+		System.out.println(&quot;y:&quot; + y.getName());
+	}
+}
+/*输出结果
+x:小李
+y:小张
+s1:小张
+s2:小李
+*/
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/zhichuandi.png" alt="" loading="lazy"></figure>
+<h2 id="2-和equals">2. ==和equals</h2>
+<p>==：对于基本数据类型，用来比较两个数值大小是否相等；对于对象，则是比较两个对象的地址值是否相等。</p>
+<p>equals：是用来判断两个对象是否相等，一般有以下两种情况：</p>
+<pre><code>1. 类没有覆盖equals方法，则equal方法起的作用跟==相同。
+2. 类覆盖equals方法时，则是比较两个对象的内容是否相同。
+</code></pre>
+<h2 id="3-hashcode和equals方法">3. hashCode()和equals()方法</h2>
+<p>hashCode()方法的作用是用来获取哈希码，在哈希表中是为了确定对象的索引位置。HashSet中首先会通过hashCode方法判断集合中是否有相同的对象，如果哈希码不同则假设没有相同对象添加到集合；如果哈希码相同则再调用equals方法判断两个对象的内容是否相等，不同则重新散列到其他位置，相等则不添加。</p>
+<p><strong>hashCode和equals方法相关规定</strong>：</p>
+<ul>
+<li>两个对象相同，则equals必然返回true，hashCode必然相等</li>
+<li>hashCode值相同，equals返回值不一定为true，即对象内容不一定相同</li>
+<li>equals被覆盖时，hashCode也需要被覆盖重写</li>
+</ul>
+<h2 id="4-stringstringbuilder和stringbuffer">4. String，StringBuilder和StringBuffer</h2>
+<p>String定义的对象是不可变，StringBuilder和StringBuffer是可变的。StringBuffer与StringBuilder不同之处在于它的方法都加了同步操作，所以是线程安全。这三种的使用情况：</p>
+<ol>
+<li>操作少量的数据，使用String</li>
+<li>单线程进行大量字符串操作时，可以使用StringBuilder</li>
+<li>多线程进行大量字符串操作是，可以使用StringBuffer</li>
+</ol>
+<blockquote>
+<p>额外的，可以通过反射操作操作String对象可以使其改变。</p>
+<p>String s = &quot;test1&quot;;</p>
+<p>System.out.println(s);</p>
+<p>Field valueOfString = String.class.getDeclaredField(&quot;value&quot;);</p>
+<p>valueOfString.setAccessible(true);//设置可访问权限</p>
+<p>char[] value = (char[])valueOfString.get(s);</p>
+<p>value[4] = '2';</p>
+<p>System.out.println(s);</p>
+</blockquote>
+<h2 id="5-反射机制">5. 反射机制</h2>
+<p>Java中的反射机制是指：在运行状态中，对于任意一个类，可以知道这个类的所有属性和方法；对于任意对象，可以调用他的任意一个方法和属性。</p>
+<p>**优点：**可以在运行期间，动态加载类，提高代码的灵活性</p>
+<p>**缺点：**性能瓶颈，比直接写好的固定Java代码慢很多</p>
+<p>反射机制通常是用来框架之中，例如Spring中的xml配置模式，就是很典型反射机制操作。</p>
+<h2 id="6-字节码">6. 字节码</h2>
+<p>Java中引入Java虚拟机的概念（JVM），即在机器和编译程序之间加入一层虚拟的机器，给编译程序提供统一接口，实现跨平台操作。编译程序生成虚拟机能够理解的代码，成为<strong>字节码</strong>，扩展名为<code>.class</code>的文件。字节码由虚拟机解释执行，虚拟机通过解释器将字节码翻译特定机器上的机器码。所以Java是编译和解释并存的语言。</p>
+<blockquote>
+<p>Java代码--》编译器--》jvm可执行的Java字节码--》JVM--》解释器--》机器可执行的二进制机器码--》程序运行</p>
+</blockquote>
+<p>字节码的好处：</p>
+<ul>
+<li>在一定程度上解决了传统解释型语言执行效率低下的问题，同时保留解释型语言可移植的特点。</li>
+<li>字节码不针对特定机器，因此具有跨平台，由JVM解释翻译成对应的机器代码。</li>
+</ul>
+<h2 id="7-接口和抽象类的区别">7. 接口和抽象类的区别</h2>
+<ol>
+<li>接口中方法默认为public，且无法实现（但在JDK8中引入default关键字，接口可以实现某些方法）；抽象类可以有具体实现方法。</li>
+<li>接口定义的变量均为静态常量（static final修饰）。</li>
+<li>接口可以被多实现，但类只能是单继承。</li>
+<li>类实现接口必须实现所有方法，但继承抽象类却不必。</li>
+</ol>
+<h2 id="8arraylist和linkedlist异同">8.ArrayList和LinkedList异同</h2>
+<ol>
+<li>ArrayList和LinkedList都是不同步的，需要线程安全的，可以采用Java的并发集合包</li>
+<li>底层数据结构不同，ArrayList使用的是Object数组，而LinkedList采用的是双向链表结构</li>
+<li>ArrayList的底层采用数组实现，所以插入和删除元素受元素位置的影响；而LinkedList底层采用链表实现，因此插入和删除操作不受元素位置的影响，时间复杂度近似为O(1)</li>
+<li>ArrayList支持快速随机访问，即通过下标快速获取元素。</li>
+<li>ArrayList主要空间浪费在于预留一定容量空间；而LinkedList的空间浪费则在于它每个结点的结构。</li>
+</ol>
+<h2 id="9hashmap的底层实现">9.HashMap的底层实现</h2>
+<h3 id="jdk18以前">JDK1.8以前</h3>
+<p>在JDK1.7及之前JDK版本中，HashMap的底层采用数组和链表的实现的<strong>链表散列</strong>。<strong>HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash 值，然后通过 (n - 1) &amp; hash 判断当前元素存放的位置（这里的 n 指的时数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。</strong></p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/hashmap1.7.png" alt="" loading="lazy"></figure>
+<p><strong>jdk1.7的hash方法</strong></p>
+<pre><code>static int hash(int h) {
+    // This function ensures that hashCodes that differ only by
+    // constant multiples at each bit position have a bounded
+    // number of collisions (approximately 8 at default load factor).
+
+    h ^= (h &gt;&gt;&gt; 20) ^ (h &gt;&gt;&gt; 12);
+    return h ^ (h &gt;&gt;&gt; 7) ^ (h &gt;&gt;&gt; 4);
+}
+</code></pre>
+<h3 id="jdk18">JDK1.8</h3>
+<p>JDK1.8对hash方法进行简化，性能更好。此外还增加红黑树，即当链表的长度大于8（默认值），将会把链表转换成红黑树，保证了HashMap的检索速度。</p>
+<pre><code>static final int hash(Object key) {
+      int h;
+      // key.hashCode()：返回散列值也就是hashcode
+      // ^ ：按位异或
+      // &gt;&gt;&gt;:无符号右移，忽略符号位，空位都以0补齐
+      return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);
+  }
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/hashmap1.8.png" alt="" loading="lazy"></figure>
+<h3 id="拓展">拓展</h3>
+<p>为什么HashMap的长度要为2的幂次方？</p>
+<p>这样做是为了让HashMap获取高效，尽量较少碰撞，把数据分配均匀。另外，这里有个数学的技巧，<strong>取余(%)操作中如果除数是2的幂次则等价于与其除数减一的与(&amp;)操作（也就是说 hash%length==hash&amp;(length-1)的前提是 length 是2的 n 次方；）。</strong> 并且 <strong>采用二进制位操作 &amp;，相对于%能够提高运算效率，这就解释了 HashMap 的长度为什么是2的幂次方。</strong></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="tag">
+                    Java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-11-10-排序算法(Java)/">
+                  <h3 class="post-title">
+                    排序算法(Java版)
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

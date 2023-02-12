@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>排序算法（Python实现） | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="排序算法（Python实现）
+最近找实习，把之前用Java实现过排序算法，重新实现一下，当作复习。之前Java版实现的文章
+冒泡排序
+def bubbleSort(arr):
+    if arr is None or len(arr) =..." />
+    <meta name="keywords" content="Alg,Python" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">排序算法（Python实现）</h2>
+            <div class="post-date">2019-03-15</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="排序算法python实现">排序算法（Python实现）</h1>
+<p>最近找实习，把之前用Java实现过排序算法，重新实现一下，当作复习。之前Java版实现的<a href="http://blog.raymondtech.top/2018/11/10/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95(Java)/">文章</a></p>
+<h2 id="冒泡排序">冒泡排序</h2>
+<pre><code class="language-python">def bubbleSort(arr):
+    if arr is None or len(arr) == 0:
+        return []
+
+    l = len(arr)
+    for i in range(l - 1):
+        for j in range(l - i - 1):
+            if arr[j] &gt; arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+    return arr
+</code></pre>
+<h2 id="选择排序">选择排序</h2>
+<pre><code class="language-python">def selectSort(arr):
+    if arr is None or len(arr) == 0:
+        return []
+
+    l = len(arr)
+    for i in range(l - 1):
+        minIndex = i
+        for j in range(i + 1, l):
+            if arr[j] &lt; arr[minIndex]:
+                minIndex = j
+
+        arr[i], arr[minIndex] = arr[minIndex], arr[i]
+
+    return arr
+</code></pre>
+<h2 id="插入排序">插入排序</h2>
+<pre><code class="language-python">def insertSort(arr):
+    if arr is None or len(arr) == 0:
+        return []
+
+    l = len(arr)
+    for i in range(1, l):
+        current = arr[i]
+        preIndex = i - 1
+        while preIndex &gt;= 0 and arr[preIndex] &gt; arr[i]:
+            arr[preIndex + 1] = arr[preIndex]  # 后移
+            preIndex -= 1
+
+        arr[preIndex + 1] = current
+
+    return arr
+</code></pre>
+<h2 id="希尔排序">希尔排序</h2>
+<pre><code class="language-python">def shellSort(arr):
+    if arr is None or len(arr) == 0:
+        return []
+
+    l = len(arr)
+    h = 1
+    while h &lt; l/3:
+        h = 3*h + 1
+
+    while h&gt;0:
+        for i in range(h, l):
+            for j in range(i, h-1, -1):
+                if arr[j] &lt; arr[j-h]:
+                    arr[j], arr[j-h] = arr[j-h], arr[j]
+
+        h = int(h/3)
+
+    return arr
+</code></pre>
+<h2 id="快速排序">快速排序</h2>
+<pre><code class="language-python">def quickSort(arr, left, right):
+    if left &gt;= right:
+        return
+
+    partitionIndex = partition(arr, left, right)
+    quickSort(arr, left, partitionIndex-1)
+    quickSort(arr, partitionIndex, right)
+
+    return arr
+
+def partition(arr, left, right):
+    pivot = arr[right]
+    i = left
+    for j in range(left, right):
+        if arr[j] &lt; pivot:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+
+    arr[i], arr[right] = arr[right], arr[i]
+
+    return i
+</code></pre>
+<h2 id="归并排序">归并排序</h2>
+<p>归并排序，其实就是不断二分，然后二分排序好的子集进行合并</p>
+<pre><code class="language-python"># 归并排序
+def merge(arr, left, right):
+    result = []  # 借助辅助空间
+    mid = (left + right) &gt;&gt; 1
+    leftIndex, rightIndex = left, mid + 1
+    print(&quot;left: %s, right: %s, %s&quot; % (left, right, arr[left: right+1]))
+    while leftIndex &lt;= mid and rightIndex &lt;= right:
+        # 用辅助空间
+        if arr[leftIndex] &lt; arr[rightIndex]:
+            result.append(arr[leftIndex])
+            leftIndex += 1
+        else:
+            result.append(arr[rightIndex])
+            rightIndex += 1
+
+    while leftIndex &lt;= mid:
+        result.append(arr[leftIndex])
+        leftIndex += 1
+    while rightIndex &lt;= right:
+        result.append(arr[rightIndex])
+        rightIndex += 1
+
+    for i in range(left, right+1):
+        arr[i] = result[i-left]
+    print(&quot;After sort, left: %s, right: %s, %s&quot; % (left, right, arr[left: right + 1]))
+
+
+
+
+def sort(arr, left, right):
+    if left &gt;= right:
+        return
+    mid = (left + right) // 2
+    sort(arr, left, mid)
+    sort(arr, mid + 1, right)
+    merge(arr, left, right)
+
+
+def mergeSort(arr, left, right):
+    sort(arr, left, right)
+    return arr
+
+if __name__ == '__main__':
+    mergeSort([3, 44, 38, 5, 47, 15, 26, 2, 46, 19, 50, 48], 0, 11)
+
+</code></pre>
+<p>结果展示</p>
+<pre><code>left: 0, right: 1, [3, 44]
+After sort, left: 0, right: 1, [3, 44]
+left: 0, right: 2, [3, 44, 38]
+After sort, left: 0, right: 2, [3, 38, 44]
+left: 3, right: 4, [5, 47]
+After sort, left: 3, right: 4, [5, 47]
+left: 3, right: 5, [5, 47, 15]
+After sort, left: 3, right: 5, [5, 15, 47]
+left: 0, right: 5, [3, 38, 44, 5, 15, 47]
+After sort, left: 0, right: 5, [3, 5, 15, 38, 44, 47]
+left: 6, right: 7, [26, 2]
+After sort, left: 6, right: 7, [2, 26]
+left: 6, right: 8, [2, 26, 46]
+After sort, left: 6, right: 8, [2, 26, 46]
+left: 9, right: 10, [19, 50]
+After sort, left: 9, right: 10, [19, 50]
+left: 9, right: 11, [19, 50, 48]
+After sort, left: 9, right: 11, [19, 48, 50]
+left: 6, right: 11, [2, 26, 46, 19, 48, 50]
+After sort, left: 6, right: 11, [2, 19, 26, 46, 48, 50]
+left: 0, right: 11, [3, 5, 15, 38, 44, 47, 2, 19, 26, 46, 48, 50]
+After sort, left: 0, right: 11, [2, 3, 5, 15, 19, 26, 38, 44, 46, 47, 48, 50]
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="tag">
+                    Alg
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/nDveU_fSgO/" class="tag">
+                    Python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2019-02-16-Java中线程同步类/">
+                  <h3 class="post-title">
+                    Java中线程同步辅助类
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

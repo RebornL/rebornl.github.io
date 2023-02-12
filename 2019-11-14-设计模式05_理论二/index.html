@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>05 | 理论二：封装、抽象、继承、多态分别可以解决哪些编程问题？ | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="05 | 理论二：封装、抽象、继承、多态分别可以解决哪些编程问题？
+封装
+封装，信息隐藏或者数据访问保护，类通过暴露有限的接口，授权外部仅能通过类提供的方法去访问内部信息和数据。封装这一特性主要依赖于编程语言本身提供的语法机制--访问权限控..." />
+    <meta name="keywords" content="设计模式" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">05 | 理论二：封装、抽象、继承、多态分别可以解决哪些编程问题？</h2>
+            <div class="post-date">2019-11-14</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="05-理论二封装-抽象-继承-多态分别可以解决哪些编程问题">05 | 理论二：封装、抽象、继承、多态分别可以解决哪些编程问题？</h1>
+<h2 id="封装">封装</h2>
+<p>封装，信息隐藏或者数据访问保护，类通过暴露有限的接口，授权外部仅能通过类提供的方法去访问内部信息和数据。封装这一特性主要依赖于编程语言本身提供的语法机制--<strong>访问权限控制</strong>。如<code>private</code>关键词保证外部无法直接获取。</p>
+<pre><code class="language-java">// 简化版的虚拟钱包的实现
+public class Wallet {
+  private String id;
+  private long createTime;
+  private BigDecimal balance;
+  private long balanceLastModifiedTime;
+  // ...省略其他属性...
+
+  public Wallet() {
+     this.id = IdGenerator.getInstance().generate();
+     this.createTime = System.currentTimeMillis();
+     this.balance = BigDecimal.ZERO;
+     this.balanceLastModifiedTime = System.currentTimeMillis();
+  }
+
+  // 注意：下面对get方法做了代码折叠，是为了减少代码所占文章的篇幅
+  public String getId() { return this.id; }
+  public long getCreateTime() { return this.createTime; }
+  public BigDecimal getBalance() { return this.balance; }
+  public long getBalanceLastModifiedTime() { return this.balanceLastModifiedTime }
+
+  public void increaseBalance(BigDecimal increasedAmount) {
+    if (increasedAmount.compareTo(BigDecimal.ZERO) &lt; 0) {
+      throw new InvalidAmountException(&quot;...&quot;);
+    }
+    this.balance.add(increasedAmount);
+    this.balanceLastModifiedTime = System.currentTimeMillis();
+  }
+
+  public void decreaseBalance(BigDecimal decreasedAmount) {
+    if (decreasedAmount.compareTo(BigDecimal.ZERO) &lt; 0) {
+      throw new InvalidAmountException(&quot;...&quot;);
+    }
+    if (decreasedAmount.compareTo(this.balance) &gt; 0) {
+      throw new InsufficientAmountException(&quot;...&quot;);
+    }
+    this.balance.subtract(decreasedAmount);
+    this.balanceLastModifiedTime = System.currentTimeMillis();
+  }
+}
+</code></pre>
+<p>通过封装，隐藏业务细节，减少调用者出错的概率，提高类的易用性。</p>
+<h2 id="抽象">抽象</h2>
+<p>抽象，讲的是如何隐藏方法的具体实现，让调用者只需要关心提供哪些功能，并不需要知道这些功能是如何实现的。在面向对象编程中，可以借助编程语言中<strong>接口类</strong>或者<strong>抽象类</strong>的语法机制来实现抽线这一特性。</p>
+<pre><code class="language-java">
+public interface IPictureStorage {
+  void savePicture(Picture picture);
+  Image getPicture(String pictureId);
+  void deletePicture(String pictureId);
+  void modifyMetaInfo(String pictureId, PictureMetaInfo metaInfo);
+}
+
+public class PictureStorage implements IPictureStorage {
+  // ...省略其他属性...
+  public void savePicture(Picture picture) { ... }
+  public Image getPicture(String pictureId) { ... }
+  public void deletePicture(String pictureId) { ... }
+  public void modifyMetaInfo(String pictureId, PictureMetaInfo metaInfo) { ... }
+}
+</code></pre>
+<p>抽象和封装一样都是处理复杂性的有效手段。抽象能够作为一种只关注功能点不关注实现的设计思路，帮大脑<strong>过滤掉许多非必要的信息</strong>。</p>
+<h2 id="继承">继承</h2>
+<p>继承，表示类之间的<code>is-a</code>关系，分成两种模式：单继承和多继承。Java中使用<code>extends</code>关键字实现继承，C++通过<code>:</code>实现等等。</p>
+<p>继承最大一个好处就是<strong>代码复用</strong>。从人类认知角度来看，继承符合真实世界中存在关系，如有哺乳动物类，猫就属于哺乳动物一类。但是缺点也很明显，过于使用时，继承层次可能会过于复杂，导致代码可读性差，可维护性变差。因此现在很多人提倡“多用组合少用继承”的设计思想。</p>
+<h2 id="多态">多态</h2>
+<p>多态，是指子类可以替换父类，在实际代码运行过程中，调用子类的方法实现。</p>
+<h3 id="继承和方法重写的机制实现多态">继承和方法重写的机制实现多态：</h3>
+<pre><code class="language-java">
+public class DynamicArray {
+  private static final int DEFAULT_CAPACITY = 10;
+  private int size = 0;
+  private int capacity = DEFAULT_CAPACITY;
+  private Integer[] elements = new Integer[DEFAULT_CAPACITY];
+  
+  public int size() { return this.size; }
+  public Integer get(int index) { return elements[index];}
+  //...省略n多方法...
+  
+  public void add(Integer e) {
+    ensureCapacity();
+    elements[size++] = e;
+  }
+  
+  protected void ensureCapacity() {
+    //...如果数组满了就扩容...代码省略...
+  }
+}
+
+public class SortedDynamicArray extends DynamicArray {
+  @Override
+  public void add(Integer e) {
+    ensureCapacity();
+    for (int i = size-1; i&gt;=0; --i) { //保证数组中的数据有序
+      if (elements[i] &gt; e) {
+        elements[i+1] = elements[i];
+      } else {
+        break;
+      }
+    }
+    elements[i+1] = e;
+    ++size;
+  }
+}
+
+public class Example {
+  // 这里可以传入继承DynamicArray的子类
+  public static void test(DynamicArray dynamicArray) {
+    dynamicArray.add(5);
+    dynamicArray.add(1);
+    dynamicArray.add(3);
+    for (int i = 0; i &lt; dynamicArray.size(); ++i) {
+      System.out.println(dynamicArray[i]);
+    }
+  }
+  
+  public static void main(String args[]) {
+    DynamicArray dynamicArray = new SortedDynamicArray();
+    test(dynamicArray); // 打印结果：1、3、5
+  }
+}
+</code></pre>
+<h3 id="接口类实现的多态">接口类实现的多态</h3>
+<p>与继承的方式类型，通过实现相同接口</p>
+<pre><code class="language-java">
+public interface Iterator {
+  String hasNext();
+  String next();
+  String remove();
+}
+
+public class Array implements Iterator {
+  private String[] data;
+  
+  public String hasNext() { ... }
+  public String next() { ... }
+  public String remove() { ... }
+  //...省略其他方法...
+}
+
+public class LinkedList implements Iterator {
+  private LinkedListNode head;
+  
+  public String hasNext() { ... }
+  public String next() { ... }
+  public String remove() { ... }
+  //...省略其他方法... 
+}
+
+public class Demo {
+  private static void print(Iterator iterator) {
+    while (iterator.hasNext()) {
+      System.out.println(iterator.next());
+    }
+  }
+  
+  public static void main(String[] args) {
+    Iterator arrayIterator = new Array();
+    print(arrayIterator);
+    
+    Iterator linkedListIterator = new LinkedList();
+    print(linkedListIterator);
+  }
+}
+</code></pre>
+<h3 id="duck-typing方式实现多态">duck-typing方式实现多态</h3>
+<p>Python等动态语言具有的特性，不要求具有继承关系或者实现接口等等，只要有相同的方法，即可实现多态。</p>
+<pre><code class="language-python">class Logger:
+    def record(self):
+        print(&quot;write a log into file.&quot;)
+        
+class DB:
+    def record(self):
+        print(&quot;insert data into db&quot;)
+        
+def test(recorder):
+    recorder.record()
+
+def demo():
+    logger = Logger()
+    db = DB()
+    test(logger)
+    test(db)
+</code></pre>
+<p>多态的意义就是提高了<strong>代码的扩展性和复用性</strong>，例如打印集合类的方法，可以用通过迭代类实现打印多种数据结构中存储的元素。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/XKh_5pXnR/" class="tag">
+                    设计模式
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/码农翻身笔记/">
+                  <h3 class="post-title">
+                    码农翻身笔记
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

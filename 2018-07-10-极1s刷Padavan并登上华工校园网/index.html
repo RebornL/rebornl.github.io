@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>极路由1s刷Padavan | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="极1S刷LEDE和Padavan
+
+Author: Reborn
+Update-Date: 2018-11-xx
+
+[TOC]
+固件更新
+【2018-11】：libgcc已经添加这一型号的编译，之后直接从那里获取更新即可
+【2018-10-..." />
+    <meta name="keywords" content="路由器" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">极路由1s刷Padavan</h2>
+            <div class="post-date">2018-07-10</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="极1s刷lede和padavan">极1S刷LEDE和Padavan</h1>
+<hr>
+<p>Author: Reborn</p>
+<p>Update-Date: 2018-11-xx</p>
+<hr>
+<p>[TOC]</p>
+<h2 id="固件更新">固件更新</h2>
+<p>【2018-11】：libgcc已经添加这一型号的编译，之后直接从那里获取更新即可</p>
+<p>【2018-10-14】：固件更新，具体升级详情请看<a href="https://www.jianshu.com/p/52282cd07284">这里</a></p>
+<p>链接: https://pan.baidu.com/s/1QtaxLvQMmYtzPuL4xuKuEw 提取码: 9826</p>
+<p>【2018-10-03】：跟随libgcc源码更新，各种软件也都更新，同时恢复ss（可能会有人需要），具体升级详情请看<a href="https://www.jianshu.com/p/52282cd07284">这里</a></p>
+<p><s>链接: https://pan.baidu.com/s/1wfB9ZunwHV9OXaXbYKM-Cg 提取码: t56q</s></p>
+<p>【2018-09-25】：跟随libgcc源码更新，其中scutclient升级到3.1.2版本，并启用新的watchcat，建议升级后执行<strong>双清操作</strong>或<strong>手动删除</strong>crontab中的两项：</p>
+<pre><code class="language-shell">*/1 * * * * /bin/scutclient_watchcat.sh &gt; /dev/null 2&gt;&amp;1
+*/10 * * * * /usr/bin/ss-watchcat.sh &gt; /dev/null 2&gt;&amp;1
+</code></pre>
+<p>另外，该版本我取消掉ss，因为我没用过。链接: https://pan.baidu.com/s/1tqsEYKqZOcWHSPT-ZFEVGw 提取码: 9ig2。其他升级详情请看<a href="https://www.jianshu.com/p/52282cd07284">这里</a></p>
+<p><s>【2018-09-20】：padavan固件更新scutclient程序到3.1.2版本，链接: https://pan.baidu.com/s/161qxwFYjSbg9Tk2bXVlF4A</s>，该版本不可用</p>
+<p>【2018-09-01】：跟随libgcc的07-16更新集成scutclient的padavan。链接: https://pan.baidu.com/s/1BOs_TYL6ywmcbJBxjFSteg 提取码: dru6</p>
+<p>【2018-04】：初始版本，<s>链接: https://pan.baidu.com/s/10F9b6szkhENga6gj8ZUZ5A 密码: pq7y</s></p>
+<h2 id="前言">前言</h2>
+<p>最近宿舍用的路由器----极路由1S（新版的，HC5661A），用路由器群提供的hiwifi的旧版wifi破解教程，虽然能用，但是很不稳定，有时候会自动下线，于是就决定把它刷成LEDE，而且可玩性更高，便于使用群里最新提供的scutclient来破解wifi。但是没想到这个HC5661A型号能用最新固件很少，跟HC5661的区别很大。在这里推荐要给路由器刷机的人，买HC5661，固件更多。<s>本来还打算按照LEDE官网提供的教程自己编译一个HC5661A的LEDE最新固件，想到有民间大神<a href="http://www.right.com.cn/forum/space-uid-372524.html">ptpt52</a>给这台HC5661A编译了一个他自己定制的<a href="http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;tid=212965&amp;extra=page%3D1&amp;page=1">LEDE固件</a>，还挺好用的，推荐小白使用</s>。推荐小白直接用集成scutclient的<strong>padavan固件</strong>，简单但功能同样强大。</p>
+<p>【2018-03-10更新】部分指令修改，增加padavan固件</p>
+<p>【2018-07-10更新】流程更新，ipv6不可用</p>
+<h2 id="极路由开启开发者模式">极路由开启开发者模式</h2>
+<p>开启开发者模式获取极路由的Root权限。通用操作步骤为：浏览器输入192.168.199.1进入后台管理界面，在云平台里面选择“路由器信息”，在页面的底部点击+号进入高级设置，里面点击蓝色的申请按钮申请开通开发者模式，后面按操作提示完成认证即可。（最后可以根据官网提供信息进行操作）</p>
+<h2 id="刷机">刷机</h2>
+<p>给路由器刷机，首先刷一个“不死u-boot”，这里有u-boot，breed等等，推荐breed，挺好用的，大神<a href="http://www.right.com.cn/forum/space-uid-200302.html">hackpascal</a> 还开发了BreedEnter，避免重复按复位键进入breed的web界面。</p>
+<h3 id="刷breed">刷Breed</h3>
+<ul>
+<li>先阅读一下<a href="http://www.right.com.cn/forum/thread-161906-1-1.html">Breed介绍页面</a> 了解一下breed该怎么使用及注意事项，hackpascal大神说的挺详细的</li>
+<li>其次在https://breed.hackpascal.net/ ，下载适合自己的路由器的Breed固件，我的为<a href="https://breed.hackpascal.net/breed-mt7628-hiwifi-hc5661a.bin">breed-mt7628-hiwifi-hc5661a.bin</a></li>
+<li>登录极路由后台（当然这里已经默认你已经安装了开发者模式插件，获取了root），windows平台使用putty等工具，Linux下使用ssh登录</li>
+</ul>
+<pre><code class="language-shell">ssh root@极路由管理ip地址 -p 1022
+</code></pre>
+<ul>
+<li>在Linux下再开一个终端，windows可以使用winscp工具，原理都是一样使用scp指令，将下载的breed关键上传到路由器上的/tmp</li>
+</ul>
+<pre><code class="language-shell">scp -P 1022 /path/breed-mt7628-hiwifi-hc5661a.bin root@极路由管理ip地址:/tmp
+</code></pre>
+<ul>
+<li>紧接着，在打开的路由器终端上操作，按照hackpascal大神所说mtd指令最好不要加上-r，理由breed介绍页面有讲，但是不知道为什么网上很多教程都是加上了-r？？？</li>
+</ul>
+<pre><code class="language-shell">#以下不加-r，是hackpascal大神推荐
+mtd write /tmp/breed-mt7628-hiwifi-hc5661a.bin u-boot
+#以下加-r，我自己使用成功
+mtd -r write /tmp/breed-mt7628-hiwifi-hc5661a.bin u-boot
+</code></pre>
+<ul>
+<li>
+<p>最后写入成功会显示reboot，等个几分钟，然后按照<a href="http://www.right.com.cn/forum/thread-161906-1-1.html">Breed介绍页面</a> 中使用breedenter进入breed界面</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/breed%E7%95%8C%E9%9D%A2.PNG" alt="" loading="lazy"></figure>
+</li>
+</ul>
+<h3 id="刷padavan固件集成scutclient">刷Padavan固件（集成scutclient）</h3>
+<p>不知道是学校网络不稳定，还是固件文件，决定给路由器刷padavan，听说这个固件工作非常稳定，另外我想自己尝试编译一个路由器固件，历经两天，这个很感谢<a href="https://www.jianshu.com/u/70c0d31e3717">libgcc</a>的耐心解答，终于成功编译出padavan（集成scutclient）For HC5661A的固件。刷机流程如下的LEDE刷机，刷完之后的配置，请参考libgcc的<a href="https://www.jianshu.com/p/cb51fb0fb2ac">简书文章</a>。（连续两天都没掉线，或者出现wifi突然没了的情况，确实挺稳定的）</p>
+<p>分享我编译出的极1S（HC5661A）的padavan固件：见上面<strong>固件更新</strong>一栏 。</p>
+<p>刷Padavan固件流程与刷LEDE固件一致，首先备份所有东西，然后选择固件更新刷入固件即可，最后校园登陆配置看看<a href="https://www.jianshu.com/p/cb51fb0fb2ac">这篇文章</a>(按2017-10-12以后的固件操作)即可。</p>
+<p><strong>固件后台登录的默认域名：my.router；默认ip：192.168.2.1登录用户名/密码 = admin/admin；WiFi：Padavan，密码1234567890</strong></p>
+<h3 id="刷lede固件">刷LEDE固件</h3>
+<p>这里使用的LEDE固件为ptpt52编译的<a href="https://router-sh.ptpt52.com/rom/natcap-3.0.0-build201803060646-ramips-mt76x8-hc5661a-squashfs-sysupgrade.bin">natcap-3.0.0-build201803060646-ramips-mt76x8-hc5661a-squashfs-sysupgrade.bin</a> 。</p>
+<ul>
+<li>
+<p>首先，点击breed的web界面上的固件备份，把EEROM和编程器固件都备份一下，防止刷机失败，还原方式先恢复EEROM，再恢复编程器固件即可。<img src="https://blog.raymondtech.top/img/breed%E5%A4%87%E4%BB%BD.PNG" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>然后点击固件更新，在固件一行点击选择natcap-3.0.0-build201803060646-ramips-mt76x8-hc5661a-squashfs-sysupgrade.bin，闪存布局一般保持默认，若担心，最好上网查询一下自己路由器的闪存布局，极1s保存默认的公版0x500000即可，然后点击<strong>上传</strong>即可。<img src="https://blog.raymondtech.top/img/breed%E5%88%B7%E6%9C%BA.PNG" alt="" loading="lazy"></p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/breed%E5%88%B7%E6%9C%BA2.PNG" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/breed%E5%88%B7%E6%9C%BA3.PNG" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/breed%E5%88%B7%E6%9C%BA4.PNG" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>等待更新结束，重启路由器后，ptpt52编译的LEDE登录网址为192.168.15.1，帐号root，密码admin<img src="https://raw.githubusercontent.com/RebornL/picbed/master/LEDE%E7%99%BB%E9%99%86web%E7%95%8C%E9%9D%A2.PNG" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>进入LEDE的luci界面，这个时候还需要开启ssh的root登录，在系统选项下开启，不会操作的，可以下载ptpt52提供的<a href="http://www.right.com.cn/forum/thread-213900-1-1.html">设置包</a> ,进入路由器管理界面，选择 上传备份 恢复配置，重启 即可。</p>
+</li>
+<li>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/%E5%8B%BE%E9%80%89ssh%E7%99%BB%E9%99%86.PNG" alt="" loading="lazy"></figure>
+</li>
+</ul>
+<h3 id="安装scutclient">安装scutclient</h3>
+<p>首先从路由器群下载LEDE专用的scutclient压缩包，主要为luci-app-scutclient_git-17.105.54231-8cd958a-1_all.ipk（提供一个gui的设置界面）和scutclient_2.2-20170325-1_mipsel_24kc.ipk（scut上网客户端），将这两个ipk安装包上传到路由器的/tmp目录下，操作方法同上。</p>
+<pre><code class="language-shell">&quot;提供在linux上的全部操作&quot;
+&quot;1.上传到路由器上&quot;
+scp luci-app-scutclient_git-17.105.54231-8cd958a-1_all.ipk root@192.168.15.1:/tmp
+scp scutclient_2.2-20170325-1_mipsel_24kc.ipk root@192.168.15.1:/tmp
+
+&quot;2.路由器终端上的操作&quot;
+opkg install /tmp/luci-app-scutclient_git-17.105.54231-8cd958a-1_all.ipk
+opkg install /tmp/scutclient_2.2-20170325-1_mipsel_24kc.ipk
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/RebornL/picbed/master/ssh%E7%99%BB%E5%BD%95%E4%B8%8A%E8%B7%AF%E7%94%B1%E5%99%A8%E7%BB%88%E7%AB%AF.PNG" alt="" loading="lazy"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/%E5%AE%89%E8%A3%85scutclient.PNG" alt="" loading="lazy"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/%E5%AE%89%E8%A3%85scutclient%E7%9A%84luci%E7%95%8C%E9%9D%A2.PNG" alt="" loading="lazy"></p>
+<p>安装完成后，刷新luci界面，这时候就会出现<em>华南理工大学客户端</em>设置的选项，这时候按照选项step1，step2设置完成即可上网。具体步骤详看<strong>华工路由器新手教程V12</strong>中的基础设置6。提供的<a href="https://pan.baidu.com/s/1ahoD631-pB8DrlRVoqwEwg">百度云链接</a> ，密码rqpi。</p>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/luci%E7%95%8C%E9%9D%A2%E9%85%8D%E7%BD%AEscutclient.PNG" alt="" loading="lazy"></figure>
+<h3 id="ipv6设置">ipv6设置</h3>
+<p>留坑，暂未设置成功，成功再回来补坑。</p>
+<p><em>最新：北校宿舍的ipv6似乎不可用，虽然有ipv6地址，原因未知</em></p>
+<h2 id="问题及解决">问题及解决</h2>
+<p>【18-07-23】帮同学刷Padavan固件，遇到了WiFi无法连接问题，试过重刷EERom没用，最后通过breed修改RF1的WLAN MAC为路由器的mac地址即可，具体操作见<a href="https://blog.csdn.net/pxmxx/article/details/79427868">这篇文章</a></p>
+<blockquote>
+<p><s>另外文中的图，日后再补！！！</s></p>
+</blockquote>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/UbfZ10MEHg3/" class="tag">
+                    路由器
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-03-03-MySQL入门笔记/">
+                  <h3 class="post-title">
+                    MySQL入门
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

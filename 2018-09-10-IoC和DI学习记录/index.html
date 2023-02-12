@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>IoC和DI学习记录 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="IoC的概念和DI的概念
+IoC：Inverse of Convert，控制反轉，比較難理解的概念，以後補充
+DI：Dependency Injection，依賴注入，讓調用類對某一接口實現的依賴關係由第三方（容器和協作類）注入，以移除調用..." />
+    <meta name="keywords" content="Spring,Java Web" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">IoC和DI学习记录</h2>
+            <div class="post-date">2018-10-31</div>
+            
+            <div class="post-content" v-pre>
+              <h3 id="ioc的概念和di的概念">IoC的概念和DI的概念</h3>
+<p>IoC：Inverse of Convert，控制反轉，比較難理解的概念，以後補充<br>
+DI：Dependency Injection，依賴注入，讓調用類對某一接口實現的依賴關係由第三方（容器和協作類）注入，以移除調用類對某一接口實現類的依賴。</p>
+<h3 id="ioc的三種類型">IoC的三種類型</h3>
+<ul>
+<li>構造函數注入</li>
+<li>屬性注入</li>
+<li>接口注入</li>
+</ul>
+<h4 id="構造函數注入">構造函數注入</h4>
+<p>這種利用構造器的初始化，注入接口的實現類。這種方式有點像面向對象的組合使用。</p>
+<pre><code class="language-java">//MoAttack.java
+public class MoAttack {
+
+    private GeLi geli;
+
+    //通過構造函數參數注入革離的飾演者
+    public MoAttack(GeLi geli) {
+        this.geli = geli;
+    }
+
+    public void cityGateAsk() {
+        geli.responseAsk(&quot;墨者革離&quot;);
+    }
+}
+
+//Director.java
+//導演安排角色扮演者
+public class Director {
+    public void direct() {
+        //指定角色飾演者
+        GeLi geli = new LiuDeHua();
+
+        //將具體飾演者到劇本中
+        MoAttack moAttack = new MoAttack(geli);
+        moAttack.cityGateAsk();
+    }
+}
+</code></pre>
+<h4 id="屬性注入">屬性注入</h4>
+<p>通過setter方法，在有需要的時候再注入接口實現類。</p>
+<pre><code class="language-java">//MoAttack.java
+public class MoAttack {
+    private GeLi geli;
+
+    //屬性注入
+    public void setGeLi(GeLi geli) {
+        this.geli = geli;
+    }
+
+    public void cityGateAsk() {
+        geli.responseAsk(&quot;墨者革離&quot;);
+    }
+}
+
+//Director.java
+public class Director {
+    public void direct() {
+        Geli geli = new LiuDeHua();
+
+        MoAttack moAttack = new MoAttack();
+        moAttack.setGeli(geli);
+        moAttack.cityGateAsk();
+    }
+}
+</code></pre>
+<blockquote>
+<p>构造器注入和setter方法注入区别：构造器注入不可缺少，否则编译直接出错；setter方法注入，若为空，则会在运行期间出现空指针异常，无法正常运行。</p>
+<p>可以通过在xml配置文件中增加*&lt;<a href="context:annotation-config/">context:annotation-config/</a>&gt;* 给setter注入添加一个require的注解，避免空指针异常。</p>
+</blockquote>
+<h4 id="接口注入">接口注入</h4>
+<p>將調用類的所有依賴注入的方法抽取到一個接口，調用類實現該接口進行依賴注入。</p>
+<p>實現的效果，其實與屬性注入並無區別，反而顯得比屬性注入稍麻煩。</p>
+<pre><code class="language-java">//interface
+public interface ActorArrangeable {
+    void injectGeLi(GeLi geli);
+}
+
+//MoAttack.java
+public class MoAttack implements ActorArrangeable {
+    private GeLi geli;
+
+    public void injectGeLi(Geli geli) {
+        this.geli = geli;
+    }
+
+    public void cityGateAsk() {
+        geli.responseAsk(&quot;墨者革離&quot;);
+    }
+}
+
+//Director.java
+public class Director {
+    public void direct() {
+        MoAttack moAttack = new MoAttack();
+        GeLi geli = new LiuDeHua();
+        moAttack.injectGeLi(geli);
+        moAttack.cityGateAsk();
+    }
+}
+</code></pre>
+<h3 id="spring容器完成依賴關係的注入">Spring容器完成依賴關係的注入</h3>
+<p>Spring通過配置文件或註解描述類和類之間的依賴關係，自動完成類的初始化和依賴注入工作，其底層工作原理是java的反射機制。</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w4.org/2001/XMLSchema-instance&quot;
+    xmlns:p=&quot;http://www.springframework.org/schema/p&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+      http://www.springframeworl.org/schema/beans/spring-beans-4.0.xsd&quot;&gt;
+    &lt;!-- 實現類的實例化 --&gt;
+    &lt;bean id=&quot;geli&quot; class=&quot;LiuDeHua&quot;/&gt;
+    &lt;bean id=&quot;moAttack&quot; class=&quot;com.smart.ioc.MoAttack&quot;
+            p:geli-ref=&quot;geli&quot;/&gt;&lt;!--通過geli-ref建立依賴關係--&gt;
+&lt;/beans&gt;
+</code></pre>
+<p>最後可以通過new XmlBeanFactory(&quot;beans.xml&quot;)等方式啓動容器，Spring會根據配置文件的描述信息，自動實例化Bean並完成依賴關係的裝配，從容器中即可返回準備就緒的Bean實例，後續可以直接使用。</p>
+<h3 id="注解方式注入">注解方式注入</h3>
+<p>@Component注册组建类，spring自动创建对应的bean</p>
+<p>@Configuration注册一个配置类，使用@ComponentScan告诉spring容器需要扫描的包并自动装配</p>
+<p>@Autowired自动注入</p>
+<p>@RunWith(SpringJUnit4ClassRunner.class)便于测试的时候自动创建Spring的上下文</p>
+<p>@ContextConfiguration(classes=xxx.class)告诉spring加载什么配置文件</p>
+<p>使用Java Config，只需要创建一个配置类，在配置类中编写方法，返回要注入的对象（可以为第三方库的对象），并给方法加上@Bean注解，告诉Spring为返回的对象创建实例。</p>
+<blockquote>
+<p>以下图来自bridgeforyou，侵权即删。</p>
+</blockquote>
+<figure data-type="image" tabindex="1"><img src="https://pic2.zhimg.com/v2-18515e584368359cfd00f2899740c77a_r.jpg" alt="三种注入方式的区别" loading="lazy"></figure>
+<h3 id="java反射機制">java反射機制</h3>
+<pre><code class="language-java">//示例
+//Car.java
+package com.smart.reflect;
+
+public class Car {
+    private String brand;
+    private String color;
+    private int maxSpeed;
+
+    public Car() {}
+
+    public Car(String brand, String color, int maxSpeed) {
+        this.brand = brand;
+        this.color = color;
+        this.maxSpeed = maxSpeed;
+    }
+
+    public void introduce() {
+        System.out.println(&quot;brand: &quot;+brand+&quot; color: &quot;+color+&quot; maxSpeed: &quot;+maxSpeed);
+    }
+
+  	//getter 和 setter方法
+  	...
+}
+
+//ReflectTest.java
+package com.smart.reflect;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
+public class ReflectTest {
+    public static Car initByDefaultConst() throws Throwable {
+        //通過類加載器獲取Car類對象
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        Class clazz = loader.loadClass(&quot;com.smart.reflect.Car&quot;);
+
+        //獲取類的默認構造器對象並通過它實例化Car
+        Constructor cons = clazz.getDeclaredConstructor((Class[])null);
+        Car car = (Car)cons.newInstance();
+
+        //通過反射方法設置屬性
+        Method setBrand = clazz.getMethod(&quot;setBrand&quot;, String.class);
+        setBrand.invoke(car, &quot;bif&quot;);
+        Method setColor = clazz.getMethod(&quot;setColor&quot;, String.class);
+        setColor.invoke(car, &quot;black&quot;);
+        Method setMaxSpeed = clazz.getMethod(&quot;setMaxSpeed&quot;, int.class);
+        setMaxSpeed.invoke(car, 200);
+
+        return car;
+    }
+
+    public static void main(String[] args) throws Throwable {
+        Car car = initByDefaultConst();
+        car.introduce();
+    }
+}
+</code></pre>
+<h5 id="classloader">ClassLoader</h5>
+<p>類加載器的作用是尋找類的字節碼，構造出類在jvm中對象的組建。</p>
+<p>类装载器把一个类装入JVM中，需要经过以下步骤：</p>
+<ol>
+<li>装载：查找和导入Class文件</li>
+<li>链接：校验、准备和解析步骤
+<ul>
+<li>校验：检查载入Class文件数据的正确性</li>
+<li>准备：给类的静态变量分配存储空间</li>
+<li>解析：将符号引用转换成直接引用</li>
+</ul>
+</li>
+<li>初始化：对类的静态变量、静态代码块执行初始化工作</li>
+</ol>
+<p>JVM运行时会产生3个ClassLoader：<em>根装载器</em>, <em>ExtClassLoader</em>, <em>APPClassLoader</em>。</p>
+<ul>
+<li>根装载器：采用C++语言编写，在java中不可见，负责装载JRE的核心类库</li>
+<li>ExtClassLoader：为ClassLoader的子类，负责装载JRE扩展目录ext中JAR类包</li>
+<li>AppClassLoader：为ClassLoader的子类，负责装载Classpath路径下的类包</li>
+</ul>
+<p>（这三类装载其存在父子层级关系，根装载器为ExtClassLoader的父装载器，ExtClassLoader为APPClassLoader的父装载器）</p>
+<pre><code class="language-java">public class ClassLoaderTest {
+    public static void main(String[] args) {
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        System.out.println(&quot;current loader: &quot;+ loader);
+        System.out.println(&quot;parent loader: &quot;+ loader.getParent());
+        System.out.println(&quot;grandparent loader: &quot;+loader.getParent().getParent());
+    }
+}
+/*
+current loader: sun.misc.Launcher$AppClassLoader@18b4aac2
+parent loader: sun.misc.Launcher$ExtClassLoader@677327b6
+grandparent loader: null
+*/
+</code></pre>
+<p>Class类没有public的构造方法，Class对象是在装载类是有JVM通过调用类装载器中的defineClass()方法自动构造。</p>
+<h4 id="反射类">反射类</h4>
+<ul>
+<li>Constructor：类的构造函数反射类，通过Class对象getConstructors()获取所有构造函数反射对象数组，getConstructor(Class... parameterTypes)获取特定参数的构造函数反射对象。构造器对象的newInstance()方法可以创建一个实例对象。</li>
+<li>Method：类方法的反射类，Class对象getDeclaredMethods()获取所有方法反射类对象数组Method[]。再通过invoke方法进行调用。</li>
+<li>Field：类的成员变量的反射类，Class对象getDeclaredFields方法获取类的成员变量反射对象数组。通过Field的set方法对成员变量进行值设置。</li>
+</ul>
+<h3 id="spring资源访问">Spring资源访问</h3>
+<h4 id="resource资源抽象接口">Resource资源抽象接口</h4>
+<p>接口主要方法：</p>
+<ul>
+<li>boolean exists()：资源是否存在</li>
+<li>boolean isOpen()：资源是否打开</li>
+<li>URL getURL() throws IOException：返回对应的URL对象</li>
+<li>File getFile() throw IOException：返回对应的File对象</li>
+<li>InputStream getInputStream() throws IOException：返回资源对应的输入流</li>
+</ul>
+<p>具体的实现有ByteArrayResource（二进制数组资源），ClassPathResource（类路径下的资源），FileSystemResource（文件系统资源），InputStreamResource（以输入流返回表示资源），ServletContextResource（为访问Web容器上下文中的资源设计的类，以web应用为根目录），UrlResource（疯转Java中URL，可以访问任意资源）</p>
+<pre><code class="language-java">public class ResourceTest {
+    public static void main(String[] args) {
+        try {
+            String filePath = &quot;/home/xxx/chapter/Web/WEB-INF/classes/conf/file1.txt&quot;;
+            Resource res1 = new FileSystemResource(filePath);
+            //以类路径方式加载文件
+            Resource res2 = new ClassPathResource(&quot;conf/file1.txt&quot;);
+            
+            InputStream ins1 = res1.getInputStream();
+            InputStream ins2 = res2.getInputStream();
+            
+            System.out.println(&quot;res1:&quot;+res1.getFilename());
+            System.out.println(&quot;res2:&quot;+res2.getFilename());
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<h4 id="资源地址表达式">资源地址表达式</h4>
+<figure data-type="image" tabindex="2"><img src="https://blog.raymondtech.top/img/resource-lambda.png" alt="resource-lambda" loading="lazy"></figure>
+<blockquote>
+<p>classpath:与classpath*: 的区别：前者只会在第一个加载的包下去查找，而后者会扫描所有这些JAR包和类路径下出现的包名。</p>
+</blockquote>
+<h4 id="资源加载器resourceloader">资源加载器（ResourceLoader）</h4>
+<p>ResourceLoader接口定义了一个getResource(String location)方法，ResourcePatternResolver实现ResourceLoader接口，并且定义一个新的方法getResources()方法。Spring则提供了一个标准实现类<strong>PathMatchingResourcePatternResolver</strong></p>
+<pre><code class="language-java">ResourcePatternResolver resolver = new PathMatchResourcePatternResolver();
+//加载所有类包com.baobaotao（及子包）下的以xml为后缀的资源
+Resource[] resources = resolver.getResources(&quot;classpath*:com/baobaotao/**/*.xml&quot;);
+for(Resource resource: resources) {
+    System.out.println(resource.getDescription());
+}
+</code></pre>
+<h3 id="beanfactory和applicationcontext">BeanFactory和ApplicationContext</h3>
+<p>BeanFactory是Spring最核心的接口，提供高级IoC配置机制，实现不同类型的Java对象，底层是基于Java的反射机制实现；ApplicationContext则是基于BeanFactory上建立的，便于创建应用，面向开发者。</p>
+<figure data-type="image" tabindex="3"><img src="https://blog.raymondtech.top/img/ClassPathXmlApplicationContext.png" alt="ClassPathXmlApplicationContext" loading="lazy"></figure>
+<p>除了常见ClassPathXmlApplicationContext加载xml的配置文件之外，spring还提供一种java config的配置方式，使用注解和类编写方式，可以让开发者更好的控制。</p>
+<pre><code class="language-java">@Configuration//表示一个配置信息提供类
+public class Beans {
+    @Bean//定义一个Bean
+    public Car buildCar() {
+        Car car = new Car();
+        car.setBrand(&quot;CA72&quot;);
+        car.setMaxSpeed(200);
+        return car;
+    }
+}
+</code></pre>
+<p>启动Configuration注解的配置类</p>
+<pre><code class="language-java">public class AnnotationApplicationContext {
+    public static void main(String[] args) {
+        //加载带有Configuration的POJO装载Bean的配置
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(Beans.class);
+    	Car car = ctx.getBean(&quot;car&quot;, Car.class);
+    }
+}
+</code></pre>
+<p>也可以通过web.xml方式来启动@Configuration配置类</p>
+<pre><code class="language-xml">&lt;!--指定context参数--&gt;
+&lt;context-param&gt;
+	&lt;param-name&gt;contextClass&lt;/param-name&gt;
+    &lt;param-value&gt;org.springframework.web.context.support.AnnotationConfigWebApplicationContext&lt;/param-value&gt;
+&lt;/context-param&gt;
+&lt;!--指定标注@Configuration的配置类--&gt;
+&lt;context-param&gt;
+	&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+    &lt;param-value&gt;com.baobaotao.AppConfig1,com.baobaotao.AppConfig2&lt;/param-value&gt;
+&lt;/context-param&gt;
+&lt;!--ContextLoaderListener将根据上面配置启动Spring容器--&gt;
+&lt;listener&gt;
+	&lt;listener-class&gt;
+    	org.springframeworkwork.web.context.ContextLoaderListener
+    &lt;/listener-class&gt;
+&lt;/listener&gt;
+</code></pre>
+<h4 id="bean的生命周期">Bean的生命周期</h4>
+<figure data-type="image" tabindex="4"><img src="https://blog.raymondtech.top/img/bean-lifecircle.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://blog.raymondtech.top/img/bean-lifecircle2.png" alt="" loading="lazy"></figure>
+<h4 id="spring容器bean配置信息bean实现类及应用程序的关系">spring容器，Bean配置信息，Bean实现类及应用程序的关系</h4>
+<figure data-type="image" tabindex="6"><img src="https://blog.raymondtech.top/img/springAndBean.png" alt="" loading="lazy"></figure>
+<h3 id="spring的技术内幕">Spring的技术内幕</h3>
+<p>spring的AbstractApplicationContext为ApplicationContext的抽象类，该抽象类的refresh()方法定义容器在加载配置文件后各种处理过程。</p>
+<pre><code class="language-java">//refresh方法内部：
+//1.初始化Bean Factory
+ConfigurableListableBean beanFactory = getBeanFactory();
+...
+//2.调用工厂后处理器
+invokeBeanFactoryPostProcessors();
+//3.注册bean后处理器
+registerBeanPostProcessor();
+//4.初始化消息源
+initMessageSource();
+//5.初始化应用上下文事件广播器
+initApplicationEventMulticaster();
+//6.初始化其他特殊的Bean：交给具体子类实现
+onRefresh();
+//7.注册事件监视器
+registerListeners();
+//8.初始化所有单实例的Bean，将其放到缓存中，使用懒初始化模式的Bean例外
+finishBeanFactoryInitialization(beanFactory);
+//9.完成刷新并发布容器刷新时间
+finishRefresh();
+</code></pre>
+<figure data-type="image" tabindex="7"><img src="https://blog.raymondtech.top/img/ioc-waterline.png" alt="" loading="lazy"></figure>
+<h2 id="以下摘录自公众号java后端技术中一篇关于spring的面试">以下摘录自公众号《Java后端技术》中一篇关于Spring的面试</h2>
+<h3 id="ioc">IOC</h3>
+<p>IOC（Inversion Of Controll，控制反转）**是一种设计思想，将原本在程序中手动创建对象的控制权，交由给Spring框架来管理。**IOC容器是Spring用来实现IOC的载体，IOC容器实际上就是一个Map(key, value)，Map中存放的是各种对象。</p>
+<p>这样可以很大程度上简化应用的开发，把应用从复杂的依赖关系中解放出来。IOC容器就像是一个工厂，当需要创建一个对象，只需要配置好配置文件/注解即可，不用考虑对象是如何被创建出来的，大大增加了项目的可维护性且降低了开发难度。</p>
+<h3 id="aop">AOP</h3>
+<p>AOP（Aspect-Oriented Programming，面向切面编程）<strong>能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可扩展性和可维护性</strong>。使用AOP之后我们可以把一些通用功能抽象出来，在需要用到的地方直接使用即可，这样可以大大简化代码量，提高了系统的扩展性。</p>
+<p>Spring AOP是基于动态代理的，如果要代理的对象实现了某个接口，那么Spring AOP就会使用JDK动态代理去创建代理对象；而对于没有实现接口的对象，就无法使用JDK动态代理，转而使用CGlib动态代理生成一个被代理对象的子类来作为代理。</p>
+<h3 id="spring-aop-aspectj-aop-的区别">Spring AOP / AspectJ AOP 的区别？</h3>
+<p>Spring AOP属于<strong>运行时增强</strong>，而AspectJ是<strong>编译时增强</strong>。</p>
+<p>Spring AOP基于<strong>代理</strong>（Proxying），而AspectJ基于<strong>字节码操作</strong>（Bytecode Manipulation）。</p>
+<p>AspectJ相比于Spring AOP功能更加强大，但是Spring AOP相对来说更简单。如果切面比较少，那么两者性能差异不大。但是，当切面太多的话，最好选择AspectJ，它比SpringAOP快很多。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/-BZfkIl7is/" class="tag">
+                    Spring
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="tag">
+                    Java Web
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-09-10-Servlet学习记录/">
+                  <h3 class="post-title">
+                    Servlet学习记录
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

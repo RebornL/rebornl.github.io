@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>【转载】文件目录树状(tree)显示 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+使用 tree 在终端显示树状文件结构
+
+
+安装 tree
+使用 brew 进行安装
+$ brew install tree
+
+使用
+
+
+直接使用 tree 命令，会在当前文件目录下，递归输出所有文件层级
+  $ tree
+
+
+
+限制层级..." />
+    <meta name="keywords" content="Mac,效率,开发技巧" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【转载】文件目录树状(tree)显示</h2>
+            <div class="post-date">2017-03-07</div>
+            
+            <div class="post-content" v-pre>
+              <blockquote>
+<p>使用 <strong>tree</strong> 在终端显示树状文件结构</p>
+</blockquote>
+<figure data-type="image" tabindex="1"><img src="https://ww4.sinaimg.cn/large/006tKfTcgy1fdhotefcb5j315s0ugjwk.jpg" alt="" loading="lazy"></figure>
+<h4 id="安装-tree">安装 tree</h4>
+<p>使用 <strong>brew</strong> 进行安装</p>
+<pre><code>$ brew install tree
+</code></pre>
+<h4 id="使用">使用</h4>
+<ul>
+<li>
+<p>直接使用 <code>tree</code> 命令，会在当前文件目录下，递归输出所有文件层级</p>
+<pre><code>  $ tree
+</code></pre>
+</li>
+<li>
+<p>限制层级</p>
+<pre><code>  $ tree -L 2
+</code></pre>
+</li>
+<li>
+<p>指定当前目录下的某个文件夹</p>
+<pre><code>  $ tree Desktop
+</code></pre>
+</li>
+</ul>
+<h4 id="导出文件">导出文件</h4>
+<p>用<code>&gt; 文件名.格式</code> 的形式导出</p>
+<pre><code>$ tree -L 1 &gt; tree.md
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/Vgg2jQ_lFif/" class="tag">
+                    Mac
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/rxRnYl7pHvy/" class="tag">
+                    效率
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/j3MxqQZhfc5/" class="tag">
+                    开发技巧
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2017-02-22-【转载】Mac-文件的隐藏与显示/">
+                  <h3 class="post-title">
+                    【转载】Mac 文件的隐藏与显示
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

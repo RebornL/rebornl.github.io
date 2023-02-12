@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>计算机操作系统概念记录 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="进程和线程
+
+进程：计算机资源拥有的基本单位
+线程：独立调度和独立运行的基本单元
+
+进程的状态切换
+进程的三种状态：就绪状态，运行状态，阻塞状态
+
+进程间的通信方式
+
+管道（pipe）：只允许具有“亲缘”关系之间进程交流，半双工通信
+命名管..." />
+    <meta name="keywords" content="CS" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">计算机操作系统概念记录</h2>
+            <div class="post-date">2018-11-01</div>
+            
+            <div class="post-content" v-pre>
+              <h3 id="进程和线程">进程和线程</h3>
+<ul>
+<li>进程：计算机资源拥有的基本单位</li>
+<li>线程：独立调度和独立运行的基本单元</li>
+</ul>
+<h3 id="进程的状态切换">进程的状态切换</h3>
+<p>进程的三种状态：就绪状态，运行状态，阻塞状态</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/switchThreeState.png" alt="三种状态切换.png" loading="lazy"></figure>
+<h3 id="进程间的通信方式">进程间的通信方式</h3>
+<ul>
+<li>管道（pipe）：只允许具有“亲缘”关系之间进程交流，半双工通信</li>
+<li>命名管道（named pipe）：允许不具有“亲缘”关系之间的进程交流，半双工</li>
+<li>信号量（semophore）：计算器，用于控制资源的访问和作为进程间和同一进程内不同线程之间的同步</li>
+<li>消息队列（message queue）：消息的链表</li>
+<li>信号（signal）：主要用于通知进程某事件的发生</li>
+<li>共享内存（shared memory）：最快的IPC方式</li>
+<li>socket套接字：用于不同终端间的不同进程相互通信</li>
+</ul>
+<h3 id="进程作业调度方式">进程（作业）调度方式</h3>
+<ul>
+<li>FCFS：按照先到先服务的原则，进行作业调度方式</li>
+<li>SJF：短作业优先方式，根据所需运行时间最短为优先的作业方式</li>
+<li>RR：时间片轮转调度算法，给每个进程分配一定的时间片进行作业调度</li>
+<li>HRRN：高响应比优先作业调度，由（等待时间+所需运行时间）/所需运行时间的比值，最大优先响应作业。</li>
+<li>优先权调度：根据优先权进行调度</li>
+<li>多级队列调度：根据作业的性质和类型的不同，分成不同就绪子队列，每个子队列采取不同的调度算法</li>
+</ul>
+<h3 id="产生死锁的原因">产生死锁的原因</h3>
+<ol>
+<li>不同进程相互竞争资源</li>
+<li>进程推进顺序不对造成进程阻塞</li>
+</ol>
+<h3 id="死锁产生的必要条件">死锁产生的必要条件：</h3>
+<ul>
+<li>互斥条件：资源一次只能一个进程所占有</li>
+<li>不剥夺（不可抢占）条件：资源仅能由所占有的进程释放</li>
+<li>请求与保持条件：占有资源的进程又对别的资源发起请求，而别的资源已被其他进程所占</li>
+<li>环路等待（循环等待）条件：当每类资源只有一个时，发生死锁，会存在一个进程资源的环形链</li>
+</ul>
+<p>预防死锁，要防止以上其中一个条件（除了互斥）的发生即可。</p>
+<p>死锁的充要条件：当且仅当死锁状态资源分配图不可完全简化。</p>
+<h4 id="银行家算法">银行家算法</h4>
+<p>银行家算法的核心是说：保证自己的限额不低于一客户的限额，高于银行限额的客户将会被搁置或挂起，这样就能有效防止资源被占有不被释放。因此，银行家算法可以避免死锁发生。</p>
+<h4 id="死锁解除">死锁解除</h4>
+<ul>
+<li>强制性从系统中撤销一个或多个死锁的进程以断开循环等待链</li>
+<li>通过有效挂起和接触死锁的进程，来释放占有的进程</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/9eFi-hL0Jd/" class="tag">
+                    CS
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-09-10-IoC和DI学习记录/">
+                  <h3 class="post-title">
+                    IoC和DI学习记录
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Git使用记录 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="git的工作方式：
+保存每一次更新的文件快照。
+
+特性：
+
+本地保存所有文件和资源，不需要联网，就可以不断提交更新，当有网的时候，可以上传到远程仓库。本地也保存了当前项目的所有历史更新，方便查看。
+按照内容的校验和，判断文件是否修改和完整。..." />
+    <meta name="keywords" content="Git" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Git使用记录</h2>
+            <div class="post-date">2019-08-31</div>
+            
+            <div class="post-content" v-pre>
+              <p>git的工作方式：</p>
+<p>保存每一次更新的文件快照。</p>
+<figure data-type="image" tabindex="1"><img src=".%5Cgit1.png" alt="1566267731370" loading="lazy"></figure>
+<p>特性：</p>
+<ol>
+<li>本地保存所有文件和资源，不需要联网，就可以不断提交更新，当有网的时候，可以上传到远程仓库。本地也保存了当前项目的所有历史更新，方便查看。</li>
+<li>按照内容的校验和，判断文件是否修改和完整。git使用SHA-1哈希值作为索引，不依赖文件名。</li>
+<li>通过快照，git可以方便的回退和重现版本，删除数据等等。</li>
+</ol>
+<p>文件三种状态：</p>
+<ul>
+<li>已提交（committed）：该文件被安全地保存在数据库中</li>
+<li>已修改（modified）：已经修改，但还没保存</li>
+<li>已暂存（staged）：已修改的文件放在下次提交时要保存的清单中</li>
+</ul>
+<p>.git文件夹是git用来保存元数据和对象数据库的地方。</p>
+<p>git的工作流程：</p>
+<ol>
+<li>在工作目录中修改某些文件</li>
+<li>对修改后的文件进行快照，保存到暂存区域（一个文本文件在.git目录下）</li>
+<li>提交更新，将保存在暂存区域的文件快照永久转储到git目录中</li>
+</ol>
+<p>git指令：</p>
+<ul>
+<li><code>git init</code>：初始化一个git仓库</li>
+<li><code>git clone</code>: 克隆一个远程仓库</li>
+<li><code>git add .</code>：暂存已经修改的所有文件</li>
+<li><code>git commit -m &quot;xxx&quot;</code>：提交所有暂存的文件，保存到本地数据库中</li>
+<li><code>git push origin master</code>：推送所有修改的代码到远程</li>
+<li><code>git checkout -b &quot;xxx&quot;</code>：创建并切换到xxx分值上</li>
+<li><code>git merge xxx</code>：在当前分支，将xxx分值合入到当前分支</li>
+<li><code>git rm file</code>：移除对file文件的提交</li>
+<li><code>git status</code>：查看当前分支修改状况</li>
+<li><code>git log</code>：查看commit的修改情况</li>
+<li><code>git fetch origin</code>：拉去远程的更新</li>
+<li><code>git commit --amend</code>：修改前一次commit的信息，这样就可以不用提交那么多次commit</li>
+<li><code>git reset --hard version</code>：回退代码
+<ul>
+<li><code>git reset --hard HEAD^</code>：HEAD表示当前版本，<code>^</code>表示上一个版本，<code>^^</code>表示上两个版本。</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/MgqZEKKCER/" class="tag">
+                    Git
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2019-05-05-造个简易轮子--ORM框架和IoC(XML方式实现)总结/">
+                  <h3 class="post-title">
+                    造个简易轮子--ORM框架和IoC(XML方式实现)总结
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

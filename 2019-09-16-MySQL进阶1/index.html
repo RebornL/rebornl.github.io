@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>MySQL进阶学习 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="MySQL进阶
+[TOC]
+前言
+
+
+正则表达式过滤，计算字段，MySQL中的常用函数。
+
+
+REGEX
+
+与like的区别，^$实现like的功能
+BINARY区分大小写
+使用|进行OR匹配
+匹配几个字符之一使用[]---&gt;匹配范围..." />
+    <meta name="keywords" content="MySQL" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">MySQL进阶学习</h2>
+            <div class="post-date">2019-09-16</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="mysql进阶">MySQL进阶</h1>
+<p>[TOC]</p>
+<h2 id="前言">前言</h2>
+<ul>
+<li>
+<p>正则表达式过滤，计算字段，MySQL中的常用函数。</p>
+</li>
+<li>
+<p>REGEX</p>
+<ul>
+<li>与like的区别，^$实现like的功能</li>
+<li>BINARY区分大小写</li>
+<li>使用|进行OR匹配</li>
+<li>匹配几个字符之一使用[]---&gt;匹配范围[1-5]</li>
+<li>转义\\，匹配特殊字符</li>
+</ul>
+</li>
+<li>
+<p>计算字段</p>
+<ul>
+<li>MySQL使用Concat函数实现拼接，大多数DBMS使用+或||进行拼接</li>
+<li>AS 进行别名更改</li>
+<li>执行算术运算</li>
+</ul>
+</li>
+<li>
+<p>MySQL中函数</p>
+<ul>
+<li>文本处理函数</li>
+<li>时间处理函数：Date()处理时间类型</li>
+<li>数值处理函数</li>
+</ul>
+</li>
+<li>
+<p>组合聚集函数</p>
+<ul>
+<li>COUNT()，AVG()，MAX()，MIN()，DISTINCT关键字</li>
+</ul>
+</li>
+<li>
+<p>联结</p>
+</li>
+<li>
+<p>组合查询</p>
+</li>
+</ul>
+<h2 id="正则表达式过滤">正则表达式过滤</h2>
+<h3 id="regex关键字">REGEX关键字</h3>
+<p>regex关键字的使用跟like一样，但却更强大，通用性更高</p>
+<pre><code class="language-mysql">SELECT prod_name FORM prod_table WHERE prod_name REGEX '1000' OREDER BY prod_name;
+</code></pre>
+<p>输出结果：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex1.png" alt="" loading="lazy"></p>
+<blockquote>
+<p>注意事项：这语句看起来跟like一模一样，但其实意义全然不同，对于like关键字，它是匹配全文为‘1000’的商品，而regex则表达的是正文为‘1000’的具体的正则表达式。此外将上面SQL语句中的regex改成like，并没有任何返回值，因为like语句需要加上通配符，才会有返回值。</p>
+<p>regex想实现like的全文匹配，需要用上^和$两个字符。</p>
+<p>MySQL的正则表达式匹配不区分大小，若想要区分大小写，需要加上BINARY关键字</p>
+</blockquote>
+<h3 id="mysql中匹配符">MySQL中匹配符</h3>
+<ul>
+<li>
+<p>| ，进行OR匹配</p>
+<pre><code class="language-mysql">SELECT prod_name from prod_table WHERE prod_name REGEX '1000|2000';
+</code></pre>
+<p>输出结果：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex2.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>[...]，匹配中括号内任意字符，还可以写成[0-9]匹配0到9之间任意数字，[a-z]匹配a到z的任意字母</p>
+</li>
+</ul>
+<pre><code class="language-mysql">SELECT prod_name from prod_table WHERE prod_name REGEX '[123] ton';
+</code></pre>
+<ul>
+<li>
+<p>. ， 匹配任意字符</p>
+<pre><code class="language-mysql">SELECT vend_name From vendors Where vend_name REGEX '.';
+</code></pre>
+<p>输出结果：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex4.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>\\，MySQL中的转义字符，\\f换页，\\n换行，\\r回车，\\t制表，\\v纵向制表</p>
+</li>
+<li>
+<p>匹配字符类</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex5.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>匹配多个字符</p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex6.png" alt="" loading="lazy"></figure>
+</li>
+</ul>
+<pre><code class="language-mysql">SELECT prod_name FROM prod_table WHERE prod_name REGEX '[[:digit]]{4}';
+</code></pre>
+<p>输出结果：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex7.png" alt="" loading="lazy"></p>
+<ul>
+<li>
+<p>定位元字符</p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex8.png" alt="" loading="lazy"></figure>
+</li>
+</ul>
+<h2 id="计算字段">计算字段</h2>
+<h3 id="concat函数">Concat()函数</h3>
+<p>Concat函数是MySQL用来实现拼接的函数，使用AS关键字可以给拼接的字段另起名字</p>
+<pre><code class="language-mysql">SELECT Concat(vend_name, ' (', vend_country, ')') FROM vendors ORDER BY vend_name;
+</code></pre>
+<p>输出结果： <img src="https://raw.githubusercontent.com/RebornL/picbed/master/concat1.png" alt="" loading="lazy"></p>
+<pre><code class="language-mysql">SELECT Concat(vend_name, ' (', vend_country, ')') AS vend_title FROM vendors ORDER BY vend_name;
+</code></pre>
+<p>输出结果：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/concat2.png" alt="" loading="lazy"></p>
+<h3 id="算术计算">算术计算</h3>
+<p>MySQL可以执行简单的算术计算，如加减乘除</p>
+<pre><code class="language-mysql">SELECT prod_id, quantity, item_price, quantity*item_price AS expanded_price FROM orderitems WHERE order_num = 20005;
+</code></pre>
+<p>输出结果：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/concat3.png" alt="" loading="lazy"></p>
+<h2 id="mysql中数据处理函数">MySQL中数据处理函数</h2>
+<h3 id="文本处理函数">文本处理函数</h3>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/function1.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/function1-2.png" alt="" loading="lazy"></figure>
+<h3 id="时间日期处理函数">时间日期处理函数</h3>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/function2.png" alt="" loading="lazy"></figure>
+<h3 id="数值处理函数">数值处理函数</h3>
+<figure data-type="image" tabindex="7"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/function3.png" alt="" loading="lazy"></figure>
+<h2 id="数据库索引">数据库索引</h2>
+<p>详细参考：https://segmentfault.com/a/1190000015738121</p>
+<h2 id="联结">联结</h2>
+<p>在正常情况下，分解数据为多个表能更有效地存储和更方便的处理，提供更好的伸缩性。但这样会带来这样一种情况，当需要检索的分布在多张表时，该怎么通过一条检索语句从多个表中获取。MySQL中可通过<strong>联结</strong>机制关联多张表，来获取数据。</p>
+<h3 id="内部联结">内部联结</h3>
+<p>内部联结，又叫做<em>等值联结</em>，是最常见的一种方式。</p>
+<pre><code class="language-sql">SELECT vend_name, prod_name, prod_price FROM vendors INNER JOIN products ON verdors.vend_id = products.vend_id;
+</code></pre>
+<p><code>INNER JOIN</code>这种内部联结方式，和使用<code>WHERE</code>语句等价，如下面：</p>
+<pre><code class="language-sql">SELECT vend_name, prod_name, prod_price FROM vendors, products WHERE verdors.vend_id = products.vend_id;
+</code></pre>
+<h3 id="自联结">自联结</h3>
+<p>表自身与自身相关联。</p>
+<pre><code class="language-sql">SELECT p1.prod_id, p1.prod_name FROM products AS p1, products AS p2 WHERE p1.vend_id = p2.vend_id AND p2.prod_id = 'DTNTR';
+</code></pre>
+<h3 id="自然联结">自然联结</h3>
+<p>自然联结的作用是排除多次出现，是每个列只返回一次。与内联结的区别，自然联结自动连接所有同名列，内联结提供连接的列。</p>
+<pre><code class="language-sql">SELECT A.column, B.column FROM tableA as A NATURAL JOIN tableB as B;
+</code></pre>
+<h3 id="外联结">外联结</h3>
+<p>外连接保留了相关表中没有关联行的行。外连接有<strong>左联结<code>LEFT OUTER JOIN</code></strong>，<strong>右联结<code>RIGHT OUTER JOIN</code><strong>和</strong>全联结<code>OUTER JOIN</code></strong>。</p>
+<pre><code class="language-sql">SELECT customers.cust_id, orders.order_name FROM customers LEFT OUTER JOIN orders ON customers.cust_id = orders.cust_id;
+</code></pre>
+<p>以上是<strong>左联结</strong>，会保留cust_id存在但是order_name为NULL的行。</p>
+<h2 id="组合查询">组合查询</h2>
+<p><code>UNION</code>关键字可以将多个<code>SELECT</code>查询语句的结果集合并到一起。<code>UNION ALL</code>会保留重复的行。</p>
+<p><code>UNION</code>的使用条件：</p>
+<ul>
+<li><code>UNION</code>必须由两条或两条以上的SELECT语句构成，语句之间使用<code>UNION</code>关键字进行组合。</li>
+<li><code>UNION</code>中每个查询必须包含相同的列、表达式或聚集函数（次序可以不一致）</li>
+<li>列数据类型必须兼容</li>
+</ul>
+<pre><code class="language-sql">SELECT vend_id, prod_id, prod_price FROM products 
+WHERE prod_price &lt;= 5
+UNION
+SELECT vend_id, prod_id, prod_price FROM products
+WHERE vend_id IN (1001, 1002);
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/Lv4qMmd-BK/" class="tag">
+                    MySQL
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/Synchronized记录/">
+                  <h3 class="post-title">
+                    Synchronized的实现原理和JVM的优化
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>【转载】Git 代码回滚 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+并不适合阅读的个人文档。
+
+git revert 和 git reset 的区别
+先看图：
+
+sourceTree 中 revert 译为**提交回滚**，作用为忽略你指定的版本，然后提交一个新的版本。新的版本中已近删除了你所指定的版本。..." />
+    <meta name="keywords" content="Git,终端,Mac" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【转载】Git 代码回滚</h2>
+            <div class="post-date">2017-02-16</div>
+            
+            <div class="post-content" v-pre>
+              <blockquote>
+<p>并不适合阅读的个人文档。</p>
+</blockquote>
+<h1 id="git-revert-和-git-reset-的区别"><strong>git revert</strong> 和 <strong>git reset</strong> 的区别</h1>
+<p>先看图：</p>
+<figure data-type="image" tabindex="1"><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1fcr9tu6vdjj30t30ez0y8.jpg" alt="" loading="lazy"></figure>
+<p><strong>sourceTree</strong> 中 <strong>revert</strong> 译为**<code>提交回滚</code>**，作用为忽略你指定的版本，然后提交一个新的版本。新的版本中已近删除了你所指定的版本。</p>
+<p><strong>reset</strong> 为 <strong>重置到这次提交</strong>，将内容重置到指定的版本。<code>git reset</code> 命令后面是需要加2种参数的：<code>–-hard</code> 和 <code>–-soft</code>。这条命令默认情况下是 <code>-–soft</code>。</p>
+<p>执行上述命令时，这该条commit号之 后（时间作为参考点）的所有commit的修改都会退回到git缓冲区中。使用<code>git status</code> 命令可以在缓冲区中看到这些修改。而如果加上<code>-–hard</code>参数，则缓冲区中不会存储这些修改，git会直接丢弃这部分内容。可以使用 <code>git push origin HEAD --force</code> 强制将分区内容推送到远程服务器。</p>
+<h4 id="代码回退">代码回退</h4>
+<p>默认参数 <code>-soft</code>,所有commit的修改都会退回到git缓冲区<br>
+参数<code>--hard</code>，所有commit的修改直接丢弃</p>
+<pre><code>$ git reset --hard HEAD^ 		回退到上个版本
+$ git reset --hard commit_id	退到/进到 指定commit_id
+</code></pre>
+<p>推送到远程</p>
+<pre><code>$ git push origin HEAD --force
+</code></pre>
+<h4 id="可以吃的后悔药-版本穿梭">可以吃的后悔药-&gt;版本穿梭</h4>
+<p>当你回滚之后，又后悔了，想恢复到新的版本怎么办？</p>
+<p>用<code>git reflog</code>打印你记录你的每一次操作记录</p>
+<pre><code>$ git reflog
+
+输出：
+c7edbfe HEAD@{0}: reset: moving to c7edbfefab1bdbef6cb60d2a7bb97aa80f022687
+470e9c2 HEAD@{1}: reset: moving to 470e9c2
+b45959e HEAD@{2}: revert: Revert &quot;add img&quot;
+470e9c2 HEAD@{3}: reset: moving to 470e9c2
+2c26183 HEAD@{4}: reset: moving to 2c26183
+0f67bb7 HEAD@{5}: revert: Revert &quot;add img&quot;
+</code></pre>
+<p>找到你操作的id如：<code>b45959e</code>，就可以回退到这个版本</p>
+<pre><code>$ git reset --hard b45959e
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/MgqZEKKCER/" class="tag">
+                    Git
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/nqQiqX_RhaL/" class="tag">
+                    终端
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/Vgg2jQ_lFif/" class="tag">
+                    Mac
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2017-02-15-【转载】Git指令整理/">
+                  <h3 class="post-title">
+                    【转载】Git指令整理
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

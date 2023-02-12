@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>消息中间件学习记录1 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="为什么使用消息中间件？
+我们使用消息中间件是为了实现解耦和缓冲的功能。接下来，以Nsq作为模板理解消息中间件。
+
+
+首先，Nsq消息中间件中引入了一个队列，以购物系统为例，当订单系统创建一个订单后，它会往队列中push一条topic为“cr..." />
+    <meta name="keywords" content="消息中间件" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">消息中间件学习记录1</h2>
+            <div class="post-date">2018-11-16</div>
+            
+            <div class="post-content" v-pre>
+              <h2 id="为什么使用消息中间件">为什么使用消息中间件？</h2>
+<p>我们使用消息中间件是为了实现解耦和缓冲的功能。接下来，以Nsq作为模板理解消息中间件。</p>
+<ol>
+<li>
+<p>首先，Nsq消息中间件中引入了一个队列，以购物系统为例，当订单系统创建一个订单后，它会往队列中<strong>push一条topic为“create order”（随便定）的消息</strong>，之后，Nsq会将队列中消息<strong>推送</strong>给订阅了相关topic的机器。通过一个队列，实现了各个服务系统之间的<strong>解耦</strong>和系统<strong>缓冲</strong>功能。</p>
+</li>
+<li>
+<p>中间件必须做到<strong>高效</strong>，<strong>可靠</strong>，<strong>方便</strong>，才能真正实用。这里就有用到生产者和消费者模式，在kafka中，用消费者组(Comsumer Group)来表示话题下不同的订阅者；而在Nsq中，则是采用<strong>channel</strong>来表示。Nsq通过<strong>channel</strong>推送到不同的服务系统。（<strong>topic是我们手动创建的，而channel是消费者订阅时自动创建</strong>）</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/nsqchannel.gif" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>Nsq通过nsqlookup模块来记录topic，channel及其订阅的消费者。nsqlookup首先会提供一个<code>/lookup</code>接口，消费者可以通过该接口查询到对应topic的url链接，之后通过链接与nsq进行连接，nsq会收到消息给这些消费者推送消息。</p>
+</li>
+<li>
+<p>最后就是消息中间件必须能够实现集群分布。</p>
+</li>
+</ol>
+<p>总结一下，Nsq几大模块：</p>
+<ul>
+<li>nsq：存储消息的地方，每个topic可以有一个或者多个channel</li>
+<li>nsqlookup：实现服务发现的模块</li>
+<li>nsqadmin：主要进行可视化管理的web ui工具</li>
+</ul>
+<h2 id="nsq中实现细节">Nsq中实现细节</h2>
+<ol>
+<li>消息至少被投递一次。如果成功投递，对方会给返回<code>FIN</code>；否则，返回<code>REQ</code>。超时不响应，nsq也会将消息requeue。</li>
+<li>重试次数，nsq通过<code>attempts</code>字段判断重复尝试的次数。</li>
+<li>消息是无序的</li>
+<li>Nsq中采用push方式推送消息给消费者，保证了实时性。此外Nsq的存储的消息都是在内存中，当超过<code>memqueue-size</code>设置的值，Nsq会对消息进行持久化，储存到磁盘中。</li>
+<li>Nsq通过<code>rdy_count</code>字段进行流量控制，判断该字段是否为0是否继续推送消息给消费者。</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>一个消息中间件必须能够集群，可扩展性要强，性能好，可靠性要高。</p>
+<p>消息中间件以下特性考虑：</p>
+<ul>
+<li>消息投递策略</li>
+<li>消息时序性</li>
+<li>消息推送方式（push还是pull）</li>
+<li>消息存储到内存中还是磁盘中</li>
+</ul>
+<p>参考连接</p>
+<p><a href="https://zhuanlan.zhihu.com/p/46201859">MQ（1）—— 从队列到消息中间件</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/46412848">MQ(2) —— 一条消息是如何从生产到被消费的</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/46415489">MQ(3) —— 刨根问底</a></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/6w3Hx9oznc/" class="tag">
+                    消息中间件
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-11-10-JVM笔记1/">
+                  <h3 class="post-title">
+                    JVM笔记1
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

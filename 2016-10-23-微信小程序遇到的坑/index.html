@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>微信小程序开发问题记录 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="微信小程序开发遇到的问题
+前话
+最近在研究微信小程序要怎么写，看官方文档感觉好像挺简单的，实际开始做还是遇到不少的问题的。
+wx.request遇到的问题
+请求链接
+
+请求链接必须是https协议（文挡写的很清楚），在无APPID的情况下，..." />
+    <meta name="keywords" content="微信小程序" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">微信小程序开发问题记录</h2>
+            <div class="post-date">2016-10-23</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="微信小程序开发遇到的问题">微信小程序开发遇到的问题</h1>
+<h2 id="前话">前话</h2>
+<h3 id="最近在研究微信小程序要怎么写看官方文档感觉好像挺简单的实际开始做还是遇到不少的问题的">最近在研究微信小程序要怎么写，看官方文档感觉好像挺简单的，实际开始做还是遇到不少的问题的。</h3>
+<h2 id="wxrequest遇到的问题">wx.request遇到的问题</h2>
+<h3 id="请求链接">请求链接</h3>
+<ul>
+<li>请求链接必须是https协议（文挡写的很清楚），在无APPID的情况下，允许使用http协议，但在有APPID必须强制https，否则会报错</li>
+<li>添加合法域名的问题，需要到微信公众平台添加相关的域名，而且不允许直接使用IP地址，否则即使是https链接也无法发起请求</li>
+<li>get和post方式，get方式可以默认不设置header，但post需要设置以下的header，后台就可以在query string parameter获取到post的数据。如果不设置的话，post的数据会被放在request payload中，后台需要进行另外的操作才能获取数据。</li>
+</ul>
+<pre><code>&quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;
+</code></pre>
+<h2 id="关于生命周期">关于生命周期</h2>
+<h3 id="对于微信小程序的生命周期例如在onload中最后一步发起请求的请求还没完成也不会对小程序造成阻塞会去执行onshow中的操作所以将一直重要的赋值放到success之中">对于微信小程序的生命周期，例如在onLoad中最后一步发起请求的，请求还没完成，也不会对小程序造成阻塞，会去执行onShow中的操作，所以将一直重要的赋值放到success之中</h3>
+<pre><code class="language-javascript">...
+data: {
+    temp:1111,
+    ...
+}
+onLoad: function(){
+    ...
+    wx.request({
+        ..
+        success: function(){
+            that.setData({
+                temp: &quot;123123&quot;
+            })
+        }
+    })
+},
+onShow: function(){
+    console.log(temp);//1111，这是temp可能还是1111，要注意下数据赋值的情况
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/x69qwIjX4/" class="tag">
+                    微信小程序
+                  </a>
+                
+              </div>
+            
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

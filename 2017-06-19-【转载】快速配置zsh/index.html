@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>【转载】快速配置zsh | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+比较水的 Personal Notes
+
+查看你的系统有几种shell
+cat /etc/shells
+
+显示
+/bin/bash
+/bin/csh
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+
+安装 oh m..." />
+    <meta name="keywords" content="终端,zsh,Notes" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【转载】快速配置zsh</h2>
+            <div class="post-date">2017-06-19</div>
+            
+            <div class="post-content" v-pre>
+              <blockquote>
+<p>比较水的 Personal Notes</p>
+</blockquote>
+<h2 id="查看你的系统有几种shell">查看你的系统有几种shell</h2>
+<pre><code>cat /etc/shells
+</code></pre>
+<p>显示</p>
+<pre><code>/bin/bash
+/bin/csh
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+</code></pre>
+<h2 id="安装-oh-my-zsh">安装 oh my zsh</h2>
+<pre><code>git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</code></pre>
+<p>重新打开终端，输入</p>
+<pre><code>zsh
+</code></pre>
+<p>即可切换终端，并且发现 oh my zsh 已经帮我们配置好 zsh 了</p>
+<h2 id="修改主题">修改主题</h2>
+<pre><code>open ~/.zshrc 
+</code></pre>
+<p>修改 <code>ZSH_THEME=”robbyrussell”</code>，主题在 ~/.oh-my-zsh/themes 目录下。<br>
+修改为</p>
+<pre><code>ZSH_THEME=&quot;kolo&quot;
+</code></pre>
+<p>可以<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes">参照这里</a>进行选择.</p>
+<h2 id="设置为默认shell">设置为默认shell</h2>
+<pre><code>chsh -s /bin/zsh
+</code></pre>
+<h2 id="添加自定义命令">添加自定义命令</h2>
+<pre><code>open ~/.zshrc
+</code></pre>
+<p>添加显示隐藏文件的快捷命令</p>
+<pre><code>alias fd='defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder'
+alias fh='defaults write com.apple.finder AppleShowAllFiles -boolean false ; killall Finder'
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/nqQiqX_RhaL/" class="tag">
+                    终端
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/OOhdBeKLn68/" class="tag">
+                    zsh
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/sor7RTKlreI/" class="tag">
+                    Notes
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2017-3-07-【转载】文件目录树状(tree)显示/">
+                  <h3 class="post-title">
+                    【转载】文件目录树状(tree)显示
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

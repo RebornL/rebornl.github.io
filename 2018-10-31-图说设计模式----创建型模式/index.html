@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>创建型设计模型 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="创建型模式
+创建型模式对类的实例化过程进行了抽象，将软件模块中对象的创建和对象的使用分离。
+有以下几种模式：
+
+简单工厂模式
+工厂方法模式
+抽象工厂模式
+建造者模式
+原型模式
+单例模式
+
+简单工厂模式
+简单工厂模式（Simple Facto..." />
+    <meta name="keywords" content="Pattern" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">创建型设计模型</h2>
+            <div class="post-date">2018-10-31</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="创建型模式">创建型模式</h1>
+<p>创建型模式对类的实例化过程进行了抽象，将软件模块中对象的创建和对象的使用分离。</p>
+<p>有以下几种模式：</p>
+<ul>
+<li>简单工厂模式</li>
+<li>工厂方法模式</li>
+<li>抽象工厂模式</li>
+<li>建造者模式</li>
+<li>原型模式</li>
+<li>单例模式</li>
+</ul>
+<h2 id="简单工厂模式">简单工厂模式</h2>
+<p>简单工厂模式（Simple Factory Pattern）又称为静态工厂模式（Static Factory Method），为类创建型模式，根据参数的不同返回不同类的实例。被创建实例通常都具有共同的父类。<br>
+<img src="https://raw.githubusercontent.com/RebornL/picbed/master/pattern1.png" alt="" loading="lazy"></p>
+<ul>
+<li>Factory: 负责实现创建所有实例的内部逻辑。</li>
+<li>Product: 抽象产品角色是所创建的所有对象的父类，负责描述所共有的公共接口</li>
+<li>ConcreteProduct: 是创建目标，所有创建对象都充当这个角色的某个具体类的实例</li>
+</ul>
+<h3 id="代码展示">代码展示</h3>
+<pre><code class="language-java">abstract class Product {
+}
+
+class ProductA extends Product {
+
+	public ProductA() {
+		System.out.println(&quot;A&quot;);
+	}
+}
+
+class ProductB extends Product {
+
+	public ProductB() {
+		System.out.println(&quot;B&quot;);
+	}
+}
+
+public class factoryOfProduct {
+	public static Product createProduct(String proname) {
+		if(&quot;A&quot;.equals(proname)) {
+			return new ProductA();
+		}
+
+		if(&quot;B&quot;.equals(proname)) {
+			return new ProductB();
+		}
+	}
+}
+</code></pre>
+<h3 id="优缺点">优缺点</h3>
+<ul>
+<li>
+<p>优点</p>
+<ul>
+<li>客户端可以免除直接创建产品对象的责任，由工厂类决定创建产品类实例</li>
+<li>客户端无须知道产品类的类名，只需要知道对应参数机壳</li>
+<li>可以通过引入配置文件，在不修改任何客户端代码情况下更换和增加新的具体产品类，在一定程度提高系统灵活性</li>
+</ul>
+</li>
+<li>
+<p>缺点</p>
+<ul>
+<li>工厂类集中所有产品的创建逻辑，一旦不能正常工作时，整个系统可能会受到影响</li>
+<li>当产品过多时，可能会导致系统过于臃肿，不利于维护和扩展</li>
+<li>由于使用静态方法，因此无法造成工厂角色无法基于继承的等级结构</li>
+</ul>
+</li>
+</ul>
+<h3 id="适用范围">适用范围</h3>
+<ul>
+<li>产品类较少的情况</li>
+<li>工厂业务逻辑无须太过复杂的情况</li>
+<li>客户端只需要知道传入工厂类的参数，不关心创建对象时</li>
+</ul>
+<h2 id="工厂方法模式">工厂方法模式</h2>
+<p>工厂方式模式(Factory Method Pattern)：又称为虚拟构造器（Virtual Constructor）模式或者多态工厂（Polymorphic Factory）模式，属于类创建型模式。在此模式中，工厂父类负责定义创建产品对象的公共接口，工厂自雷负责生产具体的产品对象，即通过工厂子类来确定实例化哪一类具体产品类。<br>
+<img src="https://raw.githubusercontent.com/RebornL/picbed/master/pattern2.png" alt="" loading="lazy"></p>
+<ul>
+<li>Product：抽象产品类</li>
+<li>ConcreteProduct：具体产品类</li>
+<li>Factory：抽象工厂类</li>
+<li>ConcreteFactory：具体工厂类</li>
+</ul>
+<h3 id="代码展示-2">代码展示</h3>
+<pre><code class="language-java">abstract class Product {
+	void use();
+}
+
+class ConcreteProduct extends Product {
+	void use() {
+		System.out.println(&quot;ConcreteProduct using&quot;);
+	}
+}
+
+abstract class Factory {
+	Product factoryMethod();
+}
+
+class ConcreteFactory extends Factory {
+	Product factoryMethod() {
+		return new ConcreteProduct();
+	}
+}
+</code></pre>
+<h3 id="优缺点-2">优缺点</h3>
+<p>工厂方法模式是简单工厂模式的进一步抽象，核心工厂类负责定义公共接口，创建产品类实例则由各个工厂子类具体实现，这样可以在不改变核心工厂类的情况下，通过定义新的工厂子类，创建新的产品。例如日志记录器：<br>
+<img src="https://raw.githubusercontent.com/RebornL/picbed/master/pattern3.png" alt="" loading="lazy"></p>
+<ul>
+<li>优点
+<ul>
+<li>多态性，所有工厂子类都继承自同一抽象工厂类</li>
+<li>引入新产品，无需修改核心工厂类的代码，只需要添加具体工厂子类和产品类，客户端无需修改</li>
+<li>工厂子类封装了创建子类的过程，客户端只需要知道接口是什么即可创建新的产品类、</li>
+</ul>
+</li>
+<li>缺点
+<ul>
+<li>需要新增新的类，可能会增加系统复杂度，增加编译时间</li>
+<li>再考虑到系统的可扩展性和简易使用性，会引入反射，DOM等技术，增加系统的实现难度</li>
+</ul>
+</li>
+</ul>
+<h2 id="抽象工厂模式">抽象工厂模式</h2>
+<p>抽象工厂模式（Abstract Factory）：提供一个创建一系列相关或者相互依赖对象的接口，而无须制定他们具体的类。抽象工厂模式又称为Kit模式，属于对象创建型模式。在工厂方法模式基础上，增加不同类之间的组合。</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/pattern4.png" alt="" loading="lazy"></figure>
+<ul>
+<li>AbStractFactory：抽象工厂类</li>
+<li>ConcreteFactory：具体工厂类</li>
+<li>AbstractProduct：抽象产品类</li>
+<li>Product：具体产品类</li>
+</ul>
+<h3 id="模式分析">模式分析</h3>
+<p>该模式比较适合于一个产品族，而且同一个产品族的产品将在一起使用的系统中。因此不同产品的相互组合，只需要实现新的具体工厂类即可。缺点也很明显，需要新增产品类时，需要修改抽象工厂类的接口，重新实现新的工厂类。</p>
+<h2 id="建造者模式">建造者模式</h2>
+<p>建造者模式（Builder Pattern）：也可以称之为生成器模式，将一个复杂对象的构建与它的组成分离，是的同样的构建过程可以创建不同的表示。<br>
+<img src="https://raw.githubusercontent.com/RebornL/picbed/master/20190425114214.png" alt="" loading="lazy"></p>
+<ul>
+<li>Builder: 抽象建造者</li>
+<li>ConcreteBuilder: 具体建造者</li>
+<li>Director: 指挥者</li>
+<li>Product： 产品角色</li>
+</ul>
+<h3 id="代码展示-3">代码展示</h3>
+<pre><code class="language-java">abstract Builder {
+	void buildPartA();
+	void buildPartB();
+}
+
+class ConcreteBuilder extends Builder {
+	Product product;
+	Product getProduct(){
+
+	}
+}
+
+class Director {
+	Builder pbuilder;
+	public Director() {}
+	Product constuct() {
+		returu pbuilder.getProduct();
+	}
+
+	void setBuilder(Builder builder) {
+		this.pbuilder = builder;
+	}
+}
+</code></pre>
+<h3 id="适用环境">适用环境</h3>
+<ul>
+<li>需要生成的产品对象有复杂的内部结构，这些产品对象通常包含多个成员属性</li>
+<li>需要生成的产品对象属性相互依赖，需要指定其生成顺序</li>
+<li>对象的创建过程独立于创建该对象的类，将创建的过程封装在指挥者勒种</li>
+<li>隔离复杂对象的创建和使用，并使得相同的创建过程可以创建不同的产品</li>
+</ul>
+<p>将抽象工厂模式看成汽车配件生产工厂，建造者模式则是一个汽车组装工厂。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/Bi8g4TR4N7K/" class="tag">
+                    Pattern
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-10-31-计算机网络知识点总结/">
+                  <h3 class="post-title">
+                    计算机网络重要概念记录
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

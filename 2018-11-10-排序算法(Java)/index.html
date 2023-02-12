@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>排序算法(Java版) | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="排序算法(Java版)
+
+
+备注：以下动图来自于一像素的排序算法
+
+冒泡排序
+
+public static void bubbleSort(int[] arr) {
+    if(arr.length == null || arr.leng..." />
+    <meta name="keywords" content="Java,Alg" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">排序算法(Java版)</h2>
+            <div class="post-date">2018-11-10</div>
+            
+            <div class="post-content" v-pre>
+              <h2 id="排序算法java版">排序算法(Java版)</h2>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master//algorithm.png" alt="algorithm" loading="lazy"></figure>
+<blockquote>
+<p>备注：以下动图来自于<strong>一像素</strong>的<a href="https://www.cnblogs.com/onepixel/p/7674659.html">排序算法</a></p>
+</blockquote>
+<h3 id="冒泡排序">冒泡排序</h3>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/RebornL/picbed/master//maopao.gif" alt="" loading="lazy"></figure>
+<pre><code class="language-java">public static void bubbleSort(int[] arr) {
+    if(arr.length == null || arr.length == 0) return;
+    
+    int len = arr.length;
+    for(int i = 0; i &lt; len-1; i++) {
+        for(int j = 0; j &lt; len-i-1; j++) {
+            if(arr[j]&gt;arr[j+1]) swap(arr, j, j+1);
+        }
+    }
+}
+</code></pre>
+<h3 id="选择排序">选择排序</h3>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/RebornL/picbed/master//select.gif" alt="" loading="lazy"></figure>
+<pre><code class="language-java">public static void selectSort(int[] arr) {
+    if(arr.length == null || arr.length == 0) return new int[];
+    int len = arr.length;
+    for(int i = 0; i &lt; len-1; i++) {
+        minIndex = i;
+        for(int j = i+1; j &lt; len; j++) {
+            if(arr[j]&lt; arr[minIndex]) minIndex = j;
+        }
+        swap(arr, i, minIndex);
+    }
+}
+</code></pre>
+<h3 id="插入排序">插入排序</h3>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/RebornL/picbed/master//insert.gif" alt="" loading="lazy"></figure>
+<pre><code class="language-java">public static void insertSort(int[] arr) {
+    if(arr == null || arr.length == 0) return new int[];
+    
+    for(int i = 1; i &lt; len; i++) {
+        int current = arr[i];
+        int preIndex = i-1;
+        while(preIndex&gt;=0 &amp;&amp; arr[preIndex]&gt;arr[i]) {
+            arr[preIndex+1] = arr[preIndex];//后移
+            preIndex--;
+        }
+        arr[preIndex+1]=current;
+    }
+}
+// 重写版，更简洁
+public static void insertSort(int[] arr) {
+    if (arr == null || arr.length &lt;= 1) {
+        return;
+    }
+
+    for (int i = 1, len = arr.length; i &lt; len; i++) {
+        for (int j=i; j &gt; 0 &amp;&amp; arr[j]&lt;arr[j-1]; j--) {
+            swap(arr, j, j-1);
+        }
+    }
+}
+</code></pre>
+<h3 id="希尔排序">希尔排序</h3>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/RebornL/picbed/master//shell.gif" alt="" loading="lazy"></figure>
+<pre><code class="language-java">public class Shell {
+    public static void shellSort(int[] a) {
+        //升序排列
+        int N = a.length;
+        int h = 1;
+        while(h &lt; N/3) h = 3*h + 1;
+        while(h&gt;0) {
+            for(int i = h; i &lt; N; i++) {
+                for(int j = i; j &gt;=h &amp;&amp; a[j]&lt;a[j-h]; j -= h) {
+                    swap(a, j, j-h);
+                }
+            }
+            h = h/3;
+        }
+    }
+}
+</code></pre>
+<h3 id="归并排序">归并排序</h3>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/RebornL/picbed/master//merge.gif" alt="" loading="lazy"></figure>
+<pre><code class="language-java">public static void mergeSort(int[] arr, int left, int right) {
+    sort(arr, left, right);
+}
+
+public static void sort(int[] arr, int left, int right) {
+    if(left&gt;=right) return;
+
+    int mid = (left+right)/2;
+    sort(arr, left, mid);
+    sort(arr, mid+1, right);
+    merge(arr, left, right);
+
+}
+
+public static void merge(int[] arr, int left, int right) {
+    int[] result = new int[arr.length];
+    int mid = (left+right)/2;
+    int leftIndex = left, rightIndex = mid+1, i = left;
+    System.out.println(&quot;left:&quot;+left+&quot;, right: &quot;+right);
+    for(int j = 0; j &lt;= right; j++) {
+        System.out.printf(&quot;%d\t&quot;, arr[j]);
+    }
+    System.out.printf(&quot;\n&quot;);
+    while(leftIndex &lt;= mid &amp;&amp; rightIndex &lt;= right) {
+        if(arr[leftIndex] &lt; arr[rightIndex]) {
+            result[i++] = arr[leftIndex++];
+        } else {
+            result[i++] = arr[rightIndex++];
+        }
+    }
+
+    while(leftIndex &lt;= mid) {
+        result[i++] = arr[leftIndex++];
+    }
+
+    while(rightIndex &lt;= right) {
+        result[i++] = arr[rightIndex++];
+    }
+    //对arr进行重新复制
+    //for(int j = left; j &lt;= right; j++) {
+    //    arr[j] = result[j];
+    //}
+    System.arraycopy(result,left, arr, left, right-left+1);
+
+    for(int j = 0; j &lt;= right; j++) {
+        System.out.printf(&quot;%d\t&quot;, arr[j]);
+    }
+    System.out.printf(&quot;\n&quot;);
+}
+</code></pre>
+<pre><code>left:0, right: 1
+3       44
+3       44
+left:2, right: 3
+3       44      38      5
+3       44      5       38
+left:0, right: 3
+3       44      5       38
+3       5       38      44
+left:4, right: 5
+3       5       38      44      47      36
+3       5       38      44      36      47
+left:4, right: 6
+3       5       38      44      36      47      27
+3       5       38      44      27      36      47
+left:0, right: 6
+3       5       38      44      27      36      47
+3       5       27      36      38      44      47
+left:7, right: 8
+3       5       27      36      38      44      47      2       46
+3       5       27      36      38      44      47      2       46
+left:7, right: 9
+3       5       27      36      38      44      47      2       46      4
+3       5       27      36      38      44      47      2       4       46
+left:10, right: 11
+3       5       27      36      38      44      47      2       4       46      19      50
+3       5       27      36      38      44      47      2       4       46      19      50
+left:10, right: 12
+3       5       27      36      38      44      47      2       4       46      19      50      48
+3       5       27      36      38      44      47      2       4       46      19      48      50
+left:7, right: 12
+3       5       27      36      38      44      47      2       4       46      19      48      50
+3       5       27      36      38      44      47      2       4       19      46      48      50
+left:0, right: 12
+3       5       27      36      38      44      47      2       4       19      46      48      50
+2       3       4       5       19      27      36      38      44      46      47      48      50
+</code></pre>
+<h3 id="快速排序">快速排序</h3>
+<figure data-type="image" tabindex="7"><img src="https://raw.githubusercontent.com/RebornL/picbed/master//quick.gif" alt="" loading="lazy"></figure>
+<pre><code class="language-java">public static void quickSort(int[] arr, int left, int right) {
+    if(left&gt;=right) return;
+    int partIndex = partion(arr, left, right);
+    quickSort(arr, left, partIndex-1);
+    quickSort(arr, partIndex+1, right);
+}
+
+public static int partion(int[] arr, int left, int right) {
+    int pivot = arr[right];//每次以最后一个元素作为基准元素
+    int i = left;
+    for (int j = left; j &lt; right; j++) {
+        if (arr[j]&lt;pivot) {
+            swap(arr, i++, j);
+        }
+    }
+    swap(arr, i, right);
+    return i;
+}
+</code></pre>
+<h4 id="算法改进">算法改进</h4>
+<p>最优情况下，刚好对半分，复杂度为O(NlogN),最差情况下为O(n^2)。因此对于快速排序可以有以下改进方法：</p>
+<ul>
+<li>
+<p>数组个数较少时，切换为插入排序，所以可以设置当数组元素低于某个阈值时，设置为插入排序。</p>
+</li>
+<li>
+<p><strong>三数取中</strong>，作为切分元素。就是把元素中最左最右和中间三个元素，取大小居中的元素作为切分元素，详情可见<a href="https://www.cnblogs.com/chengxiao/p/6262208.html">这篇文章</a>。</p>
+</li>
+<li>
+<p><strong>三向切分</strong>，对于有大量重复元素的数组，可以将其分为小于，等于和大于三部分。</p>
+<pre><code class="language-java">//三向切分代码实现
+public void ThreeWayQuickSort(int[] arr, int l, int r) {
+    if(l&gt;=r) return;
+    
+    int lt = l, i = l+1, rt = r;
+    int pivot = arr[l];
+    while(i &lt;= gt) {
+        if(arr[i]&lt;pivot) {
+            swap(arr, i++, lt++);//把小于pivot的值放在最左边
+        } else if(arr[i]&gt;pivot) {
+            swap(arr, i, gt--);//把大于pivot的值放在最右边
+        } else {
+            i++;//相等部分放在中间
+        }
+    }
+    
+    ThreeWayQuickSort(arr, l, lt-1);
+    ThreeWayQuickSort(arr, gt+1, r);
+}
+</code></pre>
+<p><strong>切分还可以用于选择算法，这样就实现二分查找的效果，比较总次数为N+N/2+N/4+...，最后必然小于2N次的比较结果</strong></p>
+</li>
+</ul>
+<h3 id="堆排序">堆排序</h3>
+<p>堆排序涉及到<strong>堆</strong>这个概念，堆的结点值总是大于等于其子节点，而且堆是一颗完全二叉树。因此堆可以用数组来表示，假设数组下标从1开始，那么位置为<code>k</code>的元素的父节点的位置为<code>k/2</code>，其子节点的位置分别为<code>2K</code>和<code>2k+1</code>。堆排序的插入和删除操作的展示图，可以看<a href="https://blog.csdn.net/zdp072/article/details/44227317">这篇文章</a></p>
+<pre><code class="language-java">public class Heap&lt;T extends Comparable&lt;T&gt;&gt; {
+	//实现一个最大堆
+    private T[] heap;
+    private int N = 0;
+
+    public Heap(int maxN) {
+        this.heap = (T[]) new Comparable[maxN + 1];
+    }
+
+    public boolean isEmpty() {
+        return N == 0;
+    }
+
+    public int size() {
+        return N;
+    }
+
+    private boolean less(int i, int j) {
+        return heap[i].compareTo(heap[j]) &lt; 0;//说明位置i的数值小于位置j的数值，之后进行交换
+    }
+
+    private void swap(int i, int j) {
+        T t = heap[i];
+        heap[i] = heap[j];
+        heap[j] = t;
+    }
+    
+    public void swim(int k) {
+        //上浮操作，不断跟父节点进行比较即可
+        while(k&gt;1 &amp;&amp; less(k/2, k)) {
+            swap(k, k/2);
+            k = k/2;
+        }
+    }
+	
+    private void sink(int k) {
+        //下沉操作，不断跟子节点比较
+        while(2*k&lt;=N) {//不超过元素的个数
+            int j = 2*k;//左节点
+            if(j &lt; N&amp;&amp;less(j, j+1)) {//左节点小于右节点
+            	j++;
+            }
+            if(less(j, k)) break;//大于子节点
+            swap(k, j);
+            k = j;
+        }
+    }
+    
+    private void insert(Comparable v) {
+        heap[++N] = (T) v;//加入到数组尾，并增加数组个数N
+        swim(N);//上浮到合适的位置
+    }
+    //删除最大元素
+    private T deleteMax() {
+        T max = heap[1];
+        swap(1, N--);//将尾子节点跟堆顶交换
+        head[N+1]=null;
+        sink(1);//将堆顶下沉
+        return max;
+    }
+}
+</code></pre>
+<h2 id="总结比较">总结比较</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>算法</td>
+<td>稳定性</td>
+<td>时间复杂度</td>
+<td>空间复杂度</td>
+<td>备注</td>
+</tr>
+<tr>
+<td>选择排序</td>
+<td>×</td>
+<td>N2</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>冒泡排序</td>
+<td>√</td>
+<td>N2</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>插入排序</td>
+<td>√</td>
+<td>N ~ N2</td>
+<td>1</td>
+<td>时间复杂度和初始顺序有关</td>
+</tr>
+<tr>
+<td>希尔排序</td>
+<td>×</td>
+<td>N 的若干倍乘于递增序列的长度</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>×</td>
+<td>NlogN</td>
+<td>logN</td>
+<td></td>
+</tr>
+<tr>
+<td>三向切分快速排序</td>
+<td>×</td>
+<td>N ~ NlogN</td>
+<td>logN</td>
+<td>适用于有大量重复主键</td>
+</tr>
+<tr>
+<td>归并排序</td>
+<td>√</td>
+<td>NlogN</td>
+<td>N</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="tag">
+                    Java
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="tag">
+                    Alg
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-11-10-操作系统/">
+                  <h3 class="post-title">
+                    计算机操作系统简记
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

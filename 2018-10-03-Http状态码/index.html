@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Http协议笔记 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+update：2019-06-05
+
+常见状态码
+2XX
+请求成功
+
+200 正常处理
+204 成功处理，蛋服务器没有新数据返回，显示页面不更新
+206 对服务器进行范围请求，只返回一部分数据
+
+3XX
+表示重定向
+
+301 永久重定向，..." />
+    <meta name="keywords" content="NetWork" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Http协议笔记</h2>
+            <div class="post-date">2018-10-03</div>
+            
+            <div class="post-content" v-pre>
+              <blockquote>
+<p>update：2019-06-05</p>
+</blockquote>
+<h2 id="常见状态码">常见状态码</h2>
+<h3 id="2xx">2XX</h3>
+<p>请求成功</p>
+<ul>
+<li>200 正常处理</li>
+<li>204 成功处理，蛋服务器没有新数据返回，显示页面不更新</li>
+<li>206 对服务器进行范围请求，只返回一部分数据</li>
+</ul>
+<h3 id="3xx">3XX</h3>
+<p>表示重定向</p>
+<ul>
+<li>301 <em>永久重定向</em>，请求资源已经分配了新的URI中，URL地址已经改变</li>
+<li>302 <em>转发</em>，请求资源临时分配新的URI中，URL地址没有变</li>
+<li>303 与302功能一样，但客户端请求方式为GET来获取资源</li>
+<li>304 <em>返回未过期的缓存数据</em>，发送了附带请求，但不符合条件</li>
+<li>307 与302功能一样，但客户端必须保持请求方法不变向新的地址发出请求</li>
+</ul>
+<h3 id="4xx">4XX</h3>
+<p>表示客户端出错</p>
+<ul>
+<li>400 请求报文语法错误</li>
+<li>401 需要认证身份</li>
+<li>403 没有访问权限</li>
+<li>404 服务器没有这个资源</li>
+</ul>
+<h3 id="5xx">5XX</h3>
+<p>表示服务器出错</p>
+<ul>
+<li>500 内部资源出错</li>
+<li>503 服务器繁忙</li>
+</ul>
+<h3 id="http请求报文">HTTP请求报文</h3>
+<ul>
+<li>
+<p>报文首部</p>
+<ul>
+<li>请求行（请求方式 链接 协议）</li>
+<li>首部字段</li>
+</ul>
+</li>
+<li>
+<p>空行（CR+LF）</p>
+</li>
+<li>
+<p>报文主体：GET请求，请求内容放在链接中；POST请求，请求内容放在报文主体中</p>
+<blockquote>
+<p>补充：GET产生一个TCP数据包；POST产生两个TCP数据包。</p>
+<p>对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；</p>
+<p>而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。（<a href="https://zhuanlan.zhihu.com/p/22536382">链接</a>）</p>
+</blockquote>
+</li>
+</ul>
+<p>GET请求：</p>
+<pre><code>GET / HTTP/1.1
+Host: www.baidu.com
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: zh-CN,zh;q=0.8,en;q=0.6
+Cookie: BAIDUID=4082549DEE5E64678FC46642E185D98C:FG=1;
+
+</code></pre>
+<p>POST请求：</p>
+<pre><code>POST / HTTP/1.1
+Host: www.demo.com
+Cache-Control: no-cache
+Postman-Token: 81d7b315-d4be-8ee8-1237-04f3976de032
+Content-Type: application/x-www-form-urlencoded
+
+key=value&amp;testKey=testValue
+</code></pre>
+<h3 id="http响应报文">HTTP响应报文</h3>
+<ul>
+<li>报文首部
+<ul>
+<li>响应状态行（协议 HTTP状态码 描述结果）</li>
+<li>首部字段</li>
+</ul>
+</li>
+<li>空行（CR+LF）</li>
+<li>响应正文</li>
+</ul>
+<p>响应内容：</p>
+<pre><code>HTTP/1.1 200 OK
+Date: Sat, 31 Dec 2005 23:59:59 GMT
+Content-Type: text/html;charset=ISO-8859-1
+Content-Length: 122
+
+＜html＞
+＜head＞
+＜title＞Wrox Homepage＜/title＞
+＜/head＞
+＜body＞
+＜!-- body goes here --＞
+＜/body＞
+＜/html＞
+</code></pre>
+<h3 id="补充">补充</h3>
+<blockquote>
+<p>Http与Https的区别：</p>
+</blockquote>
+<ol>
+<li>HTTP 的URL 以http:// 开头，而HTTPS 的URL 以https:// 开头</li>
+<li>HTTP 是不安全的，而 HTTPS 是安全的</li>
+<li>HTTP 标准端口是80 ，而 HTTPS 的标准端口是443</li>
+<li>在OSI 网络模型中，HTTP工作于应用层，而HTTPS 的安全传输机制工作在传输层</li>
+<li>HTTP 无法加密，而HTTPS 对传输的数据进行加密</li>
+<li>HTTP无需证书，而HTTPS 需要CA机构wosign的颁发的SSL证书</li>
+</ol>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4Njg5MDA5NA==&amp;mid=2247483733&amp;idx=1&amp;sn=f9ab8d07d2151bd40cdcd9a290317346&amp;chksm=ebd74054dca0c942a36e6e63c783e9b1f414a16e2c702ae4b371a204960a50c7ae89af207139#rd">HTTP面试题</a></p>
+<p>【2018-10-31】</p>
+<p><strong>HTTP内容补充增加</strong></p>
+<p>###Cookie</p>
+<p>HTTP协议是无状态的，因此在HTTP1.1中引入Cookie来保存状态信息。（随着现在浏览器的发展，Cookie不在浏览器客户端唯一存储客户端的存储，新的浏览器API中允许开发者将数据存储在本地中，使用Web storage API或者IndexedDB）。Cookie具有作用域的范围，默认情况下当前的主机访问（不包含子域名），可以通过修改Domain字段来指定哪些主机可以接受Cookie，另外也可以通过Path字段来指定哪些路径可以接受Cookie。<strong>Cookie只允许储存ASCII 码字符串信息</strong>。</p>
+<h3 id="session">Session</h3>
+<p>HTTP交互中除了可以使用Cookie保存状态信息，也可以使用Session来保存状态信息。Cookie保存在客户端中，Session保存在服务器中，安全性相对更高。另外Session可以储存对象，而不仅仅只有字符串信息。Session还可以将其持久化，存储到数据库中。</p>
+<p>Session维护状态：</p>
+<ol>
+<li>
+<p>客户端中不禁用Cookie时，服务器端为客户端生成SessionID值，当用户正确验证后，服务器端会将SessionID值通过响应报文Set-Cookie字段，存储到浏览器的Cookie中。当客户端继续操作，就会将这个Cookie发给服务器。</p>
+</li>
+<li>
+<p>当客户端浏览器禁用Cookie时，此时便无法将SessionID中存储到Cookie中，此时便采用URL重写技术，将SessionID作为URL的参数进行传递。</p>
+</li>
+</ol>
+<h3 id="缓存">缓存</h3>
+<p>首部字段有Etag字段，该字段的含义是资源的唯一标识，每次更新都会跟服务器端比较这个值是否相同，请求资源已经修改，会返回资源和状态码200 OK；请求资源未修改会返回304 Not Modified。</p>
+<h4 id="协商缓存">协商缓存</h4>
+<p>Etag和Last-Modified</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/20190605155758.png" alt="" loading="lazy"></figure>
+<h4 id="强缓存">强缓存</h4>
+<p>Cache-Control和Expires，其中在Http/1.1中会以max-age优先，而在Http/1.0中max-age会被忽略。</p>
+<p>Cache-Control的几个属性：</p>
+<ul>
+<li><code>no-cache</code>：含义是不使用本地缓存，需要使用协商缓存，也就是先与服务器确认缓存是否可用。</li>
+<li><code>no-store</code>：禁用缓存。</li>
+<li><code>public</code>：表明其他用户也可使用缓存，适用于公共缓存服务器的情况。</li>
+<li><code>private</code>：表明只有特定用户才能使用缓存，适用于公共缓存服务器的情况。</li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/20190605155636.png" alt="" loading="lazy"></figure>
+<h3 id="http20">HTTP/2.0</h3>
+<p>HTTP/2.0与HTTP/1.x的区别在于将原来报文分成两个帧分别是HEADERS帧和DATA帧，均为二进制格式。整个通信过程只有一个TCP连接存在，承载任意数量的双向数据流。</p>
+<figure data-type="image" tabindex="3"><img src="./http2.png" alt="" loading="lazy"></figure>
+<p>HTTP/2.0中服务器会将客户端所需要的资源一起发送给客户端，不需要客户端重复发送多个请求。HTTP/2.0还会维护和更新首部字段表，避免重复传输，同时还对首部字段进行Huffman编码。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/ZFiuYBvkwkT/" class="tag">
+                    NetWork
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-09-10-AOP学习记录/">
+                  <h3 class="post-title">
+                    Spring中AOP记录
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java基础知识2 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="基础知识2
+接口
+Comparable接口
+启用对象排序时，是可以实现Comparable接口，里面只有一个需要实现的方法
+public interface Comparable&lt;T&gt; {
+    int compareTo(T..." />
+    <meta name="keywords" content="Java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java基础知识2</h2>
+            <div class="post-date">2018-11-10</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="基础知识2">基础知识2</h1>
+<h2 id="接口">接口</h2>
+<h3 id="comparable接口">Comparable接口</h3>
+<p>启用对象排序时，是可以实现Comparable接口，里面只有一个需要实现的方法</p>
+<pre><code class="language-java">public interface Comparable&lt;T&gt; {
+    int compareTo(T other);
+}
+</code></pre>
+<blockquote>
+<p>compareTo返回值，返回正值（大于0）代表着<strong>当前对象</strong>排在other之后；返回负数（小于0）代表着<strong>当前对象</strong>排在other之前；两个对象相同时，返回0 。</p>
+</blockquote>
+<p><strong>两个数值的数字比较，建议直接采用包装类的compare方法，可以出NaN和无穷大值。</strong></p>
+<h3 id="comparator接口">Comparator接口</h3>
+<pre><code class="language-java">public interface Comparator&lt;T&gt; {
+    int compare(T first, T second);
+}
+</code></pre>
+<p>使用：</p>
+<pre><code class="language-java">Comparator&lt;String&gt; comp = new LengthComparator&lt;&gt;();
+if(comp.compare(word1, word2)&gt;0) {...}
+</code></pre>
+<h4 id="comparable接口和comparator接口的区别">Comparable接口和Comparator接口的区别：</h4>
+<p>Comparable接口比较，需要类来亲自实现这个类，才能相互比较；而Comparator接口可以由第三类来实现，需要比较的类不需要实现该接口，只需要作为参数传进去即可。两个各有好处。lambda常用Comparator接口。</p>
+<h3 id="lambda表达式">lambda表达式</h3>
+<p>lambda表达式将函数表达为对象，所有函数式接口都可以用lambda表达式实现。在函数式接口作为参量的地方有特殊的语法，可以将lambda表达式变得更简洁----方法引用和构造函数引用。</p>
+<h4 id="方法引用">方法引用</h4>
+<p>举例，如Arrays.sort方法对对字符串进行排序</p>
+<pre><code class="language-java">Arrays.sort(strings, (x, y) -&gt; x.compareToIgnoreCase(y));
+</code></pre>
+<p>此时也可以用方法引用的方式：</p>
+<pre><code class="language-java">Arrays.sort(strings, String::compareToIgnoreCase);
+</code></pre>
+<p>方法引用三种方式：</p>
+<ul>
+<li>类::实例方法</li>
+<li>类::静态方法</li>
+<li>对象::实例方法</li>
+</ul>
+<h4 id="构造函数引用">构造函数引用</h4>
+<p>构造函数引用的方法名都是new，如<code>Employee::new</code>和<code>Employee[]::new</code>。使用：</p>
+<pre><code class="language-java">Employee[] buttons = stream.toArray(Employee[]::new);
+</code></pre>
+<h2 id="stream">Stream</h2>
+<p>Java8中新增流操作，只需要指定怎么做即可。举例说，要求某个属性的平均值，只需要指定数据源和属性，然后流类库会优化计算。</p>
+<pre><code class="language-java">//统计字符串长度超过12的个数
+long count = words.stream().filter(w -&gt; w.length()&gt;12).count();
+</code></pre>
+<h4 id="stream和集合的区别">Stream和集合的区别：</h4>
+<ol>
+<li>流不存储元素</li>
+<li>流操作不改变源的数据</li>
+<li>流操作可能是延时，在需要结果的时候才会计算结果出来</li>
+</ol>
+<h2 id="java中泛型">Java中泛型</h2>
+<p>关于Java中泛型最让人疑惑的是<code>&lt;? extends T&gt;</code>和<code>&lt;? super T&gt;</code>的使用</p>
+<ul>
+<li><code>&lt;? extends T&gt;</code>：<strong>可以赋值给任何T及T的子类的集合，上界为T</strong>，Get First用于消费集合元素为主的场景</li>
+<li><code>&lt;? super T&gt;</code>：<strong>可以赋值给任何T及T的父类集合，下界为T</strong>，Put First用于生产集合元素为主的场景</li>
+</ul>
+<blockquote>
+<p>泛型中，这两种特殊用法<strong>主要用在函数参数</strong>中。不直接用在逻辑代码进行元素的增加和删除操作。</p>
+</blockquote>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="tag">
+                    Java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-11-10-Java基础记录0/">
+                  <h3 class="post-title">
+                    Java基础知识0
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

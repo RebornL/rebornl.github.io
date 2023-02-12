@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java8新特性 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="允许接口有默认方法实现
+新增default关键字，为接口声明非抽象方法，这样实现接口，不必实现所有抽象方法。
+interface Formula {
+    double calculate(int a);
+    
+    default..." />
+    <meta name="keywords" content="Java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java8新特性</h2>
+            <div class="post-date">2019-09-02</div>
+            
+            <div class="post-content" v-pre>
+              <h2 id="允许接口有默认方法实现">允许接口有默认方法实现</h2>
+<p>新增<code>default</code>关键字，为接口声明非抽象方法，这样实现接口，不必实现所有抽象方法。</p>
+<pre><code class="language-java">interface Formula {
+    double calculate(int a);
+    
+    default double sqrt(int a) {
+        return Math.sqrt(a);
+    }
+}
+
+Formula formula = new Formula() {
+    @Override
+    public double calculate(int a) {
+        return sqrt(a*100);
+    }
+}
+
+formula.calculate(100);//100.0
+formula.sqrt(16);//4.0
+</code></pre>
+<h2 id="lambda表达式">Lambda表达式</h2>
+<p>函数式表达式</p>
+<pre><code class="language-java">List&lt;String&gt; name = Arrays.asList(&quot;peter&quot;,&quot;anna&quot;,&quot;mike&quot;, &quot;xenia&quot;);
+//常规写法
+Collections.sort(name, new Comparator&lt;String&gt;() {
+    @Override
+    public int compare(String o1, String o2) {
+        return o2.compareTo(o1);
+    }
+});
+
+//Lambda表达式
+Collections.sort(name, (o1, o2)-&gt;o2.compareTo(o1));
+//Collections.sort(name, Comparator.reverseOrder());
+</code></pre>
+<h3 id="函数式接口">函数式接口</h3>
+<p><code>@FunctionalInterface</code>标记的接口均为函数式接口，可以用lambda表达式实现</p>
+<pre><code class="language-java">@FunctionalInterface
+interface Converter&lt;F, T&gt; {
+    T convert(F form);
+}
+
+Converter&lt;String, String&gt; converter = (from)-&gt;Integer.valueOf(from);
+Integer converted = converter.convert(&quot;123&quot;);
+</code></pre>
+<h3 id="方法和构造函数的引用">方法和构造函数的引用</h3>
+<p>对于方法和构造函数，可以用<code>::</code>来调用</p>
+<pre><code class="language-java">Converter&lt;String, Integer&gt; converter1 = Integer::valueOf;
+System.out.println(converter1.convert(&quot;2123&quot;));
+</code></pre>
+<h3 id="lambda的范围">lambda的范围</h3>
+<ul>
+<li>
+<p>访问lambda表达式外部的final局部变量</p>
+</li>
+<li>
+<p>访问成员变量和静态变量</p>
+</li>
+<li>
+<p>无法访问默认的接口方法</p>
+<pre><code class="language-java">Formula formula = (a)-&gt; sqrt(a*100);//无法编译
+</code></pre>
+</li>
+</ul>
+<h3 id="内置函数式接口">内置函数式接口</h3>
+<ul>
+<li>Predicate：布尔类型的函数，用于处理复杂的逻辑动词</li>
+<li>Function：可以将多个函数串在一起</li>
+<li>Suppliers：产生一个给定类型的结果</li>
+<li>Consumer：代表在一个输入参数上需要进行的操作</li>
+<li>Comparator：用于比较</li>
+<li>Optional：是一个精巧的工具接口，用来防止NullPointerException产生</li>
+</ul>
+<blockquote>
+<p>具体使用参考这个连接：<a href="https://wizardforcel.gitbooks.io/modern-java/content/ch1.html">https://wizardforcel.gitbooks.io/modern-java/content/ch1.html</a></p>
+</blockquote>
+<h2 id="stream">Stream</h2>
+<p>Stream表示某一种元素的序列，在这些元素上进行各种操作，在java.util中。</p>
+<h3 id="操作">操作</h3>
+<h4 id="filter">Filter</h4>
+<p>Filter接收一个Predicate接口类型的变量，并将所有流对象中元素进行过滤。该操作属于<strong>中间操作</strong>，会返回流，允许继续操作。</p>
+<h4 id="sorted">Sorted</h4>
+<p>Sorted同样也是<strong>中间操作</strong>，能够返回一个排过序的流对象的视图。流对象中的元素会默认按照自然顺序进行排序，可以通过指定Comparator改变排序顺序。</p>
+<h4 id="map">Map</h4>
+<p>属于<strong>中间操作</strong>，通过给定方法将流中每个元素转换到对应的另一个对象上。</p>
+<h4 id="match">Match</h4>
+<p>匹配操作有多种不同的类型，用来判断某一种规则是否与流中对象相互吻合。属于<strong>终结操作</strong>，只返回一个boolean类型的结果。</p>
+<h4 id="count">Count</h4>
+<p>属于<strong>终结操作</strong>，作用返回一个数值，表示当前流中对象的包含的元素数量。</p>
+<h4 id="reduce">Reduce</h4>
+<p>属于<strong>终结操作</strong>，通过特定方法对元素进行削减操作，将结果存放到Optional变量里</p>
+<h3 id="parallel-streams">Parallel Streams</h3>
+<pre><code class="language-java">public static void main(String[] args) {
+
+    int max = 1000000;
+    List&lt;String&gt; values = new ArrayList&lt;&gt;(max);
+    for (int i = 0; i &lt; max; i++) {
+        UUID uuid = UUID.randomUUID();
+        values.add(uuid.toString());
+    }
+    //顺序执行
+    long t0 = System.nanoTime();
+    long count = values.stream().sorted().count();
+    System.out.println(count);
+    long t1 = System.nanoTime();
+    long millis = TimeUnit.NANOSECONDS.toMillis(t1-t0);
+    System.out.println(String.format(&quot;sequential sort took: %d ms&quot;, millis));//571ms
+
+    long t2 = System.nanoTime();
+    long count2 = values.parallelStream().sorted().count();
+    System.out.println(count2);
+    long t3 = System.nanoTime();
+    long millis2 = TimeUnit.NANOSECONDS.toMillis(t3-t2);
+    System.out.println(String.format(&quot;Parallel sort took: %d ms&quot;, millis2));//253ms
+}
+</code></pre>
+<p>并行排序时间要比串行排序时间快一半。</p>
+<h2 id="map新操作">Map新操作</h2>
+<ul>
+<li>putIfAbsent：添加元素</li>
+<li>computeIfPresent</li>
+<li>computeIfAbsent</li>
+<li>merge</li>
+<li>remove</li>
+<li>getOrDefault</li>
+</ul>
+<pre><code class="language-java">Map&lt;Integer, String&gt; map = new HashMap&lt;&gt;();
+for (int i = 0; i &lt; 10; i++) {
+    map.putIfAbsent(i, &quot;val&quot;+i);
+}
+
+map.forEach((id, val) -&gt; System.out.println(val));
+
+map.computeIfPresent(3, (num, val)-&gt;val+num);
+System.out.println(map.get(3));// val33
+
+map.remove(3, &quot;val33&quot;);
+System.out.println(map.get(3));
+
+map.merge(9, &quot;concat&quot;, (value, newValue)-&gt;value.concat(newValue));
+System.out.println(map.get(9));
+
+map.getOrDefault(42, &quot;not found&quot;);  // not found
+
+map.remove(3, &quot;val3&quot;);
+map.get(3);             // val33
+
+map.remove(3, &quot;val33&quot;);
+map.get(3);             // null
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="tag">
+                    Java
+                  </a>
+                
+              </div>
+            
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

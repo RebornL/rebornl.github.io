@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>《数据结构与算法经典问题解析》--第三章 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="第三章：链表
+概述
+链表是一种存储数据集合的数据结构，相邻元素之间通过指针连接，链表长度不固定，空间是按需分配。
+
+链表的主要操作是插入和删除操作，辅助操作有删除链表，计数，查找。
+链表与数组
+数组：
+
+优点
+
+简单易用
+访问元素快（常数时..." />
+    <meta name="keywords" content="Alg" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">《数据结构与算法经典问题解析》--第三章</h2>
+            <div class="post-date">2018-11-10</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="第三章链表">第三章：链表</h1>
+<h2 id="概述">概述</h2>
+<p>链表是一种存储数据集合的数据结构，相邻元素之间通过指针连接，链表长度不固定，空间是按需分配。</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/lianbiao1.png" alt="" loading="lazy"></figure>
+<p>链表的主要操作是插入和删除操作，辅助操作有删除链表，计数，查找。</p>
+<h2 id="链表与数组">链表与数组</h2>
+<p><strong>数组</strong>：</p>
+<ul>
+<li>优点
+<ul>
+<li>简单易用</li>
+<li>访问元素快（常数时间）</li>
+</ul>
+</li>
+<li>缺点
+<ul>
+<li>大小固定</li>
+<li>需要分配一个连续空间块</li>
+<li>基于位置的插入操作的实现太过于复杂</li>
+</ul>
+</li>
+</ul>
+<p><strong>链表</strong>：</p>
+<ul>
+<li>优点
+<ul>
+<li>容易扩展（常数时间）</li>
+<li>初始内存分配小</li>
+<li>删除开销低（单纯的删除单个元素操作，不包含检索元素的过程）</li>
+</ul>
+</li>
+<li>缺点
+<ul>
+<li>访问元素开销大</li>
+<li>对元素的检索和操作开销相对较大</li>
+</ul>
+</li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="./lianbiao2.png" alt="" loading="lazy"></figure>
+<p>最后，链表常用在存储为主的操作中，数组则是在小容量的访问为主的操作中。</p>
+<h2 id="单向链表">单向链表</h2>
+<pre><code class="language-java">public class ListNode {
+    private int data;
+    private ListNode next;
+    public ListNode(int data) {
+        this.data = data;
+        this.next = null;
+    }
+    //data,next的setter和getter方法
+    //...
+    
+}
+</code></pre>
+<h3 id="插入">插入</h3>
+<ol>
+<li>表头插入
+<ul>
+<li>更新新节点的next值，指向当前的表头</li>
+<li>更新表头指针的值，指向新节点</li>
+</ul>
+</li>
+<li>结尾插入
+<ul>
+<li>更新新节点的next值为null</li>
+<li>更新尾节点的next值，指向新节点</li>
+</ul>
+</li>
+<li>中间插入
+<ul>
+<li>更新新节点的next值，指向插入位置的节点</li>
+<li>更新插入位置前一节点的next值，指向新节点</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-java">ListNode InsertLinkedList(ListNode headNode, ListNode nodeToInsert, int position) {
+    if(headNode == null) {
+        return nodeToInsert;
+    }
+    int size = ListLength(headNode);
+    if(position &gt; size + 1 || position &lt; 1) {
+        System.out.println(&quot;position is invalid&quot;);
+        return headNode;
+    }
+    if(position == 1) {
+        //表头插入
+        nodeToInsert.setNext(headNext);
+        return nodeToInsert;
+    } else {
+        ListNode previousNode = headNode;
+        int count = 1;
+        while(count &lt; position-1) {
+            previousNode = previousNode.getNext();
+            count++;
+        }
+        ListNode currentNode = previousNode.getNext();
+        nodeToInsert.setNext(currentNode);
+        previousNode.setNext(nodeToInsert);
+    }
+    return headNode;
+}
+</code></pre>
+<h3 id="删除">删除</h3>
+<ol>
+<li>表头删除</li>
+<li>表尾删除</li>
+<li>表中间节点删除</li>
+</ol>
+<pre><code class="language-java">ListNode DeleteNodeFormLinkedList(ListNode headNode, int position) {
+    int size = getLinkedListLength(headNode);
+    if(position &gt; size || position &lt; 1) {
+        System.out.println(&quot;position is invalid&quot;);
+        return headNode;
+    }
+    if(position == 1) {
+        ListNode currentNode = headNode.getNext();
+        headNode == null;
+        return currentNode;
+    } else {
+        ListNode previousNode = headNode;
+        int count = 1;
+        while(count &lt; position-1) {
+            previousNode = previousNode.getNext();
+            count++;
+        }
+        ListNode currentNode = previousNode.getNext();
+        previousNode.setNext(currentNode.getNext());
+        currentNode = null;//删除节点
+    }
+    return headNode;
+}
+</code></pre>
+<p>删除整个单向链表，通过遍历每个节点，并将其置为null</p>
+<pre><code class="language-java">void DeleteLinkedList(ListNode head) {
+    ListNode auxilaryNode, itertor = head;
+    while(iterator != null) {
+        auxilaryNode = iterator.getNext();
+        iterator = null;
+        iterator = auxilaryNode;
+    }
+}
+</code></pre>
+<h2 id="双向链表">双向链表</h2>
+<p>双向链表在单向链表的基础上增加一个前驱指针，因此双向可以通过两个方向进行操作。但是双向链表的缺点也是因为多增加一个指针造成，增加了空间开销，插入和删除操作比原来更繁琐。</p>
+<pre><code class="language-java">public class DLLNode {
+    private int data;
+    private DLLNode next;
+    private DLLNode previous;
+    
+    public DLLNode(int data) {
+        this.data = data;
+     	this.next = null;//置为null避免内存内漏
+        this.previous = null;
+    }
+    //getter和setter
+}
+</code></pre>
+<p>双向链表插入和删除操作与单向链表类似，只是增加了前驱指针的操作。可以根据在当前链表的基础上修改。</p>
+<h2 id="循环链表">循环链表</h2>
+<p>单向和双向链表通过将尾节点的指针置为null表示链表结束。但是循环列表并没有结束标志，首尾相连，常用在一些特殊情况下，例如多个进程需要在相同的时间内使用同一个资源，轮流使用该资源。</p>
+<figure data-type="image" tabindex="3"><img src="./lianbiao3.png" alt="" loading="lazy"></figure>
+<h3 id="循环链表节点计数">循环链表节点计数</h3>
+<pre><code class="language-java">int CircularListLength(CLLNode headNode) {
+    int length = 0;
+    CLLNode currentNode = headNode;
+    while(currentNode != null) {
+        length++;
+        currentNode = currentNode.getNext();
+        if(currentNode == headNode) {
+            break;
+        }
+    }
+    return length;
+}
+</code></pre>
+<h3 id="插入-2">插入</h3>
+<ol>
+<li>表头插入
+<ul>
+<li>更新新节点的next值，指向表头节点</li>
+<li>遍历循环列表直至表尾，表尾节点的next值指向新节点</li>
+<li>更新表头指针，将其指向新节点</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-java">void InsertAtBeginInCLL(CLLNode headNode, CLLNode nodeToInsert) {
+    nodeToInsert.setNext(nodeToInsert);
+    if(headNode == null) {
+        return nodeToInsert;
+    }
+    
+    CLLNode currentNode = headNode;
+    while(currentNode.getNext() != headNode) {
+        // currentNode.setNext(currentNode.getNext());
+        currentNode = currentNode.getNext();
+    }
+    nodeToInsert.setNext(headNode);
+    currentNode.setNext(nodeToInsert);
+    headNode = nodeToInsert;
+    return headNode;
+}
+</code></pre>
+<ol start="2">
+<li>表尾插入
+<ul>
+<li>遍历到表尾，更新表尾节点指向新节点</li>
+<li>更新新节点的next值，指向表头</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-java">void InsertAtEndInCLL(CLLNode headNode, CLLNode nodeToInsert) {
+    CLLNode currentNode = headNode;
+    while(currentNode.getNext()!=headNode) {
+        currentNode = currentNode.getNext();
+    }
+    nodeToInsert.setNext(nodeToInsert);
+    if(headNode == null) {
+        headNode = nodeToInsert;
+    } else {
+        nodeToInsert.setNext(headNode);
+        currentNode.setNext(nodeToInsert);
+    }
+} 
+</code></pre>
+<h2 id="问题">问题</h2>
+<ol>
+<li>
+<p>只遍历一次获取倒数第n节点？</p>
+<p>使用两个指针pNthNode和pTemp。pTemp和pNthNode同时指向表头，pNthNode先移动n次之后，pTemp再和pNthNode一起移动直至pNthNode移动到表尾，此时pTemp所指便是倒数第n个节点。</p>
+<pre><code class="language-java">ListNode NthNodeFromEnd(ListNode head, int NthNode) {
+    ListNode pTemp = head, pNthNode = null;
+    for(int count = 1; count &lt; NthNode; count++) {
+        if(pTemp != null) {
+            pTemp = pTemp.getNext();
+        }
+    }
+    while(pTemp != null) {
+        if(pNthNode == null) {
+            pNthNode = head;
+        } else {
+            pNthNode = pNthNode.getNext();
+        }
+        pTemp = pTemp.getNext();
+    }
+    if(pNthNode != null){
+        return pNthNode;
+    }
+    return null;
+}
+</code></pre>
+</li>
+<li>
+<p>判断链表是否有环？</p>
+<p>经典方法：快慢指针，时间复杂度为O(n)</p>
+<blockquote>
+<p>补充：计算环的长度，也是快慢指针，找到环之后，快指针从相遇的地方开始移动（步长为1），直至第二次遇到慢指针，快指针的移动计数大小即为环的长度。</p>
+</blockquote>
+<pre><code class="language-java">boolean DoesLinkedListContainsLoop(ListNode head) {
+    if(head == null) {
+        return false;
+    }
+    ListNode slowPtr = head, fastPtr = head;
+    while(fastPtr.getNext() != null &amp;&amp; fasPtr.getNext().getNext() != null) {
+        slowPtr = slowPtr.getNext();
+        fastPtr = fastPtr.getNext().getNext();
+        if(slowPtr == fastPtr) {
+            return true;
+        }
+    }
+    return false;
+}
+</code></pre>
+</li>
+<li>
+<p>寻找环的起始点？</p>
+<p>在2的基础上，快指针在相遇处移动，慢指针重新初始化在表头开始移动，步长均为1，相遇时就为环的起始点。其中的数学原理为此：*设链起点到环入口点间的距离为x，环入口点到问题1中fast与low重合点的距离为y，又设在fast与low重合时fast已绕环n周（n&gt;0），且此时low移动总长度为s，则fast移动总长度为2s，环的长度为r。则</p>
+<p>s + nr = 2s,n&gt;0      ①</p>
+<p>s = x + y               ②        由①式得  s = nr                         代入②式得</p>
+<p>nr = x + y</p>
+<p>x = nr - y                ③</p>
+<p>现让一指针p1从链表起点处开始遍历，指针p2从encounter处开始遍历，且p1和p2移动步长均为1。则当p1移动x步即到达环的入口点，由③式可知，此时p2也已移动x步即nr - y步。由于p2是从encounter处开始移动，故p2移动nr步是移回到了encounter处，再退y步则是到了环的入口点。也即，当p1移动x步第一次到达环的入口点时，p2也恰好到达了该入口点。* （数学原理部分摘自<a href="https://blog.csdn.net/wuzhekai1985/article/details/6725263">此篇</a>）</p>
+<pre><code class="language-java">ListNode FindLoopLength(ListNode head) {
+    if(head == null) {
+        return false;
+    }
+    ListNode slowPtr = head, fastPtr = head;
+    boolean loopExist = false;
+    while(fastPtr.getNext() != null &amp;&amp; fasPtr.getNext().getNext() != null) {
+        slowPtr = slowPtr.getNext();
+        fastPtr = fastPtr.getNext().getNext();
+        if(slowPtr == fastPtr) {
+            loopExist = true;
+            break;
+        }
+    }
+    if(loopExist) {
+        slowPtr = head;
+        while(slowPtr!=fastPtr) {
+            fastPtr = fastPtr.getNext();
+            slowPtr = slowPtr.getNext();
+        }
+        return slowPtr;
+    }
+    return null;
+}
+</code></pre>
+</li>
+<li>
+<p>逆置单向链表</p>
+<pre><code class="language-java">ListNode ReverseList(ListNode head) {
+    ListNode temp = null, nextNode = null;
+    while(head!=null) {
+        nextNode = head.getNext();
+        head.setNext(temp);
+        temp = head;
+        head = nextNode;
+    }
+    return temp;	
+}
+</code></pre>
+</li>
+<li>
+<p>两个相交链表，寻找其相交点？</p>
+<p>提供一种时间复杂度为O(max(m, n))，m，n分别为两个链表的长度。</p>
+<ul>
+<li>获取两个链表的长度----O(max(m,n))</li>
+<li>计算两个长度差的d</li>
+<li>从较长的链表的表头开始移动，移动d步</li>
+<li>然后两个链表开始同时移动，直至出现两个后继指针相同的情况（O(min(m,n))）</li>
+</ul>
+<pre><code class="language-java">ListNode FindIntersectingNode(ListNode list1, ListNode list2) {
+    int L1=0, L2=0, diff=0;
+    ListNode head1 = list1, head2 = list2;
+    while(head1!=null) {
+        L1++;
+        head1 = head1.getNext();
+    }
+    while(head2!=null) {
+        L2++;
+        head2 = head2.getNext();
+    }
+    if(L1&lt;L2) {
+        head1 = list2;
+        head2 = list1;
+        diff = L2 - L1;
+    } else {
+        head1 = list1;
+        head2 = list2;
+        diff = L1 - L2;
+    }
+    for(int i = 0; i &lt; diff; i++) {
+        head1 = head1.getNext();
+    }
+    while(head1 != null &amp;&amp; head2 != null) {
+        if(head1 == head2) {
+            return head1.getNext();
+        }
+        head1 = head1.getNext();
+        head2 = head2.getNext();
+    }
+    return null;
+}
+</code></pre>
+</li>
+<li>
+<p>逐队逆置链表？1-&gt;2-&gt;3-&gt;4-&gt;X变成2-&gt;1-&gt;4-&gt;3-&gt;X</p>
+<pre><code class="language-java">ListNode ReversePairIterative(ListNode head) {
+    ListNode temp1 = null;
+    ListNode temp2 = null;
+    while(head!=null &amp;&amp; head.next != null) {
+        if(temp1 != null) {
+            temp1.next.next = head.next;
+        }
+        temp1 = head.next;
+        head.next = head.next.next;
+        temp1.next = head;
+        if(temp2 == null) {
+            temp2 = temp1;
+        }
+        head = head.next;
+    }
+    return temp2;
+}
+</code></pre>
+</li>
+</ol>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="tag">
+                    Alg
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-11-10-数据结构与算法经典问题解析第4章/">
+                  <h3 class="post-title">
+                    《数据结构与算法经典问题解析》--第四章
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

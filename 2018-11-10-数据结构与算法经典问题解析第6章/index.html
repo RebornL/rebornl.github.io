@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>《数据结构与算法经典问题解析》--第六章 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="树
+数是一种典型的非线性的数据存储结构，与链表类似，但却不同，因为树的一个节点可以指向多个节点。
+
+部分术语
+
+叶子结点：没有孩子节点的节点叫做叶子节点
+节点的深度：从根节点到该节点的路径长度
+节点的高度：是指从该结点到最深结点的路径长度
+..." />
+    <meta name="keywords" content="Alg" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">《数据结构与算法经典问题解析》--第六章</h2>
+            <div class="post-date">2018-11-10</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="树">树</h1>
+<p>数是一种典型的非线性的数据存储结构，与链表类似，但却不同，因为树的一个节点可以指向多个节点。</p>
+<ul>
+<li>部分术语
+<ul>
+<li>叶子结点：没有孩子节点的节点叫做叶子节点</li>
+<li>节点的深度：从根节点到该节点的路径长度</li>
+<li>节点的高度：是指从该结点到最深结点的路径长度</li>
+<li>斜树：如果树中除了叶子节点外，其余每一节点只有一个孩子节点，这种树称作斜树。</li>
+</ul>
+</li>
+</ul>
+<h2 id="二叉树">二叉树</h2>
+<p>一棵树中每个节点只有0，1或2个孩子节点，那么这棵树称为<strong>二叉树</strong>。</p>
+<ul>
+<li>
+<p>类型</p>
+<ul>
+<li>
+<p>严格二叉树：每个节点要么有两个孩子节点，要么没有孩子节点</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/shu1.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>满二叉树：二叉树中每个结点恰好有两个孩子结点且所有叶子结点都在同一层</p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/shu2.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>完全二叉树：假定二叉树的高度为h，所有结点从根节点开始从左到右，从上之下，依次编号，那么将得到1到n的完整序列。所有叶子节点的深度为h或h-1，且在结点编号序列中没有漏电任何数字，这样的二叉树称为完全二叉树。</p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/shu3.png" alt="" loading="lazy"></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>性质</p>
+<ul>
+<li>满二叉树的结点个数n为2^(h+1)-1</li>
+<li>完全二叉树的结点个数为2^h ~ 2^(h+1)-1</li>
+<li>满二叉树的叶子节点个数是2^h</li>
+<li>对于n个结点的完全二叉树，空指针的个数为n+1</li>
+</ul>
+</li>
+<li>
+<p>结构</p>
+<p>定义两个指针，分别指向左右子树</p>
+<pre><code class="language-java">public class BinaryTreeNode{
+    private int data;
+    private BinaryTreeNode left;
+    private BinaryTreeNode right;
+    //getter，setter方法
+    //......
+}
+</code></pre>
+</li>
+<li>
+<p>应用</p>
+<ul>
+<li>编译器中表达式树</li>
+<li>用于数据压缩算法中赫夫曼编码树</li>
+<li>支持在集合中查找，插入和删除，其平均时间复杂度为O(logn)的二叉搜索树</li>
+<li>优先队列（PQ）支持以对数时间（最坏情况下）对集合中的最小（或最大）数据元素进行搜索和遍历</li>
+</ul>
+</li>
+<li>
+<p>遍历</p>
+<ul>
+<li>前序遍历：先遍历当前结点，然后遍历左子树，最后遍历右子树</li>
+<li>中序遍历：首先遍历左子树，再访问当前结点，最后遍历右子树</li>
+<li>后续遍历：首先遍历左子树，再遍历右子树，最后访问当前结点</li>
+<li>层序遍历：按层遍历，这是一种广度优先遍历方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="遍历实现">遍历实现</h3>
+<h4 id="前序遍历">前序遍历</h4>
+<pre><code class="language-java">//递归版本,时间复杂度为O(n),空间复杂度为O(n)
+void PreOrder(BinaryTreeNode root) {
+    if(root != null) {
+        System.out.println(root.getData());
+        PreOrder(root.getLeft());
+        PreOrder(root.getRight());
+    }
+}
+//非递归版本,时间复杂度为O(n),空间复杂度为O(n)
+//采用一个栈进行记录
+void PreOrderNonRecursive(BinaryTreeNode root) {
+    if(root == null) return null;
+    LLStack S = new LLStack();
+    while(true) {
+        while(root!=null) {
+            System.out.println(root.getData);
+            S.push(root);
+            root = root.left;//遍历左子树
+        }
+        if(S.isEmpty()) break;
+        root = (BinaryTreeNode)S.pop();
+        root = root.getRight();
+    }
+    return;
+}
+</code></pre>
+<h4 id="中序遍历">中序遍历</h4>
+<pre><code class="language-java">//递归版本
+void InOrder(BinaryTreeNode root) {
+    if(root != null) {
+        InOrder(root.getLeft());
+        System.out.println(root.getData());
+        InOrder(root.getRight());
+    }
+}
+//非递归版本
+void InOrderNonRecursive(BinaryTreeNode root) {
+    if(root == null) return null;
+    LLStack S = new LLStack();
+    while(true) {
+        while(root != null) {
+            S.push(root);
+            root = root.getLeft();
+        }
+        if(S.isEmpty()) break;
+        root = (BinaryTreeNode)S.pop();
+        System.out.println(root.getData());
+        root = root.getRight();
+    }
+    return;
+}
+</code></pre>
+<h4 id="后序遍历">后序遍历</h4>
+<pre><code class="language-java">void PostOrder(BinaryTreeNode root) {
+    if(root != null) {
+        PostOrder(root.getLeft());
+        PostOrder(root.getRight());
+        System.out.println(root.getData());
+    }
+}
+
+//非递归版本
+//后序遍历的非递归版本：要解决当前结点要被访问两遍
+void PostOrderNonRecursive(BinaryTreeNode root) {
+    LLStack S = new LLStack();
+    while(1) {
+        if(root!=null) {
+            S.push(root);
+            root = root.getLeft();
+        } else {
+            if(S.isEmpty()) {
+                System.out.println(&quot;Stack is Empty&quot;);
+                return;
+            } else {
+                if(S.top().getRight() == null) {
+                    //右子树不存在时
+                    root = S.pop();
+                    System.out.println(root.getData());
+                    if(root == S.top().getRight()) {
+                        System.out.println(S.top().getData());
+                        s.pop();
+                    }
+                }
+                if(!S.isEmpty()) root = S.top().getRight();
+                else root = null;
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="问题">问题</h2>
+<p>对于树的问题，一般可以通过递归方法解决，采取非递归方法，可以采用队列存储元素。时间复杂度和空间复杂度均为O(n)。</p>
+<ol>
+<li>
+<p>删除树？</p>
+<p>删除树一般采取后序遍历的方法，先删除孩子结点，再删除双亲结点。</p>
+<pre><code class="language-java">void DeleteBinaryTree(BinaryTreeNode root) {
+    if(root == null) return;
+    DeleteBinaryTree(root.getLeft());
+    DeleteBinaryTree(root.getRight());
+    root = null;//置为null，GC会对其进行清理
+}
+</code></pre>
+</li>
+<li>
+<p>逐层输出树中的元素，如下图所示，输出应为4 5 6 7 2 3 1</p>
+<figure data-type="image" tabindex="4"><img src="./shu2.png" alt="" loading="lazy"></figure>
+<p>解题思路：借助队列可以遍历每一层元素，通过栈可以输出每一层（从下往上）的元素</p>
+<pre><code class="language-java">void LevelOrderTraversalInreverse(BinaryTreeNode root) {
+    LLQueue Q = new LLQueue();
+    LLStack S = new LLStack();
+    BinaryTreeNode temp;
+    if(root == null) return;
+    Q.enQueue(root);
+    while(!Q.isEmpty()) {
+        temp = Q.deQueue();
+        if(temp.getRight()) {
+            Q.enQueue(temp.getRight());
+        }
+        if(temp.getLeft()) {
+            Q.enQueue(temp.getLeft());
+        }
+        S.push(temp);
+    }
+    while(!S.isEmpty()) {
+        System.out.println(S.pop().getData());
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>将一颗树转换成其镜像？判断两棵树是否为镜像对称？</p>
+<pre><code class="language-java">BinaryTreeNode MirrorOfBinaryTree(BinaryTreeNode root) {
+    BinaryTreeNode temp;
+    if(root) {
+        MirrorOfBinaryTree(root.getLeft());
+        MirrorOfBinaryTree(root.getLeft());
+        //交换两个结点
+        temp = root.getLeft();
+        root.setLeft(root.getRight());
+        root.setRight(temp);
+    }
+    //以上if条件里面还可以优化，再判断是否有左右子树，再执行迭代
+}
+
+//判断两棵树是否镜像
+int AreMirrors(BinaryTreeNode root1, BinaryTreeNode root2) {
+    if(root1 == null &amp;&amp; root2 == null) {
+        return 1;
+    }
+    if(root1 == null || root2 == null) {
+        return 0;
+    }
+    if(root1.getData()!=root2.getData()) {
+        return 0;
+    } else {
+        return AreMirrors(root1.getLeft(), root2.getRight()) &amp;&amp; AreMirrors(root1.getRight(), root2.getLeft());
+    }
+    
+}
+</code></pre>
+</li>
+<li>
+<p>根据中序遍历和前序遍历结果构建一颗二叉树。</p>
+<p>前序遍历的顺序：根结点，左结点，右结点；中序遍历的顺序：左结点，根节点，右结点。</p>
+<pre><code class="language-java">BinaryTreeNode BuildBinaryTree(int inOrder[], int preOrder[], int inStrt, int inEnd) {
+    static int preIndex = 0;
+    BInaryTreeNode newNode = new BinaryTreeNode();
+    if(inStrt &gt; inEnd) return null;
+    if(newNode == null) {
+        System.out.println(&quot;Memory Error&quot;);
+        return null;
+    }
+    //利用preIndex在前序遍历中选择当前节点
+    newNode.setData(preOrder[preIndex]);
+    preIndex++;
+    if(inStrt == inEnd)//该节点没有孩子结点返回
+        return newNode;
+    //否则在中序遍历中找到该节点的索引
+    int inIndex = Search(inOrder, inStrt, inEnd, newNode.getData());
+    //构建左右子树
+    newNode.setLeft(BuildBinaryTree(inOrder, preOrder, inStrt, inIndex-1));
+    newNode.setRight(BuildBinaryTree(inOrder, preOrder, inIndex+1, inEnd));
+}
+</code></pre>
+</li>
+<li>
+<p>给定两个遍历序列能否构建一颗唯一的二叉树？</p>
+<ul>
+<li>中序和前序</li>
+<li>中序和后序</li>
+<li>中序和层次遍历</li>
+</ul>
+</li>
+<li>
+<p>寻找两个结点的最近公共祖先（LCA）。</p>
+<pre><code class="language-java">BinaryTreeNode LCA(BinaryTreeNode root, BinaryTreeNode a, BinaryTreeNode b) {
+    BinaryTreeNode left, right;
+    if(root == null)
+        return root;
+    if(root == a || root == b) {
+        return root;
+    }
+    left = LCA(root.getLeft(), a, b);
+    right = LCA(root.getRight(), a, b);
+    if(left &amp;&amp; right) return root;
+    else return left ? left: right;
+}
+</code></pre>
+</li>
+</ol>
+<h2 id="其他类型树">其他类型树</h2>
+<h3 id="二叉搜索树">二叉搜索树</h3>
+<p>二叉搜索树有以下性质：</p>
+<ul>
+<li>一个结点的左子树只能包含键值小于该节点键值的结点</li>
+<li>一个结点的右子树只能包含键值大于该节点键值的结点</li>
+<li>左子树和右子树都必须是二叉搜索树</li>
+</ul>
+<pre><code class="language-java">//二叉搜索树插入元素
+BinarySearchTreeNode Insert(BinarySearchTreeNode root, int data) {
+    if(root == null) {
+        root = new BinarySearchTreeNode();
+        if(root == null) {
+            System.out.println(&quot;Memory error&quot;);
+            return;
+        } else {
+            root.setData(data);
+            root.setLeft(null);
+            root.setRight(null);
+        }
+    } else {
+        if(data &lt; root.getData()) {
+            root.setLeft(Insert(root.getLeft(), data));
+        } else if(data &gt; root.getData()) {
+            root.setRight(Insert(root.getRight(), data))
+        }
+    }
+}
+</code></pre>
+<pre><code class="language-java">//二叉搜索树删除元素
+//想法从删除元素的左子树寻找最大值取代当前删除元素，或者从右子树中寻找最小值来取代
+BinarySearchTreeNode Delete(BinarySearchTreeNode root, int data) {
+    BinarySearchTreeNode temp;
+    if(root == null)
+        System.out.println(&quot;Element not there in tree&quot;);
+   	else if(data &lt; root.data)
+        root.left = Delete(root.getLfet(), data);
+    else if(data &gt; root.data)
+        root.right = Delete(root.getRight(), data);
+    else {
+        if(root.getLeft() &amp;&amp; root.getRight()){
+            temp = FindMax(root.getLeft());
+            root.setData(temp.getData());
+            root.setLeft(Delete(root.getLeft(), root.getData()));//删除temp节点
+        } else｛
+        	temp = root;
+        	if(root.getLeft() == null)
+                root = root.getRight();
+        	if(root.getRight() == null)
+                root = root.getLeft();
+        	temp = null;
+        ｝
+    }
+}
+</code></pre>
+<blockquote>
+<p>二叉查找（搜索）树的中序遍历的结果是一个递增序列。</p>
+</blockquote>
+<h4 id="平衡二叉树">平衡二叉树</h4>
+<p><strong>平衡因子k</strong>：左右子树的高度差。</p>
+<p>当k=0时，二叉搜索树叫做完全平衡二叉树。</p>
+<h4 id="avl树">AVL树</h4>
+<p>当平衡因子为1时，这样的二叉搜索树叫做AVL树。AVL树是一种平衡二叉树，左右子树的高度差小于等于1，其每一个子树均为也为平衡二叉树</p>
+<ul>
+<li>AVL树和红黑树的区别
+<ul>
+<li>查找上：AVL树比红黑树更平衡，因此AVL树的查找效率更高</li>
+<li>插入上：AVL树插入之后，要更新平衡因子，对新节点的路径（可能会延续到根节点）进行调整，过于繁琐；对于红黑树，则只需要通过变色减少很多旋转操作。总的来讲，红黑树插入要比AVL树好很多。</li>
+<li>删除上：AVL树删除后，某子树的深度必然减少，此时又要重新调整保证整颗树的平衡；而红黑树只需要在少数情况下，要重新平衡父节点，大部分以变色操作为主，所以红黑树的删除操作也要比AVL树好很多。</li>
+</ul>
+</li>
+</ul>
+<h2 id="红黑树">红黑树</h2>
+<p>首先先谈谈二叉查找树的特性：1. 左子树上所有结点的值小于或等于它的根节点的值；2. 右子树上所有结点的值均大于或等于它的根节点的值；3. 左右子树均为二叉排序树。<strong>但二叉查找树存在一个缺点，但出现极度不平衡的情况时，二叉查找树会变成线性结构，这就会使二叉查找树的查找特性大打折扣。</strong></p>
+<p>红黑树则是一种自平衡的二叉查找树（但又不是严格的平衡二叉搜索树，因为左右子树的高度差并不确定），除了符合二叉查找树的特性外，还需满足一下特性：</p>
+<ul>
+<li>结点是红色或黑色</li>
+<li>根节点是黑色</li>
+<li>每个叶子节点都是黑色的空节点</li>
+<li>每个红色结点的两个子节点都是黑色</li>
+<li>从任一结点到其每个叶子所有路径都包含相同数目的黑色结点</li>
+</ul>
+<p>为了维持红黑树的平衡，插入新元素后如果破坏了原来的特性，需要进行**&quot;变色&quot;<strong>和</strong>“旋转（左旋转和右旋转）”**两个操作。变色和旋转的操作，还真的挺复杂，没有具体的方法，一般操作流程：变色-&gt;左旋转-&gt;变色-&gt;右旋转-&gt;变色。</p>
+<p>应用在TreeSet和TreeMap，Java8中HashMap采用红黑树实现。</p>
+<h2 id="b树">B树</h2>
+<p>B树是一种自平衡多路查找树，能够保持数据有序，查找数据，顺序访问，插入和删除数据均可以在对数时间内完成，B树的一个节点至少拥有两个子节点。<strong>B树常用在文件系统中，可以减少定位记录提高存取速度，由于有多路子节点，降低了树的的高度，减少磁盘IO操作。</strong></p>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/400px-B-tree.svg.png" alt="" loading="lazy"></figure>
+<h2 id="b树-2">B+树</h2>
+<p>B+树是基于B树基础上，充分利用节点的空间，提高了查找效率。B+树与B树的区别在于：</p>
+<ul>
+<li>非叶子节点不保存关键字记录指针，只进行数据索引，因此每个非叶子节点多能保存的信息更多了。</li>
+<li>B+树中所有关键字记录均存放在叶子节点中，因此所有数据都必须到了叶子节点才能查看。</li>
+<li>B+树叶子左边数据结尾会指向右边数据节点开始（这样有利于数据库的select操作在同一层获取多条数据，而不必像B树还得跨层重新获取）。</li>
+</ul>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/400px-Bplustree.png" alt="" loading="lazy"></figure>
+<p>这里附上一个数据库的索引解析的<a href="https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/MySQL.md#b-tree-%E5%8E%9F%E7%90%86">文章</a></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="tag">
+                    Alg
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-11-10-数据结构与算法经典问题解析第7章/">
+                  <h3 class="post-title">
+                    《数据结构与算法经典问题解析》--第七章
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

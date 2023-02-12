@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java基础知识1 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="java基础知识1
+java新的基础知识
+Java基本类型
+Java基本类型有如下类型，及其作为类成员的初始值
+
+
+
+基本类型
+类成员的初始值
+
+
+
+
+boolean
+false
+
+
+char
+'\u0000'(null)
+
+
+byte
+(..." />
+    <meta name="keywords" content="Java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java基础知识1</h2>
+            <div class="post-date">2018-11-10</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="java基础知识1">java基础知识1</h1>
+<h2 id="java新的基础知识">java新的基础知识</h2>
+<h3 id="java基本类型">Java基本类型</h3>
+<p>Java基本类型有如下类型，及其作为类成员的初始值</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>类成员的初始值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>char</td>
+<td>'\u0000'(null)</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>(byte)0</td>
+</tr>
+<tr>
+<td>short</td>
+<td>(short)0</td>
+</tr>
+<tr>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>0L</td>
+</tr>
+<tr>
+<td>float</td>
+<td>0.0f</td>
+</tr>
+<tr>
+<td>double</td>
+<td>0.0d</td>
+</tr>
+</tbody>
+</table>
+<p><strong>需要注意，当变量是定义在函数中作为局部变量存在时，它会被随机初始化</strong></p>
+<h3 id="for-each语句">for each语句</h3>
+<pre><code class="language-java">char[] s = {'a', 'b', 'c'};
+for(char ele: s) {
+    System.out.println(ele);
+}
+</code></pre>
+<h3 id="数组拷贝">数组拷贝</h3>
+<p>将一个数组变量拷贝给另一个数组变量，这两个变量指向同一个数组。<br>
+若想要将一个数组的所有值拷贝到新的数组中去，可以采用Array的copyOf方法。</p>
+<pre><code class="language-java">int[] luckyNumbers = smallPrimes;
+luckyNumbers[5] = 12;
+
+int[] copiedLuckyNumbers = Array.copyOf(luckyNumbers, luckyNumbers.length);
+</code></pre>
+<h3 id="不规则数组">不规则数组</h3>
+<pre><code class="language-java">/*
+1
+1 1
+1 2 1
+1 3 3 1
+...
+*/
+//Java可以实现以上的数组
+int[][] odds = new int[NMAX+1][]
+for(int n = 0; n &lt;= NMAX; n++) {
+    odd[n] = new int[n+1];//分配了列数
+}
+//然后赋值
+for(int n = 0; n &lt; odds.length; n++) {
+    for(int k = 0; k &lt; odds[k].length; k++) {
+        odds[n][k] = lotteryOdds;
+    }
+}
+</code></pre>
+<h3 id="collections补充">Collections补充</h3>
+<h4 id="copyonwritearraylist">CopyOnWriteArrayList</h4>
+<p>内部有两个数组构成，一个用于读，一个用于写，读写分离，互不影响。写操作在复制的数组上，读操作在原始数组上操作。<em>写操作需要加锁，防止并发写入时导致写入数据丢失，而读操作则不需要加锁</em>。写操作成功之后会把原始数组指向新的复制数组。</p>
+<pre><code class="language-java">public boolean add(E e) {
+    final ReentrantLock lock = this.lock;
+    lock.lock();
+    try	{
+        Object[] elements = getArray();
+        int len = elements.length;
+        Object[] newElements = Arrays.copyOf(Elements, len+1);
+        newElements[len] = e;
+        setArray(newElement);
+        return true;
+    } finally {
+        lock.unlock();
+    }
+}
+final void setArray(Object[] a) {
+    array = a;
+}
+</code></pre>
+<pre><code class="language-java">@SuppressWarnings(&quot;unchecked&quot;)
+private E get(Object[] a, int index) {
+    return (E)a[index];
+}
+</code></pre>
+<h4 id="linkedhashmap">LinkedHashMap</h4>
+<pre><code class="language-java">public class LinkedHashMap&lt;K,V&gt; extends HashMap&lt;K,V&gt; implements Map&lt;K,V&gt;
+</code></pre>
+<p>继承自HashMap，和HashMap一样具有快速查找特性。内部维护一个双向链表，用来维护插入顺序或LRU顺序，根据accessOrder的值确定，默认为false，维护插入顺序。</p>
+<pre><code class="language-java">/**
+ * The head (eldest) of the doubly linked list.
+ */
+transient LinkedHashMap.Entry&lt;K,V&gt; head;
+
+/**
+ * The tail (youngest) of the doubly linked list.
+ */
+transient LinkedHashMap.Entry&lt;K,V&gt; tail;
+
+final boolean accessOrder;
+</code></pre>
+<p>LinkedHashMap有两个重要的操作函数，用于put和get函数中</p>
+<pre><code class="language-java">/**afterNodeAccess函数：
+accessorder为true时，当一个节点被访问后，会将该节点移到链表尾部，指定为LRU顺序，保证链表尾部为最近访问的节点。
+*/
+void afterNodeAccess(Node&lt;K,V&gt; p) { }
+/**afterNodeInsertion
+put操作之后，若removeEldestEntry()方法返回true时会移出最晚的节点，即链表首部节点。
+*/
+void afterNodeInsertion(boolean evict) { }
+</code></pre>
+<p>关于removeEldestEntry()默认为返回false，若要返回true则需要继承LinkedHashMap重写该方法。这在实现LRU的缓存很常用，移出不常用的缓存。</p>
+<h5 id="lru缓存实现">LRU缓存实现</h5>
+<pre><code class="language-java">class LRUCache&lt;K, V&gt; extends LinkedHashMap&lt;K, V&gt; {
+    private static final int MAX_ENTRIES = 3;//最大缓存空间
+    
+    protected boolean removeEldestEntry(Map.Entry eldest) {
+        return size() &gt; MAX_ENTRIES;
+    }
+    
+    LRUCache() {
+        super(MAX_ENTRIES, 0.75f, true);
+    }
+}
+</code></pre>
+<h2 id="关键字">关键字</h2>
+<h3 id="transient">transient</h3>
+<p>关于对象序列化时，直接对类实现<strong>Serializable接口</strong>即可。而对于敏感信息（密码等等）或无用信息，可以对类中定义的属性加上transient关键字，序列化时，该属性就不会序列化到文件。而对于<strong>Externalizable接口</strong>，则需要通过writeExternal方法指定序列化的变量，而与transient修饰无关。</p>
+<p>transient特点：</p>
+<ul>
+<li>transient关键字之修饰类中变量，不能修饰类和方法，此外类必须实现Serializable接口。</li>
+<li>transient修改的变量不能被序列化，但是<strong>静态变量不管是否被transient修饰均不能被序列化</strong>。</li>
+</ul>
+<pre><code class="language-java">public class TransientTest {
+    
+    public static void main(String[] args) {
+        
+        User user = new User();
+        user.setUsername(&quot;Alexia&quot;);
+        user.setPasswd(&quot;123456&quot;);
+        
+        System.out.println(&quot;read before Serializable: &quot;);
+        System.out.println(&quot;username: &quot; + user.getUsername());
+        System.err.println(&quot;password: &quot; + user.getPasswd());
+        
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(
+                    new FileOutputStream(&quot;C:/user.txt&quot;));
+            os.writeObject(user); // 将User对象写进文件
+            os.flush();
+            os.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(
+                    &quot;C:/user.txt&quot;));
+            user = (User) is.readObject(); // 从流中读取User的数据
+            is.close();
+            
+            System.out.println(&quot;\nread after Serializable: &quot;);
+            System.out.println(&quot;username: &quot; + user.getUsername());
+            System.err.println(&quot;password: &quot; + user.getPasswd());
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class User implements Serializable {
+    private static final long serialVersionUID = 8294180014912103005L;  
+    
+    private String username;
+    private transient String passwd;
+    
+}
+</code></pre>
+<pre><code>read before Serializable: 
+username: Alexia
+password: 123456
+
+read after Serializable: 
+username: jmwang
+password: null
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="tag">
+                    Java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-11-10-Java基础知识2/">
+                  <h3 class="post-title">
+                    Java基础知识2
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

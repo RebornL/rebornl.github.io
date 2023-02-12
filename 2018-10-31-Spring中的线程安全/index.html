@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Spring中线程安全 | RebornL的博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1676206941872">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="Spring中线程安全
+
+
+保证bean是无状态对象，如Service、DAO和Controller这些都是无状态的对象，只是执行某些操作。bean的生命周期：
+
+
+singleton：默认的scope，每个scope为singleton的..." />
+    <meta name="keywords" content="Spring,Java Web" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://rebornl.github.io">
+        <img src="https://rebornl.github.io/images/avatar.png?v=1676206941872" class="site-logo">
+        <h1 class="site-title">RebornL的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Spring中线程安全</h2>
+            <div class="post-date">2018-10-31</div>
+            
+            <div class="post-content" v-pre>
+              <h2 id="spring中线程安全">Spring中线程安全</h2>
+<ul>
+<li>
+<p>保证bean是无状态对象，如Service、DAO和Controller这些都是无状态的对象，只是执行某些操作。bean的生命周期：</p>
+<ol>
+<li>
+<p>singleton：默认的scope，每个scope为singleton的bean都会被定义为一个单例对象，该对象的生命周期是与Spring IOC容器一致的（但在第一次被注入时才会创建）。</p>
+</li>
+<li>
+<p>prototype：bean被定义为在每次注入时都会创建一个新的对象。</p>
+</li>
+<li>
+<p>request：bean被定义为在每个HTTP请求中创建一个单例对象，也就是说在单个请求中都会复用这一个单例对象。</p>
+</li>
+<li>
+<p>session：bean被定义为在一个session的生命周期内创建一个单例对象。</p>
+</li>
+<li>
+<p>application：bean被定义为在ServletContext的生命周期中复用一个单例对象。</p>
+</li>
+<li>
+<p>websocket：bean被定义为在websocket的生命周期中复用一个单例对象。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>当bean需要有自己变量时，可以用ThreadLocal将变量变为线程私有，避免多线程共用。最后使用完成，需要手动remove释放内存。</p>
+<blockquote>
+<p>ThreadLocal内部含有一个TheadLocalMap类（采用线性探测法实现的HashMap，key为ThreadLocal对象且为WeakReference）</p>
+<p>如果Thread Local被置为null之后，TheadLocalMap的Entry的key也为null，只要线程不结束，这些无法访问的value就会形成内存泄漏，因此即使时弱引用的key，如果不手动调用ThreadLocalMap的set、getEntry和remove函数去自动清理，仍然会存在泄露问题。<strong>因此每次使用完毕，都需要手动调用ThreadLocal的remove方法清除无用的Entry。</strong></p>
+</blockquote>
+</li>
+<li>
+<p>当实例变量需要在多线程中共享时，可以采用Synchronized、CAS、lock等线程同步操作实现线程安全。</p>
+</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://rebornl.github.io/tag/-BZfkIl7is/" class="tag">
+                    Spring
+                  </a>
+                
+                  <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="tag">
+                    Java Web
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://rebornl.github.io/2018-10-31-Spring中配置方式/">
+                  <h3 class="post-title">
+                    Spring中配置方式
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
