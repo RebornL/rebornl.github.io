@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>鸿蒙TaskPool使用 | RebornL的博客</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1722777912835">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://rebornl.github.io">RebornL的博客</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>鸿蒙TaskPool使用</h1>
+            <p class="article-meta">
+              2024-08-04
+              
+            </p>
+            
+            <div class="post-content">
+              <h2 id="注意事项">注意事项</h2>
+<p>1、在<strong>ets文件</strong>中使用**@Concurrent<strong>进行标注的函数任务才能放到TaskPool中使用<br>
+2、需要在taskpool中执行的自定义类方法需要使用</strong>@Sendable<strong>进行标注，仅支持在</strong>ets文件<strong>中使用<br>
+3、在taskpool中执行的方法耗时</strong>不能超过3分钟**<br>
+4、入参仅支持满足序列化的类型，详细列表：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/serialization-support-types-V5#TaskPool%E5%92%8CWorker%E6%94%AF%E6%8C%81%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E7%B1%BB%E5%9E%8B<br>
+5、不同线程上下文不同，因此taskpool只能使用线程安全的库，涉及UI相关非线程安全库不能使用<br>
+6、传输数据量限制大小为16M</p>
+<h2 id="代码示例">代码示例</h2>
+<p>taskpool的用法比较简单，常用的就是execute方法，在子线程中执行任务，结果返回给主线程，需要注意前面注意事项</p>
+<pre><code>@Concurrent
+function imageProcessing(dataSlice: ArrayBuffer): ArrayBuffer {
+  // 步骤1: 具体的图像处理操作及其他耗时操作
+  console.log('imageProcessing');
+  return dataSlice;
+}
+
+function histogramStatistic(pixelBuffer: ArrayBuffer): void {
+  console.log(`histogramStatistic`);
+  // 步骤2: 分成三段并发调度
+  let number: number = pixelBuffer.byteLength / 3;
+  let buffer1: ArrayBuffer = pixelBuffer.slice(0, number);
+  let buffer2: ArrayBuffer = pixelBuffer.slice(number, number * 2);
+  let buffer3: ArrayBuffer = pixelBuffer.slice(number * 2);
+
+  let group: taskpool.TaskGroup = new taskpool.TaskGroup();
+  group.addTask(imageProcessing, buffer1);
+  group.addTask(imageProcessing, buffer2);
+  group.addTask(imageProcessing, buffer3);
+
+  taskpool.execute(group, taskpool.Priority.HIGH).then((ret: Object) =&gt; {
+    // 步骤3: 结果数组汇总处理
+    console.log(`taskpoll execute result: ${JSON.stringify(ret)}`);
+  })
+}
+
+@Entry
+@Component
+struct Index {
+  aboutToAppear(): void {
+    console.log('aboutToAppear')
+    let buffer: ArrayBuffer = new ArrayBuffer(24);
+    histogramStatistic(buffer);
+  }
+}
+</code></pre>
+<h2 id="接口文档">接口文档</h2>
+<p>(https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-taskpool-V5)[https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-taskpool-V5]</p>
+<p>除了第二节讲到execute方法之外，接口文档中还提供以下方法，这些方法在实际开发也会使用：</p>
+<ul>
+<li>taskpool.executeDelayed： 延迟执行</li>
+<li>taskpool.executePeriodically：周期任务执行</li>
+</ul>
+<p>taskpool的使用最重要是要进行抽象，将可分离的计算任务抽出来，交给线程池执行，不阻塞主线UI线程加载和绘制，实现并发加载数据，不同于异步加载数据。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://rebornl.github.io/hong-meng-segmentbutton-zu-jian-shi-yong-he-tabcontent-qie-huan/">
+                <h3 class="post-title">
+                  鸿蒙 SegmentButton 组件使用和 TabContent 切换
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://rebornl.github.io/images/avatar.png?v=1722777912835" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-xiang-guan-ming-ling-ji-lu/">鸿蒙相关命令记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-taskpool-shi-yong/">鸿蒙TaskPool使用</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-segmentbutton-zu-jian-shi-yong-he-tabcontent-qie-huan/">鸿蒙 SegmentButton 组件使用和 TabContent 切换</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/po-su-bei-xie-si-shi-zhan/">朴素贝叶斯实战</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/lian-shi-fa-ze-he-ma-er-ke-fu-jia-she/">链式法则和马尔科夫假设</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/bei-xie-si-ding-li-xue-xi-ji-lu/">贝叶斯定理学习记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/2019-11-14-设计模式05_理论二/">05 | 理论二：封装、抽象、继承、多态分别可以解决哪些编程问题？</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/码农翻身笔记/">码农翻身笔记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/HTTPS记录/">Https记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/秋招笔试记录/">2019-09-23-马蜂窝笔试记录</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://rebornl.github.io/tag/ltPjvIyrlp/" class="badge secondary">
+          机器学习
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/XKh_5pXnR/" class="badge success">
+          设计模式
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Lv4qMmd-BK/" class="badge ">
+          MySQL
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="badge ">
+          Java
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/MgqZEKKCER/" class="badge ">
+          Git
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/lF-v4JaacW/" class="badge ">
+          框架实现
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/zFmextRP_z/" class="badge secondary">
+          Leetcode
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/YgtCKFyxhi/" class="badge ">
+          特征提取
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="badge success">
+          Alg
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nDveU_fSgO/" class="badge success">
+          Python
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-4xd0JPr3j/" class="badge secondary">
+          Linux
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/cUJZG68Rm/" class="badge warning">
+          Gridea
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/oDwHjHgcMx/" class="badge ">
+          面试题
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/6w3Hx9oznc/" class="badge ">
+          消息中间件
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/PXuFayfvUr/" class="badge secondary">
+          JVM
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/9eFi-hL0Jd/" class="badge ">
+          CS
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-BZfkIl7is/" class="badge warning">
+          Spring
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="badge ">
+          Java Web
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Bi8g4TR4N7K/" class="badge secondary">
+          Pattern
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/ZFiuYBvkwkT/" class="badge success">
+          NetWork
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/UbfZ10MEHg3/" class="badge success">
+          路由器
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nqQiqX_RhaL/" class="badge secondary">
+          终端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/OOhdBeKLn68/" class="badge ">
+          zsh
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/sor7RTKlreI/" class="badge warning">
+          Notes
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Vgg2jQ_lFif/" class="badge ">
+          Mac
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/rxRnYl7pHvy/" class="badge warning">
+          效率
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/j3MxqQZhfc5/" class="badge success">
+          开发技巧
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/bR9a4cYQOj0/" class="badge secondary">
+          Github
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/yy-RzAnpNUK/" class="badge success">
+          Blog
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/3WjwxqXgdUf/" class="badge secondary">
+          JavaScript
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/W_455jmEU1A/" class="badge warning">
+          webpack
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/xkW7irgpbOH/" class="badge success">
+          前端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/x69qwIjX4/" class="badge secondary">
+          微信小程序
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

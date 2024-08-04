@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>数据结构--树 | RebornL的博客</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1722777912835">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://rebornl.github.io">RebornL的博客</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>数据结构--树</h1>
+            <p class="article-meta">
+              2018-11-10
+              
+                <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="badge secondary">
+                  Alg
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <h1 id="树">树</h1>
+<h2 id="二叉查找树">二叉查找树</h2>
+<p>将二叉树变成二叉查找树，对于树种每个节点X，它的左子树中所有相的值小于X中的值，右子树的所有项的值大于X中的值。</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/alg1.png" alt="图来自《数据结构与算法分析》" loading="lazy"></figure>
+<blockquote>
+<p>二叉查找树的平均深度为O(logN)，所以不必担心栈内存耗尽。</p>
+</blockquote>
+<p><strong>BinaryNode</strong>为BinarySearchTree的内部嵌套类。</p>
+<pre><code class="language-java">private static class BinaryNode&lt;AnyType&gt; {
+    AnyType element;
+    BinaryNode&lt;AnyType&gt; left;
+    BinaryNode&lt;AnyType&gt; right;
+    
+    BinaryNode(AnyType theElement) {
+        this(theElement, null null);
+    }
+    BinaryNode(AnyType theElement, BinaryNode&lt;AnyType&gt; lt, BinaryNode&lt;AnyType&gt; rt) {
+        element = theElement;
+        left = lt;
+        right = rt;
+    }
+}
+</code></pre>
+<p><strong>BinarySearchTree</strong></p>
+<pre><code class="language-java">public class BinarySearchTree&lt;AnyType extends Comparable&lt;? super AnyType&gt;&gt; {
+    //二叉查找树的每个节点定义
+    private static class BinaryNode&lt;AnyType&gt; {}
+    
+    private BinaryNode&lt;AnyType&gt; root;
+    
+    public BinarySearchTree() {
+        root = null;
+    }
+    
+    public void makeEmpty() {
+        root = null;
+    }
+    public boolean isEmpty() {
+        return root == null;
+    }
+    
+    public boolean contains(AnyType x) {
+        return contains(x, root);
+    }
+    public AnyType findMin() {
+        if(isEmpty()) throws new UnderflowException();
+        return findMin(root).element;
+    }
+    public AnyType findMax() {
+        if(isEmpty()) throws new UnderflowException();
+        return findMax(root).element;
+    }
+    public void insert(AnyType x) {
+        root = insert(x, root);
+    }
+    public void remove(AnyType x) {
+        root = remove(x, root);
+    }
+    public void printTree(){}
+    
+    private boolean contains(AnyType x, BinaryNode&lt;AnyType&gt; t) {}
+    
+    private boolean contains(AnyType x, BinaryNode&lt;AnyType&gt; t) {
+        //contains方法在二叉查找树中很简单，通过递归即可实现
+        if(t == null) return false;
+        int compareResult = x.compareTo(t.element);
+        if(compareResult &lt; 0) {
+            //查找左子树
+            return contains(x, t.left);
+        } else if(compareResult &gt; 0) {
+            return contains(x, t.right);
+        } else {
+            return true;
+        }
+    }
+    private BinaryNode&lt;AnyType&gt; findMin(BinaryNode&lt;AnyType&gt; t) {
+        //findMin不断查找左子树最左的一个叶子节点，必然为最小
+        if(t == null) {return null;}
+        else if(t.left == null) {
+            return t;
+        }
+        return findMin(t.left);
+    }
+    private BinaryNode&lt;AnyType&gt; findMax(BinaryNode&lt;AnyType&gt; t) {
+        if(t != null) {
+            while(t.right != null) {
+                t = t.right;
+            }
+        }
+        return t;
+    }
+    
+    private BinaryNode&lt;AnyType&gt; insert(AnyType x, BinaryNode&lt;AnyType&gt; t) {
+        if(t == null) {
+            return new BinaryNode&lt;AnyType&gt;(x, null, null);
+        }
+        int compareResult = x.compareTo(t.element);
+        
+        if(compareResult &lt; 0) {
+            t.left = insert(x, t.left);
+        } else if(compareResult &gt; 0) {
+            t.right = insert(x, t.right);
+        }
+        
+        return t;
+    }
+    private BinaryNode&lt;AnyType&gt; remove(AnyType x, BinaryNode&lt;AnyType&gt; t) {
+        if(t == null) return t;
+        int compareResult = x.compareTo(t.element);
+        
+        if(compareResult &lt; 0) {
+            t.left = remove(x, t.left);
+        } else if(compareResult &gt; 0) {
+            t.right = remove(x, t.right);
+        } else if(t.left != null &amp;&amp; t.right != null) {
+            //第一种情况：左右子树均存在
+            t.element = findMin(t.right).element;//将右子树最小的值取代当前节点
+            t.right = remove(t.element, t.right);
+        } else {
+            //第二种情况：右子树不存在
+            t = (t.left != null) ? t.left: t.right;
+        }
+        return t;
+    }
+    private void printTree(BinaryNode&lt;AnyType&gt; t) {}
+}
+</code></pre>
+<h3 id="红黑树">红黑树</h3>
+<p>红黑树是一种自平衡的二叉查找树，解决二叉查找树在极端情况下变为线性链表的情况。红黑树有以下特点：</p>
+<ol>
+<li>红黑树是二叉搜索树。</li>
+<li><strong>根节点是黑色</strong>。</li>
+<li><strong>每个叶子节点都是黑色的空节点（NIL节点）</strong>。</li>
+<li><strong>每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)</strong></li>
+<li><strong>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点(每一条树链上的黑色节点数量（称之为“黑高”）必须相等)</strong>。</li>
+</ol>
+<p>插入流程查看：一般新插入的为红色节点，根据以下情况进行回溯</p>
+<ol>
+<li>
+<p>调整右边红色节点，如左边为黑色节点，右边为红色，将右边红色链接转到左边来，就是对下图中b节点做左旋和变色操作。</p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/1554013821223.png" alt="1554013821223" loading="lazy"></figure>
+</li>
+<li>
+<p>如果当左右叶子节点均为红色节点时，就如下图，将b节点变色，左右节点变为黑色。</p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/1554014018236.png" alt="1554014018236" loading="lazy"></figure>
+</li>
+<li>
+<p>当为连续红色节点时，如下图所示，将b节点做右旋操作和变色操作。</p>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/1554014120533.png" alt="1554014120533" loading="lazy"></figure>
+<p>基本上，感觉插入之后，变色比较麻烦，还得进行旋转操作进行位置变换。具体详细插入过程可以看看<a href="https://www.jianshu.com/p/ad5d65e7ce62">这篇文章</a>，作者良心画制，精品。</p>
+</li>
+</ol>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://rebornl.github.io/2018-11-10-数据结构与算法经典问题解析第1章和第2章/">
+                <h3 class="post-title">
+                  《数据结构与算法经典问题解析》--第一章和第二章
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://rebornl.github.io/images/avatar.png?v=1722777912835" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-xiang-guan-ming-ling-ji-lu/">鸿蒙相关命令记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-taskpool-shi-yong/">鸿蒙TaskPool使用</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-segmentbutton-zu-jian-shi-yong-he-tabcontent-qie-huan/">鸿蒙 SegmentButton 组件使用和 TabContent 切换</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/po-su-bei-xie-si-shi-zhan/">朴素贝叶斯实战</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/lian-shi-fa-ze-he-ma-er-ke-fu-jia-she/">链式法则和马尔科夫假设</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/bei-xie-si-ding-li-xue-xi-ji-lu/">贝叶斯定理学习记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/2019-11-14-设计模式05_理论二/">05 | 理论二：封装、抽象、继承、多态分别可以解决哪些编程问题？</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/码农翻身笔记/">码农翻身笔记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/HTTPS记录/">Https记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/秋招笔试记录/">2019-09-23-马蜂窝笔试记录</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://rebornl.github.io/tag/ltPjvIyrlp/" class="badge success">
+          机器学习
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/XKh_5pXnR/" class="badge success">
+          设计模式
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Lv4qMmd-BK/" class="badge secondary">
+          MySQL
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="badge ">
+          Java
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/MgqZEKKCER/" class="badge ">
+          Git
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/lF-v4JaacW/" class="badge secondary">
+          框架实现
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/zFmextRP_z/" class="badge success">
+          Leetcode
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/YgtCKFyxhi/" class="badge secondary">
+          特征提取
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="badge ">
+          Alg
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nDveU_fSgO/" class="badge warning">
+          Python
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-4xd0JPr3j/" class="badge secondary">
+          Linux
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/cUJZG68Rm/" class="badge secondary">
+          Gridea
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/oDwHjHgcMx/" class="badge success">
+          面试题
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/6w3Hx9oznc/" class="badge secondary">
+          消息中间件
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/PXuFayfvUr/" class="badge secondary">
+          JVM
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/9eFi-hL0Jd/" class="badge ">
+          CS
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-BZfkIl7is/" class="badge warning">
+          Spring
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="badge warning">
+          Java Web
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Bi8g4TR4N7K/" class="badge secondary">
+          Pattern
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/ZFiuYBvkwkT/" class="badge success">
+          NetWork
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/UbfZ10MEHg3/" class="badge success">
+          路由器
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nqQiqX_RhaL/" class="badge warning">
+          终端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/OOhdBeKLn68/" class="badge success">
+          zsh
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/sor7RTKlreI/" class="badge secondary">
+          Notes
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Vgg2jQ_lFif/" class="badge ">
+          Mac
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/rxRnYl7pHvy/" class="badge ">
+          效率
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/j3MxqQZhfc5/" class="badge secondary">
+          开发技巧
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/bR9a4cYQOj0/" class="badge secondary">
+          Github
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/yy-RzAnpNUK/" class="badge ">
+          Blog
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/3WjwxqXgdUf/" class="badge warning">
+          JavaScript
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/W_455jmEU1A/" class="badge ">
+          webpack
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/xkW7irgpbOH/" class="badge ">
+          前端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/x69qwIjX4/" class="badge success">
+          微信小程序
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

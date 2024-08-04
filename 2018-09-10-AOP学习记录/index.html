@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Spring中AOP记录 | RebornL的博客</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1722777912835">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://rebornl.github.io">RebornL的博客</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Spring中AOP记录</h1>
+            <p class="article-meta">
+              2018-09-10
+              
+                <a href="https://rebornl.github.io/tag/-BZfkIl7is/" class="badge ">
+                  Spring
+                </a>
+              
+                <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="badge ">
+                  Java Web
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <h2 id="spring的aop">Spring的AOP</h2>
+<p>AOP：面向切面编程，具体是指在不同功能类中出现的相同的功能点，将这些功能点横向切割出来，与业务逻辑类分开。</p>
+<h3 id="相应术语">相应术语</h3>
+<ul>
+<li>连接点（Joinpoint）：程序执行的某个特定位置。</li>
+<li>切点（Pointcut）：用于定位连接点。</li>
+<li>增强（Advice）：织入目标类连接点上一段程序代码。</li>
+<li>目标对象（Target）：织入的目标类。</li>
+<li>引介（Introduction）：特殊的增强，为类添加一些属性和方法。</li>
+<li>织入（Weaving）：将增强添加到目标类的连接点上的过程，有编译期织入，类装载期织入，动态代理织入。<em>Spring采用动态代理织入，AspectJ采用编译期织入和类装载期织入</em>。</li>
+<li>代理（Proxy）：一个类被AOP织入增强后，产生的结果类，融合袁磊和增强逻辑的代理类。</li>
+<li>切面（Aspect）：由切点和增强组成，包括横切逻辑的定义和连接点的定义。</li>
+</ul>
+<h3 id="代理">代理</h3>
+<h4 id="jdk动态代理">JDK动态代理</h4>
+<p>JDK动态代理涉及java.lang.reflect包中两个类：Proxy和InvocationHandler。</p>
+<ul>
+<li>InvocationHandler是一个接口，可以通过实现该接口定义横切逻辑，并通过反射机制调用目标类的代码，动态地将横切逻辑和业务逻辑编织在一起</li>
+<li>Proxy利用InvocationHandler动态创建一个符合某一接口的实例，生成目标类的代理对象。</li>
+</ul>
+<pre><code class="language-java">//ForumServiceImpl2
+public class ForumServiceImpl2 implements ForumService{
+    @Override
+    public void removeTopic(int topicId) {
+
+        System.out.println(&quot;模拟删除Topic记录:&quot;+topicId);
+        try {
+            Thread.currentThread().sleep(20);
+
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public void removeForum(int forumId) {
+        System.out.println(&quot;模拟删除Forum记录:&quot;+forumId);
+        try {
+            Thread.currentThread().sleep(40);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+}
+</code></pre>
+<pre><code class="language-java">//PerformanceHandler.java
+public class PerformanceHandler implements InvocationHandler {
+
+    private Object target;
+
+    public PerformanceHandler(Object target) {
+        this.target = target;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws
+            Throwable {
+        //这里就实现了切面逻辑和业务逻辑交织
+        PerformanceMonitor.begin(target.getClass().getName()+&quot;.&quot;+method.getName());
+        Object obj = method.invoke(target, args);//通过反射方法调用业务类的目标方法
+        PerformanceMonitor.end();
+
+        return obj;
+    }
+}
+</code></pre>
+<pre><code class="language-java">public class ForumServiceImpl2Test {
+
+    @Test
+    public void proxy() {
+        //目标
+        ForumService target = new ForumServiceImpl2();
+	    //切面
+        PerformanceHandler handler = new PerformanceHandler(target);
+	    //代理类
+        ForumService proxy = (ForumService) Proxy.newProxyInstance(target.getClass()
+                .getClassLoader(), target.getClass().getInterfaces(), handler);
+        //这里只能强制转换成接口类型
+
+        proxy.removeForum(10);//实际上是调用invoke(proxy, removeForum, new Object[]{10})
+        proxy.removeTopic(1012);
+    }
+
+}
+</code></pre>
+<p>JDK创建代理，只能为接口创建代理，可以看Test方法proxy变量。</p>
+<h4 id="cglib代理">CGLib代理</h4>
+<p>CGLib采用底层的字节码技术，可以为一个类创建子类，在子类中采用方法拦截的技术拦截所有父类方法的调用并顺势织入横切逻辑。</p>
+<pre><code class="language-java">import org.springframework.cglib.proxy.Enhancer;
+import org.springframework.cglib.proxy.MethodInterceptor;
+import org.springframework.cglib.proxy.MethodProxy;
+
+import java.lang.reflect.Method;
+
+public class CglibProxy implements MethodInterceptor {
+
+    private Enhancer enhancer = new Enhancer();
+
+    public Object getProxy(Class clazz) {
+        enhancer.setSuperclass(clazz);//设置需要创建子类的类
+        enhancer.setCallback(this);
+        return enhancer.create();//通过字节码技术动态创建子类实例
+    }
+
+
+    @Override
+    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+        //该方法可以拦截父类所有方法
+        PerformanceMonitor.begin(o.getClass().getName()+&quot;.&quot;+method.getName());
+        Object result = methodProxy.invokeSuper(o, objects);
+        PerformanceMonitor.end();
+
+        return result;
+    }
+}
+</code></pre>
+<pre><code class="language-java"> public class ForumServiceImpl2Test {
+
+    @Test
+    public void proxy2() {
+        CglibProxy proxy = new CglibProxy();
+        ForumServiceImpl2 forumServiceImpl2 = (ForumServiceImpl2)proxy
+                .getProxy(ForumServiceImpl2.class);
+        forumServiceImpl2.removeForum(10);
+        forumServiceImpl2.removeTopic(1023);
+    }
+}
+</code></pre>
+<p>CGLib采用动态创建子类的方式生成代理对象，所以不能对目标类中final和private方法进行代理。</p>
+<p>另外对比，在我机子上，JDK代理运行速度比CGLib代理要稍快一些。因此CGLib动态代理技术适用于无需频繁创建代理对象，JDK代理则适用于频繁创建代理对象。</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/jdkAndCGlib.png" alt="1524553804338" loading="lazy"></figure>
+<h3 id="aspectj使用">AspectJ使用</h3>
+<pre><code class="language-java">public class NaiveWaiter2 implements Waiter {
+
+    @Override
+    public void greetTo(String clientName) {
+        System.out.println(&quot;NaiveWaiter:greet to &quot;+clientName+&quot; ...&quot;);
+    }
+
+    @Override
+    public void serveTo(String clientName) {
+        System.out.println(&quot;NaiveWaiter:serving &quot;+clientName+&quot; ...&quot;);
+    }
+}
+</code></pre>
+<pre><code class="language-java">import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+
+@Aspect//声明其为一个切面
+public class PreGreetingAspect {
+    @Before(&quot;execution(* greetTo(..))&quot;)//声明以下方法在什么时候执行
+    public void beforeGreeting() {
+        System.out.println(&quot;How are you&quot;);
+    }
+}
+
+</code></pre>
+<p>切面编程测试</p>
+<pre><code class="language-java">public class ToolTest {
+
+    @Test
+    public void aspectTest() {
+        Waiter target = new NaiveWaiter2();
+        AspectJProxyFactory factory = new AspectJProxyFactory();
+        //设置对象
+        factory.setTarget(target);
+        //添加切面类
+        factory.addAspect(PreGreetingAspect.class);
+        //生成代理对象
+        Waiter proxy = factory.getProxy();
+
+        proxy.greetTo(&quot;John&quot;);
+        proxy.serveTo(&quot;John&quot;);
+    }
+}
+</code></pre>
+<p>AspectJ在Spring中的使用，同样是采用xml配置文件，在Bean的xml中引入aop命名空间，加上**&lt;aop:aspectj-autoproxy /&gt;**（其中有个proxy-target-class属性，默认为false采用JDK动态代理技术，为true时采用CGLib动态代理），这会自动为Spring容器中那些匹配@Aspect切面的Bean创建代理，完成切面织入。</p>
+<h4 id="aspectj语法">AspectJ语法</h4>
+<figure data-type="image" tabindex="2"><img src="https://blog.raymondtech.top/img/aspectj-program.png" alt="1524642633627" loading="lazy"></figure>
+<p>以上表中所展示的@Aspect函数可以在Spring中，其他未在表上展示的@Aspect函数一般都不能在Spring上使用，否则会报IllegalArgumentException异常。</p>
+<p><strong>关于通配符：</strong></p>
+<ul>
+<li>*：匹配任意字符，只能匹配上下文中一个元素</li>
+<li>..：匹配任意字符，可以匹配上下文中多个元素，表示类时，必须和*联合使用，表示入参时候，单独使用。</li>
+<li>+：表示按类型匹配指定类的所有类（继承或扩展指定类，亦包括类本身），必须跟在类名后面。</li>
+<li>execution()和within()支持所有通配符</li>
+<li>仅支持+同配置：args()，this()，target()，但意义不大</li>
+<li>注解类型不支持通配符。</li>
+</ul>
+<p><strong>关于逻辑运算符：</strong></p>
+<ul>
+<li>&amp;&amp;：与操作符</li>
+<li>||：或操作符</li>
+<li>！：非操作符</li>
+</ul>
+<blockquote>
+<p>AspectJ不支持and，or和not操作符，但是Spring在xml配置文件中定义切点表达式定义添加的等价操作符。</p>
+</blockquote>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://rebornl.github.io/2018-07-10-极1s刷Padavan并登上华工校园网/">
+                <h3 class="post-title">
+                  极路由1s刷Padavan
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://rebornl.github.io/images/avatar.png?v=1722777912835" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-xiang-guan-ming-ling-ji-lu/">鸿蒙相关命令记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-taskpool-shi-yong/">鸿蒙TaskPool使用</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-segmentbutton-zu-jian-shi-yong-he-tabcontent-qie-huan/">鸿蒙 SegmentButton 组件使用和 TabContent 切换</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/po-su-bei-xie-si-shi-zhan/">朴素贝叶斯实战</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/lian-shi-fa-ze-he-ma-er-ke-fu-jia-she/">链式法则和马尔科夫假设</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/bei-xie-si-ding-li-xue-xi-ji-lu/">贝叶斯定理学习记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/2019-11-14-设计模式05_理论二/">05 | 理论二：封装、抽象、继承、多态分别可以解决哪些编程问题？</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/码农翻身笔记/">码农翻身笔记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/HTTPS记录/">Https记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/秋招笔试记录/">2019-09-23-马蜂窝笔试记录</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://rebornl.github.io/tag/ltPjvIyrlp/" class="badge secondary">
+          机器学习
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/XKh_5pXnR/" class="badge ">
+          设计模式
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Lv4qMmd-BK/" class="badge warning">
+          MySQL
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="badge warning">
+          Java
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/MgqZEKKCER/" class="badge secondary">
+          Git
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/lF-v4JaacW/" class="badge warning">
+          框架实现
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/zFmextRP_z/" class="badge success">
+          Leetcode
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/YgtCKFyxhi/" class="badge secondary">
+          特征提取
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="badge warning">
+          Alg
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nDveU_fSgO/" class="badge ">
+          Python
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-4xd0JPr3j/" class="badge success">
+          Linux
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/cUJZG68Rm/" class="badge secondary">
+          Gridea
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/oDwHjHgcMx/" class="badge ">
+          面试题
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/6w3Hx9oznc/" class="badge ">
+          消息中间件
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/PXuFayfvUr/" class="badge warning">
+          JVM
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/9eFi-hL0Jd/" class="badge ">
+          CS
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-BZfkIl7is/" class="badge warning">
+          Spring
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="badge secondary">
+          Java Web
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Bi8g4TR4N7K/" class="badge success">
+          Pattern
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/ZFiuYBvkwkT/" class="badge warning">
+          NetWork
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/UbfZ10MEHg3/" class="badge secondary">
+          路由器
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nqQiqX_RhaL/" class="badge warning">
+          终端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/OOhdBeKLn68/" class="badge success">
+          zsh
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/sor7RTKlreI/" class="badge secondary">
+          Notes
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Vgg2jQ_lFif/" class="badge secondary">
+          Mac
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/rxRnYl7pHvy/" class="badge secondary">
+          效率
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/j3MxqQZhfc5/" class="badge ">
+          开发技巧
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/bR9a4cYQOj0/" class="badge ">
+          Github
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/yy-RzAnpNUK/" class="badge secondary">
+          Blog
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/3WjwxqXgdUf/" class="badge ">
+          JavaScript
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/W_455jmEU1A/" class="badge secondary">
+          webpack
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/xkW7irgpbOH/" class="badge warning">
+          前端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/x69qwIjX4/" class="badge secondary">
+          微信小程序
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

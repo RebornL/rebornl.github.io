@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>《大型网站系统与Java中间件实践》--读书记录 | RebornL的博客</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1722777912835">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://rebornl.github.io">RebornL的博客</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>《大型网站系统与Java中间件实践》--读书记录</h1>
+            <p class="article-meta">
+              2018-10-31
+              
+                <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="badge warning">
+                  Java Web
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <h3 id="应用集群时session解决方法">应用集群时，Session解决方法</h3>
+<ul>
+<li>
+<p>Session Sticky：让负载均衡器根据会话标识选择对应的服务器，原来的其他设备方案基本不用变动，但缺点是负载均衡器就会变成有状态的节点，内存消耗会更大，容灾更麻烦。</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/sessionsticky.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>Session Replication：不同服务器之间进行Session数据同步，这样负载均衡器不需要改变，无论是哪个服务器相应都有着相同的Session。问题则是同步Session数据造成网络带宽的开销，以及随着服务器的增多Session数据也会急剧增多。</p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/sessionreplication.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>Session数据集中存储：所有Session都集中存储到同一个地方，不同服务器之间不需要进行Session数据同步，都从同一个地方获取Session数据。问题也很明显，若存储Session的机器出了问题，那会影响整个应用；另外读写Session会引入网络操作，可能会存在时延。</p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/sessionfocus.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>Cookie Based：将Session存储在Cookies中，这样就没有外部系统获取和读写Session数据的网络时间和不稳定性。但这个存在几个严重问题：Cookie长度限制，安全性问题，带宽消耗，以及性能影响（每次HTTP请求和相应的头部数据增多）。</p>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/Cookiebase.png" alt="" loading="lazy"></figure>
+</li>
+</ul>
+<h3 id="关于读写分离">关于读写分离</h3>
+<p>一个大型应用通常都是读多写少，此时可以进行读写分离，即增加一个读“源”，需要解决的问题是，怎么把数据复制到这个源中，减少各种时延。</p>
+<blockquote>
+<p>这里记录一下，搜索引擎，其实有点像读库，所不同的，搜索引擎是构建索引，构建索引不仅仅是简单的数据复制。</p>
+</blockquote>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/readAndWrite.png" alt="" loading="lazy"></figure>
+<h3 id="数据库拆分">数据库拆分</h3>
+<h4 id="垂直拆分">垂直拆分</h4>
+<p>把数据库中不同业务数据拆分到不同的数据库中，可以根据不同业务特点进行优化。增加了多个数据源的配置，但是带来的麻烦是多个数据连接池的隔离。解决方案有：1. 使用分布式事务，但其性能明显低于单机事务；2. 去掉事务或不去追求事务支持，改为表关联查询即可。</p>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/vertical.png" alt="" loading="lazy"></figure>
+<h4 id="水平拆分">水平拆分</h4>
+<p>数据水平拆分是指把同一个表中的数据拆分到两个数据库中，之所以这么做是因为某个业务的数据表的数据量或更新量可能达到单个数据库的瓶颈，拆分到两个或多个数据库中，可以很好解决数据量以及写入量增长的问题。带来的影响则是由于数据分布在不同数据库中，SQL查询时，需要判断在哪个数据中查询，量大分页查询也难处理；此外，自增字段不能简单实用了。</p>
+<h3 id="应用处理">应用处理</h3>
+<p>随着业务不断扩展，应用功能会越来越多，应用也会越来越大，这个时候为了避免应用持续变大，可以对应用进行拆分。</p>
+<h4 id="应用拆分">应用拆分</h4>
+<ul>
+<li>
+<p>根据业务特性进行拆分，比如主要的业务功能分为三大部分：交易，商品和用户。这个时候可以把应用拆分成以交易和商品为主的两个应用，而涉及到用户的地方，可以暂时交给其中一个系统完成。</p>
+</li>
+<li>
+<p>此外还可继续根据功能继续拆分，例如用户注册、用户登录、用户信息维护变成三个系统</p>
+<figure data-type="image" tabindex="7"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/splitApplication.png" alt="" loading="lazy"></figure>
+</li>
+</ul>
+<h4 id="服务化">服务化</h4>
+<p>各种功能由对应的服务中心提供服务，另外中间业务功能之间访问不仅是单机内部方法调用，而且支持远程的服务调用，其次主要代码都放在服务中心，第三数据库交互也是放在各个服务中心，而上层的Web系统则不需要关心业务逻辑的实现，最后，每个服务中心和Web应用都可以各自小团队进行维护，能够更好保证稳定性。</p>
+<h4 id="消息中间件">消息中间件</h4>
+<figure data-type="image" tabindex="8"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/messagemiddlebin.png" alt="" loading="lazy"></figure>
+<p>应用A和应用B通过消息中间件进行信息通信，好处是实现异步和解耦操作。</p>
+<h3 id="中间件">中间件</h3>
+<ul>
+<li>远程过程调用和对象方法中间件：解决分布式环境下互相访问的问题，是应用服务化的基础</li>
+<li>消息中间件：解决应用之间消息传递，解耦和异步的问题</li>
+<li>数据访问中间件：解决应用访问数据库的共性问题</li>
+</ul>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://rebornl.github.io/2018-10-31-图说设计模式----创建型模式/">
+                <h3 class="post-title">
+                  创建型设计模型
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://rebornl.github.io/images/avatar.png?v=1722777912835" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-xiang-guan-ming-ling-ji-lu/">鸿蒙相关命令记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-taskpool-shi-yong/">鸿蒙TaskPool使用</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-segmentbutton-zu-jian-shi-yong-he-tabcontent-qie-huan/">鸿蒙 SegmentButton 组件使用和 TabContent 切换</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/po-su-bei-xie-si-shi-zhan/">朴素贝叶斯实战</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/lian-shi-fa-ze-he-ma-er-ke-fu-jia-she/">链式法则和马尔科夫假设</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/bei-xie-si-ding-li-xue-xi-ji-lu/">贝叶斯定理学习记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/2019-11-14-设计模式05_理论二/">05 | 理论二：封装、抽象、继承、多态分别可以解决哪些编程问题？</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/码农翻身笔记/">码农翻身笔记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/HTTPS记录/">Https记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/秋招笔试记录/">2019-09-23-马蜂窝笔试记录</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://rebornl.github.io/tag/ltPjvIyrlp/" class="badge warning">
+          机器学习
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/XKh_5pXnR/" class="badge secondary">
+          设计模式
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Lv4qMmd-BK/" class="badge success">
+          MySQL
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="badge secondary">
+          Java
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/MgqZEKKCER/" class="badge success">
+          Git
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/lF-v4JaacW/" class="badge warning">
+          框架实现
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/zFmextRP_z/" class="badge secondary">
+          Leetcode
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/YgtCKFyxhi/" class="badge ">
+          特征提取
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="badge secondary">
+          Alg
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nDveU_fSgO/" class="badge success">
+          Python
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-4xd0JPr3j/" class="badge warning">
+          Linux
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/cUJZG68Rm/" class="badge warning">
+          Gridea
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/oDwHjHgcMx/" class="badge secondary">
+          面试题
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/6w3Hx9oznc/" class="badge ">
+          消息中间件
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/PXuFayfvUr/" class="badge ">
+          JVM
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/9eFi-hL0Jd/" class="badge secondary">
+          CS
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-BZfkIl7is/" class="badge secondary">
+          Spring
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="badge warning">
+          Java Web
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Bi8g4TR4N7K/" class="badge warning">
+          Pattern
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/ZFiuYBvkwkT/" class="badge ">
+          NetWork
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/UbfZ10MEHg3/" class="badge warning">
+          路由器
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nqQiqX_RhaL/" class="badge secondary">
+          终端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/OOhdBeKLn68/" class="badge secondary">
+          zsh
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/sor7RTKlreI/" class="badge secondary">
+          Notes
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Vgg2jQ_lFif/" class="badge warning">
+          Mac
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/rxRnYl7pHvy/" class="badge warning">
+          效率
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/j3MxqQZhfc5/" class="badge secondary">
+          开发技巧
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/bR9a4cYQOj0/" class="badge ">
+          Github
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/yy-RzAnpNUK/" class="badge warning">
+          Blog
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/3WjwxqXgdUf/" class="badge secondary">
+          JavaScript
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/W_455jmEU1A/" class="badge ">
+          webpack
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/xkW7irgpbOH/" class="badge secondary">
+          前端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/x69qwIjX4/" class="badge secondary">
+          微信小程序
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

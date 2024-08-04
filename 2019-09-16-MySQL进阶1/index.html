@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>MySQL进阶学习 | RebornL的博客</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1722777912835">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://rebornl.github.io">RebornL的博客</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>MySQL进阶学习</h1>
+            <p class="article-meta">
+              2019-09-16
+              
+                <a href="https://rebornl.github.io/tag/Lv4qMmd-BK/" class="badge ">
+                  MySQL
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <h1 id="mysql进阶">MySQL进阶</h1>
+<p>[TOC]</p>
+<h2 id="前言">前言</h2>
+<ul>
+<li>
+<p>正则表达式过滤，计算字段，MySQL中的常用函数。</p>
+</li>
+<li>
+<p>REGEX</p>
+<ul>
+<li>与like的区别，^$实现like的功能</li>
+<li>BINARY区分大小写</li>
+<li>使用|进行OR匹配</li>
+<li>匹配几个字符之一使用[]---&gt;匹配范围[1-5]</li>
+<li>转义\\，匹配特殊字符</li>
+</ul>
+</li>
+<li>
+<p>计算字段</p>
+<ul>
+<li>MySQL使用Concat函数实现拼接，大多数DBMS使用+或||进行拼接</li>
+<li>AS 进行别名更改</li>
+<li>执行算术运算</li>
+</ul>
+</li>
+<li>
+<p>MySQL中函数</p>
+<ul>
+<li>文本处理函数</li>
+<li>时间处理函数：Date()处理时间类型</li>
+<li>数值处理函数</li>
+</ul>
+</li>
+<li>
+<p>组合聚集函数</p>
+<ul>
+<li>COUNT()，AVG()，MAX()，MIN()，DISTINCT关键字</li>
+</ul>
+</li>
+<li>
+<p>联结</p>
+</li>
+<li>
+<p>组合查询</p>
+</li>
+</ul>
+<h2 id="正则表达式过滤">正则表达式过滤</h2>
+<h3 id="regex关键字">REGEX关键字</h3>
+<p>regex关键字的使用跟like一样，但却更强大，通用性更高</p>
+<pre><code class="language-mysql">SELECT prod_name FORM prod_table WHERE prod_name REGEX '1000' OREDER BY prod_name;
+</code></pre>
+<p>输出结果：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex1.png" alt="" loading="lazy"></p>
+<blockquote>
+<p>注意事项：这语句看起来跟like一模一样，但其实意义全然不同，对于like关键字，它是匹配全文为‘1000’的商品，而regex则表达的是正文为‘1000’的具体的正则表达式。此外将上面SQL语句中的regex改成like，并没有任何返回值，因为like语句需要加上通配符，才会有返回值。</p>
+<p>regex想实现like的全文匹配，需要用上^和$两个字符。</p>
+<p>MySQL的正则表达式匹配不区分大小，若想要区分大小写，需要加上BINARY关键字</p>
+</blockquote>
+<h3 id="mysql中匹配符">MySQL中匹配符</h3>
+<ul>
+<li>
+<p>| ，进行OR匹配</p>
+<pre><code class="language-mysql">SELECT prod_name from prod_table WHERE prod_name REGEX '1000|2000';
+</code></pre>
+<p>输出结果：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex2.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>[...]，匹配中括号内任意字符，还可以写成[0-9]匹配0到9之间任意数字，[a-z]匹配a到z的任意字母</p>
+</li>
+</ul>
+<pre><code class="language-mysql">SELECT prod_name from prod_table WHERE prod_name REGEX '[123] ton';
+</code></pre>
+<ul>
+<li>
+<p>. ， 匹配任意字符</p>
+<pre><code class="language-mysql">SELECT vend_name From vendors Where vend_name REGEX '.';
+</code></pre>
+<p>输出结果：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex4.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>\\，MySQL中的转义字符，\\f换页，\\n换行，\\r回车，\\t制表，\\v纵向制表</p>
+</li>
+<li>
+<p>匹配字符类</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex5.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>匹配多个字符</p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex6.png" alt="" loading="lazy"></figure>
+</li>
+</ul>
+<pre><code class="language-mysql">SELECT prod_name FROM prod_table WHERE prod_name REGEX '[[:digit]]{4}';
+</code></pre>
+<p>输出结果：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex7.png" alt="" loading="lazy"></p>
+<ul>
+<li>
+<p>定位元字符</p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/regex8.png" alt="" loading="lazy"></figure>
+</li>
+</ul>
+<h2 id="计算字段">计算字段</h2>
+<h3 id="concat函数">Concat()函数</h3>
+<p>Concat函数是MySQL用来实现拼接的函数，使用AS关键字可以给拼接的字段另起名字</p>
+<pre><code class="language-mysql">SELECT Concat(vend_name, ' (', vend_country, ')') FROM vendors ORDER BY vend_name;
+</code></pre>
+<p>输出结果： <img src="https://raw.githubusercontent.com/RebornL/picbed/master/concat1.png" alt="" loading="lazy"></p>
+<pre><code class="language-mysql">SELECT Concat(vend_name, ' (', vend_country, ')') AS vend_title FROM vendors ORDER BY vend_name;
+</code></pre>
+<p>输出结果：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/concat2.png" alt="" loading="lazy"></p>
+<h3 id="算术计算">算术计算</h3>
+<p>MySQL可以执行简单的算术计算，如加减乘除</p>
+<pre><code class="language-mysql">SELECT prod_id, quantity, item_price, quantity*item_price AS expanded_price FROM orderitems WHERE order_num = 20005;
+</code></pre>
+<p>输出结果：<img src="https://raw.githubusercontent.com/RebornL/picbed/master/concat3.png" alt="" loading="lazy"></p>
+<h2 id="mysql中数据处理函数">MySQL中数据处理函数</h2>
+<h3 id="文本处理函数">文本处理函数</h3>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/function1.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/function1-2.png" alt="" loading="lazy"></figure>
+<h3 id="时间日期处理函数">时间日期处理函数</h3>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/function2.png" alt="" loading="lazy"></figure>
+<h3 id="数值处理函数">数值处理函数</h3>
+<figure data-type="image" tabindex="7"><img src="https://raw.githubusercontent.com/RebornL/picbed/master/function3.png" alt="" loading="lazy"></figure>
+<h2 id="数据库索引">数据库索引</h2>
+<p>详细参考：https://segmentfault.com/a/1190000015738121</p>
+<h2 id="联结">联结</h2>
+<p>在正常情况下，分解数据为多个表能更有效地存储和更方便的处理，提供更好的伸缩性。但这样会带来这样一种情况，当需要检索的分布在多张表时，该怎么通过一条检索语句从多个表中获取。MySQL中可通过<strong>联结</strong>机制关联多张表，来获取数据。</p>
+<h3 id="内部联结">内部联结</h3>
+<p>内部联结，又叫做<em>等值联结</em>，是最常见的一种方式。</p>
+<pre><code class="language-sql">SELECT vend_name, prod_name, prod_price FROM vendors INNER JOIN products ON verdors.vend_id = products.vend_id;
+</code></pre>
+<p><code>INNER JOIN</code>这种内部联结方式，和使用<code>WHERE</code>语句等价，如下面：</p>
+<pre><code class="language-sql">SELECT vend_name, prod_name, prod_price FROM vendors, products WHERE verdors.vend_id = products.vend_id;
+</code></pre>
+<h3 id="自联结">自联结</h3>
+<p>表自身与自身相关联。</p>
+<pre><code class="language-sql">SELECT p1.prod_id, p1.prod_name FROM products AS p1, products AS p2 WHERE p1.vend_id = p2.vend_id AND p2.prod_id = 'DTNTR';
+</code></pre>
+<h3 id="自然联结">自然联结</h3>
+<p>自然联结的作用是排除多次出现，是每个列只返回一次。与内联结的区别，自然联结自动连接所有同名列，内联结提供连接的列。</p>
+<pre><code class="language-sql">SELECT A.column, B.column FROM tableA as A NATURAL JOIN tableB as B;
+</code></pre>
+<h3 id="外联结">外联结</h3>
+<p>外连接保留了相关表中没有关联行的行。外连接有<strong>左联结<code>LEFT OUTER JOIN</code></strong>，<strong>右联结<code>RIGHT OUTER JOIN</code><strong>和</strong>全联结<code>OUTER JOIN</code></strong>。</p>
+<pre><code class="language-sql">SELECT customers.cust_id, orders.order_name FROM customers LEFT OUTER JOIN orders ON customers.cust_id = orders.cust_id;
+</code></pre>
+<p>以上是<strong>左联结</strong>，会保留cust_id存在但是order_name为NULL的行。</p>
+<h2 id="组合查询">组合查询</h2>
+<p><code>UNION</code>关键字可以将多个<code>SELECT</code>查询语句的结果集合并到一起。<code>UNION ALL</code>会保留重复的行。</p>
+<p><code>UNION</code>的使用条件：</p>
+<ul>
+<li><code>UNION</code>必须由两条或两条以上的SELECT语句构成，语句之间使用<code>UNION</code>关键字进行组合。</li>
+<li><code>UNION</code>中每个查询必须包含相同的列、表达式或聚集函数（次序可以不一致）</li>
+<li>列数据类型必须兼容</li>
+</ul>
+<pre><code class="language-sql">SELECT vend_id, prod_id, prod_price FROM products 
+WHERE prod_price &lt;= 5
+UNION
+SELECT vend_id, prod_id, prod_price FROM products
+WHERE vend_id IN (1001, 1002);
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://rebornl.github.io/Synchronized记录/">
+                <h3 class="post-title">
+                  Synchronized的实现原理和JVM的优化
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://rebornl.github.io/images/avatar.png?v=1722777912835" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-xiang-guan-ming-ling-ji-lu/">鸿蒙相关命令记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-taskpool-shi-yong/">鸿蒙TaskPool使用</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-segmentbutton-zu-jian-shi-yong-he-tabcontent-qie-huan/">鸿蒙 SegmentButton 组件使用和 TabContent 切换</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/po-su-bei-xie-si-shi-zhan/">朴素贝叶斯实战</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/lian-shi-fa-ze-he-ma-er-ke-fu-jia-she/">链式法则和马尔科夫假设</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/bei-xie-si-ding-li-xue-xi-ji-lu/">贝叶斯定理学习记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/2019-11-14-设计模式05_理论二/">05 | 理论二：封装、抽象、继承、多态分别可以解决哪些编程问题？</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/码农翻身笔记/">码农翻身笔记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/HTTPS记录/">Https记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/秋招笔试记录/">2019-09-23-马蜂窝笔试记录</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://rebornl.github.io/tag/ltPjvIyrlp/" class="badge ">
+          机器学习
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/XKh_5pXnR/" class="badge secondary">
+          设计模式
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Lv4qMmd-BK/" class="badge secondary">
+          MySQL
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="badge success">
+          Java
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/MgqZEKKCER/" class="badge secondary">
+          Git
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/lF-v4JaacW/" class="badge ">
+          框架实现
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/zFmextRP_z/" class="badge secondary">
+          Leetcode
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/YgtCKFyxhi/" class="badge warning">
+          特征提取
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="badge ">
+          Alg
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nDveU_fSgO/" class="badge secondary">
+          Python
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-4xd0JPr3j/" class="badge success">
+          Linux
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/cUJZG68Rm/" class="badge warning">
+          Gridea
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/oDwHjHgcMx/" class="badge warning">
+          面试题
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/6w3Hx9oznc/" class="badge secondary">
+          消息中间件
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/PXuFayfvUr/" class="badge secondary">
+          JVM
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/9eFi-hL0Jd/" class="badge ">
+          CS
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-BZfkIl7is/" class="badge ">
+          Spring
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="badge warning">
+          Java Web
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Bi8g4TR4N7K/" class="badge ">
+          Pattern
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/ZFiuYBvkwkT/" class="badge secondary">
+          NetWork
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/UbfZ10MEHg3/" class="badge secondary">
+          路由器
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nqQiqX_RhaL/" class="badge success">
+          终端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/OOhdBeKLn68/" class="badge ">
+          zsh
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/sor7RTKlreI/" class="badge ">
+          Notes
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Vgg2jQ_lFif/" class="badge success">
+          Mac
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/rxRnYl7pHvy/" class="badge warning">
+          效率
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/j3MxqQZhfc5/" class="badge success">
+          开发技巧
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/bR9a4cYQOj0/" class="badge warning">
+          Github
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/yy-RzAnpNUK/" class="badge ">
+          Blog
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/3WjwxqXgdUf/" class="badge warning">
+          JavaScript
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/W_455jmEU1A/" class="badge secondary">
+          webpack
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/xkW7irgpbOH/" class="badge secondary">
+          前端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/x69qwIjX4/" class="badge secondary">
+          微信小程序
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

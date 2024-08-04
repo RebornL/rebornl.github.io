@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>鸿蒙 SegmentButton 组件使用和 TabContent 切换 | RebornL的博客</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1722777912835">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://rebornl.github.io">RebornL的博客</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>鸿蒙 SegmentButton 组件使用和 TabContent 切换</h1>
+            <p class="article-meta">
+              2024-08-04
+              
+            </p>
+            
+            <div class="post-content">
+              <h2 id="组件介绍">组件介绍</h2>
+<p>官方介绍：<br>
+https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5#tabsegmentbuttonconstructionoptions</p>
+<p>SegmentButton 是鸿蒙 Next 新定义一种 UX 规范样式，系统做了封装，提供一个整体按钮组件样式，如下所示：<br>
+<img src="https://rebornl.github.io/post-images/1722736195582.png" alt="" loading="lazy"></p>
+<p>从样式中可以，该样式提供纯文本按钮、纯 ICON 按钮和文本 ICON 混合按钮样式。</p>
+<p>另外请注意，<strong>该官方组件不支持通用属性</strong>，也就是各种 margin、padding 或者 onclick 事件的监听等等，只能通过官方的属性 SegmentButtonOptions （分段按钮选项类，用于为分段按钮提供初始数据和自定义属性）进行设置（https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/ohos-arkui-advanced-segmentbutton-V5#segmentbuttonoptions）<br>
+<img src="https://rebornl.github.io/post-images/1722736744702.png" alt="" loading="lazy"></p>
+<p>代码示例：</p>
+<pre><code>// xxx.ets
+import {
+  ItemRestriction,
+  SegmentButton,
+  SegmentButtonItemTuple,
+  SegmentButtonOptions,
+  SegmentButtonTextItem
+} from '@ohos.arkui.advanced.SegmentButton'
+
+@Entry
+@Component
+struct Index {
+  @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
+    buttons: [{ text: '页签按钮1' }, { text: '页签按钮2' }, {
+      text: '页签按钮3'
+    }] as ItemRestriction&lt;SegmentButtonTextItem&gt;,
+    backgroundColor: Color.Green,
+    selectedBackgroundColor: Color.Orange,
+    textPadding: { top: 10, right: 10, bottom: 10, left: 10 },
+  })
+  @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+    buttons: [{ text: '单选按钮1' }, { text: '单选按钮2' }, { text: '单选按钮3' }] as SegmentButtonItemTuple,
+    multiply: false,
+    fontColor: Color.Black,
+    selectedFontColor: Color.Yellow,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
+  })
+  @State multiplySelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+    buttons: [{ text: '多选按钮1' }, { text: '多选按钮2' }, { text: '多选按钮3' }] as SegmentButtonItemTuple,
+    multiply: true,
+    fontSize: 18,
+    selectedFontSize: 18,
+    fontWeight: FontWeight.Bolder,
+    selectedFontWeight: FontWeight.Lighter,
+  })
+  @State iconCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+    buttons: [
+      { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') }
+    ] as SegmentButtonItemTuple,
+    multiply: false,
+    imageSize: { width: 40, height: 40 },
+    buttonPadding: { top: 6, right: 10, bottom: 6, left: 10 },
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
+  })
+  @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+    buttons: [
+      { text: '图标1', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { text: '图标2', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { text: '图标3', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { text: '图标4', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
+      { text: '图标5', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') }
+    ] as SegmentButtonItemTuple,
+    multiply: true,
+    imageSize: { width: 10, height: 10 },
+  })
+  @State tabSelectedIndexes: number[] = [0]
+  @State singleSelectCapsuleSelectedIndexes: number[] = [0]
+  @State multiplySelectCapsuleSelectedIndexes: number[] = [0, 1]
+  @State singleSelectIconCapsuleSelectedIndexes: number[] = [3]
+  @State multiplySelectIconTextCapsuleSelectedIndexes: number[] = [1, 2]
+
+  build() {
+    Row() {
+      Column() {
+        Column({ space: 20 }) {
+          SegmentButton({ options: this.tabOptions, selectedIndexes: $tabSelectedIndexes })
+          SegmentButton({ options: this.singleSelectCapsuleOptions,
+            selectedIndexes: $singleSelectCapsuleSelectedIndexes })
+          SegmentButton({ options: this.multiplySelectCapsuleOptions,
+            selectedIndexes: $multiplySelectCapsuleSelectedIndexes })
+          SegmentButton({ options: this.iconCapsuleOptions,
+            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes })
+          SegmentButton({ options: this.iconTextCapsuleOptions,
+            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes })
+        }.width('90%')
+      }.width('100%')
+    }.height('100%')
+  }
+}
+</code></pre>
+<h2 id="配合-tabcontent-进行页面切换">配合 TabContent 进行页面切换</h2>
+<p>SegmentButton 的作用可以当做是 Tabs 组件的 tabBar 进行更好的样式展示，为了达到点击 SegmentButton 切换 TabContent 内容的目的，且由于SegmentButton没有Tabs组件controller组件，需要修改@State 的 selectIndexes 数据，将其关联到 Tabs 组件中，代码如下：</p>
+<pre><code>// xxx.ets
+import { LengthMetrics, SegmentButton, SegmentButtonOptions } from '@kit.ArkUI'
+import { TabTitleBar, promptAction } from '@kit.ArkUI'
+
+class tabItem {
+  title: ResourceStr;
+  icon?: ResourceStr;
+  constructor(title: ResourceStr,icon?: ResourceStr) {
+    this.title = title
+    this.icon = icon
+  }
+}
+
+interface menuItem {
+  value: ResourceStr;
+  isEnabled?: boolean;
+  action?: () =&gt; void
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
+    buttons: [{ text: '页签按钮1' }, { text: '页签按钮2' }, {
+      text: '页签按钮3'
+    }],
+    direction: Direction.Auto,
+    backgroundColor: Color.Green,
+    selectedBackgroundColor: Color.Orange,
+    localizedTextPadding: {
+      end: LengthMetrics.vp(10),
+      start: LengthMetrics.vp(10)
+    },
+  });
+  @State @Watch('indexChange') tabSelectedIndexes: number[] = [0];
+
+  aboutToAppear(): void {
+  }
+
+  indexChange(changedPropertyName: string) {
+    console.log(`change: ${changedPropertyName}-${this.tabSelectedIndexes}`)
+  }
+
+  private controller: TabsController = new TabsController()
+  private swiperController: SwiperController = new SwiperController()
+
+  build() {
+    Column() {
+      SegmentButton({ options: this.tabOptions, selectedIndexes: $tabSelectedIndexes })
+      Tabs({ barPosition: BarPosition.Start, index: this.tabSelectedIndexes[0], controller: this.controller }) {
+        TabContent() {
+          Column(){
+            Column() {
+              TabTitleBar({
+                swiperContent: this.componentBuilder,
+                tabItems: this.tabItems,
+                menuItems: this.menuItems,
+              })
+            }.width('100%')
+          }.width('100%').height('100%').backgroundColor('#00CB87')
+        }
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#007DFF')
+        }
+
+        TabContent() {
+          Column() {
+            Column().width('100%').height('99%').backgroundColor('#FFBF00')
+          }
+      }.onChange((index: number) =&gt; {
+        this.tabSelectedIndexes = [index];
+      })
+      .animationDuration(0)
+      .barHeight(0)
+      .onGestureSwipe((index: number, event: TabsAnimationEvent) =&gt; {
+        console.log(`${index}-${JSON.stringify(event)}`)
+      })
+      .scrollable(false)
+    }
+  }
+}
+</code></pre>
+<p>需要注意一下因为 Tab 组件自带了 TabBar 会自动在布局上占据空间，因此 SegmentButton 作为 TabBar 使用时，需要将原来的 barHeight 设置为 0，避免空白出现页面上。</p>
+<p>另外，由于当前系统原因，无论是原来自带 tabBar 切换还是 SegmentButton 切换，通过 TabContent 左右滑动时切换都是存在不跟手的问题，所以建议通过将 scrollable 设置为 false，只通过 SegmentButton 点击切换 TabContent 页面保证用户的体验。</p>
+<p>除了TabContent方式切换，用Swiper也是一样的方式。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://rebornl.github.io/po-su-bei-xie-si-shi-zhan/">
+                <h3 class="post-title">
+                  朴素贝叶斯实战
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://rebornl.github.io/images/avatar.png?v=1722777912835" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-xiang-guan-ming-ling-ji-lu/">鸿蒙相关命令记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-taskpool-shi-yong/">鸿蒙TaskPool使用</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-segmentbutton-zu-jian-shi-yong-he-tabcontent-qie-huan/">鸿蒙 SegmentButton 组件使用和 TabContent 切换</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/po-su-bei-xie-si-shi-zhan/">朴素贝叶斯实战</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/lian-shi-fa-ze-he-ma-er-ke-fu-jia-she/">链式法则和马尔科夫假设</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/bei-xie-si-ding-li-xue-xi-ji-lu/">贝叶斯定理学习记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/2019-11-14-设计模式05_理论二/">05 | 理论二：封装、抽象、继承、多态分别可以解决哪些编程问题？</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/码农翻身笔记/">码农翻身笔记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/HTTPS记录/">Https记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/秋招笔试记录/">2019-09-23-马蜂窝笔试记录</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://rebornl.github.io/tag/ltPjvIyrlp/" class="badge secondary">
+          机器学习
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/XKh_5pXnR/" class="badge success">
+          设计模式
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Lv4qMmd-BK/" class="badge warning">
+          MySQL
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="badge secondary">
+          Java
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/MgqZEKKCER/" class="badge success">
+          Git
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/lF-v4JaacW/" class="badge secondary">
+          框架实现
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/zFmextRP_z/" class="badge warning">
+          Leetcode
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/YgtCKFyxhi/" class="badge ">
+          特征提取
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="badge secondary">
+          Alg
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nDveU_fSgO/" class="badge warning">
+          Python
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-4xd0JPr3j/" class="badge ">
+          Linux
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/cUJZG68Rm/" class="badge secondary">
+          Gridea
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/oDwHjHgcMx/" class="badge ">
+          面试题
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/6w3Hx9oznc/" class="badge ">
+          消息中间件
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/PXuFayfvUr/" class="badge secondary">
+          JVM
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/9eFi-hL0Jd/" class="badge success">
+          CS
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-BZfkIl7is/" class="badge warning">
+          Spring
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="badge warning">
+          Java Web
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Bi8g4TR4N7K/" class="badge warning">
+          Pattern
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/ZFiuYBvkwkT/" class="badge secondary">
+          NetWork
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/UbfZ10MEHg3/" class="badge secondary">
+          路由器
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nqQiqX_RhaL/" class="badge secondary">
+          终端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/OOhdBeKLn68/" class="badge ">
+          zsh
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/sor7RTKlreI/" class="badge warning">
+          Notes
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Vgg2jQ_lFif/" class="badge secondary">
+          Mac
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/rxRnYl7pHvy/" class="badge success">
+          效率
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/j3MxqQZhfc5/" class="badge secondary">
+          开发技巧
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/bR9a4cYQOj0/" class="badge secondary">
+          Github
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/yy-RzAnpNUK/" class="badge secondary">
+          Blog
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/3WjwxqXgdUf/" class="badge ">
+          JavaScript
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/W_455jmEU1A/" class="badge success">
+          webpack
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/xkW7irgpbOH/" class="badge success">
+          前端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/x69qwIjX4/" class="badge warning">
+          微信小程序
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

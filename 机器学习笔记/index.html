@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>机器学习笔记 | RebornL的博客</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1722777912835">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://rebornl.github.io">RebornL的博客</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>机器学习笔记</h1>
+            <p class="article-meta">
+              2019-09-02
+              
+                <a href="https://rebornl.github.io/tag/ltPjvIyrlp/" class="badge success">
+                  机器学习
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <h1 id="机器学习笔记">机器学习笔记</h1>
+<ol>
+<li>
+<p>线性回归和逻辑回归</p>
+<ul>
+<li>线性回归：监督学习，需要一个线性模型，从训练集中得到一个最好的线性模型，然后对测试集数据进行预测。用到的损失函数是平方求根的函数，即欧式距离。</li>
+<li>逻辑回归：是一种分类方法，是对事件发生概率进行预测。使用sigmoid函数，进行概率预测（其实就是映射到0和1之间），然后决策边界函数可以是线性的也可以非线性，根据训练集分布决定。损失函数则是交叉熵，取最大似然函数。</li>
+</ul>
+</li>
+<li>
+<p>朴素贝叶斯：监督学习算法，解决分类问题，贝叶斯定理：<img src="https://mmbiz.qpic.cn/mmbiz_png/rB4jswrswuw9sW3Lptib7ozmy7ctoPjicPNnmqle3BAyahYIicibYVNSept8ANzjIoZiaKWKljOfia6RWStuYEBCV8gg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" loading="lazy">，翻译过来讲就是，对于一个特征集合A，判断它属于哪个数据类别B_i，可以通过计算P(B_i)和P(A|B_i)，而这两个值都相对比较容易计算出来。（这其中涉及到先验概率和后验概率等概念）。当特征值为离散值，比较容易计算。但当特征值为连续值时，通常需要假定其值服从高斯分布，需要计算出各类别中此特征的均值和方差即可。计算方式如下两个公式<img src="https://mmbiz.qpic.cn/mmbiz_jpg/rB4jswrswuw9sW3Lptib7ozmy7ctoPjicPB9EguekcrK3w5sOrLZGErU2wUQiaPazkN0hxxB3rmE65oibWVrIzZNaA/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" loading="lazy">，<img src="https://mmbiz.qpic.cn/mmbiz_png/rB4jswrswuw9sW3Lptib7ozmy7ctoPjicPIqO4nGwxYK6n4NI56JSJ57N8vvmnX7A3lNCtayoKAzGoY0Fr3O9miaA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" loading="lazy"></p>
+</li>
+<li>
+<p>PCA主成分分析方法：常用的数据降维算法，将n维特征映射到k维上，这个k维正交特征被称为主成分。寻找新的坐标轴的方式：第一个新坐标轴选择是原始数据中方差最大的方向，第二个新坐标轴选取的是与第一个坐标轴正交平面中方差最大的方向，第三个新坐标轴则是与第一个和第二个坐标轴正交的方差最大的方向，以此类推得到k维。（参考内容：<a href="https://mp.weixin.qq.com/s?__biz=MzI5NDMzMjY1MA==&amp;mid=2247484368&amp;idx=1&amp;sn=f293ae7a8558057996a92e9da43de42b&amp;scene=21#wechat_redirect">特征量分解</a>和<a href="https://mp.weixin.qq.com/s/Xt1vLQfB20rTmtLjiLsmww">PCA详解</a>）。</p>
+<blockquote>
+<p>使用SVD中，为什么使用左奇异矩阵，因为左奇异矩阵是对行的压缩，右奇异矩阵是对列的压缩。</p>
+</blockquote>
+</li>
+<li>
+<p>欠采样算法：为了克服随机欠采样造成多数类的信息缺失的问题，又要保证算法保证出较好的不均衡数据分类性能，有以下两种代表性算法</p>
+<ul>
+<li>EasyEnsemble：从多数类中又放回的随机采样n次，每次都选取与少数类相近的样本数。然后将每个多数类子集和少数类一起训练，得到n个模型，将n个模型组合起来，结果为n个模型的均值</li>
+<li>BalanceCascade：基于AdaBoost，将AdaBoost作为基分类器，基本算法流程如下：
+<ul>
+<li>1)在每一轮训练时都使用多数类与少数类数量相等的训练集，训练出一个Adaboost基分类器。</li>
+<li>2)然后使用该分类器对全体多数类进行预测，通过控制分类阈值来控制假正例率（False Positive Rate）,将所有判断正确的类删除。</li>
+<li>3)最后，进入下一轮迭代中，继续降低多数类数量。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>过采样：解决随机过采样对样本重采，容易对模型造成过拟合现象，有如下两种过采样法代表性算法</p>
+<ul>
+<li>SMOTE：Synthetic Minority Oversampling即合成少数类过采样技术，其实就是对少数类中随机选一个样本点，然后寻找它k近邻的少数类样本，再从k个近邻样本点随机选择一个，按照该公式随机生成一个新的样本点：<img src="https://mmbiz.qpic.cn/mmbiz_png/rB4jswrswuzKOVmL3nBfmnTicUP9BwGnBV8yF31x0CAiaIU6EQgB6Z2BwwHpczgiabbNN1UmKPiae6iavcO3icDUvpVg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" loading="lazy">
+<ul>
+<li>缺点1：对每个少数类样本点生成新的样本点有可能会造成重复</li>
+<li>缺点2：有可能造成模型过度泛化的问题，因为生成样本点只考虑近邻点，却没有考虑到样本的分布特点。</li>
+</ul>
+</li>
+<li>Borderline-SMOTE：克服了SOMTE的两个缺点，只对边界集合样本点进行样本生成。算法流程如下：                                                                                        <img src="https://mmbiz.qpic.cn/mmbiz_jpg/rB4jswrswuzKOVmL3nBfmnTicUP9BwGnBafiaxgj6x6VD3WdMLxqIl9JhVcmoxJ53XRfVQGL7GjoqyCTZBbR9AzQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" loading="lazy"></li>
+</ul>
+</li>
+<li>
+<p>牛顿法和梯度下降法的区别</p>
+<blockquote>
+<p>牛顿法是二阶收敛，梯度下降法是一阶收敛，牛顿法收敛速度更快。通俗的讲，牛顿法不仅考虑梯度方向最大，还考虑到走完之后，梯度是否能变得更大。在几何上看，牛顿法用二次曲面去拟合当前的曲面平面，而梯度下降则是用一个平面去拟合当前曲面。</p>
+</blockquote>
+</li>
+<li>
+<p>L1正则化和L2正则化</p>
+<p>L1正则化可以产生稀疏权值矩阵，可用于特征选择。</p>
+<p>L2正则化可以防止模型过拟合，可以约束模型参数，使模型权值尽可能的小，那这样抗干扰能力强，因为权值参数小，数据偏移就会很小。</p>
+</li>
+<li>
+<p>卷积神经网络</p>
+<p>卷积层：提取图像特征</p>
+<p>池化层：对特征进行抽样，可以减少训练参数，可以减轻网络的过拟合现象</p>
+<p>全连接层：对特征进行汇总，分类</p>
+<p>卷积运算输出图像大小N：M为原图像大小，k为kernel大小，p为padding大小，s为步长，<img src="https://mmbiz.qpic.cn/mmbiz_png/rB4jswrswuzgZJj2plMuiaibpHtApnicPspXolEfkeAZicK9yRSANFONzCXDyQN3TfZj2micbcubNVv83pMX3vu1SYg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" loading="lazy"></p>
+</li>
+<li>
+<p>空洞卷积（dilated convolution）</p>
+<p>做空洞卷积的好处是在不做pooling损失信息的情况下，加大了感受野，让每一个卷积输出都包含较大范围信息</p>
+</li>
+<li>
+<p>Batch Normalization</p>
+</li>
+</ol>
+<p>使用Normalization的原因在于，神经网络学习的是数据的分布，通过normalization操作，可以使得每批训练数据的分布大致相似，加快网络的训练速度。</p>
+<ol start="11">
+<li>
+<p>常用的SVM的核函数</p>
+<ul>
+<li>线性核函数：主要用于线性可分的情况，参数少，速度快，</li>
+<li>RBF（径向基）核函数：主要用于线性不可分的情况，参数多（大多数情况下优先选择）</li>
+<li>多项式核函数：参数比RBF还多</li>
+</ul>
+<blockquote>
+<p>吴恩达课程中提到选择核函数的方法：</p>
+<ol>
+<li>特征维数很高时，优先用线性核函数</li>
+<li>样本数量很多，可以通过添加更多特征使其线性可分，再使用线性核函数，比直接使用高斯核函数减少很多计算量</li>
+<li>特征很少，样本数量也是一般，则优先选择高斯核函数</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>关于RF（随机森林），ET（极端随机数），GBDT（梯度提升决策树），XGBoost，lightGBM</p>
+<ul>
+<li>
+<p>RF：属于bagging的优化版本，改进之处：1. 使用决策树（最大信息增益选取节点）作为基本分类器；2. 除了在样本上加入扰动，还在属性上（feature）加入扰动，随机选取特征。</p>
+<p>​	优点：训练可以高度并行化，训练速度快；能处理高维数据；随机选择多个特征，在训练完成时给出特征的重要性；实现较AdaBoost和GBDT简单</p>
+<p>​	缺点：易受噪声影响产生过拟合现象</p>
+</li>
+<li>
+<p>ET：与RF类似，不同之处在于：1. ET每个决策树的训练集都是使用整个原始数据集；2. ET决策树的节点特征是随机选择（这个随机其实也不随机，只是标准与原始决策树不同），与原始决策树不一样</p>
+<blockquote>
+<p>与RF对比：随机划分点，使用整个数据集作为每个决策树的训练集，方差较RF进一步减少，但偏差较RF增大一点，即ET的泛化能力比RF的好一点</p>
+</blockquote>
+</li>
+<li>
+<p>GBDT：Boosting的一种，但与传统Boosting不同，每一次计算都是为了减少上一次残差，在残差减少的梯度方向上建立模型，而原始传统Boost则是关注正确错误样本加权。GBDT算法中利用损失函数的负梯度方向在当前模型的值作为残差的近似值，进而拟合以可CART回归树。</p>
+<p>​	优点：较RF性能有所提升，能灵活处理各种类型数据；在较少的调参时间下，预测的准确度有所提高</p>
+<p>​	缺点：跟Boosting一样，基学习器属于串行关系，难以训练数据</p>
+</li>
+<li>
+<p>XGBoost：最大优点是能够自动运用CPU的多线程进行并行计算，同时算法精度上有所提高，同时还有其他很多不同，详见<a href="http://wepon.me/2016/05/07/XGBoost%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA/">这篇文章</a> 。（最主要还不是很懂，不想乱写）</p>
+</li>
+<li>
+<p>ID3和C4.5用于分类，CART分类树用于分类和回归</p>
+</li>
+<li>
+<p>ID3和C4.5的决策树可以是多叉，而CART则只能是二叉树（即只有两个取值）</p>
+</li>
+<li>
+<p>CART通过计算基尼指数选择特征，ID3计算信息增益，C4.5计算信息增益比；CART会根据切分点，对所有特征进行切分，而ID3和C4.5会对某一特征列进行计算，而不再划分特征</p>
+</li>
+</ul>
+<ol start="13">
+<li>
+<p>CNN中Attention机制</p>
+<p><a href="https://blog.csdn.net/Xwei1226/article/details/82109428">https://blog.csdn.net/Xwei1226/article/details/82109428</a></p>
+</li>
+</ol>
+</li>
+</ol>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://rebornl.github.io/2019-08-31-Git使用记录/">
+                <h3 class="post-title">
+                  Git使用记录
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://rebornl.github.io/images/avatar.png?v=1722777912835" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-xiang-guan-ming-ling-ji-lu/">鸿蒙相关命令记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-taskpool-shi-yong/">鸿蒙TaskPool使用</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-segmentbutton-zu-jian-shi-yong-he-tabcontent-qie-huan/">鸿蒙 SegmentButton 组件使用和 TabContent 切换</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/po-su-bei-xie-si-shi-zhan/">朴素贝叶斯实战</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/lian-shi-fa-ze-he-ma-er-ke-fu-jia-she/">链式法则和马尔科夫假设</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/bei-xie-si-ding-li-xue-xi-ji-lu/">贝叶斯定理学习记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/2019-11-14-设计模式05_理论二/">05 | 理论二：封装、抽象、继承、多态分别可以解决哪些编程问题？</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/码农翻身笔记/">码农翻身笔记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/HTTPS记录/">Https记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/秋招笔试记录/">2019-09-23-马蜂窝笔试记录</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://rebornl.github.io/tag/ltPjvIyrlp/" class="badge success">
+          机器学习
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/XKh_5pXnR/" class="badge secondary">
+          设计模式
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Lv4qMmd-BK/" class="badge secondary">
+          MySQL
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="badge warning">
+          Java
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/MgqZEKKCER/" class="badge warning">
+          Git
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/lF-v4JaacW/" class="badge secondary">
+          框架实现
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/zFmextRP_z/" class="badge secondary">
+          Leetcode
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/YgtCKFyxhi/" class="badge secondary">
+          特征提取
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="badge ">
+          Alg
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nDveU_fSgO/" class="badge secondary">
+          Python
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-4xd0JPr3j/" class="badge secondary">
+          Linux
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/cUJZG68Rm/" class="badge warning">
+          Gridea
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/oDwHjHgcMx/" class="badge ">
+          面试题
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/6w3Hx9oznc/" class="badge warning">
+          消息中间件
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/PXuFayfvUr/" class="badge ">
+          JVM
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/9eFi-hL0Jd/" class="badge warning">
+          CS
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-BZfkIl7is/" class="badge ">
+          Spring
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="badge ">
+          Java Web
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Bi8g4TR4N7K/" class="badge warning">
+          Pattern
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/ZFiuYBvkwkT/" class="badge secondary">
+          NetWork
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/UbfZ10MEHg3/" class="badge warning">
+          路由器
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nqQiqX_RhaL/" class="badge warning">
+          终端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/OOhdBeKLn68/" class="badge ">
+          zsh
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/sor7RTKlreI/" class="badge secondary">
+          Notes
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Vgg2jQ_lFif/" class="badge warning">
+          Mac
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/rxRnYl7pHvy/" class="badge success">
+          效率
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/j3MxqQZhfc5/" class="badge warning">
+          开发技巧
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/bR9a4cYQOj0/" class="badge warning">
+          Github
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/yy-RzAnpNUK/" class="badge success">
+          Blog
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/3WjwxqXgdUf/" class="badge warning">
+          JavaScript
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/W_455jmEU1A/" class="badge secondary">
+          webpack
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/xkW7irgpbOH/" class="badge ">
+          前端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/x69qwIjX4/" class="badge ">
+          微信小程序
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

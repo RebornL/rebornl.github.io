@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Servlet学习记录 | RebornL的博客</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://rebornl.github.io/favicon.ico?v=1722777912835">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://rebornl.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://rebornl.github.io">RebornL的博客</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Servlet学习记录</h1>
+            <p class="article-meta">
+              2018-10-31
+              
+                <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="badge success">
+                  Java Web
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <h3 id="servlet">Servlet</h3>
+<p>servlet是用Java编写的服务器端程序，主要功能在于交互式地浏览和修改数据，生成动态Web内容。因此servlet最大作用便是处理浏览器带来的HTTP请求，并返回一个响应给浏览器，从而实现浏览器和服务器的交互。</p>
+<h4 id="servlet生命周期">servlet生命周期</h4>
+<ol>
+<li>Tomcat加载servlet实例</li>
+<li><strong>初始化</strong>，调用init()方法，该方法只会在servlet第一次被加载的时候使用</li>
+<li><strong>处理服务，响应请求</strong>，调用servlet的service()方法，根据请求方法的不同调用不同的方法。</li>
+<li><strong>销毁</strong>，servlet长期不活动或者tomcat删除servlet，tomcat关闭时，会调用servlet的destory方法，释放资源。</li>
+<li>销毁完，等待垃圾回收。</li>
+</ol>
+<h4 id="servlet细节">servlet细节</h4>
+<ul>
+<li>
+<p>servlet的url匹配支持通配符，而且具有优先级关系。</p>
+</li>
+<li>
+<p>servlet都是单例。</p>
+</li>
+<li>
+<p>ServletConfig对象可以获取web.xml中对应servlet中配置的初始化参数。</p>
+<ul>
+<li>
+<pre><code>&lt;servlet&gt;
+    &lt;servlet-name&gt;Demo1&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;zhongfucheng.web.Demo1&lt;/servlet-class&gt;
+    &lt;init-param&gt;
+    &lt;param-name&gt;name&lt;/param-name&gt;
+    &lt;param-value&gt;zhongfucheng&lt;/param-value&gt;
+    &lt;/init-param&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;Demo1&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/Demo1&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</code></pre>
+</li>
+<li>
+<pre><code>//在doGet和doPost方法中
+ServletConfig servletConfig = this.getServletConfig();
+//获取在xml中配置参数
+String name = servletConfig.getInitParameter(&quot;name&quot;);
+</code></pre>
+</li>
+<li>
+<p><strong>每个servlet都有各自对应的ServletConfig对象</strong>。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>ServletContext对象，则是代表当前的web容器对象，即所有servlet共享同一个ServletContext对象，这与一个servlet对应一个ServletConfig对象不同。因此可以用ServletContext对象读取整个web应用的参数信息以及站点的资源文件。此外，ServletContext也可以作为一个域对象，存储着不同servlet之间沟通的信息。</p>
+<pre><code># web.xml配置站点的参数信息
+&lt;context-param&gt;
+	&lt;param-name&gt;name&lt;/param-name&gt;
+	&lt;param-value&gt;zhongfucheng&lt;/param-value&gt;
+&lt;/context-param&gt;
+
+//Demo1.java
+ServletContext servletContext = this.getServletContext();
+String name = servletConfig.getAttribute(&quot;name&quot;);
+</code></pre>
+<pre><code class="language-java">//获取站点资源文件
+//获取到ServletContext对象
+ServletContext servletContext = this.getServletContext();
+
+//调用ServletContext方法获取到读取文件的流
+InputStream inputStream = servletContext.getResourceAsStream(&quot;/WEB-INF/classes/zhongfucheng/web/1.png&quot;);
+</code></pre>
+<p>不同servlet之间传递消息</p>
+<pre><code class="language-java">//Demo2.java
+ServletContext servletContext = this.getServletContext();
+servletContext.setAttribute(&quot;MyName&quot;, &quot;Demo2&quot;);
+</code></pre>
+<pre><code class="language-java">//Demo3.java
+ServletContext servletContext = this.getServletContext();
+String value = servletContext.getAttribute(&quot;MyName&quot;);//value: Demo2
+</code></pre>
+<p>​</p>
+</li>
+<li>
+<p>通过设置response.setCharacterEncoding(&quot;UTF-8&quot;); response.setContentType(&quot;text/html;charset=utf-8&quot;);使得页面中文不为乱码</p>
+</li>
+</ul>
+<h4 id="servlet应用">servlet应用</h4>
+<p>文件下载，生成随机数图片，数据压缩上传等等，详情见这个<a href="https://mp.weixin.qq.com/s?__biz=MzI4Njg5MDA5NA==&amp;mid=2247484081&amp;idx=2&amp;sn=06d118f2976a1f2cf98e5fca47af252a&amp;chksm=ebd743b0dca0caa6895f25f0eaaac66bec5f5f8141e1a869bfc8562f8c4e933ef8c1fe807dfd#rd">链接</a></p>
+<h4 id="httpservletrequest">HttpServletRequest</h4>
+<h4 id="httpservletresponse">HttpServletResponse</h4>
+<h3 id="会话">会话</h3>
+<h4 id="cookie">Cookie</h4>
+<p>由于Http协议是无状态协议，不会保存数据，因此每次建立链接，服务器都会重开新的线程进行处理。为了让服务器能够识别客户端，W3C提出了Cookie用来保存客户端信息。此时，Cookie就相当于通行证，服务器端能够读取Cookie信息来识别客户端。</p>
+<p>Cookie的流程：浏览器访问服务器，<strong>如果服务器需要记录该用户的状态，就使用response向浏览器发送一个Cookie，浏览器会把Cookie保存起来。当浏览器再次访问服务器的时候，浏览器会把请求的网址连同Cookie一同交给服务器</strong>。</p>
+<p>request可以通过getCookie获取Cookie对象，response可以通过addCookie在其响应头添加set-cookie头字段。</p>
+<p>Cookie特点：</p>
+<ul>
+<li>不可跨域名性</li>
+<li>保存中文，需要使用URLEncoder.encode进行编码，读取时需要使用URLEncoder.decode进行解码。</li>
+<li>setMaxAge设置过期时间，setDomain设置可获取Cookie的域名，设置Cookie的secure属性为true则只允许在HTTPS和SSL等安全协议中传输Cookie</li>
+</ul>
+<h4 id="session">Session</h4>
+<p>session是另外一种记录浏览状态的机制，与Cookie的区别，Session存储在服务器端，Cookie存储在客户端；Session可以存储对象，Cookie只能存储字段。</p>
+<p>Session比Cookie更为好用，在服务器端可以作为一种域对象，让servlet相互通信。</p>
+<ul>
+<li>setMaxInactiveInterval()方法设置有效期</li>
+<li>addAttribute()，给session添加属性</li>
+<li>通过JSESSIONID来识别不同客户端，JSESSIONID存储在Cookies中，当Cookie被禁止时，通过<strong>URL重写</strong>来解决JSESSIONID存储
+<ul>
+<li><strong>encodeURL(String url)</strong></li>
+<li><strong>encodeRedirectURL(String url)</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="转发和重定向">转发和重定向</h4>
+<h3 id="过滤器">过滤器</h3>
+<p>在web请求到达servlet之前，会首先经过过滤器（Filter）进行处理；servlet处理完请求也需要经过过滤器再返回给服务器。</p>
+<p>过滤器的作用：过滤敏感字符串，避免中文乱码，权限验证等等，限制用户访问某些资源。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://rebornl.github.io/2018-10-31-Spring中的线程安全/">
+                <h3 class="post-title">
+                  Spring中线程安全
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://rebornl.github.io/images/avatar.png?v=1722777912835" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-xiang-guan-ming-ling-ji-lu/">鸿蒙相关命令记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-taskpool-shi-yong/">鸿蒙TaskPool使用</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/hong-meng-segmentbutton-zu-jian-shi-yong-he-tabcontent-qie-huan/">鸿蒙 SegmentButton 组件使用和 TabContent 切换</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/po-su-bei-xie-si-shi-zhan/">朴素贝叶斯实战</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/lian-shi-fa-ze-he-ma-er-ke-fu-jia-she/">链式法则和马尔科夫假设</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/bei-xie-si-ding-li-xue-xi-ji-lu/">贝叶斯定理学习记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/2019-11-14-设计模式05_理论二/">05 | 理论二：封装、抽象、继承、多态分别可以解决哪些编程问题？</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/码农翻身笔记/">码农翻身笔记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/HTTPS记录/">Https记录</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://rebornl.github.io/秋招笔试记录/">2019-09-23-马蜂窝笔试记录</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://rebornl.github.io/tag/ltPjvIyrlp/" class="badge ">
+          机器学习
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/XKh_5pXnR/" class="badge ">
+          设计模式
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Lv4qMmd-BK/" class="badge success">
+          MySQL
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/_9fmtW8V-B/" class="badge secondary">
+          Java
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/MgqZEKKCER/" class="badge secondary">
+          Git
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/lF-v4JaacW/" class="badge ">
+          框架实现
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/zFmextRP_z/" class="badge warning">
+          Leetcode
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/YgtCKFyxhi/" class="badge warning">
+          特征提取
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Ymw0q6bI_K/" class="badge ">
+          Alg
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nDveU_fSgO/" class="badge success">
+          Python
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-4xd0JPr3j/" class="badge warning">
+          Linux
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/cUJZG68Rm/" class="badge warning">
+          Gridea
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/oDwHjHgcMx/" class="badge secondary">
+          面试题
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/6w3Hx9oznc/" class="badge success">
+          消息中间件
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/PXuFayfvUr/" class="badge success">
+          JVM
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/9eFi-hL0Jd/" class="badge secondary">
+          CS
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/-BZfkIl7is/" class="badge secondary">
+          Spring
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Om55vfhZwe/" class="badge secondary">
+          Java Web
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Bi8g4TR4N7K/" class="badge secondary">
+          Pattern
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/ZFiuYBvkwkT/" class="badge ">
+          NetWork
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/UbfZ10MEHg3/" class="badge ">
+          路由器
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/nqQiqX_RhaL/" class="badge secondary">
+          终端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/OOhdBeKLn68/" class="badge secondary">
+          zsh
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/sor7RTKlreI/" class="badge warning">
+          Notes
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/Vgg2jQ_lFif/" class="badge secondary">
+          Mac
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/rxRnYl7pHvy/" class="badge warning">
+          效率
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/j3MxqQZhfc5/" class="badge warning">
+          开发技巧
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/bR9a4cYQOj0/" class="badge secondary">
+          Github
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/yy-RzAnpNUK/" class="badge ">
+          Blog
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/3WjwxqXgdUf/" class="badge ">
+          JavaScript
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/W_455jmEU1A/" class="badge ">
+          webpack
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/xkW7irgpbOH/" class="badge secondary">
+          前端
+        </a>
+      
+        <a href="https://rebornl.github.io/tag/x69qwIjX4/" class="badge secondary">
+          微信小程序
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rebornl.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
