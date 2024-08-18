@@ -1,0 +1,153 @@
+@use '../common' as *;
+@use '../dialog/search';
+@use '../component/list';
+@use 'status';
+
+$wnd-base: get($bg, 'base', 1);
+$wnd-bg: get($bg, 'page', 1);
+$wnd-radius: get($radius, 'medium');
+
+//边窗动画
+$time: get($transition-duration, 'base');
+$func: get($transition-function, 'ease-in-out');
+$scale: scale(0.01);
+
+:root {
+    // 动画效果
+    --b3-width-transition: width #{$time} #{get($transition-function, 'ease-in-out')};
+}
+
+@mixin wnd {
+    min-height: 10% !important;
+    margin: $interval;
+    border-radius: $wnd-radius;
+    background-color: $wnd-bg;
+    border: $fn-border;
+}
+
+#layouts > .fn__flex {
+    overflow: hidden;
+}
+
+//两侧边窗
+
+.layout__dockl,
+.layout__dockr {
+    top: 40px !important;
+    bottom: 0px !important;
+    // 显示的边窗
+    > .fn__flex {
+        overflow: hidden !important;
+        min-height: 0px !important;
+        height: auto;
+        // transition: all $time $func 0s !important;
+
+        > div[data-type='wnd'] {
+            @include wnd;
+        }
+
+        &:has(.fullscreen) {
+            z-index: 2;
+            transform: unset;
+            animation: unset;
+        }
+    }
+
+    &.layout--float {
+        box-shadow: none;
+        border: none;
+        top: 80px !important;
+        bottom: 40px !important;
+        padding-top: 0 !important;
+        overflow: visible !important;
+        transition: {
+            property: top, bottom, left, right, opacity, transform, box-shadow;
+            duration: $time;
+            timing-function: $func;
+        }
+        > .fn__flex {
+            overflow: visible !important;
+            &.fn__none {
+                opacity: 0 !important;
+            }
+        }
+        [data-type='wnd'] {
+            box-shadow: get($shadow, 2);
+        }
+    }
+}
+
+@mixin anime($direction, $switch) {
+    @keyframes #{$direction}-#{$switch} {
+        from {
+            @if $switch == 'open' {
+                max-height: 0;
+                clip-path: if($direction == 'left', inset(0 100% 0 0), inset(0 0 0 100%));
+            } @else {
+                clip-path: unset;
+            }
+        }
+        to {
+            @if $switch == 'open' {
+                clip-path: unset;
+            } @else {
+                max-height: 0;
+                clip-path: if($direction == 'left', inset(0 100% 0 0), inset(0 0 0 100%));
+            }
+        }
+    }
+}
+
+@include anime('left', 'open');
+@include anime('left', 'close');
+@include anime('right', 'open');
+@include anime('right', 'close');
+
+@mixin float($direction) {
+    .layout__dock#{if($direction == 'left','l','r')} {
+        > .fn__flex {
+            animation: #{$direction}-open $time forwards $func;
+            &.fn__none {
+                display: flex !important;
+                animation: #{$direction}-close $time forwards $func;
+            }
+        }
+    }
+}
+
+@include float('left');
+@include float('right');
+
+.layout-tab-container {
+    overflow-y: hidden;
+    background-color: $wnd-bg;
+
+    // 边窗容器
+    > .fn__flex-1 {
+        overflow: hidden;
+        min-width: 0;
+
+        //.navigation && ...
+        > .fn__flex-1 {
+            min-height: 0 !important;
+            // 列表
+            > .b3-list {
+                min-width: 200px;
+                margin: 0px 8px 4px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+// 居中窗口
+.layout__center {
+    background-color: transparent; //$wnd-base;
+
+    [data-type='wnd'] {
+        position: relative;
+        @include wnd;
+    }
+}

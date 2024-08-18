@@ -1,0 +1,26 @@
+{
+	"ID": "20221209234246-w97849a",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20221209234246-w97849a",
+		"title": "Untitled",
+		"updated": "20221209234249"
+	},
+	"Children": [
+		{
+			"ID": "20221209234246-aqoknc8",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221209234246-aqoknc8",
+				"updated": "20221209234249"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "RocksDB 是 Facebook 做实验出来的产品，后经不断完善，最终被大量用户使用。它提供了超越 LevelDB 写性能的服务，能够在 Flash、磁盘、HDFS 媒介上存储，并且能够充分利用多核以及 SSD 提供更高性能的高负载数据存储服务。"
+				}
+			]
+		}
+	]
+}

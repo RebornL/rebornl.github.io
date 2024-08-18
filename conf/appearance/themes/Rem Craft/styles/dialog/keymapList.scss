@@ -1,0 +1,45 @@
+@use "../common" as *;
+@use "../component/list";
+
+#keymapList {
+  .b3-list {
+    &-item {
+      .b3-text-field {
+        @include component("small");
+      }
+
+      &:hover {
+        .b3-text-field {
+          background-color: get($bg, "page", 1);
+        }
+      }
+
+      .fn__space {
+        width: $interval;
+      }
+
+      &__action {
+        @include icon-btn("component", 24px, get($icon, "small"));
+        margin-left: $interval;
+      }
+    }
+
+    &--border {
+      > .toggle + div {
+        .b3-list-item {
+          margin: 0 !important;
+        }
+        > .toggle + div::before {
+          left: -21px - 34px;
+        }
+      }
+
+      .b3-list-item,
+      .toggle + div {
+        &::before {
+          border-color: get($border, 3);
+        }
+      }
+    }
+  }
+}

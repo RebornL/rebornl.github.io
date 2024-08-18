@@ -1,0 +1,146 @@
+{
+	"ID": "20220505002929-9otqzlz",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20220505002929-9otqzlz",
+		"scroll": "{\u0026quot;startId\u0026quot;:\u0026quot;20220505002929-cjxc07k\u0026quot;,\u0026quot;endId\u0026quot;:\u0026quot;20220508160345-ajolaax\u0026quot;,\u0026quot;scrollTop\u0026quot;:0,\u0026quot;focusId\u0026quot;:\u0026quot;20220505002929-cjxc07k\u0026quot;,\u0026quot;focusStart\u0026quot;:0,\u0026quot;focusEnd\u0026quot;:0}",
+		"title": "黑苹果",
+		"updated": "20220508160345"
+	},
+	"Children": [
+		{
+			"ID": "20220505002929-cjxc07k",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220505002929-cjxc07k",
+				"updated": "20220508160250"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "更新完EFI之后，需要执行一下【可能不需要了】"
+				}
+			]
+		},
+		{
+			"ID": "20220505002944-jxw7exr",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220505002944-jxw7exr",
+				"updated": "20220505002945"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "reset NVRAM"
+				}
+			]
+		},
+		{
+			"ID": "20220505002953-w33v1jp",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220505002953-w33v1jp",
+				"updated": "20220505002953"
+			}
+		},
+		{
+			"ID": "20220505002954-siov3k4",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220505002954-siov3k4",
+				"updated": "20220505003013"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "更新EFI的操作："
+				},
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "a",
+					"TextMarkAHref": "https://github-wiki-see.page/m/daliansky/morefine-S500-Hackintosh/wiki/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0EFI",
+					"TextMarkTextContent": "如何更新EFI - daliansky/morefine-S500-Hackintosh Wiki (github-wiki-see.page)"
+				}
+			]
+		},
+		{
+			"ID": "20220505003018-gi7l1l5",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220505003018-gi7l1l5",
+				"updated": "20220505003033"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "EFI："
+				},
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "a",
+					"TextMarkAHref": "https://github.com/daliansky/morefine-S500-Hackintosh",
+					"TextMarkTextContent": "daliansky/morefine-S500-Hackintosh: morefine S500 Hackintosh (github.com)"
+				}
+			]
+		},
+		{
+			"ID": "20220505003034-mclljtu",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220505003034-mclljtu",
+				"updated": "20220505003034"
+			}
+		},
+		{
+			"ID": "20220508160254-3we837g",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220508160254-3we837g",
+				"updated": "20220508160324"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "安装完Morefine S500之后的优化操作："
+				}
+			]
+		},
+		{
+			"ID": "20220508160325-lvkmtzd",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20220508160325-lvkmtzd",
+				"updated": "20220508160344"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "c2hlbGw="
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "sudo spctl --master-disable\t\t# 启用macOS安装应用允许任何来源\nsudo rm -rf /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist*\nsudo pmset -b hibernatemode 0\t\t# 内存供电，内存镜像不写入硬盘\nsudo pmset -b acwake 0\t\t\t# 关闭被同一 iCloud 下的设备唤醒\necho \"morefine S500一键优化脚本执行完毕，请重启机器！\""
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20220508160345-ajolaax",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220508160345-ajolaax",
+				"updated": "20220508160345"
+			}
+		}
+	]
+}

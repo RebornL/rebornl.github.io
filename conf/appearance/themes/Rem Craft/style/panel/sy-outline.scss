@@ -1,0 +1,40 @@
+// 大纲
+
+@use "sass:math";
+@use "../common" as *;
+@use "../component/list";
+
+.sy__outline {
+  // 标题
+  > .b3-list-item {
+    @include item("component");
+    margin: 0 8px 4px !important;
+    padding-left: 8px;
+    .b3-list-item {
+      &__graphic {
+        @include svg(list.$text-h, get($icon, "base"));
+        &:not(svg) {
+          @include emoji-icon(list.$text-h, 12px, get($icon, "base"));
+        }
+      }
+      &__text {
+        color: get($text, "primary");
+      }
+    }
+
+    &:not(:empty) {
+      @include focus-before(math.div(list.$item-h - 16px, 2), 0px);
+    }
+
+    &:empty {
+      @include reset-style();
+    }
+    + .fn__flex-1 {
+      margin-right: 6px;
+      > .b3-list {
+        margin-right: 2px;
+      }
+      // overflow: overlay;
+    }
+  }
+}

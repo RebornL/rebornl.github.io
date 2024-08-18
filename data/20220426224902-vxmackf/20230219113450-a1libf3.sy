@@ -1,0 +1,151 @@
+{
+	"ID": "20230219113450-a1libf3",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20230219113450-a1libf3",
+		"title": "数据分析实战代码仓库",
+		"updated": "20230219113542"
+	},
+	"Children": [
+		{
+			"ID": "20230219113501-cahrfq6",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230219113501-cahrfq6"
+			}
+		},
+		{
+			"ID": "20230219113450-2u7eolk",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230219113450-2u7eolk",
+				"updated": "20230219113503"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "获取淘宝APP的搜索词"
+				}
+			]
+		},
+		{
+			"ID": "20230219113509-yam4dcu",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230219113509-yam4dcu",
+				"updated": "20230219113510"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "乳腺癌检测：采用 SVM 方法，对美国威斯康星州的乳腺癌诊断数据集进行分类，最终实现一个针对乳腺癌检测的分类器：https://github.com/cystanford/breast_cancer_data "
+				}
+			]
+		},
+		{
+			"ID": "20230219113516-eol9rxh",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230219113516-eol9rxh"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "内容抓取：通过 Python 爬虫对豆瓣电影中的电影数据和海报等信息进行抓取：https://github.com/cystanford/pachong "
+				}
+			]
+		},
+		{
+			"ID": "20230219113521-zh4fltk",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230219113521-zh4fltk"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "邮件数据分析：通过 PageRank 算法分析邮件中的人物关系图谱，并针对邮件数量较大的情况筛选出重要的人物，进行绘制：https://github.com/cystanford/PageRank "
+				}
+			]
+		},
+		{
+			"ID": "20230219113524-a7vs92j",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230219113524-a7vs92j"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "微博文档分类：采用朴素贝叶斯的方法，对微博的内容进行分类，最终实现一个简单的文档分类器：https://github.com/cystanford/text_classification "
+				}
+			]
+		},
+		{
+			"ID": "20230219113530-e3r6pa1",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230219113530-e3r6pa1"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "电影数据集关联规则挖掘：采用 Apriori 算法，分析电影数据集中的导演和演员信息，从而发现导演和演员之间的频繁项集及关联规则：https://github.com/cystanford/Apriori "
+				}
+			]
+		},
+		{
+			"ID": "20230219113534-mfg79iv",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230219113534-mfg79iv"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "歌词词云可视化：动态抓取指定明星的歌曲列表，保存歌词文件，去除歌词中的常用词，并对歌词进行词云展示，分析歌曲的作词风格：https://github.com/cystanford/word_cloud "
+				}
+			]
+		},
+		{
+			"ID": "20230219113536-9pafuvg",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230219113536-9pafuvg"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "信用卡违约率分析：针对台湾某银行信用卡的数据，构建一个分析信用卡违约率的分类器。采用 Random Forest 算法，信用卡违约率识别率在 80% 左右：https://github.com/cystanford/credit_default "
+				}
+			]
+		},
+		{
+			"ID": "20230219113539-gchq4ru",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230219113539-gchq4ru"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "信用卡欺诈分析：针对欧洲某银行信用卡交易数据，构建一个信用卡交易欺诈识别器。采用逻辑回归算法，通过数据可视化方式对混淆矩阵进行展示，统计模型的精确率，召回率和 F1 值，F1 值为 0.712，并绘制了精确率和召回率的曲线关系：https://github.com/cystanford/credit_fraud "
+				}
+			]
+		},
+		{
+			"ID": "20230219113542-ifcfqpc",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230219113542-ifcfqpc"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "比特币走势分析：分析 2012 年 1 月 1 日到 2018 年 10 月 31 日的比特币价格数据，并采用时间序列方法，构建自回归滑动平均模型（ARMA 模型），预测未来 8 个月比特币的价格走势。预测结果表明比特币将在 8 个月内降低到 4000 美金左右，与实际比特币价格趋势吻合（实际最低降到 4000 美金以下）：https://github.com/cystanford/bitcoin"
+				}
+			]
+		}
+	]
+}

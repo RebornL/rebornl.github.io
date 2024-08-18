@@ -1,0 +1,222 @@
+{
+	"ID": "20221212220753-t28y2it",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20221212220753-t28y2it",
+		"scroll": "{\u0026quot;startId\u0026quot;:\u0026quot;20221212220800-zrq2f6t\u0026quot;,\u0026quot;endId\u0026quot;:\u0026quot;20221212220753-y3mvxln\u0026quot;,\u0026quot;scrollTop\u0026quot;:0,\u0026quot;focusId\u0026quot;:\u0026quot;20221212220814-5mzfmhg\u0026quot;,\u0026quot;focusStart\u0026quot;:0,\u0026quot;focusEnd\u0026quot;:0}",
+		"title": "2022工作总结",
+		"updated": "20221213002040"
+	},
+	"Children": [
+		{
+			"ID": "20221212220800-zrq2f6t",
+			"Type": "NodeList",
+			"ListData": {
+				"Typ": 1
+			},
+			"Properties": {
+				"id": "20221212220800-zrq2f6t",
+				"updated": "20221213002040"
+			},
+			"Children": [
+				{
+					"ID": "20221212220814-48z12n9",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "MS4=",
+						"Num": 1
+					},
+					"Properties": {
+						"id": "20221212220814-48z12n9",
+						"updated": "20221212220814"
+					},
+					"Children": [
+						{
+							"ID": "20221212220814-5mzfmhg",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221212220814-5mzfmhg",
+								"updated": "20221212235000"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "内容感知方面之工作，解决地铁乘车码采集失效问题，并提出新的地铁数据补充方案，NFC高质量地铁数据采集，有效的支撑地铁项目结项和全场景奖落地；POI数据采集，提升采集数据量，支撑POI技术项目，解决相关数据偏移问题，同时模板化采集同样有效支撑外卖数据采集，降低开发工作量，支持在线下发补充新采集项；自研方式获取商品ID获取，支撑小艺购物买手，内部开关保证小艺购物买手获取的合法性；一键获取图片开发设计，支持HiTouch通过双指按压方式快速获取页面图片等。"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221212224403-rxwabeq",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "Mi4=",
+						"Num": 2
+					},
+					"Properties": {
+						"id": "20221212224403-rxwabeq"
+					},
+					"Children": [
+						{
+							"ID": "20221212224403-lupggc0",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221212224403-lupggc0",
+								"updated": "20221212225354"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "内容感知方面之工程，搭建3.0内容感知通道和插件，构建出内容感知的基础元能力、公用工具类和页面解析器，便于后续内容感知开发；优化无障碍的使用，最小化对三方应用的影响，保证功能稳定运行；整理归档内容感知资产，涵盖CA和CS历史所有采集项。"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221212223856-xuheupb",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "My4=",
+						"Num": 3
+					},
+					"Properties": {
+						"id": "20221212223856-xuheupb",
+						"updated": "20221213002040"
+					},
+					"Children": [
+						{
+							"ID": "20221212223856-rnxpts3",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221212223856-rnxpts3",
+								"updated": "20221213002040"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "安全方面，作为传感联邦安全官，解决CA、CS、新UP和AwarenessKit的安全隐私隐患，保证了CA/CS采集数据合法性，修复CA历史遗留相关隐私问题，遵守工信部要求，多次刷新CA、CS、新UP和AwarenessKit的隐私声明，输出CA和Awareness Kit对外SDK隐私声明，整理规范安全交付件；集团审计和画像上云安全看护，整理各模块交付件，检查每个模块相关隐私声明，以及解决内网人员提出安全问题；总结补充安全白皮书，助力下一位安全官顺利交接，输出安全相关WiKi，让开发人员也能知道平时开发工作哪些涉及安全，例如打印日志哪些内容需要匿名等等。"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221212232721-nbp6kas",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "NC4=",
+						"Num": 4
+					},
+					"Properties": {
+						"id": "20221212232721-nbp6kas"
+					},
+					"Children": [
+						{
+							"ID": "20221212232721-2ijns9l",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221212232721-2ijns9l",
+								"updated": "20221213001414"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "其他，AwarenessKit常驻内存申请，进行内存验证和申请，从HMS Core性能那边申请到4.5M常驻内容，解决AwarenessKit因今年CP接入不断增多开始出现驻留比和低内存手机功耗DFx问题；作为AK测试经理，稳定保障AK转测版本质量，无现网问题；输出XX篇WiKi和XX篇AAR，输出相关沟通地图和FAQ；和SE、质量官共同输出CA安全编码规范；近一年输出代码XX，检视意见数XX"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20221213001414-1j32x7v",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221213001414-1j32x7v"
+			}
+		},
+		{
+			"ID": "20221213001415-2hx9gbo",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221213001415-2hx9gbo",
+				"updated": "20221213001430"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "我对他人成功的贡献："
+				}
+			]
+		},
+		{
+			"ID": "20221213001431-pb0z5fr",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221213001431-pb0z5fr",
+				"updated": "20221213001655"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "支撑SE完成内容感知相关设计，帮助全局收藏、4D超链接等特性调研，提升AK测试编码能力引入自动化，提升测试效率"
+				}
+			]
+		},
+		{
+			"ID": "20221213001701-vfgt34f",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221213001701-vfgt34f"
+			}
+		},
+		{
+			"ID": "20221213001702-us75gzg",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221213001702-us75gzg",
+				"updated": "20221213001709"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "别人对我的帮助："
+				}
+			]
+		},
+		{
+			"ID": "20221213001709-uoi0oxb",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221213001709-uoi0oxb",
+				"updated": "20221213001942"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "感谢SE对方案设计的技术指导；感谢CDE平台的代码搜索，便于查看framework层代码"
+				}
+			]
+		},
+		{
+			"ID": "20221212220753-y3mvxln",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221212220753-y3mvxln",
+				"updated": "20221212220753"
+			}
+		}
+	]
+}

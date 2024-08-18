@@ -1,0 +1,41 @@
+
+@use "sass:math";
+@use "../common" as *;
+@use "wysiwyg";
+
+//文档标题
+.protyle-title {
+
+  &__icon {
+    top: math.div(42px + 3px * 2 - 32px, 2);
+    left: -32px;
+
+    @include svg-div(32px, 14px);
+    border-radius: get($radius, "small");
+    color: get($text, "placeholder");
+
+    &:hover {
+      color: get($text, "primary");
+    }
+
+    &::after {
+      right: 100%;
+      left: auto;
+    }
+  }
+
+  &:hover .protyle-title__icon {
+    opacity: 1;
+  }
+
+  &__input {
+    font-weight: 700;
+    line-height: 42px;
+    font-size: 32px;
+    padding: wysiwyg.$item-pad;
+
+    &:empty:after {
+      color: get($text, "disabled");
+    }
+  }
+}

@@ -1,0 +1,98 @@
+@use "sass:math";
+@use "../common" as *;
+@use "../dialog/bazaar";
+@use "../layout/status";
+@use "../protyle/gutters";
+
+$per: 0.85;
+
+.sy__backlink {
+  .b3-list {
+    margin: 0 !important;
+    padding: 0 $fn-space;
+  }
+
+  [data-treetype="backlink"].b3-list-item {
+    &:not(:first-child) {
+      margin-top: $interval !important;
+    }
+  }
+  .protyle {
+    border: $fn-border;
+    border-radius: get($radius, "base");
+
+    &-breadcrumb {
+      &__bar {
+        margin-bottom: 18px;
+        &:not(:first-child) {
+          margin-top: 18px;
+          border-top: $fn-border;
+        }
+      }
+    }
+
+    &:hover .protyle-breadcrumb__item[style*="max-width"][style*="100%"] {
+      @include item("component");
+    }
+    &-wysiwyg {
+      padding: 5px !important;
+      > [data-node-id] {
+        margin-left: 24px;
+        &:last-child {
+          margin-bottom: 20px;
+        }
+        [contenteditable] {
+          font-size: math.percentage($per);
+        }
+      }
+    }
+
+    &-gutters {
+      button {
+        @include svg-div(
+          gutters.$w * $per,
+          gutters.$svg-w * $per,
+          gutters.$h * $per,
+          $important: true
+        );
+        margin-right: gutters.$mar * $per;
+        &[data-type="fold"] {
+          @include svg-div(
+            gutters.$w * $per,
+            8px * $per,
+            gutters.$w * $per,
+            $important: true
+          );
+          margin-right: gutters.$mar * $per;
+        }
+      }
+    }
+
+    &-attr {
+      font-size: 12px * $per !important;
+      &--bookmark,
+      &--name,
+      &--alias,
+      &--memo {
+        @include v-center(20px * $per, true);
+        > svg {
+          @include svg(10px * $per, $important: true);
+          margin: math.div(20px - 10px, 2) * $per math.div(20px - 10px, 2) *
+            $per 0 !important;
+        }
+      }
+      &--name,
+      &--alias {
+        padding: 0px 8px * $per 0 3px * $per;
+      }
+
+      &--bookmark {
+        padding: 0px 8px * $per;
+      }
+
+      &--memo {
+        padding: 0px 4px * $per;
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@use "../common" as *;
+
+$type-radius: get($radius, "base");
+//表情面板
+.emojis {
+  padding: 2px;
+  background-color: get($bg, "pop", 1);
+
+  // 顶部工具栏
+  > .fn__flex:first-child {
+    padding-bottom: $fn-space;
+    .fn__space {
+      &:first-child,
+      &:last-child {
+        display: none;
+      }
+    }
+
+    .block__icon {
+      @include icon-btn("pop", get($component-size, "base"), 12px, true);
+    }
+  }
+
+  &__panel {
+    padding-right: 0;
+  }
+
+  &__title {
+    padding: 18px 0 8px;
+    font-size: 11px;
+    &:first-child {
+      padding-top: 8px;
+    }
+  }
+
+  &__item {
+    @include item("pop");
+    @include emoji-icon(32px, 18px, 18px);
+    margin: 0 4px 4px 0;
+
+    &--current {
+      background-color: get($bg, "pop", 2);
+    }
+  }
+
+  > .fn__flex:last-child {
+    padding-top: $fn-space;
+    .emojis__type {
+      @include item("pop");
+      border-radius: $type-radius;
+      svg {
+        @include svg(14px);
+      }
+    }
+  }
+}

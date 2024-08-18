@@ -1,0 +1,68 @@
+@use "sass:math";
+@use "../common" as *;
+@use "../dialog/bazaar";
+@use "../layout/status";
+@use "../protyle/gutters";
+
+$per: 0.9;
+
+.sy__backlink {
+  [data-treetype="backlink"].b3-list-item {
+    @include list-root();
+    + div {
+      box-shadow: 10px 0 rgba(var(--page-1), 1) inset,
+        11px 0 rgba(var(--border-3), 1) inset;
+    }
+    &:not(:first-child) {
+      margin-top: $interval !important;
+    }
+  }
+  .protyle {
+    // box-shadow: get($shadow, 1);
+
+    &-breadcrumb {
+      &__bar {
+        // border: $fn-border;
+        border-radius: 4px;
+        box-shadow: get($shadow, 0);
+        padding: 0 4px;
+      }
+      &__item[style*="max-width"][style*="100%"] {
+        margin-bottom: 8px;
+        margin-top: -18px;
+      }
+    }
+    &-wysiwyg {
+      padding-bottom: 5px !important;
+      padding-right: 5px !important;
+      [data-node-id] {
+        [contenteditable] {
+          font-size: math.percentage($per);
+        }
+      }
+    }
+
+    &-gutters {
+      button {
+        @include svg-div(
+          gutters.$w * $per,
+          gutters.$svg-w * $per,
+          gutters.$h * $per
+        );
+        margin-right: gutters.$mar * $per;
+        &[data-type="fold"] {
+          @include svg-div(
+            gutters.$w * $per,
+            8px * $per,
+            gutters.$w * $per,
+            $important: true
+          );
+          margin-right: gutters.$mar * $per;
+        }
+      }
+    }
+  }
+  .layout-tab-container > & > .backlinkMList {
+    min-height: status.$s-h - $interval !important;
+  }
+}

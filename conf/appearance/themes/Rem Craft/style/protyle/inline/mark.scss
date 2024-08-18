@@ -1,0 +1,18 @@
+@use '../../common' as *;
+
+$search-bg: get($color, 'yellow', 2);
+$mark: get($color, 'cyan', 2);
+
+:root {
+    // 编辑器搜索颜色
+    --b3-protyle-search-background: #{$search-bg};
+    --b3-protyle-inline-mark-color: #{get($text, 'primary')};
+    --b3-protyle-inline-mark-background: #{$search-bg};
+}
+
+.b3-typography,
+.protyle-wysiwyg {
+    span[data-type~='mark'] {
+        background-color: $mark;
+    }
+}

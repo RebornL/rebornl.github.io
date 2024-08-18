@@ -1,0 +1,1516 @@
+{
+	"ID": "20220703150749-f3md0hd",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20220703150749-f3md0hd",
+		"title": "深入理解高并发编程读书笔记",
+		"updated": "20220716122836"
+	},
+	"Children": [
+		{
+			"ID": "20220703150810-pheerha",
+			"Type": "NodeHeading",
+			"HeadingLevel": 1,
+			"Properties": {
+				"id": "20220703150810-pheerha",
+				"updated": "20220703150810"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "线程与线程池"
+				}
+			]
+		},
+		{
+			"ID": "20220703150810-rmdifba",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703150810-rmdifba",
+				"updated": "20220703150810"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "线程：CPU调度的基本单元，本身不拥有系统资源，只是拥有运行时用到的系统资源（程序计数器、寄存器和栈）。相同进程的线程共享进程中所有的资源。"
+				}
+			]
+		},
+		{
+			"ID": "20220703150813-4vq7e4h",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703150813-4vq7e4h",
+				"updated": "20220703150827"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "实现方式："
+				}
+			]
+		},
+		{
+			"ID": "20220703150827-54ooa0v",
+			"Type": "NodeList",
+			"ListData": {},
+			"Properties": {
+				"id": "20220703150827-54ooa0v",
+				"updated": "20220703150827"
+			},
+			"Children": [
+				{
+					"ID": "20220703150828-t428bqb",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20220703150828-t428bqb",
+						"updated": "20220703150828"
+					},
+					"Children": [
+						{
+							"ID": "20220703150828-0iz3akv",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703150828-0iz3akv",
+								"updated": "20220703150836"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "Thread类继承"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20220703150837-jqzaa22",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20220703150837-jqzaa22"
+					},
+					"Children": [
+						{
+							"ID": "20220703150837-b09j2aw",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703150837-b09j2aw",
+								"updated": "20220703150844"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "Runnable接口实现"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20220703150844-zucj3q5",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20220703150844-zucj3q5"
+					},
+					"Children": [
+						{
+							"ID": "20220703150844-194eto3",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703150844-194eto3",
+								"updated": "20220703150848"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "Callable接口实现"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20220703150848-rrqcaru",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703150848-rrqcaru",
+				"updated": "20220703151000"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "生命周期："
+				}
+			]
+		},
+		{
+			"ID": "20220703151000-w8v9l75",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703151000-w8v9l75",
+				"updated": "20220703151015"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image.png"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20220703151015-cwd3l1q.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20220703151020-90srw3r",
+			"Type": "NodeList",
+			"ListData": {},
+			"Properties": {
+				"id": "20220703151020-90srw3r",
+				"updated": "20220703151108"
+			},
+			"Children": [
+				{
+					"ID": "20220703151108-kzv9az2",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20220703151108-kzv9az2",
+						"updated": "20220703151108"
+					},
+					"Children": [
+						{
+							"ID": "20220703151108-pcrnrof",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703151108-pcrnrof",
+								"updated": "20220703151108"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "NEW：初始化状态，线程被构建，但还没有调用start()方法"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20220703151137-mih3fde",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20220703151137-mih3fde"
+					},
+					"Children": [
+						{
+							"ID": "20220703151137-gseogf0",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703151137-gseogf0",
+								"updated": "20220703151213"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "RUNNABLE：可运行状态，包含运行中状态和就绪状态"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20220703151213-sr4z4vz",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20220703151213-sr4z4vz"
+					},
+					"Children": [
+						{
+							"ID": "20220703151213-amv4ylx",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703151213-amv4ylx",
+								"updated": "20220703151313"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "BlOCKED：阻塞状态，表示该线程需要等待其他线程释放说或者等待进入synchronized同步状态"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20220703151314-66ipx1r",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20220703151314-66ipx1r"
+					},
+					"Children": [
+						{
+							"ID": "20220703151314-wc42edt",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703151314-wc42edt",
+								"updated": "20220703151415"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "WAITING：表示等待状态，处理改状态的线程需要等待其他线程对其进行通知或中断等操作，进而进入下一个状态"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20220703151415-yr6x2uc",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20220703151415-yr6x2uc"
+					},
+					"Children": [
+						{
+							"ID": "20220703151415-bo1lk80",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703151415-bo1lk80",
+								"updated": "20220703151444"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "TIME_WAITINGL：超时等待状态，可以在一定的时间自行返回"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20220703151445-8bvnbtg",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20220703151445-8bvnbtg"
+					},
+					"Children": [
+						{
+							"ID": "20220703151445-ace3202",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703151445-ace3202",
+								"updated": "20220703151508"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "TERMINATED：终止状态，当前线程执行完毕"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20220703153622-k2lhe0v",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703153622-k2lhe0v"
+			}
+		},
+		{
+			"ID": "20220703153622-i4cg1hf",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703153622-i4cg1hf",
+				"updated": "20220703153737"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "线程执行是无序，但是可以使用"
+				},
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "code",
+					"TextMarkTextContent": "Thread.join()"
+				},
+				{
+					"Type": "NodeText",
+					"Data": "方法实现线程之间有序执行。"
+				}
+			]
+		},
+		{
+			"ID": "20220703154714-cjmqqju",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703154714-cjmqqju"
+			}
+		},
+		{
+			"ID": "20220703154714-jkstn6q",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20220703154714-jkstn6q",
+				"updated": "20220703154719"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "Callable"
+				}
+			]
+		},
+		{
+			"ID": "20220703154719-2iv1lcs",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20220703154719-2iv1lcs",
+				"updated": "20220703154737"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "PrivilegedCallable"
+				}
+			]
+		},
+		{
+			"ID": "20220703154740-ir4uyoy",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703154740-ir4uyoy",
+				"updated": "20220703154822"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "PrivilegedCallable表明Callable对象有某种特权来访问系统的某种资源"
+				}
+			]
+		},
+		{
+			"ID": "20220703163404-nks92fd",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703163404-nks92fd"
+			}
+		},
+		{
+			"ID": "20220703164526-dhi2n7w",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20220703164526-dhi2n7w"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "amF2YQ=="
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "/**\n * A callable that runs under established access control settings\n */\nstatic final class PrivilegedCallable\u003cT\u003e implements Callable\u003cT\u003e {\n    private final Callable\u003cT\u003e task;\n    private final AccessControlContext acc;\n    PrivilegedCallable(Callable\u003cT\u003e task) {\n        this.task = task;\n        this.acc = AccessController.getContext();\n}"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20220703163405-ktzilhe",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20220703163405-ktzilhe",
+				"updated": "20220703163419"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "RunnableAdapter"
+				}
+			]
+		},
+		{
+			"ID": "20220703163420-to02eg1",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703163420-to02eg1",
+				"updated": "20220703163445"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "给定运行的任务和结果，运行给定的任务并返回给定的结果"
+				}
+			]
+		},
+		{
+			"ID": "20220703163528-0rvdrn2",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20220703163528-0rvdrn2",
+				"updated": "20220703164548"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "amF2YQ=="
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "/**\n * A callable that runs given task and returns given result\n */\nstatic final class RunnableAdapter\u003cT\u003e implements Callable\u003cT\u003e {\n    final Runnable task;\n    final T result;\n    RunnableAdapter(Runnable task, T result) {\n        this.task = task;\n        this.result = result;\n    }\n    public T call() {\n        task.run();\n        return result;\n    }\n\tpublic T call() throws Exception {\n\t        try {\n\t            return AccessController.doPrivileged(\n\t                new PrivilegedExceptionAction\u003cT\u003e() {\n\t                    public T run() throws Exception {\n\t                        return task.call();\n\t} }, acc);\n\t        } catch (PrivilegedActionException e) {\n\t            throw e.getException();\n\t} }\n\n}\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20220703163534-ivqvcol",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20220703163534-ivqvcol",
+				"updated": "20220703164301"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "TaskCallable"
+				}
+			]
+		},
+		{
+			"ID": "20220703164303-ytqwb03",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703164303-ytqwb03",
+				"updated": "20220703164627"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "比较简单，允许设置任务的运行状态"
+				}
+			]
+		},
+		{
+			"ID": "20220703164640-v7kc5py",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20220703164640-v7kc5py",
+				"updated": "20220703164722"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "amF2YQ=="
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "private static final class TaskCallable\u003cV\u003e implements Callable\u003cV\u003e {\n    private Task\u003cV\u003e task;\n    private TaskCallable() { }\n    @Override\n    public V call() throws Exception {\n        task.started = true;\n        task.runLater(() -\u003e {\n            task.setState(State.SCHEDULED);\n            task.setState(State.RUNNING);\n        });\n        try {\n            final V result = task.call();\n            if (!task.isCancelled()) {\n                task.runLater(() -\u003e {\n                    task.updateValue(result);\n                    task.setState(State.SUCCEEDED);\n\t\t});\n                return result;\n            } else {\n                return null;\n            }\n        } catch (final Throwable th) {\n            task.runLater(() -\u003e {\n                task._setException(th);\n                task.setState(State.FAILED);\n            });\n            if (th instanceof Exception) {\n                throw (Exception) th;\n            } else {\n                throw new Exception(th);\n\t\t} }\n} }\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20220703164658-cnu38de",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703164658-cnu38de"
+			}
+		},
+		{
+			"ID": "20220703165821-sd106im",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20220703165821-sd106im",
+				"updated": "20220703170041"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "两种异步模型"
+				}
+			]
+		},
+		{
+			"ID": "20220703165832-wd200jb",
+			"Type": "NodeList",
+			"ListData": {
+				"Typ": 1
+			},
+			"Properties": {
+				"id": "20220703165832-wd200jb",
+				"updated": "20220703171138"
+			},
+			"Children": [
+				{
+					"ID": "20220703165835-acx3btf",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "MS4=",
+						"Num": 1
+					},
+					"Properties": {
+						"id": "20220703165835-acx3btf",
+						"updated": "20220703165835"
+					},
+					"Children": [
+						{
+							"ID": "20220703165835-xa0mj88",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703165835-xa0mj88",
+								"updated": "20220703165847"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "无返回结果的异步模型"
+								}
+							]
+						},
+						{
+							"ID": "20220703165847-qb28iqj",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703165847-qb28iqj",
+								"updated": "20220703170700"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "直接讲任务丢进线程或线程池中运行，此时无法直接获得任务的执行结果，需要通过回调的方式获取任务的运行结果。"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20220703170548-opaiyt4",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "Mi4=",
+						"Num": 2
+					},
+					"Properties": {
+						"id": "20220703170548-opaiyt4",
+						"updated": "20220703171138"
+					},
+					"Children": [
+						{
+							"ID": "20220703170548-ogaa5j7",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703170548-ogaa5j7",
+								"updated": "20220703170555"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "有返回结果的异步模型"
+								}
+							]
+						},
+						{
+							"ID": "20220703170556-8tkz2vy",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220703170556-8tkz2vy",
+								"updated": "20220703170657"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "JDK中提供直接返回异步结果的处理方案，最常使用的Future接口或者FutureTask来接收任务的返回结果。"
+								}
+							]
+						},
+						{
+							"ID": "20220703170912-5j3qtya",
+							"Type": "NodeList",
+							"ListData": {},
+							"Properties": {
+								"id": "20220703170912-5j3qtya",
+								"updated": "20220703171138"
+							},
+							"Children": [
+								{
+									"ID": "20220703170915-u11qzqx",
+									"Type": "NodeListItem",
+									"ListData": {
+										"BulletChar": 42,
+										"Marker": "Kg=="
+									},
+									"Properties": {
+										"id": "20220703170915-u11qzqx",
+										"updated": "20220703170915"
+									},
+									"Children": [
+										{
+											"ID": "20220703170915-8dmldjh",
+											"Type": "NodeParagraph",
+											"Properties": {
+												"id": "20220703170915-8dmldjh",
+												"updated": "20220703170925"
+											},
+											"Children": [
+												{
+													"Type": "NodeText",
+													"Data": "Future接口"
+												}
+											]
+										},
+										{
+											"ID": "20220703170928-lsd6sea",
+											"Type": "NodeCodeBlock",
+											"IsFencedCodeBlock": true,
+											"Properties": {
+												"id": "20220703170928-lsd6sea"
+											},
+											"Children": [
+												{
+													"Type": "NodeCodeBlockFenceOpenMarker",
+													"Data": "```"
+												},
+												{
+													"Type": "NodeCodeBlockFenceInfoMarker",
+													"CodeBlockInfo": "amF2YQ=="
+												},
+												{
+													"Type": "NodeCodeBlockCode",
+													"Data": "public static void main(String[] args) throws ExecutionException, InterruptedException {\n        ExecutorService executorService = Executors.newSingleThreadExecutor();\n        Future\u003cString\u003e future = executorService.submit(new Callable\u003cString\u003e() {\n            @Override\n            public String call() throws Exception {\n                return \"获取Future异步返回的结果\";\n            }\n        });\n        System.out.println(future.get());\n        executorService.shutdown();\n    }\n"
+												},
+												{
+													"Type": "NodeCodeBlockFenceCloseMarker",
+													"Data": "```"
+												}
+											]
+										}
+									]
+								},
+								{
+									"ID": "20220703170938-l2omnye",
+									"Type": "NodeListItem",
+									"ListData": {
+										"BulletChar": 42,
+										"Marker": "Kg=="
+									},
+									"Properties": {
+										"id": "20220703170938-l2omnye",
+										"updated": "20220703171138"
+									},
+									"Children": [
+										{
+											"ID": "20220703170938-usfpvde",
+											"Type": "NodeParagraph",
+											"Properties": {
+												"id": "20220703170938-usfpvde",
+												"updated": "20220703171138"
+											},
+											"Children": [
+												{
+													"Type": "NodeText",
+													"Data": "FutureTask类"
+												}
+											]
+										},
+										{
+											"ID": "20220703171159-vz347gf",
+											"Type": "NodeCodeBlock",
+											"IsFencedCodeBlock": true,
+											"Properties": {
+												"id": "20220703171159-vz347gf"
+											},
+											"Children": [
+												{
+													"Type": "NodeCodeBlockFenceOpenMarker",
+													"Data": "```"
+												},
+												{
+													"Type": "NodeCodeBlockFenceInfoMarker",
+													"CodeBlockInfo": "amF2YQ=="
+												},
+												{
+													"Type": "NodeCodeBlockCode",
+													"Data": "public static void main(String[] args) throws ExecutionException, InterruptedException {\n        FutureTask\u003cString\u003e futureTask = new FutureTask\u003c\u003e(new Callable\u003cString\u003e() {\n            @Override\n            public String call() throws Exception {\n                return \"FutureTask返回的结果\";\n            }\n        });\n        new Thread(futureTask).start();\n        System.out.println(futureTask.get());\n\n    }"
+												},
+												{
+													"Type": "NodeCodeBlockFenceCloseMarker",
+													"Data": "```"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20220703171358-bmy6j2h",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20220703171358-bmy6j2h",
+				"updated": "20220703171403"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "Future接口"
+				}
+			]
+		},
+		{
+			"ID": "20220703171633-2ho0xqy",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703171633-2ho0xqy",
+				"updated": "20220703171659"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "每个接口方法的介绍，直接看源码注释即可。"
+				}
+			]
+		},
+		{
+			"ID": "20220703171438-h9t6w2d",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20220703171438-h9t6w2d"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "amF2YQ=="
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "public interface Future\u003cV\u003e {\n\n    /**\n     * Attempts to cancel execution of this task.  This method has no\n     * effect if the task is already completed or cancelled, or could\n     * not be cancelled for some other reason.  Otherwise, if this\n     * task has not started when {@code cancel} is called, this task\n     * should never run.  If the task has already started, then the\n     * {@code mayInterruptIfRunning} parameter determines whether the\n     * thread executing this task (when known by the implementation)\n     * is interrupted in an attempt to stop the task.\n     *\n     * \u003cp\u003eThe return value from this method does not necessarily\n     * indicate whether the task is now cancelled; use {@link\n     * #isCancelled}.\n     *\n     * @param mayInterruptIfRunning {@code true} if the thread\n     * executing this task should be interrupted (if the thread is\n     * known to the implementation); otherwise, in-progress tasks are\n     * allowed to complete\n     * @return {@code false} if the task could not be cancelled,\n     * typically because it has already completed; {@code true}\n     * otherwise. If two or more threads cause a task to be cancelled,\n     * then at least one of them returns {@code true}. Implementations\n     * may provide stronger guarantees.\n     */\n    boolean cancel(boolean mayInterruptIfRunning);\n\n    /**\n     * Returns {@code true} if this task was cancelled before it completed\n     * normally.\n     *\n     * @return {@code true} if this task was cancelled before it completed\n     */\n    boolean isCancelled();\n\n    /**\n     * Returns {@code true} if this task completed.\n     *\n     * Completion may be due to normal termination, an exception, or\n     * cancellation -- in all of these cases, this method will return\n     * {@code true}.\n     *\n     * @return {@code true} if this task completed\n     */\n    boolean isDone();\n\n    /**\n     * Waits if necessary for the computation to complete, and then\n     * retrieves its result.\n     *\n     * @return the computed result\n     * @throws CancellationException if the computation was cancelled\n     * @throws ExecutionException if the computation threw an\n     * exception\n     * @throws InterruptedException if the current thread was interrupted\n     * while waiting\n     */\n    V get() throws InterruptedException, ExecutionException;\n\n    /**\n     * Waits if necessary for at most the given time for the computation\n     * to complete, and then retrieves its result, if available.\n     *\n     * @param timeout the maximum time to wait\n     * @param unit the time unit of the timeout argument\n     * @return the computed result\n     * @throws CancellationException if the computation was cancelled\n     * @throws ExecutionException if the computation threw an\n     * exception\n     * @throws InterruptedException if the current thread was interrupted\n     * while waiting\n     * @throws TimeoutException if the wait timed out\n     */\n    V get(long timeout, TimeUnit unit)\n        throws InterruptedException, ExecutionException, TimeoutException;\n}"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20220703171446-a6dma51",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20220703171446-a6dma51",
+				"updated": "20220703172512"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "RunnableFuture接口"
+				}
+			]
+		},
+		{
+			"ID": "20220703172512-nfx664f",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703172512-nfx664f",
+				"updated": "20220703172545"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "RunnableFuture不仅继承Future，也继承Runnable接口"
+				}
+			]
+		},
+		{
+			"ID": "20220703172601-ky6djsl",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20220703172601-ky6djsl"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "amF2YQ=="
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "package java.util.concurrent;\npublic interface RunnableFuture\u003cV\u003e extends Runnable, Future\u003cV\u003e {\n    void run();\n}"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20220703172355-ewxtj8w",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20220703172355-ewxtj8w",
+				"updated": "20220703172727"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "FutureTask类"
+				}
+			]
+		},
+		{
+			"ID": "20220703172727-ubij1e2",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220703172727-ubij1e2",
+				"updated": "20220703172800"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "FutureTask实现了RunnableFuture接口、Future接口和Runnable接口"
+				}
+			]
+		},
+		{
+			"ID": "20220710165951-68h45zl",
+			"Type": "NodeHeading",
+			"HeadingLevel": 4,
+			"Properties": {
+				"id": "20220710165951-68h45zl",
+				"updated": "20220710165957"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "待补充"
+				}
+			]
+		},
+		{
+			"ID": "20220710170002-4zkdvly",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220710170002-4zkdvly"
+			}
+		},
+		{
+			"ID": "20220710170005-pprf04v",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220710170005-pprf04v"
+			}
+		},
+		{
+			"ID": "20220710170005-y1u1sol",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20220710170005-y1u1sol",
+				"updated": "20220710170030"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "SimpleDataFormat多线程不安全解决"
+				}
+			]
+		},
+		{
+			"ID": "20220710170030-k8tkdc0",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220710170030-k8tkdc0",
+				"updated": "20220710170151"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "SimpleDataFormate之所以不安全的原因，在于内部有一个成员变量Calendar，在一个函数方式执行了clear方法和set方法，而Calendar本身非线程安全。"
+				}
+			]
+		},
+		{
+			"ID": "20220710170152-nz29plz",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220710170152-nz29plz",
+				"updated": "20220710170223"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "解决方法如下，其中比较好的是使用ThreadLocal，不影响并发"
+				}
+			]
+		},
+		{
+			"ID": "20220710170224-0aswm4k",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220710170224-0aswm4k"
+			}
+		},
+		{
+			"ID": "20220710171346-bloj8mw",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20220710171346-bloj8mw",
+				"updated": "20220710171509"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "amF2YQ=="
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "public class SimpleDateFormatTest05 {\n    private static final int EXECUTOR_COUNT = 100000;\n\n    private static final int THREAD_COUNT = 20;\n\n    // 方法1\n    private static ThreadLocal\u003cDateFormat\u003e threadLocal = new ThreadLocal\u003c\u003e() {\n        @Override\n        protected DateFormat initialValue() {\n            return new SimpleDateFormat(\"yyyy-MM-dd\");\n        }\n    };\n\n    // 方法2\n    private static ThreadLocal\u003cDateFormat\u003e threadLocal = new ThreadLocal\u003c\u003e()；\n    private static DateFormat getDateFormat(){\n        DateFormat dateFormat = threadLocal.get();\n        if(dateFormat == null){\n            dateFormat = new SimpleDateFormat(\"yyyy-MM-dd\");\n            threadLocal.set(dateFormat);\n        }\n        return dateFormat;\n    }\n\n\n    public static void main(String[] args) throws InterruptedException {\n        final Semaphore semaphore = new Semaphore(THREAD_COUNT);\n        final CountDownLatch countDownLatch = new CountDownLatch(EXECUTOR_COUNT);\n        ExecutorService executorService = Executors.newCachedThreadPool();\n        for (int i = 0; i \u003c EXECUTOR_COUNT; i++) {\n            executorService.execute(() -\u003e {\n                try {\n                    semaphore.acquire();\n                    try {\n                        (threadLocal.get()).parse(\"2022-07-10\");\n                    } catch (ParseException e) {\n                        System.out.println(\"线程:\" + Thread.currentThread().getName() + \" 格式化日期失败\");\n                        e.printStackTrace();\n                        System.exit(1);\n                    }\n                    semaphore.release();\n                } catch (InterruptedException e) {\n                    System.out.println(\"信号量发生错误\");\n                    e.printStackTrace();\n                    System.exit(1);\n                }\n            });\n            countDownLatch.countDown();\n        }\n        countDownLatch.await();\n        executorService.shutdown();\n        System.out.println(\"所有线程格式化日期成功\");\n    }\n}\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20220710231226-ah2q7vp",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220710231226-ah2q7vp",
+				"updated": "20220710231231"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "第二种方式："
+				}
+			]
+		},
+		{
+			"ID": "20220710231232-2me3v3h",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220710231232-2me3v3h",
+				"updated": "20220710231257"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "使用DataTimeFormatter新的API接口（Java8引入），"
+				}
+			]
+		},
+		{
+			"ID": "20220716115655-f1y44f1",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716115655-f1y44f1"
+			}
+		},
+		{
+			"ID": "20220716120722-wmvzoqu",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20220716120722-wmvzoqu"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "amF2YQ=="
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "public class SimpleDateFormatTest07 {\n    private static final int EXECUTOR_COUNT = 1000000;\n\n    private static final int THREAD_COUNT = 20;\n\n    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd\");\n\n    public static void main(String[] args) throws InterruptedException {\n        final Semaphore semaphore = new Semaphore(THREAD_COUNT);\n        final CountDownLatch countDownLatch = new CountDownLatch(EXECUTOR_COUNT);\n        ExecutorService executorService = Executors.newCachedThreadPool();\n        for (int i = 0; i \u003c EXECUTOR_COUNT; i++) {\n            executorService.execute(() -\u003e {\n                try {\n                    semaphore.acquire();\n                    try {\n                        LocalDate.parse(\"2022-07-10\", formatter);\n                    } catch (Exception e) {\n                        System.out.println(\"线程:\" + Thread.currentThread().getName() + \" 格式化日期失败\");\n                        e.printStackTrace();\n                        System.exit(1);\n                    }\n                    semaphore.release();\n                } catch (InterruptedException e) {\n                    System.out.println(\"信号量发生错误\");\n                    e.printStackTrace();\n                    System.exit(1);\n                }\n            });\n            countDownLatch.countDown();\n        }\n        countDownLatch.await();\n        executorService.shutdown();\n        System.out.println(\"所有线程格式化日期成功\");\n    }\n}"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20220716120725-qill6si",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716120725-qill6si"
+			}
+		},
+		{
+			"ID": "20220716120936-c5ed9u3",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20220716120936-c5ed9u3",
+				"updated": "20220716120955"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "ThreadPoolExecutor源码解析"
+				}
+			]
+		},
+		{
+			"ID": "20220716121754-giawxqr",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20220716121754-giawxqr",
+				"updated": "20220716121754"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "Thread直接创建线程的弊端"
+				}
+			]
+		},
+		{
+			"ID": "20220716120955-gw592zl",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716120955-gw592zl",
+				"updated": "20220716121754"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "(1)每次new Thread新建对象，性能差。"
+				}
+			]
+		},
+		{
+			"ID": "20220716121026-n3nfrzx",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716121026-n3nfrzx"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "(2)线程缺乏统一管理，可能无限制的新建线程，相互竞争，有可能占用过多系统资源导致死机或OOM。"
+				}
+			]
+		},
+		{
+			"ID": "20220716121031-p655s1n",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716121031-p655s1n"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": " (3)缺少更多的功能，如更多执行、定期执行、线程中断。"
+				}
+			]
+		},
+		{
+			"ID": "20220716121036-49oo41m",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716121036-49oo41m"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": " (4)其他弊端，大家自行脑补，多动脑，没坏处，哈哈。"
+				}
+			]
+		},
+		{
+			"ID": "20220716121742-yrcg8qp",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716121742-yrcg8qp"
+			}
+		},
+		{
+			"ID": "20220716121750-cwxszxc",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20220716121750-cwxszxc",
+				"updated": "20220716121750"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "线程池的好处"
+				}
+			]
+		},
+		{
+			"ID": "20220716121742-ymimbej",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716121742-ymimbej",
+				"updated": "20220716121750"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "(1)重用存在的线程，减少对象创建、消亡的开销，性能佳。"
+				}
+			]
+		},
+		{
+			"ID": "20220716121836-6c0bv1r",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716121836-6c0bv1r"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": " (2)可以有效控制最大并发线程数，提高系统资源利用率，同时可以避免过多资源竞争，避免阻塞。 "
+				}
+			]
+		},
+		{
+			"ID": "20220716121839-xzpj0fk",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716121839-xzpj0fk"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "(3)提供定时执行、定期执行、单线程、并发数控制等功能。"
+				}
+			]
+		},
+		{
+			"ID": "20220716121840-lmzww55",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716121840-lmzww55"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": " (4)提供支持线程池监控的方法，可对线程池的资源进行实时监控。"
+				}
+			]
+		},
+		{
+			"ID": "20220716121842-od58e5c",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716121842-od58e5c"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": " (5)其他好处，大家自行脑补，多动脑，没坏处，哈哈。"
+				}
+			]
+		},
+		{
+			"ID": "20220716122821-si552z4",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716122821-si552z4"
+			}
+		},
+		{
+			"ID": "20220716122826-171de7v",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20220716122826-171de7v",
+				"updated": "20220716122833"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "线程池的状态"
+				}
+			]
+		},
+		{
+			"ID": "20220716122835-v90adyl",
+			"Type": "NodeList",
+			"ListData": {
+				"Typ": 1
+			},
+			"Properties": {
+				"id": "20220716122835-v90adyl",
+				"updated": "20220716122836"
+			},
+			"Children": [
+				{
+					"ID": "20220716122836-pjhqax8",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "MS4=",
+						"Num": 1
+					},
+					"Properties": {
+						"id": "20220716122836-pjhqax8",
+						"updated": "20220716122836"
+					},
+					"Children": [
+						{
+							"ID": "20220716122836-c1ypkwo",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220716122836-c1ypkwo",
+								"updated": "20220716122903"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "Running：运行状态，能接收新提交任务，并且也能处理阻塞队列中人物"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20220716122903-b3olud1",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "Mi4=",
+						"Num": 2
+					},
+					"Properties": {
+						"id": "20220716122903-b3olud1"
+					},
+					"Children": [
+						{
+							"ID": "20220716122903-eouus60",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220716122903-eouus60",
+								"updated": "20220716123122"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "ShutDown：关闭状态，不能再接收新提交的任务，但是可以处理阻塞队列中已经保存的任务，当线程池处于Running状态时，调用shutdown方法会使线程池进入该状态"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20220716123113-pe44hok",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "My4=",
+						"Num": 3
+					},
+					"Properties": {
+						"id": "20220716123113-pe44hok"
+					},
+					"Children": [
+						{
+							"ID": "20220716123113-jywhe28",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220716123113-jywhe28",
+								"updated": "20220716123308"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "Stop：不能接收新任务，也不能处理阻塞队列中已经保存的任务，会中断正在处理任务的县城，如果线程池处于Running或shutdown状态，调用shutdownNow方法，会使该线程池进入该状态"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20220716123308-1l5ckx4",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "NC4=",
+						"Num": 4
+					},
+					"Properties": {
+						"id": "20220716123308-1l5ckx4"
+					},
+					"Children": [
+						{
+							"ID": "20220716123308-bzziqdn",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220716123308-bzziqdn",
+								"updated": "20220716123413"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "Tidying：如果所有的任务都已经终止，有效线程数为0（阻塞队列为空，线程池中的工作线程数量为0），线程池就会进入该状态"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20220716123414-o914ehw",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "NS4=",
+						"Num": 5
+					},
+					"Properties": {
+						"id": "20220716123414-o914ehw"
+					},
+					"Children": [
+						{
+							"ID": "20220716123414-2wcykqf",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20220716123414-2wcykqf",
+								"updated": "20220716123447"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "Terminated：处于Tidying状态的线程池调用terminated()方法，会使用线程池进入该状态"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20220716123457-s4k7j7s",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220716123457-s4k7j7s",
+				"updated": "20220716123458"
+			}
+		}
+	]
+}

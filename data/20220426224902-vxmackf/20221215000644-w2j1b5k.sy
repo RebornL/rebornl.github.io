@@ -1,0 +1,925 @@
+{
+	"ID": "20221215000644-w2j1b5k",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20221215000644-w2j1b5k",
+		"title": "数学学习--贝叶斯定理",
+		"updated": "20221222210727"
+	},
+	"Children": [
+		{
+			"ID": "20221219223902-m1rpfkb",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219223902-m1rpfkb"
+			}
+		},
+		{
+			"ID": "20221215000644-wt1hefc",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215000644-wt1hefc",
+				"updated": "20221215000647"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "期望值，也叫数学期望，是每次随机结果的出现概率乘以其结果的总和。如果我们把每种结果的概率看作权重，那么期望值就是所有结果的加权平均值。"
+				}
+			]
+		},
+		{
+			"ID": "20221215224203-wnme1xg",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215224203-wnme1xg",
+				"updated": "20221215224204"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "这种由多个随机变量决定的概率我们就叫联合概率，它的概率分布就是联合概率分布。"
+				}
+			]
+		},
+		{
+			"ID": "20221215224927-gyw8w3m",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215224927-gyw8w3m",
+				"updated": "20221215224927"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "对于离散型随机变量，我们可以通过联合概率 P(x, y) 在 y 上求和，就可以得到 P(x)。对于连续型随机变量，我们可以通过联合概率 P(x, y) 在 y 上的积分，推导出概率 P(x)。这个时候，我们称 P(x) 为边缘概率。"
+				}
+			]
+		},
+		{
+			"ID": "20221215224928-458cqvd",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215224928-458cqvd",
+				"updated": "20221215224937"
+			},
+			"Children": [
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "strong",
+					"TextMarkTextContent": "条件概率也是由多个随机变量决定，但是和联合概率不同的是，它计算了给定某个（或多个）随机变量的情况下，另一个（或多个）随机变量出现的概率，其概率分布叫做条件概率分布。给定随机变量 x，随机变量 y 的条件概率使用 P(y | x) 表示。"
+				}
+			]
+		},
+		{
+			"ID": "20221215230048-3etu9kc",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215230048-3etu9kc",
+				"updated": "20221215230057"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "贝叶斯定理："
+				}
+			]
+		},
+		{
+			"ID": "20221215230045-2cco0z9",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215230045-2cco0z9",
+				"updated": "20221215230046"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221215230046-ay1ipxn.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221215224205-aibc5o4",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215224205-aibc5o4",
+				"updated": "20221215225828"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "P(x) 称为先验概率。之所以称为“先验”，是因为它是从数据资料统计得到的"
+				}
+			]
+		},
+		{
+			"ID": "20221215230008-if1jjhj",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215230008-if1jjhj",
+				"updated": "20221215230009"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "我们没有必要事先知道 P(y)。P(y) 可以通过联合概率 P(x, y) 计算边缘概率得来，而联合概率 P(x, y) 可以由 P(y|x) * P(x) 推出。针对离散型和连续型的边缘概率推导分别如下：而 P(x|y) 是根据贝叶斯定理，通过先验概率 P(x)、似然函数 P(y | x) 和边缘概率 P(y) 推算而来，因此我们把它称作后验概率。"
+				}
+			]
+		},
+		{
+			"ID": "20221215230020-yf810zu",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215230020-yf810zu",
+				"updated": "20221215230025"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Properties": {
+						"parent-style": "display: block;"
+					},
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221215230021-vslw9gd.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeKramdownSpanIAL",
+					"Data": "{: parent-style=\"display: block;\"}"
+				}
+			]
+		},
+		{
+			"ID": "20221215230026-ae2ws9p",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215230026-ae2ws9p",
+				"updated": "20221215231923"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "那具体到这里的分类问题，我们该如何运用这个公式呢？为了便于理解，我们可以将上述公式改写成这样："
+				}
+			]
+		},
+		{
+			"ID": "20221215231928-ywbch3g",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215231928-ywbch3g",
+				"updated": "20221215231942"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Properties": {
+						"parent-style": "display: block;"
+					},
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221215231938-dpw7hwm.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeKramdownSpanIAL",
+					"Data": "{: parent-style=\"display: block;\"}"
+				}
+			]
+		},
+		{
+			"ID": "20221215231927-iykr1hl",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215231927-iykr1hl"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "其中，c 表示一个分类（class），f 表示属性对应的数据字段（field）。如此一来，等号左边的 P(c|f) 就是待分类样本中，出现属性值 f 时，样本属于类别 c 的概率。而等号右边的 P(f|c) 是根据训练数据统计，得到分类 c 中出现属性 f 的概率。P©是分类 c 在训练数据中出现的概率，P(f) 是属性 f 在训练样本中出现的概率"
+				}
+			]
+		},
+		{
+			"ID": "20221215233605-3hu1mye",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215233605-3hu1mye"
+			}
+		},
+		{
+			"ID": "20221215233606-igrd4ga",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215233606-igrd4ga",
+				"updated": "20221215233607"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "对于上表中出现的 0.00 概率，在做贝叶斯公式中的乘积计算时，会出现结果为 0 的情况，因此我们通常取一个比这个数据集里最小统计概率还要小的极小值，来代替“零概率”。比如，我们这里取 0.01。在填充训练数据中从来没有出现过的属性值的时候，我们就会使用这种技巧，我们给这种技巧起个名字就叫作平滑（Smoothing）。"
+				}
+			]
+		},
+		{
+			"ID": "20221215233734-aba6oxe",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221215233734-aba6oxe",
+				"updated": "20221215233735"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221215233735-hx2tgqw.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221218175848-ajo42en",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218175848-ajo42en"
+			}
+		},
+		{
+			"ID": "20221218175849-30fi8yd",
+			"Type": "NodeHeading",
+			"HeadingLevel": 1,
+			"Properties": {
+				"id": "20221218175849-30fi8yd",
+				"updated": "20221218175857"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "链式法则"
+				}
+			]
+		},
+		{
+			"ID": "20221218175857-d7enr32",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218175857-d7enr32",
+				"updated": "20221218175903"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "链式法则是概率论中一个常用法则。它使用一系列条件概率和边缘概率，来推导联合概率，我用一个公式来给你看看它的具体表现形式。其中，x1 到 xn 表示了 n 个随机变量。"
+				}
+			]
+		},
+		{
+			"ID": "20221218175948-dary0cg",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218175948-dary0cg",
+				"updated": "20221218180019"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Properties": {
+						"parent-style": "display: block;"
+					},
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221218175949-i9sc2y6.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeKramdownSpanIAL",
+					"Data": "{: parent-style=\"display: block;\"}"
+				}
+			]
+		},
+		{
+			"ID": "20221218180015-adzhs05",
+			"Type": "NodeHeading",
+			"HeadingLevel": 1,
+			"Properties": {
+				"id": "20221218180015-adzhs05",
+				"updated": "20221218180308"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "马尔科夫假设"
+				}
+			]
+		},
+		{
+			"ID": "20221218180308-qzqkywl",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218180308-qzqkywl",
+				"updated": "20221218180319"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "任何一个词 wi 出现的概率只和它前面的 1 个或若干个词有关。基于这个假设，我们可以提出多元文法（Ngram）模型。Ngram 中的“N”很重要，它表示任何一个词出现的概率，只和它前面的 N-1 个词有关。"
+				}
+			]
+		},
+		{
+			"ID": "20221218180335-vwkoqfk",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218180335-vwkoqfk",
+				"updated": "20221218180336"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "二元文法表示，某个单词出现的概率只和它前面的 1 个单词有关。"
+				}
+			]
+		},
+		{
+			"ID": "20221218180337-qxnali5",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218180337-qxnali5",
+				"style": "text-align: center;",
+				"updated": "20221218180343"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221218180343-r3fx20a.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221218180344-g7oonmf",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218180344-g7oonmf",
+				"updated": "20221218181755"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "三元文法，就说明某个单词出现的概率只和它前面的 2 个单词有关。即使某个单词出现在很长的一个句子中，它也只看相邻的前 2 个单词。用公式来表达就是这样："
+				}
+			]
+		},
+		{
+			"ID": "20221218181756-d291kkz",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218181756-d291kkz",
+				"style": "text-align: center;",
+				"updated": "20221218181802"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221218181802-f9v31th.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221218221903-6o7ta1c",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218221903-6o7ta1c",
+				"updated": "20221218222109"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "那么一元文法，每个词出现的概率都和前面0个单词有关，也就是每个词都是相互独立，用公式边打的话："
+				}
+			]
+		},
+		{
+			"ID": "20221218222109-bbyif67",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218222109-bbyif67",
+				"style": "text-align: center;",
+				"updated": "20221218222113"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221218222113-wggwaie.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221218222114-pre47ma",
+			"Type": "NodeHeading",
+			"HeadingLevel": 1,
+			"Properties": {
+				"id": "20221218222114-pre47ma",
+				"updated": "20221218223804"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "语言模型的应用"
+				}
+			]
+		},
+		{
+			"ID": "20221218223804-llxp17o",
+			"Type": "NodeList",
+			"ListData": {
+				"Typ": 1
+			},
+			"Properties": {
+				"id": "20221218223804-llxp17o",
+				"updated": "20221218223810"
+			},
+			"Children": [
+				{
+					"ID": "20221218223810-c5xiiiz",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "MS4=",
+						"Num": 1
+					},
+					"Properties": {
+						"id": "20221218223810-c5xiiiz",
+						"updated": "20221218223810"
+					},
+					"Children": [
+						{
+							"ID": "20221218223810-vxm16qh",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221218223810-vxm16qh",
+								"updated": "20221218223814"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "信息检索"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20221218223817-sufwitg",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218223817-sufwitg",
+				"updated": "20221218224003"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "给定一个查询，那篇文章更相关，除了通过布尔模型和向量空间检索模型，观察查询和文档的相似程度来决定之外，可以通过语言模型来刻画查询和文档之间的相关度。"
+				}
+			]
+		},
+		{
+			"ID": "20221218224003-3lj4y8m",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218224003-3lj4y8m",
+				"updated": "20221218224116"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "假设q表示一个查询，d表示一个文档，那么P(d|q)表示用户查询q的情况下，文档d出现的概率是多少 ，如果概率越高，则认为q和d之间的相关性越高。"
+				}
+			]
+		},
+		{
+			"ID": "20221218224117-p4eeajf",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218224117-p4eeajf",
+				"style": "text-align: center;",
+				"updated": "20221218224125"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221218224125-17fwwex.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221218224130-smdzoj0",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218224130-smdzoj0",
+				"updated": "20221218224411"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "那么只要算出P(q|d)，为了计算出来，假设k1,k2,...,kn表示查询q里包含的n个关键词，根据链式法则公式："
+				}
+			]
+		},
+		{
+			"ID": "20221218224417-xi7s9b0",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218224417-xi7s9b0",
+				"style": "text-align: center;",
+				"updated": "20221218224418"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221218224418-l4po39q.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221218224515-rx7rmg9",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218224515-rx7rmg9",
+				"updated": "20221218224553"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "然后根据马尔科夫假设和三元文法："
+				}
+			]
+		},
+		{
+			"ID": "20221218224553-90mxfui",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221218224553-90mxfui",
+				"style": "text-align: center;",
+				"updated": "20221218224558"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221218224558-rkjaxnw.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221218224601-q7usprd",
+			"Type": "NodeList",
+			"ListData": {
+				"Typ": 1
+			},
+			"Properties": {
+				"id": "20221218224601-q7usprd",
+				"updated": "20221218224721"
+			},
+			"Children": [
+				{
+					"ID": "20221218224715-vjw5d91",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "Mi4=",
+						"Num": 2
+					},
+					"Properties": {
+						"id": "20221218224715-vjw5d91",
+						"updated": "20221218224721"
+					},
+					"Children": [
+						{
+							"ID": "20221218224715-fjcnuqj",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221218224715-fjcnuqj",
+								"updated": "20221218224721"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "中文分词"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20221222210727-9xzfssx",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221222210727-9xzfssx"
+			}
+		}
+	]
+}

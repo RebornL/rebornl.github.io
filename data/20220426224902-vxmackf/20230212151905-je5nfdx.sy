@@ -1,0 +1,809 @@
+{
+	"ID": "20230212151905-je5nfdx",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20230212151905-je5nfdx",
+		"title": "朴素贝叶斯实战",
+		"updated": "20230212210121"
+	},
+	"Children": [
+		{
+			"ID": "20230212151916-s75a4gt",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20230212151916-s75a4gt",
+				"updated": "20230212151941"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "sklearn机器学习包"
+				}
+			]
+		},
+		{
+			"ID": "20230212151941-ls6fg61",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212151941-ls6fg61",
+				"updated": "20230212151952"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "里面提供了三种朴素贝叶斯算法："
+				}
+			]
+		},
+		{
+			"ID": "20230212151952-oqe1odh",
+			"Type": "NodeList",
+			"ListData": {},
+			"Properties": {
+				"id": "20230212151952-oqe1odh",
+				"updated": "20230212151954"
+			},
+			"Children": [
+				{
+					"ID": "20230212151954-fw1t7j1",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20230212151954-fw1t7j1",
+						"updated": "20230212151954"
+					},
+					"Children": [
+						{
+							"ID": "20230212151954-4gk7314",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230212151954-4gk7314",
+								"updated": "20230212152057"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "高斯朴素贝叶斯：特征变量是连续变量，符合高斯分布，比如人的身高、物体的长度"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20230212152004-xa5fuf4",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20230212152004-xa5fuf4"
+					},
+					"Children": [
+						{
+							"ID": "20230212152004-hle05fi",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230212152004-hle05fi",
+								"updated": "20230212152154"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "多项式朴素贝叶斯：特征变量是离散变量，符合多项式，在文档分类中特征变量体现在一个单词出现的次数，或者是单词的TF-IDF值"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20230212152013-k4onysd",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20230212152013-k4onysd"
+					},
+					"Children": [
+						{
+							"ID": "20230212152013-ctj1jnb",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230212152013-ctj1jnb",
+								"updated": "20230212152242"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "伯努利朴素贝叶斯：特征变量是布尔变量，符合0-1分布，在文档分类中特征是单词是否出现"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20230212152245-wsqvs1q",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212152245-wsqvs1q"
+			}
+		},
+		{
+			"ID": "20230212152247-yxt87vx",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20230212152247-yxt87vx",
+				"updated": "20230212152319"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "TF-IDF值"
+				}
+			]
+		},
+		{
+			"ID": "20230212152319-7fcdu10",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212152319-7fcdu10",
+				"updated": "20230212152654"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "TF：Term Frequency，词频，计算一个单词在文档中出现的次数，认为一个单词的重要和它在文档中出现的次数呈正比"
+				}
+			]
+		},
+		{
+			"ID": "20230212152654-d1eckx8",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212152654-d1eckx8",
+				"updated": "20230212153000"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "IDF：Inverse Document Frequency，逆向文档频率，是指一个单词在文档中的区分度，认为一个单词出现在文档数越少，就越能通过该单词把该文档和其他文档区分开，就是稀有度，IDF越大，表明该单词的区分度越大"
+				}
+			]
+		},
+		{
+			"ID": "20230212153003-54qxxk0",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212153003-54qxxk0",
+				"updated": "20230212154148"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "TF-IDF就是词频和逆向文档的乘积，"
+				},
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "strong",
+					"TextMarkTextContent": "该值表示这个单词在一个文档中出现的次数多，同时有很少出现其他文档中，这样的单词适合用于分类"
+				},
+				{
+					"Type": "NodeText",
+					"Data": "。"
+				}
+			]
+		},
+		{
+			"ID": "20230212153524-2e1qwsb",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212153524-2e1qwsb",
+				"updated": "20230212210121"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				},
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20230212154012-zdtsqux.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20230212151905-c05dzb9",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212151905-c05dzb9",
+				"updated": "20230212151905"
+			}
+		},
+		{
+			"ID": "20230212160824-itxqze7",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20230212160824-itxqze7",
+				"updated": "20230212160836"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "文档分类："
+				}
+			]
+		},
+		{
+			"ID": "20230212160836-1dsrhtb",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212160836-1dsrhtb",
+				"updated": "20230212160842"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				},
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20230212160842-26guf8w.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20230212160845-agy2x24",
+			"Type": "NodeList",
+			"ListData": {
+				"Typ": 1
+			},
+			"Properties": {
+				"id": "20230212160845-agy2x24",
+				"updated": "20230212160903"
+			},
+			"Children": [
+				{
+					"ID": "20230212160903-q9a1e69",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "MS4=",
+						"Num": 1
+					},
+					"Properties": {
+						"id": "20230212160903-q9a1e69",
+						"updated": "20230212160903"
+					},
+					"Children": [
+						{
+							"ID": "20230212160903-doz7eq8",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230212160903-doz7eq8",
+								"updated": "20230212161111"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "基于分词的数据准备：分词、单词权重计算、去掉停用词"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20230212160913-cux6po4",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "Mi4=",
+						"Num": 2
+					},
+					"Properties": {
+						"id": "20230212160913-cux6po4"
+					},
+					"Children": [
+						{
+							"ID": "20230212160913-uvuwtmd",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230212160913-uvuwtmd",
+								"updated": "20230212161316"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "应用朴素贝叶斯分类进行分类：通过训练集得到朴素贝叶斯分类器，然后将分类器应用于测试集，并于实际结果作对比，最终得到测试集的分类准确率"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20230212161317-x4nwhz9",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20230212161317-x4nwhz9",
+				"updated": "20230212161332"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "模块1：对文档进行分词"
+				}
+			]
+		},
+		{
+			"ID": "20230212161332-bgej183",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212161332-bgej183",
+				"updated": "20230212161411"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "对于英文文档，使用NTLK包；对于中文文档，最常用的jieba包"
+				}
+			]
+		},
+		{
+			"ID": "20230212161546-2k7t4af",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20230212161546-2k7t4af",
+				"updated": "20230212161710"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "cHl0aG9u"
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "# for enlish document\nimport nltk\nword_list = nltk.word_tokenize(text)\nnltk.pos_tag(word_list)\n\n# for chinese document\nimport jieba\nword_list = jieba.cut(word)\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20230212161743-x7ca40t",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212161743-x7ca40t",
+				"updated": "20230212161747"
+			}
+		},
+		{
+			"ID": "20230212161749-2psyl2s",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20230212161749-2psyl2s",
+				"updated": "20230212161759"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "模块2：加载停用此表"
+				}
+			]
+		},
+		{
+			"ID": "20230212161759-cqt686z",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20230212161759-cqt686z",
+				"updated": "20230212161818"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "cHl0aG9u"
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "stop_words = [line.strip().decode('utf-8') for line in io.open('stop_words.txt').readlines()]\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20230212161819-ve9zkq4",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212161819-ve9zkq4"
+			}
+		},
+		{
+			"ID": "20230212161835-vldvfwb",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20230212161835-vldvfwb",
+				"updated": "20230212161847"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "模块3：计算单词的权重"
+				}
+			]
+		},
+		{
+			"ID": "20230212161847-il3xqj0",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212161847-il3xqj0",
+				"updated": "20230212162404"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "这里可以使用TD-IDF算法，计算出特征向量，得到特征空间features"
+				}
+			]
+		},
+		{
+			"ID": "20230212162324-48boeli",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20230212162324-48boeli",
+				"updated": "20230212162333"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "cHl0aG9u"
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "\ntf = TfidfVectorizer(stop_words=stop_words, max_df=0.5)\nfeatures = tf.fit_transform(train_contents)\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20230212161901-66c3zi6",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212161901-66c3zi6",
+				"updated": "20230212162601"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "max-df=0.5，代表一个单词在50%的文档都出现过，那么就只写到非常少的信息，因此不作为分词统计。"
+				}
+			]
+		},
+		{
+			"ID": "20230212162602-kemj4wp",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212162602-kemj4wp"
+			}
+		},
+		{
+			"ID": "20230212162602-cc7wqi4",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20230212162602-cc7wqi4",
+				"updated": "20230212162615"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "模块4：生成朴素贝叶斯分类器"
+				}
+			]
+		},
+		{
+			"ID": "20230212162615-lthbi45",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212162615-lthbi45",
+				"updated": "20230212162944"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "将特征训练集的特征空间train_features，以及训练集对应的分类train_labels传递给贝叶斯分类器clf，会自动生成一个符合特征空间和对应分类的分类器。"
+				}
+			]
+		},
+		{
+			"ID": "20230212162944-wpehb0h",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212162944-wpehb0h",
+				"updated": "20230212163233"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "使用多项式贝叶斯分类器：alpha为平滑参数，因为一个单词没有在训练样本中出现，那么这个单词出现的概率会被计算为0，因此需要对此做平滑处理。"
+				}
+			]
+		},
+		{
+			"ID": "20230212163233-od57du8",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212163233-od57du8"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "当alpha=1的时候，使用laplace平滑，通过采用+1的方式，来统计没有出现过的单词的概率，当训练样本很大的时候，+1得到的概率变化可以忽略不计，避免0概率的问题。"
+				}
+			]
+		},
+		{
+			"ID": "20230212163235-ob75oys",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212163235-ob75oys",
+				"updated": "20230212163319"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "当alpha大于0小于1时，使用lidstone平滑，alpha越小，迭代次数越多，精度越高。"
+				}
+			]
+		},
+		{
+			"ID": "20230212163339-i1ambrb",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20230212163339-i1ambrb",
+				"updated": "20230212163344"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "cHl0aG9u"
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "\n# 多项式贝叶斯分类器\nfrom sklearn.naive_bayes import MultinomialNB  \nclf = MultinomialNB(alpha=0.001).fit(train_features, train_labels)\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20230212163410-58ca7zm",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212163410-58ca7zm"
+			}
+		},
+		{
+			"ID": "20230212163411-wfzvf61",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20230212163411-wfzvf61",
+				"updated": "20230212163429"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "模块5：使用生成的分类器做预测"
+				}
+			]
+		},
+		{
+			"ID": "20230212163429-013dras",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212163429-013dras",
+				"updated": "20230212163617"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "先得到测试集的特征矩阵，使用训练集的分词创建一个TdidfVectorizer类，使用相同的stop_words和max_df值，然后使用predict方法进行预测"
+				}
+			]
+		},
+		{
+			"ID": "20230212163618-6mfxy3g",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20230212163618-6mfxy3g",
+				"updated": "20230212164208"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "cHl0aG9u"
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "\n#test_tf = TfidfVectorizer(stop_words=stop_words, max_df=0.5, vocabulary=train_vocabulary)\n#test_features=test_tf.fit_transform(test_contents)\n# 上面fit过了，这里transform\ntest_features = tf.transform(test_words_list) \npredicted_labels=clf.predict(test_features)\n\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20230212163639-yu3vhyz",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212163639-yu3vhyz"
+			}
+		},
+		{
+			"ID": "20230212163640-7tagbuy",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20230212163640-7tagbuy",
+				"updated": "20230212163652"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "模块6：计算准确率"
+				}
+			]
+		},
+		{
+			"ID": "20230212163652-y8lazrh",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212163652-y8lazrh",
+				"updated": "20230212163709"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "使用metrics包计算准确率"
+				}
+			]
+		},
+		{
+			"ID": "20230212163710-iai8140",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20230212163710-iai8140",
+				"updated": "20230212164308"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "cHl0aG9u"
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "from sklearn import metrics\nprint metrics.accuracy_score(test_labels, predicted_labels)\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		}
+	]
+}

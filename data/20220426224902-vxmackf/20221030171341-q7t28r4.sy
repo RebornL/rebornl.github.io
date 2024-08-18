@@ -1,0 +1,656 @@
+{
+	"ID": "20221030171341-q7t28r4",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20221030171341-q7t28r4",
+		"title": "密集型系统设计",
+		"updated": "20221102205927"
+	},
+	"Children": [
+		{
+			"ID": "20221030171352-n001pkh",
+			"Type": "NodeHeading",
+			"HeadingLevel": 1,
+			"Properties": {
+				"id": "20221030171352-n001pkh",
+				"updated": "20221030171356"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "第一章"
+				}
+			]
+		},
+		{
+			"ID": "20221030171356-03euzmo",
+			"Type": "NodeList",
+			"ListData": {},
+			"Properties": {
+				"id": "20221030171356-03euzmo",
+				"updated": "20221030171359"
+			},
+			"Children": [
+				{
+					"ID": "20221030171359-eqruvnb",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20221030171359-eqruvnb",
+						"updated": "20221030171359"
+					},
+					"Children": [
+						{
+							"ID": "20221030171359-495rf39",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221030171359-495rf39",
+								"updated": "20221030171650"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "可靠性：意味着即使繁盛故障，系统也能正常工作。"
+								},
+								{
+									"Type": "NodeTextMark",
+									"TextMarkType": "strong",
+									"TextMarkTextContent": "容错技术"
+								},
+								{
+									"Type": "NodeText",
+									"Data": "可以对终端用户隐藏某些类型的故障。"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221030171403-s1aleb4",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20221030171403-s1aleb4"
+					},
+					"Children": [
+						{
+							"ID": "20221030171403-okv5928",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221030171403-okv5928",
+								"updated": "20221030171749"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "可伸缩性：意味着即使在负载增加的情况下也有保持性能的策略。在可伸缩的系统中可以添加"
+								},
+								{
+									"Type": "NodeTextMark",
+									"TextMarkType": "strong",
+									"TextMarkTextContent": "处理容量"
+								},
+								{
+									"Type": "NodeText",
+									"Data": "技术保证系统在搞负载下保持可靠。"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221030171408-pagb9tq",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20221030171408-pagb9tq"
+					},
+					"Children": [
+						{
+							"ID": "20221030171408-1ren5ku",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221030171408-1ren5ku",
+								"updated": "20221030171854"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "可维护性：良好的抽象可以帮助降低复杂度，使得系统易于修改和适应新的应用场景；良好的可操作性意味着对系统的健康状态具有良好的可见性，并拥有有效的管理手段。"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20221030171854-f4y3beb",
+			"Type": "NodeHeading",
+			"HeadingLevel": 1,
+			"Properties": {
+				"id": "20221030171854-f4y3beb",
+				"updated": "20221030171919"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "第二章：数据模型与查询语言"
+				}
+			]
+		},
+		{
+			"ID": "20221030171919-xla8nun",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221030171919-xla8nun"
+			}
+		},
+		{
+			"ID": "20221030171341-xh7uuf7",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20221030171341-xh7uuf7",
+				"updated": "20221030172724"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "关系模型与文档模型"
+				}
+			]
+		},
+		{
+			"ID": "20221030172724-xa99sb3",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221030172724-xa99sb3",
+				"updated": "20221030173416"
+			},
+			"Children": [
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "strong",
+					"TextMarkTextContent": "关系数据库"
+				},
+				{
+					"Type": "NodeText",
+					"Data": "：用于"
+				},
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "strong",
+					"TextMarkTextContent": "事务处理"
+				},
+				{
+					"Type": "NodeText",
+					"Data": "（航空公司预订、库存管理信息记录在库）和"
+				},
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "strong",
+					"TextMarkTextContent": "批处理"
+				},
+				{
+					"Type": "NodeText",
+					"Data": "（客户发票、工资单和报告）"
+				}
+			]
+		},
+		{
+			"ID": "20221030174710-z2xf7vt",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221030174710-z2xf7vt",
+				"updated": "20221030174847"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "关系模型：数据被组织成关系，在SQL中称为表，其中每个关系都是元组的无序集合。关系模型的目标就是将实现细节隐藏在更简洁的接口后面。"
+				}
+			]
+		},
+		{
+			"ID": "20221030173453-4d8etw3",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20221030173453-4d8etw3",
+				"updated": "20221030173610"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "NoSQL的诞生"
+				}
+			]
+		},
+		{
+			"ID": "20221030173611-v550pzy",
+			"Type": "NodeList",
+			"ListData": {},
+			"Properties": {
+				"id": "20221030173611-v550pzy",
+				"updated": "20221030173628"
+			},
+			"Children": [
+				{
+					"ID": "20221030173628-dkww31w",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20221030173628-dkww31w",
+						"updated": "20221030173628"
+					},
+					"Children": [
+						{
+							"ID": "20221030173628-9p6vfng",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221030173628-9p6vfng",
+								"updated": "20221030173654"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "更好的可伸缩性：非常大的数据集或者非常高的写入吞吐量"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221030173655-kewtrlr",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20221030173655-kewtrlr"
+					},
+					"Children": [
+						{
+							"ID": "20221030173655-q85bc4b",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221030173655-q85bc4b",
+								"updated": "20221030173713"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "免费和开源软件"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221030173713-ysci7yd",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20221030173713-ysci7yd"
+					},
+					"Children": [
+						{
+							"ID": "20221030173713-7uyaba2",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221030173713-7uyaba2",
+								"updated": "20221030173732"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "关系模型不能很好支持特殊查询操作"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221030173734-o6k0ad0",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20221030173734-o6k0ad0"
+					},
+					"Children": [
+						{
+							"ID": "20221030173734-vu3o0jc",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221030173734-vu3o0jc",
+								"updated": "20221030173759"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "一种更具多动态性与表现力的数据模型"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20221030173808-gv3iebc",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221030173808-gv3iebc",
+				"updated": "20221030173809"
+			}
+		},
+		{
+			"ID": "20221031230012-pmcvq6v",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221031230012-pmcvq6v"
+			}
+		},
+		{
+			"ID": "20221031230012-diiffmw",
+			"Type": "NodeHeading",
+			"HeadingLevel": 1,
+			"Properties": {
+				"id": "20221031230012-diiffmw",
+				"updated": "20221031230025"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "第三章：数据存储与检索"
+				}
+			]
+		},
+		{
+			"ID": "20221031230026-is5qfmh",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20221031230026-is5qfmh",
+				"updated": "20221031230351"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "数据库核心：数据结构"
+				}
+			]
+		},
+		{
+			"ID": "20221031230351-9qn5b4b",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221031230351-9qn5b4b",
+				"updated": "20221031230730"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "索引，背后的思想是保留一些额外的元数据，讲这些元数据作为路标，帮助定位想要的数据"
+				}
+			]
+		},
+		{
+			"ID": "20221031231306-wscdqec",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20221031231306-wscdqec",
+				"updated": "20221031231314"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "哈希索引"
+				}
+			]
+		},
+		{
+			"ID": "20221031231314-5jkcz5d",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221031231314-5jkcz5d",
+				"updated": "20221031231347"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "key-value类型，键值索引"
+				}
+			]
+		},
+		{
+			"ID": "20221031234836-dxssv95",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221031234836-dxssv95",
+				"updated": "20221031234850"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "需要加载内存，区间查询效率不高"
+				}
+			]
+		},
+		{
+			"ID": "20221031234850-4ohh1t7",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221031234850-4ohh1t7"
+			}
+		},
+		{
+			"ID": "20221031234852-crt3aky",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20221031234852-crt3aky",
+				"updated": "20221031234903"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "SSTables和LSM-Tree"
+				}
+			]
+		},
+		{
+			"ID": "20221101231127-7jc3hhn",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221101231127-7jc3hhn",
+				"updated": "20221101231327"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "对key-value对的顺序按键排序，这种排序字符串表，称为SSTable"
+				}
+			]
+		},
+		{
+			"ID": "20221101233906-3b6g11a",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221101233906-3b6g11a",
+				"updated": "20221101234036"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "LSM-Tree：Log-Structured MergeTree，建立在早期的日志结构文件系统之上，因为基于合并和压缩排序文件原理的存储引擎通常被称为LSM存储引擎。"
+				}
+			]
+		},
+		{
+			"ID": "20221102201957-hkz8jqe",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20221102201957-hkz8jqe",
+				"updated": "20221102202005"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "B-Trees"
+				}
+			]
+		},
+		{
+			"ID": "20221102202005-upeble6",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102202005-upeble6",
+				"updated": "20221102202343"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "和SSTable一样保留了按键排序的key-value，但是不同的地方在于，B-tree将数据库分解为固定大小的块或者页（4KB或者更大），页是内部读/写的最小单元。每个页面都可以使用地址或者位置进行表示，类似于指针"
+				}
+			]
+		},
+		{
+			"ID": "20221102202419-ranz3yo",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102202419-ranz3yo",
+				"updated": "20221102202632"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221102202421-nbbwn1j.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221102202632-kqkmrsh.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221102204542-y10bxw1",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102204542-y10bxw1",
+				"updated": "20221102204701"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "为了使数据库能从崩溃中恢复，常见B-tree的视线需要支持磁盘上的额外的数据结构：预写日志（write-ahead log，WAL），也称为重做日志，仅支持追加修改的文件。"
+				}
+			]
+		},
+		{
+			"ID": "20221102205834-dn737wd",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102205834-dn737wd"
+			}
+		},
+		{
+			"ID": "20221102205834-t7lldgz",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102205834-t7lldgz",
+				"updated": "20221102205842"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "B-tree的优点则是每个键都恰好唯一对应于索引中的某个位置，而日志结构的存储引\n擎可能在不同的段中具有相同键的多个副本。如果数据库希望提供强大的事务语义，\n这方面B-tree显得更具有吸引力：在许多关系数据库中，事务隔离是通过键范围上的\n锁来实现的，井且在B-tree索引中，这些锁可以直接定义到树中"
+				}
+			]
+		},
+		{
+			"ID": "20221102205927-f9d69ji",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102205927-f9d69ji"
+			}
+		}
+	]
+}

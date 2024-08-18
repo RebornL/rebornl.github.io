@@ -1,0 +1,50 @@
+@use "../../common" as *;
+
+$text-color: get($text, "secondary");
+
+:root {
+  --b3-protyle-inline-link-color: #{$text-color};
+}
+
+.b3-typography a,
+.protyle-wysiwyg a,
+.protyle-wysiwyg span[data-type~="a"]:not(:empty) {
+  border-bottom: $fn-border-2;
+  text-decoration: none;
+  color: $text-color;
+  border-radius: unset;
+  padding: 0 0.1em;
+
+  &:hover {
+    color: get($text, "primary");
+    border-color: get($border, 1);
+    ~ span[data-type~="a"]:not(:empty) {
+      color: get($text, "primary");
+      border-color: get($border, 1);
+    }
+  }
+
+  &::before {
+    $w: 16px;
+    @include svg($w);
+    display: inline-block;
+    position: relative;
+    background-size: contain;
+    background-repeat: round;
+    margin-right: 0.2em;
+    top: 0.1em;
+    opacity: 0.8;
+    transition: get($transition, "all");
+  }
+
+  &:hover::before {
+    opacity: 0.9;
+  }
+
+  &[data-type~="u"] {
+    border-bottom: 1px solid get($border, 1);
+  }
+  &[data-type~="s"] {
+    text-decoration: line-through;
+  }
+}

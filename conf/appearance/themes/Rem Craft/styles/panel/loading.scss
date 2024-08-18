@@ -1,0 +1,6 @@
+
+@use "../common" as *;
+
+.fn__loading {
+  background-color: get($bg, "page",1);
+}

@@ -1,0 +1,129 @@
+@use "sass:math";
+@use "../common" as *;
+@use "../component/list";
+@use "top-bar";
+@use "wnd";
+
+$item-type: "base";
+$w: get($component-size, "exsmall");
+$btn-w: get($component-size, "small");
+
+//页签栏
+.layout-tab-bar {
+  background-color: get($bg, "page", 1);
+  border: none;
+
+  .layout__center & {
+    &:not(:empty) {
+      @include component-base($item-type);
+      margin: 8px 8px 0px;
+    }
+  }
+
+  &--readonly {
+    margin-left: 0 !important;
+    min-width: $btn-w * 2 + $fn-space;
+  }
+
+  .item {
+    @include item-tran("page");
+    @include component-base($item-type);
+    min-height: 0;
+    width: auto;
+    padding: 0 $interval;
+    flex: unset;
+    box-shadow: unset !important;
+
+    .layout__center & {
+      flex-shrink: 0;
+    }
+
+    > .fn__flex-1,
+    &::after {
+      display: none;
+    }
+
+    &:not(:first-child) {
+      margin-left: $fn-space;
+    }
+
+    &__icon {
+      @include emoji-icon($w, 12px, get($icon, "base"));
+    }
+
+    &__graphic {
+      @include svg($w, get($icon, "small"), $important: true);
+      min-width: $w;
+    }
+
+    &__text {
+      min-width: 64px;
+      @include v-center(get($component-size, $item-type));
+    }
+
+    &__close {
+      @include item-tran("component");
+      @include component-base("exsmall");
+      @include svg-div($w, 10px);
+      border-radius: get($radius, "small");
+
+      svg {
+        opacity: 0.3;
+        background-color: transparent !important;
+      }
+
+      &:hover svg {
+        opacity: 0.6;
+      }
+    }
+
+    &--pin {
+      background-color: get($bg, "component", 1);
+      min-width: unset;
+      .item__icon,
+      .item__graphic{
+        padding: 0;
+        margin: 0 $interval;
+      }
+    }
+
+    &--focus {
+      @include color("focus");
+      @include item-unchange("focus");
+
+      .item__graphic {
+        @include color("focus");
+      }
+
+      > .item__text {
+        @include color("focus", true);
+      }
+
+      .item__close {
+        @include item-tran("focus");
+        svg {
+          @include color("focus");
+        }
+      }
+    }
+
+    &--readonly {
+      @include item-unchange("page");
+      padding: 0;
+      cursor: unset;
+
+      > .fn__flex-1 {
+        display: flex;
+      }
+
+      .item__close {
+        @include icon-btn("page", $btn-w, 12px, true);
+        cursor: pointer;
+
+        &[data-type="more"] {
+          @include svg-div($btn-w, 10px, $important: true);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+
+@use "../common" as *;
+
+.graph {
+  &__panel {
+    top: 50px;
+    bottom: 10px;
+    box-shadow: get($shadow, 2);
+    border-radius: get($radius, "large");
+    padding: 8px 16px 16px;
+    width: max(20%, 240px);
+    right: min(calc(-20% - 10px), -250px);
+
+    &[style*="right"] {
+      right: 10px;
+    }
+
+    label {
+      margin: 0;
+      padding: 8px 4px;
+      border-bottom: $fn-border;
+
+      span {
+        font-size: 13px;
+        line-height: 20px;
+      }
+
+      .b3-slider {
+        width: max(60%, 80px);
+      }
+    }
+
+    .fn__hr {
+      height: 16px;
+    }
+  }
+
+  &__svg {
+    background-color: get($bg, "page", 1);
+  }
+
+  &__loading {
+    background-color: get($bg, "component", 1);
+    border-radius: get($radius, "base");
+    > div {
+      border-radius: get($radius, "base");
+    }
+  }
+}

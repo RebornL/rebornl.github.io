@@ -1,0 +1,136 @@
+{
+	"ID": "20220508160350-14dqrsq",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20220508160350-14dqrsq",
+		"scroll": "{\u0026quot;startId\u0026quot;:\u0026quot;20220508160350-fl8dam4\u0026quot;,\u0026quot;endId\u0026quot;:\u0026quot;20220508162615-bcqbewm\u0026quot;,\u0026quot;scrollTop\u0026quot;:0,\u0026quot;focusId\u0026quot;:\u0026quot;20220508160350-fl8dam4\u0026quot;,\u0026quot;focusStart\u0026quot;:0,\u0026quot;focusEnd\u0026quot;:0}",
+		"title": "Go语言学习",
+		"updated": "20220508164903"
+	},
+	"Children": [
+		{
+			"ID": "20220508160350-fl8dam4",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20220508160350-fl8dam4",
+				"updated": "20220508160415"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "init函数：Go包的初始化函数"
+				}
+			]
+		},
+		{
+			"ID": "20220508160416-o5thc31",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220508160416-o5thc31",
+				"updated": "20220508160501"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "init函数的作用：用于进行包初始化的init函数，无参数无返回值的函数"
+				}
+			]
+		},
+		{
+			"ID": "20220508160502-qaoair1",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20220508160502-qaoair1",
+				"updated": "20220508160531"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "Z28="
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "func init() {\n    // 包初始化逻辑\n}\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20220508160615-a7p7p23",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220508160615-a7p7p23",
+				"updated": "20220508160658"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "Go程序在这个包初始化的时候，可能会自动调用它的init函数，因此这些init函数可能会发生在main函数之前。"
+				}
+			]
+		},
+		{
+			"ID": "20220508160659-sfpdnlt",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220508160659-sfpdnlt",
+				"updated": "20220508162614"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image.png"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20220508162614-3t5y5q9.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20220508162615-bcqbewm",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220508162615-bcqbewm",
+				"updated": "20220508164903"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "深度优先次序进行初始化"
+				}
+			]
+		}
+	]
+}

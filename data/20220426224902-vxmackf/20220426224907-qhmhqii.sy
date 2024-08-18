@@ -1,0 +1,91 @@
+{
+	"ID": "20220426224907-qhmhqii",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20220426224907-qhmhqii",
+		"scroll": "{\u0026quot;startId\u0026quot;:\u0026quot;20220426224907-6fy526e\u0026quot;,\u0026quot;endId\u0026quot;:\u0026quot;20220430180359-v6a14il\u0026quot;,\u0026quot;scrollTop\u0026quot;:0,\u0026quot;focusId\u0026quot;:\u0026quot;20220426224907-6fy526e\u0026quot;,\u0026quot;focusStart\u0026quot;:0,\u0026quot;focusEnd\u0026quot;:0}",
+		"title": "On Java 8学习",
+		"updated": "20220430180359"
+	},
+	"Children": [
+		{
+			"ID": "20220426224907-6fy526e",
+			"Type": "NodeHeading",
+			"HeadingLevel": 1,
+			"Properties": {
+				"id": "20220426224907-6fy526e",
+				"updated": "20220426230640"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "集合"
+				}
+			]
+		},
+		{
+			"ID": "20220426231618-1n7chgk",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220426231618-1n7chgk",
+				"updated": "20220426231639"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "显式参数显示"
+				}
+			]
+		},
+		{
+			"ID": "20220426230640-hsxd656",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20220426230640-hsxd656",
+				"updated": "20220426231128"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "amF2YQ=="
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "List\u003cSnow\u003e snow4 = Arrays.\u003cSnow\u003easList(new Light(), new Heavy(), new Slush());\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20220426234103-c0iou66",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220426234103-c0iou66",
+				"updated": "20220426234155"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "LIstIterator 比 Iterator 更强大，可以向前移动或者向后移动"
+				}
+			]
+		},
+		{
+			"ID": "20220430180359-v6a14il",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220430180359-v6a14il",
+				"updated": "20220430180359"
+			}
+		}
+	]
+}

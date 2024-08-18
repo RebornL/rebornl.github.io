@@ -1,0 +1,320 @@
+{
+	"ID": "20230212210551-ky7vj1y",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20230212210551-ky7vj1y",
+		"title": "SVM实战",
+		"updated": "20230226111345"
+	},
+	"Children": [
+		{
+			"ID": "20230212210556-2nvgqep",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212210556-2nvgqep",
+				"updated": "20230212210722"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "SVM是有监督的学习模型，需要实现对数据打上分类标签，通过求解最大分类间隔来求解二分类问题，如果求解多分类问题，可以将多个二分类组合起来形成多分类。"
+				}
+			]
+		},
+		{
+			"ID": "20230212210723-jbypo8d",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212210723-jbypo8d",
+				"updated": "20230212211248"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "SVM用作回归时，可以使用SVR或者LinearSVR，Support Vector Regression"
+				}
+			]
+		},
+		{
+			"ID": "20230212211218-39lvl2t",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212211218-39lvl2t",
+				"updated": "20230212211244"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "SVM用作分类器时，可以使用SVC或者LinearSVC，Support Vector Classification"
+				}
+			]
+		},
+		{
+			"ID": "20230212211244-ftvixel",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212211244-ftvixel"
+			}
+		},
+		{
+			"ID": "20230212212247-540xhxz",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20230212212247-540xhxz",
+				"updated": "20230212212252"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "案例实战"
+				}
+			]
+		},
+		{
+			"ID": "20230212210551-zw4a55o",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230212210551-zw4a55o",
+				"updated": "20230226111345"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				},
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20230212212244-4f7aqlh.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20230212212254-1y4m7yi",
+			"Type": "NodeHeading",
+			"HeadingLevel": 3,
+			"Properties": {
+				"id": "20230212212254-1y4m7yi",
+				"updated": "20230213211508"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "乳腺癌检测"
+				}
+			]
+		},
+		{
+			"ID": "20230213211509-wo7u3d2",
+			"Type": "NodeHeading",
+			"HeadingLevel": 4,
+			"Properties": {
+				"id": "20230213211509-wo7u3d2",
+				"updated": "20230213212128"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "1. 数据加载"
+				}
+			]
+		},
+		{
+			"ID": "20230213211526-14c6qtq",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20230213211526-14c6qtq",
+				"updated": "20230213211541"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "cHl0aG9u"
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "\n# 加载数据集，你需要把数据放到目录中\ndata = pd.read_csv(\"./data.csv\")\n# 数据探索\n# 因为数据集中列比较多，我们需要把dataframe中的列全部显示出来\npd.set_option('display.max_columns', None)\nprint(data.columns)\nprint(data.head(5))\nprint(data.describe())\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20230213212832-cm2b9uz",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230213212832-cm2b9uz",
+				"updated": "20230216215356"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "通过相关性，减少数据维度特征，用少量特征代表数据的特性，可以增强分类器的泛化能力，避免数据过拟合。 "
+				}
+			]
+		},
+		{
+			"ID": "20230213212120-y47qlz8",
+			"Type": "NodeHeading",
+			"HeadingLevel": 4,
+			"Properties": {
+				"id": "20230213212120-y47qlz8",
+				"updated": "20230213213109"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "2.特征选择"
+				}
+			]
+		},
+		{
+			"ID": "20230213213110-lw1gvst",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20230213213110-lw1gvst",
+				"updated": "20230213213127"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "cHl0aG9u"
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "\n# 特征选择\nfeatures_remain = ['radius_mean','texture_mean', 'smoothness_mean','compactness_mean','symmetry_mean', 'fractal_dimension_mean'] \n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20230213213127-r54dbv8",
+			"Type": "NodeHeading",
+			"HeadingLevel": 4,
+			"Properties": {
+				"id": "20230213213127-r54dbv8",
+				"updated": "20230213213147"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "3.准备训练集和测试集"
+				}
+			]
+		},
+		{
+			"ID": "20230213213147-9slvn8x",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20230213213147-9slvn8x",
+				"updated": "20230213213217"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "cHl0aG9u"
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "\n# 抽取30%的数据作为测试集，其余作为训练集\ntrain, test = train_test_split(data, test_size = 0.3)# in this our main data is splitted into train and test\n# 抽取特征选择的数值作为训练和测试数据\ntrain_X = train[features_remain]\ntrain_y=train['diagnosis']\ntest_X= test[features_remain]\ntest_y =test['diagnosis']\n\n\n# 采用Z-Score规范化数据，保证每个特征维度的数据均值为0，方差为1\nss = StandardScaler()\ntrain_X = ss.fit_transform(train_X)\ntest_X = ss.transform(test_X)\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20230213213203-yq51si5",
+			"Type": "NodeHeading",
+			"HeadingLevel": 4,
+			"Properties": {
+				"id": "20230213213203-yq51si5",
+				"updated": "20230213213236"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "4.模型训练和预测"
+				}
+			]
+		},
+		{
+			"ID": "20230213213236-3hu3zmo",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20230213213236-3hu3zmo",
+				"updated": "20230213213240"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "cHl0aG9u"
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "\n# 创建SVM分类器\nmodel = svm.SVC()\n# 用训练集做训练\nmodel.fit(train_X,train_y)\n# 用测试集做预测\nprediction=model.predict(test_X)\nprint('准确率: ', metrics.accuracy_score(test_y,prediction))\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		}
+	]
+}

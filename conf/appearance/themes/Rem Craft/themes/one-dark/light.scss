@@ -1,0 +1,127 @@
+@use "./palette" as *;
+
+:root {
+  
+  @each $type, $maps in $dark-colors {
+    @each $i, $color in $maps {
+      #{--#{$type}-#{$i}}: #{hex2rgb($color)};
+    }
+  }
+
+  @for $i from 1 through 10 {
+    #{--brand-#{$i}}: var(--blue-#{$i});
+  }
+
+  // 文本颜色
+  --text-primary: rgba(0, 0, 0, 90%); // 色彩-文字-主要
+  --text-secondary: rgba(0, 0, 0, 60%); // 色彩-文字-次要
+  --text-placeholder: rgba(0, 0, 0, 40%); // 色彩-文字-占位符/说明
+  --text-disabled: rgba(0, 0, 0, 30%); // 色彩-文字-禁用
+  --text-anti: #fff; // 色彩-文字-反色
+  --text-brand: rgb(var(--brand-base)); // 色彩-文字-品牌
+  --text-focus: rgb(var(--brand-8)); // 色彩-文字-选中
+  --text-meta-focus: rgb(var(--brand-5)); // 色彩-文字-链接
+
+  // 线条
+  --border-1: var(--gray-7);
+  --border-2: var(--gray-5);
+  --border-3: var(--gray-3);
+  --border-4: var(--gray-1);
+
+  // 基础颜色
+  --brand-base: var(--brand-8); // 色彩-品牌-可操作
+  --warning-base: var(--orange-5); // 色彩-功能-警告
+  --error-base: var(--red-6); // 色彩-功能-失败
+  --success-base: var(--green-5); // 色彩-功能-成功
+  --info-base: var(--blue-8);
+  --cyan-base: var(--cyan-6);
+  --purple-base: var(--purple-7);
+  --yellow-base: var(--yellow-4);
+  --pink-base: var(--pink-6);
+
+  // 基础颜色的扩展 用于 hover / 聚焦 / 禁用 / 点击 等状态
+  --brand-hover: var(--brand-7); // hover态
+  --brand-focus: var(--brand-5); // focus态，包括鼠标和键盘
+  --brand-active: var(--brand-9); // 点击态
+  --brand-disabled: var(--brand-3); // 禁用态
+  --brand-light: var(--brand-1); //
+
+  // 警告色扩展
+  --warning-hover: var(--orange-4);
+  --warning-focus: var(--orange-2);
+  --warning-active: var(--orange-6);
+  --warning-disabled: var(--orange-3);
+  --warning-light: var(--orange-1);
+
+  // 失败/错误色扩展
+  --error-hover: var(--red-5);
+  --error-focus: var(--red-2);
+  --error-active: var(--red-7);
+  --error-disabled: var(--red-3);
+  --error-light: var(--red-1);
+
+  // 成功色扩展
+  --success-hover: var(--green-4);
+  --success-focus: var(--green-2);
+  --success-active: var(--green-6);
+  --success-disabled: var(--green-3);
+  --success-light: var(--green-1);
+
+  // 基础颜色的扩展 用于 hover / 聚焦 / 禁用 / 点击 等状态
+  --info-hover: var(--blue-7); // hover态
+  --info-focus: var(--blue-5); // focus态，包括鼠标和键盘
+  --info-active: var(--blue-9); // 点击态
+  --info-disabled: var(--blue-3); // 禁用态
+  --info-light: var(--blue-1); // 浅色的选中态
+
+  --base-1: var(--gray-1);
+  --base-2: var(--gray-3);
+  --base-3: var(--gray-4);
+  --base-4: var(--gray-5);
+
+  --page-1: 255, 255, 255;
+  --page-2: var(--gray-1);
+  --page-3: var(--gray-2);
+  --page-4: var(--gray-3);
+
+  --component-1: var(--gray-1);
+  --component-2: var(--gray-3);
+  --component-3: var(--gray-4);
+  --component-4: var(--gray-6);
+
+  --pop-1: 255, 255, 255;
+  --pop-2: var(--gray-1);
+  --pop-3: var(--gray-2);
+  --pop-4: var(--gray-3);
+
+  --primary-1: var(--brand-base);
+  --primary-2: var(--brand-hover);
+  --primary-3: var(--brand-active);
+  --primary-4: var(--brand-active);
+
+  --focus-1: var(--brand-1);
+  --focus-2: var(--brand-2);
+  --focus-3: var(--brand-3);
+  --focus-4: var(--brand-4);
+
+  //类边框阴影
+  --shadow-0: 0 0 0 1px rgb(0 0 0 / 12%);
+  // 基础/下层 投影 hover 使用的组件包括：表格 /
+  --shadow-1: 0 1px 10px rgba(0, 0, 0, 5%), 0 4px 5px rgba(0, 0, 0, 8%),
+    0 2px 4px -1px rgba(0, 0, 0, 12%);
+  // 中层投影 下拉 使用的组件包括：下拉菜单 / 气泡确认框 / 选择器 /
+  --shadow-2: 0 3px 14px 2px rgba(0, 0, 0, 5%), 0 8px 10px 1px rgba(0, 0, 0, 6%),
+    0 5px 5px -3px rgba(0, 0, 0, 10%);
+  // 上层投影（警示/弹窗）使用的组件包括：全局提示 / 消息通知
+  --shadow-3: 0 6px 30px 5px rgba(0, 0, 0, 5%),
+    0 16px 24px 2px rgba(0, 0, 0, 4%), 0 8px 10px -5px rgba(0, 0, 0, 8%);
+
+  // 遮罩
+  --mask-active: rgba(0, 0, 0, 60%); // 遮罩-弹出
+  --mask-disabled: rgba(255, 255, 255, 60%); // 遮罩-禁用
+
+  // 滚动条颜色
+  --scroll-base: rgba(0, 0, 0, 10%);
+  // 滚动条轨道颜色，不能是带透明度，否则纵向滚动时，横向滚动条会穿透
+  --scroll-track: #fff;
+}

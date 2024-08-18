@@ -1,0 +1,402 @@
+{
+	"ID": "20221219223908-192we60",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20221219223908-192we60",
+		"title": "信息熵",
+		"updated": "20221219232800"
+	},
+	"Children": [
+		{
+			"ID": "20221219223915-xfxvkv9",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219223915-xfxvkv9",
+				"updated": "20221219225907"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "信息熵，我们通常简称为熵，其实就是用来刻画给定集合的纯净度的一个指标。举例：一个集合里的元素全部是属于同一个分组，这个时候就表示最纯净，我们就说熵为 0；如果这个集合里的元素是来自不同的分组，那么熵是大于 0 的值。"
+				}
+			]
+		},
+		{
+			"ID": "20221219230159-w65c4cn",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219230159-w65c4cn",
+				"style": "text-align: center;",
+				"updated": "20221219230200"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				},
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221219230200-ll4zp95.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221219230202-jp466rx",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219230202-jp466rx"
+			}
+		},
+		{
+			"ID": "20221219223908-bar31ln",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219223908-bar31ln",
+				"updated": "20221219230346"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "熵的公式是用来计算某个随机变量的信息量之期望，而信息量是信息论中的一个度量，简单来说就是，当我们观察到某个随机变量的具体值时，接收到了多少信息。而我们接收到的信息量跟发生事件的概率有关。事情发生的概率越大，产生的信息量越小；"
+				},
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "strong",
+					"TextMarkTextContent": "事情发生的概率越小，产生的信息量越大"
+				},
+				{
+					"Type": "NodeText",
+					"Data": "。"
+				}
+			]
+		},
+		{
+			"ID": "20221219231247-wl3a7j9",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219231247-wl3a7j9",
+				"updated": "20221219231412"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "信息量函数的特点："
+				}
+			]
+		},
+		{
+			"ID": "20221219231412-jgiykgk",
+			"Type": "NodeList",
+			"ListData": {
+				"Typ": 1
+			},
+			"Properties": {
+				"id": "20221219231412-jgiykgk",
+				"updated": "20221219231511"
+			},
+			"Children": [
+				{
+					"ID": "20221219231413-ab659oq",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "MS4=",
+						"Num": 1
+					},
+					"Properties": {
+						"id": "20221219231413-ab659oq",
+						"updated": "20221219231413"
+					},
+					"Children": [
+						{
+							"ID": "20221219231413-dxk2mvr",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221219231413-dxk2mvr",
+								"updated": "20221219231424"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "信息量应该为正数"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221219231424-39kzzc5",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "Mi4=",
+						"Num": 2
+					},
+					"Properties": {
+						"id": "20221219231424-39kzzc5"
+					},
+					"Children": [
+						{
+							"ID": "20221219231424-aw2netc",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221219231424-aw2netc",
+								"updated": "20221219231443"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "一个事件的信息量和它发生的概率成反比"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221219231444-0dvhbss",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "My4=",
+						"Num": 3
+					},
+					"Properties": {
+						"id": "20221219231444-0dvhbss",
+						"updated": "20221219231511"
+					},
+					"Children": [
+						{
+							"ID": "20221219231444-ebow4m5",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221219231444-ebow4m5",
+								"updated": "20221219231511"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "H(x)与P(x)的对数有关，H表示信息量，P表示x出现的概率。"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20221219231540-hhe7rtq",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219231540-hhe7rtq",
+				"updated": "20221219231555"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "因此信息量的公式为：H(x)=−log(P(x),2)"
+				}
+			]
+		},
+		{
+			"ID": "20221219232432-041uqwx",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219232432-041uqwx"
+			}
+		},
+		{
+			"ID": "20221219232432-2c53cuq",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219232432-2c53cuq",
+				"updated": "20221219232502"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "信息量的期望值，可以通过每个最小集合的信息量期望值来推算，使用如下公式："
+				}
+			]
+		},
+		{
+			"ID": "20221219232503-oltu6yd",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219232503-oltu6yd",
+				"style": "text-align: center;",
+				"updated": "20221219232507"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				},
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221219232507-9bpfawc.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221219232510-ei5mx3f",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219232510-ei5mx3f",
+				"updated": "20221219232614"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "其中，T 表示一种划分，Pv 表示划分后其中某个小集合，Entropy(Pv) 表示某个小集合的熵，而 ∣Pv∣/∣P∣ 表示某个小集合出现的概率。所以这个公式其实就表示，对于多个小集合而言，"
+				},
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "strong",
+					"TextMarkTextContent": "其整体的熵等于各个小集合之熵的加权平均"
+				},
+				{
+					"Type": "NodeText",
+					"Data": "。而每个小集合的权重是其在整体中出现的概率。"
+				}
+			]
+		},
+		{
+			"ID": "20221219232754-az29a17",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219232754-az29a17"
+			}
+		},
+		{
+			"ID": "20221219232754-ezyqrvm",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219232754-ezyqrvm",
+				"updated": "20221219232755"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "如果我们将划分前后的整体熵做个对比，你会发现划分后的整体熵要小于划分之前的整体熵。这是因为每次划分，都可能将不同分组的元素区分开来，降低划分后每个小集合的混乱程度，也就是降低它们的熵。我们将划分后整体熵的下降，称为信息增益（Information Gain）。如果划分后整体熵下降得越多，信息增益就越大。"
+				}
+			]
+		},
+		{
+			"ID": "20221219232755-qw5ou10",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219232755-qw5ou10",
+				"style": "text-align: center;",
+				"updated": "20221219232800"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				},
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221219232800-6bq7d3d.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221219232540-0b5l8ta",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221219232540-0b5l8ta"
+			}
+		}
+	]
+}

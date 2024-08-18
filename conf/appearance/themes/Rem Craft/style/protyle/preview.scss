@@ -1,0 +1,35 @@
+@use "../common" as *;
+@use "wysiwyg";
+
+.protyle-preview {
+  // tab栏
+  &__action {
+    background-color: get($bg, "page", 1);
+    padding: 0 0 8px;
+
+    button {
+      @include item("page");
+      @include component();
+
+      &:hover {
+        color: unset;
+      }
+
+      &.b3-tooltips {
+        @include svg-div(get($component-size, "base"), 12px);
+        margin: 0 5px;
+      }
+    }
+
+    &--current {
+      @include item-focus(true);
+    }
+  }
+
+  > .b3-typography {
+    &:not([style*="width"]) {
+      padding-left: wysiwyg.$padding !important;
+      padding-right: wysiwyg.$padding !important;
+    }
+  }
+}

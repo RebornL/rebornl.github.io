@@ -1,0 +1,162 @@
+{
+	"ID": "20221204222706-vepaxds",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20221204222706-vepaxds",
+		"title": "Flink学习疑问记录",
+		"updated": "20221204234434"
+	},
+	"Children": [
+		{
+			"ID": "20221204222715-qr8qnfs",
+			"Type": "NodeList",
+			"ListData": {
+				"Typ": 1
+			},
+			"Properties": {
+				"id": "20221204222715-qr8qnfs",
+				"updated": "20221204222825"
+			},
+			"Children": [
+				{
+					"ID": "20221204222717-arkl75n",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "MS4=",
+						"Num": 1
+					},
+					"Properties": {
+						"id": "20221204222717-arkl75n",
+						"updated": "20221204222825"
+					},
+					"Children": [
+						{
+							"ID": "20221204222719-aogth40",
+							"Type": "NodeCodeBlock",
+							"IsFencedCodeBlock": true,
+							"Properties": {
+								"id": "20221204222719-aogth40"
+							},
+							"Children": [
+								{
+									"Type": "NodeCodeBlockFenceOpenMarker",
+									"Data": "```"
+								},
+								{
+									"Type": "NodeCodeBlockFenceInfoMarker"
+								},
+								{
+									"Type": "NodeCodeBlockCode",
+									"Data": "–add-opens java.base/java.lang=ALL-UNNAMED\n"
+								},
+								{
+									"Type": "NodeCodeBlockFenceCloseMarker",
+									"Data": "```"
+								}
+							]
+						},
+						{
+							"ID": "20221204222721-adbqkae",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221204222721-adbqkae",
+								"updated": "20221204222810"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "这个表示Java9以上，配置以上VM Option，表示"
+								},
+								{
+									"Type": "NodeTextMark",
+									"TextMarkType": "strong",
+									"TextMarkTextContent": "运行时的主要区别是--add-opens允许“深度反射”"
+								},
+								{
+									"Type": "NodeText",
+									"Data": "，意思是非公共成员的访问。您通常可以通过拨打setAccessible(true)的"
+								},
+								{
+									"Type": "NodeTextMark",
+									"TextMarkType": "a",
+									"TextMarkAHref": "https://so.csdn.net/so/search?q=%E5%8F%8D%E5%B0%84\u0026spm=1001.2101.3001.7020",
+									"TextMarkTextContent": "反射"
+								},
+								{
+									"Type": "NodeText",
+									"Data": "代码来识别此类访问。"
+								}
+							]
+						},
+						{
+							"ID": "20221204222813-sxpt7zp",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221204222813-sxpt7zp",
+								"updated": "20221204222825"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "参考链接："
+								},
+								{
+									"Type": "NodeTextMark",
+									"TextMarkType": "a",
+									"TextMarkAHref": "https://blog.csdn.net/inrgihc/article/details/117792944",
+									"TextMarkTextContent": "(60条消息) Java 9中--add-exports和--add-opens有什么区别？_inrgihc的博客-CSDN博客"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20221204222826-w8tuvfz",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221204222826-w8tuvfz",
+				"updated": "20221204234434"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221204234434-1s9s8no.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		}
+	]
+}

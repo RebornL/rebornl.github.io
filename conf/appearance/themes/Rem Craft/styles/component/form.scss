@@ -1,0 +1,40 @@
+@use "../common" as *;
+//表单
+
+$svg-width: get($icon, "small");
+
+@mixin search-input($h, $border-w, $svg-w: $svg-width) {
+  .b3-form__icon {
+    // 搜索图标
+    &-icon {
+      @include svg($h, $svg-w);
+      left: 0;
+      top: 0;
+    }
+
+    // 搜索文本框
+    &-input {
+      border-width: $border-w !important;
+      padding-left: $h - 2 * $border-w !important;
+    }
+  }
+}
+
+@include search-input(get($component-size, "base"), 1px);
+
+// 搜索框
+.b3-form__icon {
+  // 边窗顶栏小搜索框
+  &--small {
+    @include search-input(get($component-size, "small"), 0);
+    // 搜索文本框
+    .b3-form__icon-input {
+      @include component-base("small");
+      &:hover,
+      &:focus {
+        box-shadow: unset;
+        border: none;
+      }
+    }
+  }
+}

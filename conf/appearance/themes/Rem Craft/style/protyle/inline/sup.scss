@@ -1,0 +1,14 @@
+@use "../../common" as *;
+
+.footnotes-ref {
+  a {
+    color: get($text, "brand") !important;
+    border: none !important;
+    &::before {
+      display: none !important;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

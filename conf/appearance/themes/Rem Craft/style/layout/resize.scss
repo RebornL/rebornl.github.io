@@ -1,0 +1,24 @@
+@use "../common" as *;
+
+.layout__resize {
+  &::after {
+    background-color: transparent;
+  }
+
+  &:hover::after {
+    background-color: get($color, "brand", "hover");
+  }
+
+  &--lr {
+    margin: $interval -3px;
+
+    &::after {
+      left: 2.5px;
+    }
+  }
+
+  &:not(.layout__resize--lr) {
+    margin: -3px $interval;
+    width: calc(100% - $interval * 2);
+  }
+}

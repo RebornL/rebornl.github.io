@@ -1,0 +1,2457 @@
+I 2022/04/17 21:29:29 working.go:92: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/04/17 21:29:29 runtime.go:32: kernel is booting:
+    * ver [1.9.9]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220409]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 20 kB]
+D 2022/04/17 21:29:29 conf.go:110: initialized language [zh_CN] based on device locale
+I 2022/04/17 21:29:29 conf.go:263: local serve path [http://192.168.8.110:6806]
+I 2022/04/17 21:29:29 serve.go:69: kernel is booting [http://127.0.0.1:6806]
+I 2022/04/17 21:29:29 database.go:72: reinitialized database [/Users/reborn/Documents/SiYuan/temp/siyuan.db]
+I 2022/04/17 21:29:29 conf.go:488: pre-init database size [4.1 kB]
+I 2022/04/17 21:29:29 index.go:189: resolving refs...
+I 2022/04/17 21:29:29 index.go:316: resolved refs [0]
+I 2022/04/17 21:29:29 conf.go:512: post-init database size [4.1 kB], tree stat [count=0, size=0 B]
+I 2022/04/17 21:29:29 working.go:132: kernel booted
+I 2022/04/17 21:31:53 conf.go:364: exited kernel
+I 2022/04/23 23:31:06 working.go:92: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/04/23 23:31:06 runtime.go:32: kernel is booting:
+    * ver [1.9.9]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220409]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 20 kB]
+I 2022/04/23 23:31:06 conf.go:263: local serve path [http://192.168.8.110:6806]
+I 2022/04/23 23:31:06 serve.go:69: kernel is booting [http://127.0.0.1:6806]
+I 2022/04/23 23:31:06 conf.go:488: pre-init database size [33 kB]
+I 2022/04/23 23:31:06 index.go:189: resolving refs...
+I 2022/04/23 23:31:06 index.go:316: resolved refs [0]
+I 2022/04/23 23:31:06 conf.go:512: post-init database size [33 kB], tree stat [count=0, size=0 B]
+I 2022/04/23 23:31:06 working.go:132: kernel booted
+I 2022/04/23 23:31:51 conf.go:364: exited kernel
+I 2022/04/25 23:20:34 working.go:92: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/04/25 23:20:34 runtime.go:32: kernel is booting:
+    * ver [1.9.9]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220409]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 20 kB]
+I 2022/04/25 23:20:34 conf.go:263: local serve path [http://192.168.8.110:6806]
+I 2022/04/25 23:20:34 serve.go:69: kernel is booting [http://127.0.0.1:6806]
+I 2022/04/25 23:20:34 conf.go:488: pre-init database size [33 kB]
+I 2022/04/25 23:20:34 index.go:189: resolving refs...
+I 2022/04/25 23:20:34 index.go:316: resolved refs [0]
+I 2022/04/25 23:20:34 conf.go:512: post-init database size [33 kB], tree stat [count=0, size=0 B]
+I 2022/04/25 23:20:34 working.go:132: kernel booted
+I 2022/04/26 22:49:02 index.go:179: rebuilt database for notebook [20220426224902-vxmackf] in [0.00s], tree stat [count=0, size=0 B]
+I 2022/04/26 22:49:02 index.go:189: resolving refs...
+I 2022/04/26 22:49:02 index.go:316: resolved refs [0]
+I 2022/04/29 00:09:32 working.go:92: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/04/29 00:09:32 runtime.go:32: kernel is booting:
+    * ver [1.9.9]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220409]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 60 kB]
+I 2022/04/29 00:09:32 conf.go:263: local serve path [http://127.0.0.1:6806]
+I 2022/04/29 00:09:32 serve.go:69: kernel is booting [http://127.0.0.1:6806]
+I 2022/04/29 00:09:32 conf.go:488: pre-init database size [33 kB]
+I 2022/04/29 00:09:32 index.go:116: use existing database for box [20220426224902-vxmackf]
+I 2022/04/29 00:09:32 index.go:189: resolving refs...
+I 2022/04/29 00:09:32 index.go:316: resolved refs [0]
+I 2022/04/29 00:09:32 conf.go:512: post-init database size [33 kB], tree stat [count=1, size=1.7 kB]
+I 2022/04/29 00:09:32 working.go:132: kernel booted
+I 2022/05/01 14:39:55 conf.go:364: exited kernel
+I 2022/05/05 00:29:01 working.go:92: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/05/05 00:29:01 runtime.go:32: kernel is booting:
+    * ver [1.9.9]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220409]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 66 kB]
+I 2022/05/05 00:29:01 conf.go:263: local serve path [http://192.168.68.84:6806]
+I 2022/05/05 00:29:01 serve.go:69: kernel is booting [http://127.0.0.1:6806]
+I 2022/05/05 00:29:01 conf.go:488: pre-init database size [33 kB]
+I 2022/05/05 00:29:01 index.go:116: use existing database for box [20220426224902-vxmackf]
+I 2022/05/05 00:29:01 index.go:189: resolving refs...
+I 2022/05/05 00:29:01 index.go:316: resolved refs [0]
+I 2022/05/05 00:29:01 conf.go:512: post-init database size [33 kB], tree stat [count=1, size=1.8 kB]
+I 2022/05/05 00:29:01 working.go:132: kernel booted
+I 2022/05/05 00:29:26 index.go:179: rebuilt database for notebook [20220505002926-v5kg11z] in [0.00s], tree stat [count=0, size=0 B]
+I 2022/05/05 00:29:26 index.go:189: resolving refs...
+I 2022/05/05 00:29:26 index.go:316: resolved refs [0]
+I 2022/05/05 00:49:15 conf.go:364: exited kernel
+I 2022/05/08 16:02:32 working.go:92: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/05/08 16:02:32 runtime.go:32: kernel is booting:
+    * ver [1.9.9]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220409]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 88 kB]
+I 2022/05/08 16:02:32 conf.go:263: local serve path [http://192.168.68.84:6806]
+I 2022/05/08 16:02:32 serve.go:69: kernel is booting [http://127.0.0.1:6806]
+I 2022/05/08 16:02:32 conf.go:488: pre-init database size [41 kB]
+I 2022/05/08 16:02:32 index.go:116: use existing database for box [20220426224902-vxmackf]
+I 2022/05/08 16:02:32 index.go:116: use existing database for box [20220505002926-v5kg11z]
+I 2022/05/08 16:02:32 index.go:189: resolving refs...
+I 2022/05/08 16:02:32 index.go:316: resolved refs [0]
+I 2022/05/08 16:02:32 conf.go:512: post-init database size [41 kB], tree stat [count=2, size=4.5 kB]
+I 2022/05/08 16:02:32 working.go:132: kernel booted
+I 2022/05/14 21:41:38 conf.go:364: exited kernel
+I 2022/06/26 15:14:55 working.go:92: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/06/26 15:14:55 runtime.go:32: kernel is booting:
+    * ver [1.9.9]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220409]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 803 kB]
+I 2022/06/26 15:14:55 conf.go:263: local serve path [http://192.168.68.84:6806]
+I 2022/06/26 15:14:55 serve.go:69: kernel is booting [http://127.0.0.1:6806]
+I 2022/06/26 15:14:55 conf.go:488: pre-init database size [45 kB]
+I 2022/06/26 15:14:55 index.go:116: use existing database for box [20220426224902-vxmackf]
+I 2022/06/26 15:14:55 index.go:116: use existing database for box [20220505002926-v5kg11z]
+I 2022/06/26 15:14:55 index.go:189: resolving refs...
+I 2022/06/26 15:14:55 index.go:316: resolved refs [0]
+I 2022/06/26 15:14:55 conf.go:512: post-init database size [45 kB], tree stat [count=3, size=8.6 kB]
+I 2022/06/26 15:14:55 working.go:132: kernel booted
+I 2022/06/26 15:29:25 conf.go:364: exited kernel
+I 2022/06/26 15:29:58 working.go:101: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/06/26 15:29:58 runtime.go:45: kernel is booting:
+    * ver [2.0.23]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 751 kB]
+I 2022/06/26 15:29:58 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/06/26 15:29:58 database.go:84: reinitialized database [/Users/reborn/Documents/SiYuan/temp/siyuan.db]
+I 2022/06/26 15:29:58 conf.go:517: database size [4.1 kB], block count [26]
+I 2022/06/26 15:29:58 working.go:137: kernel booted
+E 2022/07/03 17:11:47 transaction.go:982: update data is nil
+I 2022/07/03 17:11:51 database.go:84: reinitialized database [/Users/reborn/Documents/SiYuan/temp/siyuan.db]
+I 2022/07/03 17:11:51 index.go:221: rebuilt database for notebook [20220426224902-vxmackf] in [0.02s], tree [count=5, size=29 kB]
+I 2022/07/03 17:11:51 index.go:221: rebuilt database for notebook [20220505002926-v5kg11z] in [0.00s], tree [count=1, size=4.1 kB]
+I 2022/07/03 17:11:51 index.go:358: resolved refs [0] in [1ms]
+I 2022/07/14 23:06:47 working.go:101: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/07/14 23:06:47 runtime.go:45: kernel is booting:
+    * ver [2.0.23]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.6 MB]
+I 2022/07/14 23:06:47 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/07/14 23:06:47 conf.go:517: database size [459 kB], block count [103]
+I 2022/07/14 23:06:47 working.go:137: kernel booted
+I 2022/07/17 23:54:45 working.go:101: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/07/17 23:54:45 runtime.go:45: kernel is booting:
+    * ver [2.0.23]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.6 MB]
+I 2022/07/17 23:54:45 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/07/17 23:54:45 conf.go:517: database size [631 kB], block count [133]
+I 2022/07/17 23:54:45 working.go:137: kernel booted
+I 2022/07/17 23:54:53 conf.go:356: exited kernel
+I 2022/07/19 23:44:03 working.go:101: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/07/19 23:44:03 runtime.go:45: kernel is booting:
+    * ver [2.0.23]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.6 MB]
+I 2022/07/19 23:44:03 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/07/19 23:44:03 conf.go:517: database size [651 kB], block count [133]
+I 2022/07/19 23:44:03 working.go:137: kernel booted
+I 2022/07/19 23:44:33 conf.go:356: exited kernel
+I 2022/08/20 16:01:22 working.go:101: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/08/20 16:01:22 runtime.go:45: kernel is booting:
+    * ver [2.0.23]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.6 MB]
+I 2022/08/20 16:01:22 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/08/20 16:01:22 conf.go:517: database size [651 kB], block count [133]
+I 2022/08/20 16:01:22 working.go:137: kernel booted
+I 2022/08/20 16:03:16 conf.go:356: exited kernel
+I 2022/08/20 16:06:52 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/08/20 16:06:52 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.6 MB]
+I 2022/08/20 16:06:52 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/08/20 16:06:52 conf.go:531: database size [651 kB], block count [133]
+I 2022/08/20 16:06:52 working.go:147: kernel booted
+E 2022/08/20 16:11:14 package.go:141: write file [/Users/reborn/Documents/SiYuan/conf/appearance/themes/Rem Craft] failed: zip: not a valid zip file
+I 2022/08/22 00:29:47 conf.go:370: exited kernel
+I 2022/08/22 21:40:22 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/08/22 21:40:22 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/08/22 21:40:22 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/08/22 21:40:22 conf.go:531: database size [1.7 MB], block count [135]
+I 2022/08/22 21:40:22 working.go:147: kernel booted
+I 2022/08/23 00:14:10 conf.go:370: exited kernel
+I 2022/08/24 19:19:04 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/08/24 19:19:04 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/08/24 19:19:04 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/08/24 19:19:04 conf.go:531: database size [1.7 MB], block count [135]
+I 2022/08/24 19:19:04 working.go:147: kernel booted
+I 2022/08/25 00:13:56 conf.go:370: exited kernel
+I 2022/09/06 22:57:56 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/09/06 22:57:56 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/09/06 22:57:56 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/09/06 22:57:56 conf.go:531: database size [1.7 MB], block count [135]
+I 2022/09/06 22:57:56 working.go:147: kernel booted
+I 2022/09/07 00:07:56 conf.go:370: exited kernel
+I 2022/09/07 20:45:46 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/09/07 20:45:46 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/09/07 20:45:46 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/09/07 20:45:46 conf.go:531: database size [1.7 MB], block count [144]
+I 2022/09/07 20:45:46 working.go:147: kernel booted
+I 2022/09/08 00:10:11 conf.go:370: exited kernel
+I 2022/09/08 23:05:55 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/09/08 23:05:55 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/09/08 23:05:55 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/09/08 23:05:55 conf.go:531: database size [1.7 MB], block count [144]
+I 2022/09/08 23:05:55 working.go:147: kernel booted
+I 2022/09/09 00:20:28 conf.go:370: exited kernel
+I 2022/09/09 21:11:12 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/09/09 21:11:12 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/09/09 21:11:12 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/09/09 21:11:12 conf.go:531: database size [1.7 MB], block count [144]
+I 2022/09/09 21:11:12 working.go:147: kernel booted
+I 2022/09/10 23:11:54 conf.go:370: exited kernel
+I 2022/09/11 12:02:33 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/09/11 12:02:33 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/09/11 12:02:33 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/09/11 12:02:34 conf.go:531: database size [1.7 MB], block count [144]
+I 2022/09/11 12:02:34 working.go:147: kernel booted
+I 2022/09/14 00:43:13 conf.go:370: exited kernel
+I 2022/09/14 22:41:51 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/09/14 22:41:51 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/09/14 22:41:51 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/09/14 22:41:51 conf.go:531: database size [1.7 MB], block count [144]
+I 2022/09/14 22:41:51 working.go:147: kernel booted
+I 2022/09/15 00:13:23 conf.go:370: exited kernel
+I 2022/09/15 23:57:55 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/09/15 23:57:55 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/09/15 23:57:55 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/09/15 23:57:56 conf.go:531: database size [1.7 MB], block count [144]
+I 2022/09/15 23:57:56 working.go:147: kernel booted
+I 2022/09/16 00:10:58 conf.go:370: exited kernel
+I 2022/09/16 00:11:50 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/09/16 00:11:50 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/09/16 00:11:50 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/09/16 00:11:50 conf.go:531: database size [1.7 MB], block count [144]
+I 2022/09/16 00:11:50 working.go:147: kernel booted
+I 2022/09/16 01:04:03 conf.go:370: exited kernel
+I 2022/09/16 22:33:48 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/09/16 22:33:48 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/09/16 22:33:48 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/09/16 22:33:48 conf.go:531: database size [1.7 MB], block count [144]
+I 2022/09/16 22:33:48 working.go:147: kernel booted
+I 2022/09/17 16:19:57 conf.go:370: exited kernel
+I 2022/09/23 21:56:18 working.go:107: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/09/23 21:56:18 runtime.go:47: kernel is booting:
+    * ver [2.1.7]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/09/23 21:56:18 serve.go:78: kernel is booting [http://127.0.0.1:6806]
+I 2022/09/23 21:56:18 conf.go:531: database size [1.7 MB], block count [144]
+I 2022/09/23 21:56:18 working.go:147: kernel booted
+I 2022/09/23 22:34:35 conf.go:370: exited kernel
+I 2022/09/23 22:34:58 working.go:111: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/09/23 22:34:58 runtime.go:47: kernel is booting:
+    * ver [2.2.0]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/09/23 22:34:58 serve.go:79: kernel is booting [http://127.0.0.1:6806]
+I 2022/09/23 22:34:58 conf.go:559: database size [1.7 MB], tree/block count [8/144]
+I 2022/09/23 22:34:58 working.go:151: kernel booted
+I 2022/09/23 22:34:59 tree.go:196: migrated tree [/Users/reborn/Documents/SiYuan/data/20220426224902-vxmackf/20220906225810-hxbm0n5.sy] from spec [] to [1]
+I 2022/09/23 22:35:00 working.go:501: initialized built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/09/23 22:35:01 tree.go:196: migrated tree [/Users/reborn/Documents/SiYuan/data/20220426224902-vxmackf/20220626232858-7ej3xh2.sy] from spec [] to [1]
+I 2022/09/23 22:35:02 tree.go:196: migrated tree [/Users/reborn/Documents/SiYuan/data/20220505002926-v5kg11z/20220821222646-npf6unh.sy] from spec [] to [1]
+I 2022/09/23 22:35:06 tree.go:196: migrated tree [/Users/reborn/Documents/SiYuan/data/20220426224902-vxmackf/20220626151515-6mwtkyv.sy] from spec [] to [1]
+I 2022/09/24 00:13:31 conf.go:363: exiting kernel [force=false, execInstallPkg=0]
+I 2022/09/24 00:13:31 database.go:1094: closed database
+I 2022/09/24 00:13:31 conf.go:597: cleared workspace temp
+I 2022/09/24 00:13:32 conf.go:401: exited kernel
+I 2022/10/30 17:10:31 working.go:111: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/10/30 17:10:31 runtime.go:47: kernel is booting:
+    * ver [2.2.0]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/10/30 17:10:31 serve.go:79: kernel is booting [http://127.0.0.1:6806]
+I 2022/10/30 17:10:31 conf.go:559: database size [1.7 MB], tree/block count [8/144]
+I 2022/10/30 17:10:31 working.go:151: kernel booted
+I 2022/10/30 17:10:31 working.go:478: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/10/30 17:12:20 conf.go:363: exiting kernel [force=false, execInstallPkg=0]
+I 2022/10/30 17:12:20 database.go:1094: closed database
+I 2022/10/30 17:12:20 conf.go:597: cleared workspace temp
+I 2022/10/30 17:12:21 conf.go:401: exited kernel
+I 2022/10/30 17:12:36 working.go:111: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/10/30 17:12:36 runtime.go:47: kernel is booting:
+    * ver [2.2.0]
+    * arch [amd64]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/10/30 17:12:36 working.go:478: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/10/30 17:12:36 serve.go:79: kernel is booting [http://127.0.0.1:6806]
+I 2022/10/30 17:12:36 conf.go:559: database size [1.7 MB], tree/block count [8/144]
+I 2022/10/30 17:12:36 working.go:151: kernel booted
+I 2022/10/30 17:12:39 conf.go:363: exiting kernel [force=false, execInstallPkg=0]
+I 2022/10/30 17:12:39 database.go:1094: closed database
+I 2022/10/30 17:12:39 conf.go:597: cleared workspace temp
+I 2022/10/30 17:12:40 conf.go:401: exited kernel
+I 2022/10/30 17:12:58 working.go:115: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/10/30 17:12:58 runtime.go:47: kernel is booting:
+    * ver [2.4.7]
+    * arch [amd64]
+    * resident [false]
+    * pid [965]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/10/30 17:12:58 working.go:431: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/10/30 17:12:58 serve.go:106: kernel [pid=965] is booting [http://127.0.0.1:51503]
+I 2022/10/30 17:12:58 serve.go:114: kernel reverse proxy server [6806] is booting
+I 2022/10/30 17:12:58 conf.go:587: database size [1.7 MB], tree/block count [8/144]
+I 2022/10/30 17:12:58 working.go:153: kernel booted
+I 2022/10/30 17:19:51 tree.go:242: migrated tree [/Users/reborn/Documents/SiYuan/data/20220426224902-vxmackf/20220426224907-qhmhqii.sy] from spec [] to [1]
+I 2022/10/30 17:19:53 tree.go:242: migrated tree [/Users/reborn/Documents/SiYuan/data/20220426224902-vxmackf/20220703150749-f3md0hd.sy] from spec [] to [1]
+I 2022/10/31 00:07:26 conf.go:371: exiting kernel [force=false, execInstallPkg=0]
+I 2022/10/31 00:07:26 database.go:1122: closed database
+I 2022/10/31 00:07:26 conf.go:697: cleared workspace temp
+I 2022/10/31 00:07:26 conf.go:414: exited kernel
+I 2022/10/31 21:32:59 working.go:115: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/10/31 21:32:59 runtime.go:47: kernel is booting:
+    * ver [2.4.7]
+    * arch [amd64]
+    * resident [false]
+    * pid [577]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/10/31 21:32:59 serve.go:106: kernel [pid=577] is booting [http://127.0.0.1:49152]
+I 2022/10/31 21:32:59 serve.go:114: kernel reverse proxy server [6806] is booting
+I 2022/10/31 21:32:59 conf.go:587: database size [1.7 MB], tree/block count [9/169]
+I 2022/10/31 21:32:59 working.go:153: kernel booted
+I 2022/10/31 21:32:59 working.go:431: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/10/31 23:56:43 conf.go:371: exiting kernel [force=false, execInstallPkg=0]
+I 2022/10/31 23:56:43 database.go:1122: closed database
+I 2022/10/31 23:56:43 conf.go:697: cleared workspace temp
+I 2022/10/31 23:56:44 conf.go:414: exited kernel
+I 2022/11/01 21:51:32 working.go:115: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/11/01 21:51:32 runtime.go:47: kernel is booting:
+    * ver [2.4.7]
+    * arch [amd64]
+    * resident [false]
+    * pid [556]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 2.7 MB]
+I 2022/11/01 21:51:32 serve.go:106: kernel [pid=556] is booting [http://127.0.0.1:49152]
+I 2022/11/01 21:51:32 serve.go:114: kernel reverse proxy server [6806] is booting
+I 2022/11/01 21:51:32 conf.go:587: database size [1.7 MB], tree/block count [9/178]
+I 2022/11/01 21:51:32 working.go:153: kernel booted
+I 2022/11/01 21:51:32 working.go:431: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/11/02 23:59:06 conf.go:371: exiting kernel [force=false, execInstallPkg=0]
+I 2022/11/02 23:59:06 database.go:1122: closed database
+I 2022/11/02 23:59:06 conf.go:697: cleared workspace temp
+I 2022/11/02 23:59:07 conf.go:414: exited kernel
+I 2022/11/03 22:02:55 working.go:115: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/11/03 22:02:55 runtime.go:47: kernel is booting:
+    * ver [2.4.7]
+    * arch [amd64]
+    * resident [false]
+    * pid [597]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 5.5 MB]
+I 2022/11/03 22:02:55 serve.go:106: kernel [pid=597] is booting [http://127.0.0.1:49219]
+I 2022/11/03 22:02:55 serve.go:114: kernel reverse proxy server [6806] is booting
+I 2022/11/03 22:02:55 conf.go:587: database size [1.7 MB], tree/block count [10/209]
+I 2022/11/03 22:02:55 working.go:153: kernel booted
+I 2022/11/03 22:02:55 working.go:431: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/11/07 00:07:33 conf.go:371: exiting kernel [force=false, execInstallPkg=0]
+I 2022/11/07 00:07:33 database.go:1122: closed database
+I 2022/11/07 00:07:33 conf.go:697: cleared workspace temp
+I 2022/11/07 00:07:34 conf.go:414: exited kernel
+I 2022/12/04 22:26:57 working.go:115: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/12/04 22:26:57 runtime.go:47: kernel is booting:
+    * ver [2.4.7]
+    * arch [amd64]
+    * resident [false]
+    * pid [12396]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 5.5 MB]
+I 2022/12/04 22:26:57 serve.go:106: kernel [pid=12396] is booting [http://127.0.0.1:62731]
+I 2022/12/04 22:26:57 serve.go:114: kernel reverse proxy server [6806] is booting
+I 2022/12/04 22:26:57 conf.go:587: database size [1.7 MB], tree/block count [10/209]
+I 2022/12/04 22:26:57 working.go:153: kernel booted
+I 2022/12/04 22:26:57 working.go:431: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/12/04 23:44:37 conf.go:371: exiting kernel [force=false, execInstallPkg=0]
+I 2022/12/04 23:44:37 database.go:1122: closed database
+I 2022/12/04 23:44:37 conf.go:697: cleared workspace temp
+I 2022/12/04 23:44:38 conf.go:414: exited kernel
+I 2022/12/09 23:42:29 working.go:115: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/12/09 23:42:30 runtime.go:47: kernel is booting:
+    * ver [2.4.7]
+    * arch [amd64]
+    * resident [false]
+    * pid [2609]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 5.8 MB]
+I 2022/12/09 23:42:30 serve.go:106: kernel [pid=2609] is booting [http://127.0.0.1:57958]
+I 2022/12/09 23:42:30 serve.go:114: kernel reverse proxy server [6806] is booting
+I 2022/12/09 23:42:30 conf.go:587: database size [1.7 MB], tree/block count [11/216]
+I 2022/12/09 23:42:30 working.go:153: kernel booted
+I 2022/12/09 23:42:30 working.go:431: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/12/12 00:07:31 conf.go:371: exiting kernel [force=false, execInstallPkg=0]
+I 2022/12/12 00:07:31 database.go:1122: closed database
+I 2022/12/12 00:07:31 conf.go:697: cleared workspace temp
+I 2022/12/12 00:07:31 conf.go:414: exited kernel
+I 2022/12/12 22:07:38 working.go:115: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/12/12 22:07:38 runtime.go:47: kernel is booting:
+    * ver [2.4.7]
+    * arch [amd64]
+    * resident [false]
+    * pid [943]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 5.8 MB]
+I 2022/12/12 22:07:38 serve.go:106: kernel [pid=943] is booting [http://127.0.0.1:50959]
+I 2022/12/12 22:07:38 serve.go:114: kernel reverse proxy server [6806] is booting
+I 2022/12/12 22:07:38 conf.go:587: database size [1.7 MB], tree/block count [12/218]
+I 2022/12/12 22:07:38 working.go:153: kernel booted
+I 2022/12/12 22:07:38 working.go:431: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/12/12 22:07:51 index.go:180: rebuilt database for notebook [20221212220751-z3xb2pi] in [0.02s], tree [count=0, size=0 B]
+I 2022/12/12 22:07:51 index.go:251: resolved refs [0] in [4ms]
+I 2022/12/16 18:31:19 working.go:115: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/12/16 18:31:19 runtime.go:47: kernel is booting:
+    * ver [2.4.7]
+    * arch [amd64]
+    * resident [false]
+    * pid [748]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan, data 7.0 MB]
+I 2022/12/16 18:31:19 serve.go:106: kernel [pid=748] is booting [http://127.0.0.1:49382]
+I 2022/12/16 18:31:19 serve.go:114: kernel reverse proxy server [6806] is booting
+I 2022/12/16 18:31:20 conf.go:587: database size [1.8 MB], tree/block count [14/251]
+I 2022/12/16 18:31:20 working.go:153: kernel booted
+I 2022/12/16 18:31:20 working.go:431: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/12/19 00:07:44 conf.go:371: exiting kernel [force=false, execInstallPkg=0]
+I 2022/12/19 00:07:44 database.go:1122: closed database
+I 2022/12/19 00:07:44 conf.go:697: cleared workspace temp
+I 2022/12/19 00:07:44 conf.go:414: exited kernel
+I 2022/12/19 00:08:36 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/12/19 00:08:36 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [33526]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2022/12/19 00:08:36 runtime.go:90: use network proxy [system]
+I 2022/12/19 00:08:36 port.go:65: check running kernel elapsed [0ms]
+I 2022/12/19 00:08:36 serve.go:115: kernel [pid=33526] is booting [http://127.0.0.1:62821]
+I 2022/12/19 00:08:36 serve.go:123: reverse proxy server [6806] is booting
+I 2022/12/19 00:08:37 conf.go:618: database size [1.8 MB], tree/block count [14/277]
+I 2022/12/19 00:08:37 working.go:154: kernel booted
+I 2022/12/19 00:08:37 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/12/19 00:08:41 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2022/12/19 00:08:41 database.go:991: closed database
+I 2022/12/19 00:08:41 conf.go:728: cleared workspace temp
+I 2022/12/19 00:08:42 conf.go:447: exited kernel
+I 2022/12/19 22:36:50 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/12/19 22:36:50 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [1436]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2022/12/19 22:36:50 runtime.go:90: use network proxy [system]
+I 2022/12/19 22:36:50 port.go:65: check running kernel elapsed [0ms]
+I 2022/12/19 22:36:50 serve.go:115: kernel [pid=1436] is booting [http://127.0.0.1:53412]
+I 2022/12/19 22:36:50 serve.go:123: reverse proxy server [6806] is booting
+I 2022/12/19 22:36:50 conf.go:618: database size [1.8 MB], tree/block count [14/277]
+I 2022/12/19 22:36:50 working.go:154: kernel booted
+I 2022/12/19 22:36:50 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/12/19 22:37:50 box.go:80: auto stat [trees=14, blocks=277, dataSize=7.1 MB, assetsSize=6.8 MB]
+I 2022/12/20 00:05:28 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2022/12/20 00:05:28 database.go:991: closed database
+I 2022/12/20 00:05:28 conf.go:728: cleared workspace temp
+I 2022/12/20 00:05:28 conf.go:447: exited kernel
+I 2022/12/20 19:05:41 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/12/20 19:05:41 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [637]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2022/12/20 19:05:41 runtime.go:90: use network proxy [system]
+I 2022/12/20 19:05:41 port.go:65: check running kernel elapsed [0ms]
+I 2022/12/20 19:05:41 serve.go:115: kernel [pid=637] is booting [http://127.0.0.1:49224]
+I 2022/12/20 19:05:41 serve.go:123: reverse proxy server [6806] is booting
+I 2022/12/20 19:05:41 conf.go:618: database size [1.8 MB], tree/block count [15/300]
+I 2022/12/20 19:05:41 working.go:154: kernel booted
+I 2022/12/20 19:05:41 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/12/20 19:06:41 box.go:80: auto stat [trees=15, blocks=300, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/21 01:29:52 box.go:80: auto stat [trees=15, blocks=300, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/21 01:41:16 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2022/12/21 01:41:16 database.go:991: closed database
+I 2022/12/21 01:41:16 conf.go:728: cleared workspace temp
+I 2022/12/21 01:41:16 conf.go:447: exited kernel
+I 2022/12/21 18:50:45 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/12/21 18:50:45 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [592]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2022/12/21 18:50:45 runtime.go:90: use network proxy [system]
+I 2022/12/21 18:50:45 port.go:65: check running kernel elapsed [0ms]
+I 2022/12/21 18:50:45 serve.go:115: kernel [pid=592] is booting [http://127.0.0.1:49190]
+I 2022/12/21 18:50:45 serve.go:123: reverse proxy server [6806] is booting
+I 2022/12/21 18:50:46 conf.go:618: database size [1.8 MB], tree/block count [15/300]
+I 2022/12/21 18:50:46 working.go:154: kernel booted
+I 2022/12/21 18:50:46 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/12/21 18:51:46 box.go:80: auto stat [trees=15, blocks=300, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/21 20:55:07 box.go:80: auto stat [trees=15, blocks=300, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/21 22:55:07 box.go:80: auto stat [trees=15, blocks=300, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/21 23:49:11 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2022/12/21 23:49:11 database.go:991: closed database
+I 2022/12/21 23:49:11 conf.go:728: cleared workspace temp
+I 2022/12/21 23:49:11 conf.go:447: exited kernel
+I 2022/12/22 18:35:59 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/12/22 18:35:59 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [576]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2022/12/22 18:35:59 runtime.go:90: use network proxy [system]
+I 2022/12/22 18:35:59 port.go:65: check running kernel elapsed [0ms]
+I 2022/12/22 18:35:59 serve.go:115: kernel [pid=576] is booting [http://127.0.0.1:49213]
+I 2022/12/22 18:35:59 serve.go:123: reverse proxy server [6806] is booting
+I 2022/12/22 18:35:59 conf.go:618: database size [1.8 MB], tree/block count [15/300]
+I 2022/12/22 18:35:59 working.go:154: kernel booted
+I 2022/12/22 18:35:59 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/12/22 18:36:59 box.go:80: auto stat [trees=15, blocks=300, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/22 20:36:59 box.go:80: auto stat [trees=15, blocks=300, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/22 22:36:58 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/22 23:45:33 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2022/12/22 23:45:33 database.go:991: closed database
+I 2022/12/22 23:45:33 conf.go:728: cleared workspace temp
+I 2022/12/22 23:45:33 conf.go:447: exited kernel
+I 2022/12/23 19:17:24 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/12/23 19:17:24 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [607]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2022/12/23 19:17:24 runtime.go:90: use network proxy [system]
+I 2022/12/23 19:17:24 port.go:65: check running kernel elapsed [0ms]
+I 2022/12/23 19:17:24 serve.go:115: kernel [pid=607] is booting [http://127.0.0.1:49190]
+I 2022/12/23 19:17:24 serve.go:123: reverse proxy server [6806] is booting
+I 2022/12/23 19:17:24 conf.go:618: database size [1.8 MB], tree/block count [15/301]
+I 2022/12/23 19:17:24 working.go:154: kernel booted
+I 2022/12/23 19:17:24 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/12/23 19:18:24 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/23 21:18:23 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/23 23:44:16 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/23 23:50:18 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2022/12/23 23:50:18 database.go:991: closed database
+I 2022/12/23 23:50:18 conf.go:728: cleared workspace temp
+I 2022/12/23 23:50:18 conf.go:447: exited kernel
+I 2022/12/24 18:18:39 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/12/24 18:18:39 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [556]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2022/12/24 18:18:39 runtime.go:90: use network proxy [system]
+I 2022/12/24 18:18:39 port.go:65: check running kernel elapsed [0ms]
+I 2022/12/24 18:18:39 serve.go:115: kernel [pid=556] is booting [http://127.0.0.1:49191]
+I 2022/12/24 18:18:39 serve.go:123: reverse proxy server [6806] is booting
+I 2022/12/24 18:18:39 conf.go:618: database size [1.8 MB], tree/block count [15/301]
+I 2022/12/24 18:18:39 working.go:154: kernel booted
+I 2022/12/24 18:18:40 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/12/24 18:19:39 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/24 20:19:41 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/24 22:19:38 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/25 00:19:40 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/25 11:55:12 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/25 13:55:08 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/25 18:52:10 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/25 20:52:10 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/25 22:52:09 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/25 23:31:38 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2022/12/25 23:31:38 database.go:991: closed database
+I 2022/12/25 23:31:38 conf.go:728: cleared workspace temp
+I 2022/12/25 23:31:39 conf.go:447: exited kernel
+I 2022/12/26 18:47:14 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2022/12/26 18:47:14 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [589]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2022/12/26 18:47:14 runtime.go:90: use network proxy [system]
+I 2022/12/26 18:47:14 port.go:65: check running kernel elapsed [0ms]
+I 2022/12/26 18:47:14 serve.go:115: kernel [pid=589] is booting [http://127.0.0.1:49189]
+I 2022/12/26 18:47:14 serve.go:123: reverse proxy server [6806] is booting
+I 2022/12/26 18:47:14 conf.go:618: database size [1.8 MB], tree/block count [15/301]
+I 2022/12/26 18:47:14 working.go:154: kernel booted
+I 2022/12/26 18:47:14 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2022/12/26 18:48:14 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/26 20:48:13 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/26 22:48:13 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2022/12/26 22:56:42 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2022/12/26 22:56:42 database.go:991: closed database
+I 2022/12/26 22:56:42 conf.go:728: cleared workspace temp
+I 2022/12/26 22:56:43 conf.go:447: exited kernel
+I 2023/01/03 19:07:45 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/01/03 19:07:45 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [626]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/01/03 19:07:45 runtime.go:90: use network proxy [system]
+I 2023/01/03 19:07:45 port.go:65: check running kernel elapsed [0ms]
+I 2023/01/03 19:07:45 serve.go:115: kernel [pid=626] is booting [http://127.0.0.1:49333]
+I 2023/01/03 19:07:45 serve.go:123: reverse proxy server [6806] is booting
+I 2023/01/03 19:07:45 conf.go:618: database size [1.8 MB], tree/block count [15/301]
+I 2023/01/03 19:07:45 working.go:154: kernel booted
+I 2023/01/03 19:07:46 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/01/03 19:08:45 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/03 21:08:45 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/03 23:08:44 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/03 23:32:49 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2023/01/03 23:32:50 database.go:991: closed database
+I 2023/01/03 23:32:50 conf.go:728: cleared workspace temp
+I 2023/01/03 23:32:50 conf.go:447: exited kernel
+I 2023/01/05 21:25:42 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/01/05 21:25:42 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [590]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/01/05 21:25:42 runtime.go:90: use network proxy [system]
+I 2023/01/05 21:25:42 port.go:65: check running kernel elapsed [0ms]
+I 2023/01/05 21:25:42 serve.go:115: kernel [pid=590] is booting [http://127.0.0.1:49212]
+I 2023/01/05 21:25:42 serve.go:123: reverse proxy server [6806] is booting
+I 2023/01/05 21:25:42 conf.go:618: database size [1.8 MB], tree/block count [15/301]
+I 2023/01/05 21:25:42 working.go:154: kernel booted
+I 2023/01/05 21:25:42 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/01/05 21:26:42 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/05 23:26:41 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/05 23:52:50 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2023/01/05 23:52:50 database.go:991: closed database
+I 2023/01/05 23:52:50 conf.go:728: cleared workspace temp
+I 2023/01/05 23:52:50 conf.go:447: exited kernel
+I 2023/01/13 22:54:45 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/01/13 22:54:45 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [593]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/01/13 22:54:46 runtime.go:90: use network proxy [system]
+I 2023/01/13 22:54:46 port.go:65: check running kernel elapsed [0ms]
+I 2023/01/13 22:54:46 serve.go:115: kernel [pid=593] is booting [http://127.0.0.1:49245]
+I 2023/01/13 22:54:46 serve.go:123: reverse proxy server [6806] is booting
+I 2023/01/13 22:54:46 conf.go:618: database size [1.8 MB], tree/block count [15/301]
+I 2023/01/13 22:54:46 working.go:154: kernel booted
+I 2023/01/13 22:54:46 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/01/13 22:55:46 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/14 00:59:07 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2023/01/14 00:59:07 database.go:991: closed database
+I 2023/01/14 00:59:07 conf.go:728: cleared workspace temp
+I 2023/01/14 00:59:07 conf.go:447: exited kernel
+I 2023/01/14 21:17:02 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/01/14 21:17:02 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [622]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/01/14 21:17:02 runtime.go:90: use network proxy [system]
+I 2023/01/14 21:17:02 port.go:65: check running kernel elapsed [0ms]
+I 2023/01/14 21:17:02 serve.go:115: kernel [pid=622] is booting [http://127.0.0.1:49198]
+I 2023/01/14 21:17:02 serve.go:123: reverse proxy server [6806] is booting
+I 2023/01/14 21:17:03 conf.go:618: database size [1.8 MB], tree/block count [15/301]
+I 2023/01/14 21:17:03 working.go:154: kernel booted
+I 2023/01/14 21:17:03 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/01/14 21:18:03 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/14 23:21:27 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 01:21:26 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 03:21:26 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 05:21:25 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 07:21:24 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 09:21:24 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 11:21:23 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 13:21:23 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 15:21:22 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 17:21:22 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 19:21:21 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 21:21:20 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 23:21:20 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/15 23:33:37 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2023/01/15 23:33:37 database.go:991: closed database
+I 2023/01/15 23:33:37 conf.go:728: cleared workspace temp
+I 2023/01/15 23:33:38 conf.go:447: exited kernel
+I 2023/01/30 21:24:59 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/01/30 21:24:59 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [576]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/01/30 21:24:59 runtime.go:90: use network proxy [system]
+I 2023/01/30 21:24:59 port.go:65: check running kernel elapsed [0ms]
+I 2023/01/30 21:24:59 serve.go:115: kernel [pid=576] is booting [http://127.0.0.1:49232]
+I 2023/01/30 21:24:59 serve.go:123: reverse proxy server [6806] is booting
+I 2023/01/30 21:24:59 conf.go:618: database size [1.8 MB], tree/block count [15/301]
+I 2023/01/30 21:24:59 working.go:154: kernel booted
+I 2023/01/30 21:24:59 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/01/30 21:25:59 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/30 23:25:59 box.go:80: auto stat [trees=15, blocks=301, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/01/31 00:04:47 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2023/01/31 00:04:47 database.go:991: closed database
+I 2023/01/31 00:04:47 conf.go:728: cleared workspace temp
+I 2023/01/31 00:04:47 conf.go:447: exited kernel
+I 2023/02/05 16:46:45 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/05 16:46:45 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [16273]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/05 16:46:46 runtime.go:90: use network proxy [system]
+I 2023/02/05 16:46:46 port.go:65: check running kernel elapsed [0ms]
+I 2023/02/05 16:46:46 serve.go:115: kernel [pid=16273] is booting [http://127.0.0.1:61902]
+I 2023/02/05 16:46:46 serve.go:123: reverse proxy server [6806] is booting
+I 2023/02/05 16:46:46 conf.go:618: database size [1.8 MB], tree/block count [15/301]
+I 2023/02/05 16:46:46 working.go:154: kernel booted
+I 2023/02/05 16:46:46 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+D 2023/02/05 16:46:57 package.go:311: downloading bazaar package [%!d(float32=0.8877338)]
+D 2023/02/05 16:46:57 package.go:311: downloading bazaar package [%!d(float32=1)]
+I 2023/02/05 16:47:20 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2023/02/05 16:47:20 database.go:991: closed database
+I 2023/02/05 16:47:20 conf.go:728: cleared workspace temp
+I 2023/02/05 16:47:20 conf.go:447: exited kernel
+I 2023/02/05 16:47:58 working.go:116: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/05 16:47:58 runtime.go:45: kernel is booting:
+    * ver [2.5.4]
+    * arch [amd64]
+    * pid [16335]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/05 16:47:58 runtime.go:90: use network proxy [system]
+I 2023/02/05 16:47:58 port.go:65: check running kernel elapsed [0ms]
+I 2023/02/05 16:47:58 serve.go:115: kernel [pid=16335] is booting [http://127.0.0.1:62112]
+I 2023/02/05 16:47:58 serve.go:123: reverse proxy server [6806] is booting
+I 2023/02/05 16:47:58 working.go:369: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/05 16:47:58 conf.go:618: database size [1.8 MB], tree/block count [15/301]
+I 2023/02/05 16:47:58 working.go:154: kernel booted
+I 2023/02/05 16:48:58 box.go:80: auto stat [trees=16, blocks=308, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/02/05 16:49:45 conf.go:399: exiting kernel [force=false, execInstallPkg=0]
+I 2023/02/05 16:49:45 database.go:991: closed database
+I 2023/02/05 16:49:45 conf.go:728: cleared workspace temp
+I 2023/02/05 16:49:45 conf.go:447: exited kernel
+I 2023/02/05 16:50:23 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/05 16:50:23 runtime.go:49: kernel is booting:
+    * ver [2.7.2]
+    * arch [amd64]
+    * pid [16410]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/05 16:50:23 runtime.go:94: use network proxy [system]
+I 2023/02/05 16:50:23 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/05 16:50:23 serve.go:108: kernel [pid=16410] http server [127.0.0.1:62309] is booting
+I 2023/02/05 16:50:23 tree.go:246: migrated tree [/Users/reborn/Documents/SiYuan/data/20220426224902-vxmackf/20220508160350-14dqrsq.sy] from spec [] to [1]
+I 2023/02/05 16:50:23 index.go:127: rebuilt database for notebook [20220426224902-vxmackf] in [0.01s], tree [count=13, size=113 kB]
+I 2023/02/05 16:50:23 tree.go:246: migrated tree [/Users/reborn/Documents/SiYuan/data/20220505002926-v5kg11z/20220505002929-9otqzlz.sy] from spec [] to [1]
+I 2023/02/05 16:50:23 index.go:127: rebuilt database for notebook [20220505002926-v5kg11z] in [0.00s], tree [count=2, size=85 kB]
+I 2023/02/05 16:50:23 index.go:127: rebuilt database for notebook [20221212220751-z3xb2pi] in [0.00s], tree [count=1, size=6.6 kB]
+I 2023/02/05 16:50:23 conf.go:615: database size [1.8 MB], tree/block count [16/310]
+I 2023/02/05 16:50:23 working.go:157: kernel booted
+I 2023/02/05 16:50:24 box.go:74: auto stat [trees=16, blocks=310, dataSize=7.2 MB, assetsSize=6.9 MB]
+I 2023/02/05 16:50:24 disk.go:33: disk usage [total=500 GB, used=134 GB, free=366 GB]
+I 2023/02/05 16:50:24 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+W 2023/02/05 17:00:24 index_fix.go:87: exist more than one tree duplicated [16], reindex it
+I 2023/02/05 19:06:58 box.go:74: auto stat [trees=16, blocks=319, dataSize=7.4 MB, assetsSize=7.1 MB]
+I 2023/02/05 19:06:58 disk.go:33: disk usage [total=500 GB, used=134 GB, free=366 GB]
+I 2023/02/05 21:06:58 box.go:74: auto stat [trees=16, blocks=319, dataSize=7.4 MB, assetsSize=7.1 MB]
+I 2023/02/05 21:06:58 disk.go:33: disk usage [total=500 GB, used=134 GB, free=366 GB]
+I 2023/02/05 23:06:57 box.go:74: auto stat [trees=16, blocks=319, dataSize=7.4 MB, assetsSize=7.1 MB]
+I 2023/02/05 23:06:57 disk.go:33: disk usage [total=500 GB, used=134 GB, free=366 GB]
+I 2023/02/06 17:40:32 box.go:74: auto stat [trees=16, blocks=319, dataSize=7.4 MB, assetsSize=7.1 MB]
+I 2023/02/06 17:40:32 disk.go:33: disk usage [total=500 GB, used=133 GB, free=367 GB]
+I 2023/02/07 00:11:53 conf.go:397: exiting kernel [force=false, execInstallPkg=0]
+I 2023/02/07 00:11:53 database.go:1081: closed database
+I 2023/02/07 00:11:54 conf.go:760: cleared workspace temp
+I 2023/02/07 00:11:54 conf.go:443: exited kernel
+I 2023/02/07 21:41:32 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/07 21:41:32 runtime.go:49: kernel is booting:
+    * ver [2.7.2]
+    * arch [amd64]
+    * pid [601]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/07 21:41:32 runtime.go:94: use network proxy [system]
+I 2023/02/07 21:41:32 serve.go:108: kernel [pid=601] http server [127.0.0.1:49220] is booting
+I 2023/02/07 21:41:32 blocktree.go:376: read block tree [75 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/02/07 21:41:32 conf.go:615: database size [3.6 MB], tree/block count [16/319]
+I 2023/02/07 21:41:32 working.go:157: kernel booted
+I 2023/02/07 21:41:32 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/07 21:41:32 box.go:74: auto stat [trees=16, blocks=319, dataSize=7.4 MB, assetsSize=7.1 MB]
+I 2023/02/07 21:41:32 disk.go:33: disk usage [total=500 GB, used=133 GB, free=367 GB]
+I 2023/02/07 21:41:33 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/02/07 21:57:39 conf.go:397: exiting kernel [force=false, execInstallPkg=0]
+I 2023/02/07 21:57:39 database.go:1081: closed database
+I 2023/02/07 21:57:39 conf.go:760: cleared workspace temp
+I 2023/02/07 21:57:40 conf.go:443: exited kernel
+I 2023/02/12 15:18:49 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/12 15:18:49 runtime.go:49: kernel is booting:
+    * ver [2.7.2]
+    * arch [amd64]
+    * pid [7857]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/12 15:18:49 runtime.go:94: use network proxy [system]
+I 2023/02/12 15:18:49 serve.go:108: kernel [pid=7857] http server [127.0.0.1:52389] is booting
+I 2023/02/12 15:18:49 blocktree.go:376: read block tree [75 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/02/12 15:18:49 conf.go:615: database size [3.6 MB], tree/block count [16/319]
+I 2023/02/12 15:18:49 working.go:157: kernel booted
+I 2023/02/12 15:18:49 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/12 15:18:50 box.go:74: auto stat [trees=16, blocks=319, dataSize=7.4 MB, assetsSize=7.1 MB]
+I 2023/02/12 15:18:50 disk.go:33: disk usage [total=500 GB, used=132 GB, free=368 GB]
+I 2023/02/12 15:18:50 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/02/12 15:43:14 conf.go:397: exiting kernel [force=false, execInstallPkg=0]
+I 2023/02/12 15:43:14 database.go:1081: closed database
+I 2023/02/12 15:43:14 conf.go:760: cleared workspace temp
+I 2023/02/12 15:43:15 conf.go:443: exited kernel
+I 2023/02/12 16:08:17 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/12 16:08:17 runtime.go:49: kernel is booting:
+    * ver [2.7.4]
+    * arch [amd64]
+    * pid [9101]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/12 16:08:17 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/12 16:08:17 runtime.go:94: use network proxy [system]
+I 2023/02/12 16:08:17 serve.go:108: kernel [pid=9101] http server [127.0.0.1:54615] is booting
+I 2023/02/12 16:08:17 blocktree.go:386: read block tree [79 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/02/12 16:08:17 conf.go:622: database size [3.6 MB], tree/block count [17/339]
+I 2023/02/12 16:08:17 working.go:157: kernel booted
+I 2023/02/12 16:08:17 box.go:74: auto stat [trees=17, blocks=339, dataSize=7.7 MB, assetsSize=7.4 MB]
+I 2023/02/12 16:08:17 disk.go:33: disk usage [total=500 GB, used=132 GB, free=368 GB]
+I 2023/02/12 16:08:18 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/02/12 19:55:38 box.go:74: auto stat [trees=17, blocks=374, dataSize=8.7 MB, assetsSize=8.4 MB]
+I 2023/02/12 19:55:38 disk.go:33: disk usage [total=500 GB, used=130 GB, free=370 GB]
+I 2023/02/12 21:55:37 box.go:74: auto stat [trees=18, blocks=382, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/12 21:55:37 disk.go:33: disk usage [total=500 GB, used=130 GB, free=370 GB]
+I 2023/02/13 00:01:25 box.go:74: auto stat [trees=18, blocks=382, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/13 00:01:25 disk.go:33: disk usage [total=500 GB, used=130 GB, free=370 GB]
+I 2023/02/13 00:13:17 conf.go:403: exiting kernel [force=false, execInstallPkg=0]
+I 2023/02/13 00:13:17 database.go:1115: closed database
+I 2023/02/13 00:13:17 conf.go:768: cleared workspace temp
+I 2023/02/13 00:13:18 conf.go:450: exited kernel
+I 2023/02/13 21:13:44 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/13 21:13:44 runtime.go:49: kernel is booting:
+    * ver [2.7.4]
+    * arch [amd64]
+    * pid [793]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/13 21:13:44 runtime.go:94: use network proxy [system]
+I 2023/02/13 21:13:44 serve.go:108: kernel [pid=793] http server [127.0.0.1:49691] is booting
+I 2023/02/13 21:13:44 blocktree.go:386: read block tree [89 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/02/13 21:13:44 conf.go:622: database size [3.6 MB], tree/block count [18/382]
+I 2023/02/13 21:13:44 working.go:157: kernel booted
+I 2023/02/13 21:13:44 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/13 21:13:44 box.go:74: auto stat [trees=18, blocks=382, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/13 21:13:44 disk.go:33: disk usage [total=500 GB, used=130 GB, free=370 GB]
+I 2023/02/13 21:13:45 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/02/13 23:13:43 box.go:74: auto stat [trees=18, blocks=392, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/13 23:13:43 disk.go:33: disk usage [total=500 GB, used=130 GB, free=370 GB]
+I 2023/02/14 00:03:57 conf.go:403: exiting kernel [force=false, execInstallPkg=0]
+I 2023/02/14 00:03:57 database.go:1115: closed database
+I 2023/02/14 00:03:57 conf.go:768: cleared workspace temp
+I 2023/02/14 00:03:58 conf.go:450: exited kernel
+I 2023/02/14 21:51:19 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/14 21:51:19 runtime.go:49: kernel is booting:
+    * ver [2.7.4]
+    * arch [amd64]
+    * pid [615]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/14 21:51:19 runtime.go:94: use network proxy [system]
+I 2023/02/14 21:51:19 serve.go:108: kernel [pid=615] http server [127.0.0.1:49204] is booting
+I 2023/02/14 21:51:19 blocktree.go:386: read block tree [91 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/02/14 21:51:19 conf.go:622: database size [3.6 MB], tree/block count [18/392]
+I 2023/02/14 21:51:19 working.go:157: kernel booted
+I 2023/02/14 21:51:19 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/14 21:51:19 box.go:74: auto stat [trees=18, blocks=392, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/14 21:51:19 disk.go:33: disk usage [total=500 GB, used=130 GB, free=370 GB]
+I 2023/02/14 21:51:20 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/02/15 00:16:00 box.go:74: auto stat [trees=18, blocks=392, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/15 00:16:00 disk.go:33: disk usage [total=500 GB, used=130 GB, free=369 GB]
+I 2023/02/15 00:33:19 conf.go:403: exiting kernel [force=false, execInstallPkg=0]
+I 2023/02/15 00:33:19 database.go:1115: closed database
+I 2023/02/15 00:33:19 conf.go:768: cleared workspace temp
+I 2023/02/15 00:33:20 conf.go:450: exited kernel
+I 2023/02/15 20:25:21 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/15 20:25:21 runtime.go:49: kernel is booting:
+    * ver [2.7.4]
+    * arch [amd64]
+    * pid [576]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/15 20:25:21 runtime.go:94: use network proxy [system]
+I 2023/02/15 20:25:21 serve.go:108: kernel [pid=576] http server [127.0.0.1:49191] is booting
+I 2023/02/15 20:25:21 blocktree.go:386: read block tree [91 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/02/15 20:25:21 conf.go:622: database size [3.6 MB], tree/block count [18/392]
+I 2023/02/15 20:25:21 working.go:157: kernel booted
+I 2023/02/15 20:25:21 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/15 20:25:21 box.go:74: auto stat [trees=18, blocks=392, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/15 20:25:21 disk.go:33: disk usage [total=500 GB, used=130 GB, free=370 GB]
+I 2023/02/15 20:25:22 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/02/15 22:25:21 box.go:74: auto stat [trees=18, blocks=392, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/15 22:25:21 disk.go:33: disk usage [total=500 GB, used=131 GB, free=369 GB]
+W 2023/02/15 23:58:21 process.go:66: no active UI proc, continue to check from attached ui processes after 15s
+W 2023/02/15 23:58:36 process.go:72: no active UI proc, continue to check from all processes after 15s
+W 2023/02/16 00:24:53 process.go:80: confirmed no active UI proc, exit kernel process now
+I 2023/02/16 00:24:53 conf.go:403: exiting kernel [force=false, execInstallPkg=1]
+I 2023/02/16 00:24:53 database.go:1115: closed database
+I 2023/02/16 00:24:53 conf.go:768: cleared workspace temp
+I 2023/02/16 00:24:53 conf.go:450: exited kernel
+I 2023/02/16 21:28:02 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/16 21:28:02 runtime.go:49: kernel is booting:
+    * ver [2.7.4]
+    * arch [amd64]
+    * pid [672]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/16 21:28:02 runtime.go:94: use network proxy [system]
+I 2023/02/16 21:28:02 serve.go:108: kernel [pid=672] http server [127.0.0.1:49236] is booting
+I 2023/02/16 21:28:02 blocktree.go:386: read block tree [91 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/02/16 21:28:02 conf.go:622: database size [3.6 MB], tree/block count [18/392]
+I 2023/02/16 21:28:02 working.go:157: kernel booted
+I 2023/02/16 21:28:02 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/16 21:28:03 box.go:74: auto stat [trees=18, blocks=392, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/16 21:28:03 disk.go:33: disk usage [total=500 GB, used=130 GB, free=370 GB]
+I 2023/02/16 21:28:03 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/02/16 23:28:02 box.go:74: auto stat [trees=18, blocks=392, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/16 23:28:02 disk.go:33: disk usage [total=500 GB, used=130 GB, free=369 GB]
+I 2023/02/17 00:12:38 conf.go:403: exiting kernel [force=false, execInstallPkg=0]
+I 2023/02/17 00:12:39 database.go:1115: closed database
+I 2023/02/17 00:12:39 conf.go:768: cleared workspace temp
+I 2023/02/17 00:12:39 conf.go:450: exited kernel
+I 2023/02/17 18:41:58 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/17 18:41:58 runtime.go:49: kernel is booting:
+    * ver [2.7.4]
+    * arch [amd64]
+    * pid [668]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/17 18:41:58 runtime.go:94: use network proxy [system]
+I 2023/02/17 18:41:58 serve.go:108: kernel [pid=668] http server [127.0.0.1:49256] is booting
+I 2023/02/17 18:41:58 blocktree.go:386: read block tree [91 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.02s]
+I 2023/02/17 18:41:58 conf.go:622: database size [3.6 MB], tree/block count [18/392]
+I 2023/02/17 18:41:58 working.go:157: kernel booted
+I 2023/02/17 18:41:58 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/17 18:41:58 box.go:74: auto stat [trees=18, blocks=392, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/17 18:41:58 disk.go:33: disk usage [total=500 GB, used=130 GB, free=370 GB]
+I 2023/02/17 18:41:59 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/02/17 20:41:58 box.go:74: auto stat [trees=18, blocks=392, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/17 20:41:58 disk.go:33: disk usage [total=500 GB, used=132 GB, free=368 GB]
+W 2023/02/17 23:07:52 process.go:66: no active UI proc, continue to check from attached ui processes after 15s
+W 2023/02/17 23:08:07 process.go:72: no active UI proc, continue to check from all processes after 15s
+W 2023/02/17 23:14:11 process.go:80: confirmed no active UI proc, exit kernel process now
+I 2023/02/17 23:14:11 conf.go:403: exiting kernel [force=false, execInstallPkg=1]
+I 2023/02/17 23:14:11 database.go:1115: closed database
+I 2023/02/17 23:14:11 conf.go:768: cleared workspace temp
+I 2023/02/17 23:14:11 conf.go:450: exited kernel
+I 2023/02/19 11:34:44 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/19 11:34:44 runtime.go:49: kernel is booting:
+    * ver [2.7.4]
+    * arch [amd64]
+    * pid [11310]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/19 11:34:44 runtime.go:94: use network proxy [system]
+I 2023/02/19 11:34:44 serve.go:108: kernel [pid=11310] http server [127.0.0.1:63886] is booting
+I 2023/02/19 11:34:44 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/19 11:34:44 blocktree.go:386: read block tree [91 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/02/19 11:34:44 conf.go:622: database size [3.6 MB], tree/block count [18/392]
+I 2023/02/19 11:34:44 working.go:157: kernel booted
+I 2023/02/19 11:34:44 box.go:74: auto stat [trees=18, blocks=392, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/19 11:34:44 disk.go:33: disk usage [total=500 GB, used=130 GB, free=370 GB]
+I 2023/02/19 11:34:45 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/02/19 13:34:44 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/19 13:34:44 disk.go:33: disk usage [total=500 GB, used=130 GB, free=370 GB]
+W 2023/02/19 14:07:44 process.go:66: no active UI proc, continue to check from attached ui processes after 15s
+W 2023/02/19 14:07:59 process.go:72: no active UI proc, continue to check from all processes after 15s
+W 2023/02/19 14:22:23 process.go:80: confirmed no active UI proc, exit kernel process now
+I 2023/02/19 14:22:23 conf.go:403: exiting kernel [force=false, execInstallPkg=1]
+I 2023/02/19 14:22:23 database.go:1115: closed database
+I 2023/02/19 14:22:23 conf.go:768: cleared workspace temp
+I 2023/02/19 14:22:24 conf.go:450: exited kernel
+I 2023/02/20 21:19:11 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/20 21:19:11 runtime.go:49: kernel is booting:
+    * ver [2.7.4]
+    * arch [amd64]
+    * pid [692]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/20 21:19:11 runtime.go:94: use network proxy [system]
+I 2023/02/20 21:19:11 serve.go:108: kernel [pid=692] http server [127.0.0.1:49314] is booting
+I 2023/02/20 21:19:11 blocktree.go:386: read block tree [94 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/02/20 21:19:11 conf.go:622: database size [3.6 MB], tree/block count [19/404]
+I 2023/02/20 21:19:11 working.go:157: kernel booted
+I 2023/02/20 21:19:11 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/20 21:19:11 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/20 21:19:11 disk.go:33: disk usage [total=500 GB, used=131 GB, free=369 GB]
+I 2023/02/20 21:19:12 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/02/20 23:19:08 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/20 23:19:08 disk.go:33: disk usage [total=500 GB, used=131 GB, free=369 GB]
+I 2023/02/20 23:36:59 conf.go:403: exiting kernel [force=false, execInstallPkg=0]
+I 2023/02/20 23:36:59 database.go:1115: closed database
+I 2023/02/20 23:36:59 conf.go:768: cleared workspace temp
+I 2023/02/20 23:36:59 conf.go:450: exited kernel
+I 2023/02/26 10:34:48 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/26 10:34:48 runtime.go:49: kernel is booting:
+    * ver [2.7.4]
+    * arch [amd64]
+    * pid [1249]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/26 10:34:48 runtime.go:94: use network proxy [system]
+I 2023/02/26 10:34:48 serve.go:108: kernel [pid=1249] http server [127.0.0.1:50691] is booting
+I 2023/02/26 10:34:48 blocktree.go:386: read block tree [94 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/02/26 10:34:48 conf.go:622: database size [3.6 MB], tree/block count [19/404]
+I 2023/02/26 10:34:48 working.go:157: kernel booted
+I 2023/02/26 10:34:48 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/02/26 10:34:48 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/26 10:34:48 disk.go:33: disk usage [total=500 GB, used=129 GB, free=371 GB]
+I 2023/02/26 10:34:49 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/02/26 12:39:30 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/26 12:39:30 disk.go:33: disk usage [total=500 GB, used=130 GB, free=370 GB]
+I 2023/02/26 14:39:30 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/26 14:39:30 disk.go:33: disk usage [total=500 GB, used=131 GB, free=369 GB]
+I 2023/02/26 16:39:29 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/26 16:39:29 disk.go:33: disk usage [total=500 GB, used=131 GB, free=369 GB]
+I 2023/02/26 18:39:28 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/26 18:39:28 disk.go:33: disk usage [total=500 GB, used=131 GB, free=368 GB]
+I 2023/02/26 21:15:53 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/26 21:15:53 disk.go:33: disk usage [total=500 GB, used=132 GB, free=368 GB]
+I 2023/02/26 23:16:39 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/26 23:16:39 disk.go:33: disk usage [total=500 GB, used=132 GB, free=368 GB]
+I 2023/02/26 23:47:38 conf.go:403: exiting kernel [force=false, execInstallPkg=0]
+I 2023/02/26 23:47:38 database.go:1115: closed database
+I 2023/02/26 23:47:38 conf.go:768: cleared workspace temp
+I 2023/02/26 23:47:39 conf.go:450: exited kernel
+I 2023/02/27 21:03:48 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/02/27 21:03:48 runtime.go:49: kernel is booting:
+    * ver [2.7.4]
+    * arch [amd64]
+    * pid [713]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/02/27 21:03:48 runtime.go:94: use network proxy [system]
+I 2023/02/27 21:03:48 serve.go:108: kernel [pid=713] http server [127.0.0.1:49381] is booting
+I 2023/02/27 21:03:48 blocktree.go:386: read block tree [94 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/02/27 21:03:48 conf.go:622: database size [3.6 MB], tree/block count [19/404]
+I 2023/02/27 21:03:48 working.go:157: kernel booted
+I 2023/02/27 21:03:48 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/02/27 21:03:48 disk.go:33: disk usage [total=500 GB, used=131 GB, free=369 GB]
+I 2023/02/27 21:03:49 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/02/27 21:03:49 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+W 2023/02/27 21:18:48 process.go:66: no active UI proc, continue to check from attached ui processes after 15s
+W 2023/02/27 21:19:03 process.go:72: no active UI proc, continue to check from all processes after 15s
+W 2023/02/27 21:19:18 process.go:80: confirmed no active UI proc, exit kernel process now
+I 2023/02/27 21:19:18 conf.go:403: exiting kernel [force=false, execInstallPkg=1]
+I 2023/02/27 21:19:18 database.go:1115: closed database
+I 2023/02/27 21:19:18 conf.go:768: cleared workspace temp
+I 2023/02/27 21:19:19 conf.go:450: exited kernel
+I 2023/04/05 21:28:15 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/04/05 21:28:15 runtime.go:49: kernel is booting:
+    * ver [2.7.4]
+    * arch [amd64]
+    * pid [3812]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/04/05 21:28:15 runtime.go:94: use network proxy [system]
+I 2023/04/05 21:28:15 serve.go:108: kernel [pid=3812] http server [127.0.0.1:53104] is booting
+I 2023/04/05 21:28:15 blocktree.go:386: read block tree [94 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/04/05 21:28:15 conf.go:622: database size [3.6 MB], tree/block count [19/404]
+I 2023/04/05 21:28:15 working.go:157: kernel booted
+I 2023/04/05 21:28:15 working.go:396: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/04/05 21:28:15 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/04/05 21:28:15 disk.go:33: disk usage [total=500 GB, used=148 GB, free=352 GB]
+I 2023/04/05 21:28:16 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/04/05 21:33:40 conf.go:403: exiting kernel [force=false, execInstallPkg=0]
+I 2023/04/05 21:33:40 database.go:1115: closed database
+I 2023/04/05 21:33:40 conf.go:768: cleared workspace temp
+I 2023/04/05 21:33:40 conf.go:450: exited kernel
+I 2023/04/05 21:33:56 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/04/05 21:33:56 runtime.go:51: kernel is booting:
+    * ver [2.8.3]
+    * arch [amd64]
+    * os [darwin]
+    * pid [3936]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/04/05 21:33:56 conf.go:221: upgraded from version [2.7.4] to [2.8.3]
+I 2023/04/05 21:33:56 working.go:401: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/04/05 21:33:56 runtime.go:97: use network proxy [system]
+I 2023/04/05 21:33:56 serve.go:108: kernel [pid=3936] http server [127.0.0.1:53559] is booting
+I 2023/04/05 21:33:56 blocktree.go:386: read block tree [94 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/04/05 21:33:57 conf.go:671: database size [3.6 MB], tree/block count [19/404]
+I 2023/04/05 21:33:57 working.go:157: kernel booted
+I 2023/04/05 21:33:57 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/04/05 21:33:57 disk.go:33: disk usage [total=500 GB, used=148 GB, free=352 GB]
+I 2023/04/05 21:33:57 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/04/05 21:34:00 index_fix.go:124: removed legacy history [/Users/reborn/Documents/SiYuan/data/20220426224902-vxmackf/.siyuan/history]
+I 2023/04/05 21:34:00 index_fix.go:124: removed legacy history [/Users/reborn/Documents/SiYuan/data/20220505002926-v5kg11z/.siyuan/history]
+E 2023/04/05 21:44:00 runtime.go:128: check file system status failed: workspace dir [/Users/reborn/Documents/SiYuan] is in third party sync dir, github.com/siyuan-note/siyuan/kernel/util.checkFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:158 +0x225
+github.com/siyuan-note/siyuan/kernel/util.CheckFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:141 +0x52
+created by main.main
+	/Users/Vanessa/Work/Code/siyuan/kernel/main.go:51 +0x113
+I 2023/05/05 23:44:58 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/05/05 23:44:58 runtime.go:51: kernel is booting:
+    * ver [2.8.3]
+    * arch [amd64]
+    * os [darwin]
+    * pid [1236]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/05/05 23:44:58 runtime.go:97: use network proxy [system]
+I 2023/05/05 23:44:58 serve.go:108: kernel [pid=1236] http server [127.0.0.1:56116] is booting
+I 2023/05/05 23:44:58 blocktree.go:386: read block tree [94 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/05/05 23:44:58 conf.go:671: database size [3.6 MB], tree/block count [19/404]
+I 2023/05/05 23:44:58 working.go:157: kernel booted
+I 2023/05/05 23:44:58 working.go:401: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/05/05 23:44:58 box.go:74: auto stat [trees=19, blocks=404, dataSize=9.1 MB, assetsSize=8.7 MB]
+I 2023/05/05 23:44:58 disk.go:33: disk usage [total=500 GB, used=183 GB, free=317 GB]
+I 2023/05/05 23:44:59 serve.go:121: reverse proxy server [127.0.0.1:6806] is booting
+E 2023/05/05 23:54:58 runtime.go:128: check file system status failed: workspace dir [/Users/reborn/Documents/SiYuan] is in third party sync dir, github.com/siyuan-note/siyuan/kernel/util.checkFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:158 +0x225
+github.com/siyuan-note/siyuan/kernel/util.CheckFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:141 +0x52
+created by main.main
+	/Users/Vanessa/Work/Code/siyuan/kernel/main.go:51 +0x113
+I 2023/05/06 00:01:13 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/05/06 00:01:13 runtime.go:51: kernel is booting:
+    * ver [2.8.6]
+    * arch [amd64]
+    * os [darwin]
+    * pid [1289]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/05/06 00:01:13 conf.go:222: upgraded from version [2.8.3] to [2.8.6]
+I 2023/05/06 00:01:13 working.go:401: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/05/06 00:01:13 runtime.go:105: use network proxy [system]
+I 2023/05/06 00:01:13 serve.go:111: kernel [pid=1289] http server [127.0.0.1:57097] is booting
+I 2023/05/06 00:01:13 blocktree.go:401: read block tree [95 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/05/06 00:01:13 conf.go:677: database size [3.6 MB], tree/block count [20/411]
+I 2023/05/06 00:01:13 working.go:157: kernel booted
+I 2023/05/06 00:01:14 box.go:74: auto stat [trees=20, blocks=411, dataSize=9.3 MB, assetsSize=9.0 MB]
+I 2023/05/06 00:01:14 disk.go:33: disk usage [total=500 GB, used=183 GB, free=317 GB]
+I 2023/05/06 00:01:14 serve.go:124: reverse proxy server [127.0.0.1:6806] is booting
+I 2023/05/06 00:02:06 conf.go:452: exiting kernel [force=false, execInstallPkg=0]
+I 2023/05/06 00:02:27 conf.go:452: exiting kernel [force=false, execInstallPkg=0]
+I 2023/05/06 00:02:30 conf.go:452: exiting kernel [force=true, execInstallPkg=0]
+I 2023/05/06 00:02:30 database.go:1127: closed database
+I 2023/05/06 00:02:30 conf.go:824: cleared workspace temp
+I 2023/05/06 00:02:31 conf.go:499: exited kernel
+I 2023/05/11 23:03:06 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/05/11 23:03:06 runtime.go:51: kernel is booting:
+    * ver [2.8.6]
+    * arch [amd64]
+    * os [darwin]
+    * pid [17873]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/05/11 23:03:06 runtime.go:105: use network proxy [system]
+I 2023/05/11 23:03:06 serve.go:111: kernel [pid=17873] http server [127.0.0.1:52936] is booting
+I 2023/05/11 23:03:06 blocktree.go:401: read block tree [96 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/05/11 23:03:06 conf.go:677: database size [3.6 MB], tree/block count [20/412]
+I 2023/05/11 23:03:06 working.go:157: kernel booted
+I 2023/05/11 23:03:06 working.go:401: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/05/11 23:03:06 box.go:74: auto stat [trees=20, blocks=412, dataSize=9.3 MB, assetsSize=9.0 MB]
+I 2023/05/11 23:03:06 disk.go:33: disk usage [total=500 GB, used=185 GB, free=314 GB]
+I 2023/05/11 23:03:07 serve.go:124: reverse proxy server [127.0.0.1:6806] is booting
+E 2023/05/11 23:13:06 runtime.go:136: check file system status failed: workspace dir [/Users/reborn/Documents/SiYuan] is in third party sync dir, github.com/siyuan-note/siyuan/kernel/util.checkFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:166 +0x225
+github.com/siyuan-note/siyuan/kernel/util.CheckFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:149 +0x52
+created by main.main
+	/Users/Vanessa/Work/Code/siyuan/kernel/main.go:51 +0x113
+I 2023/05/11 23:13:16 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/05/11 23:13:16 runtime.go:51: kernel is booting:
+    * ver [2.8.6]
+    * arch [amd64]
+    * os [darwin]
+    * pid [19742]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/05/11 23:13:17 working.go:401: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/05/11 23:13:17 runtime.go:105: use network proxy [system]
+I 2023/05/11 23:13:17 serve.go:111: kernel [pid=19742] http server [127.0.0.1:53507] is booting
+I 2023/05/11 23:13:17 blocktree.go:401: read block tree [97 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/05/11 23:13:17 conf.go:677: database size [3.6 MB], tree/block count [20/419]
+I 2023/05/11 23:13:17 working.go:157: kernel booted
+I 2023/05/11 23:13:17 box.go:74: auto stat [trees=20, blocks=419, dataSize=9.6 MB, assetsSize=9.3 MB]
+I 2023/05/11 23:13:17 disk.go:33: disk usage [total=500 GB, used=185 GB, free=314 GB]
+I 2023/05/11 23:13:18 serve.go:124: reverse proxy server [127.0.0.1:6806] is booting
+E 2023/05/11 23:23:16 runtime.go:136: check file system status failed: workspace dir [/Users/reborn/Documents/SiYuan] is in third party sync dir, github.com/siyuan-note/siyuan/kernel/util.checkFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:166 +0x225
+github.com/siyuan-note/siyuan/kernel/util.CheckFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:149 +0x52
+created by main.main
+	/Users/Vanessa/Work/Code/siyuan/kernel/main.go:51 +0x113
+I 2023/05/12 08:18:51 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/05/12 08:18:51 runtime.go:51: kernel is booting:
+    * ver [2.8.6]
+    * arch [amd64]
+    * os [darwin]
+    * pid [21992]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/05/12 08:18:51 working.go:401: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/05/12 08:18:51 runtime.go:105: use network proxy [system]
+I 2023/05/12 08:18:51 serve.go:111: kernel [pid=21992] http server [127.0.0.1:55363] is booting
+I 2023/05/12 08:18:51 blocktree.go:401: read block tree [97 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/05/12 08:18:51 conf.go:677: database size [3.6 MB], tree/block count [20/419]
+I 2023/05/12 08:18:51 working.go:157: kernel booted
+I 2023/05/12 08:18:52 box.go:74: auto stat [trees=20, blocks=419, dataSize=9.6 MB, assetsSize=9.3 MB]
+I 2023/05/12 08:18:52 disk.go:33: disk usage [total=500 GB, used=186 GB, free=314 GB]
+I 2023/05/12 08:18:52 serve.go:124: reverse proxy server [127.0.0.1:6806] is booting
+E 2023/05/12 08:28:51 runtime.go:136: check file system status failed: workspace dir [/Users/reborn/Documents/SiYuan] is in third party sync dir, github.com/siyuan-note/siyuan/kernel/util.checkFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:166 +0x225
+github.com/siyuan-note/siyuan/kernel/util.CheckFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:149 +0x52
+created by main.main
+	/Users/Vanessa/Work/Code/siyuan/kernel/main.go:51 +0x113
+I 2023/05/13 21:17:49 working.go:119: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/05/13 21:17:49 runtime.go:70: kernel is booting:
+    * ver [2.8.7]
+    * arch [amd64]
+    * os [darwin]
+    * pid [1841]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/05/13 21:17:49 conf.go:223: upgraded from version [2.8.6] to [2.8.7]
+I 2023/05/13 21:17:49 runtime.go:124: use network proxy [system]
+I 2023/05/13 21:17:49 serve.go:112: kernel [pid=1841] http server [127.0.0.1:51215] is booting
+I 2023/05/13 21:17:50 blocktree.go:448: read block tree [97 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/05/13 21:17:50 conf.go:682: database size [3.6 MB], tree/block count [20/419]
+I 2023/05/13 21:17:50 working.go:157: kernel booted
+I 2023/05/13 21:17:50 working.go:406: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/05/13 21:17:50 box.go:78: auto stat [trees=20, blocks=419, dataSize=9.6 MB, assetsSize=9.3 MB]
+I 2023/05/13 21:17:50 disk.go:33: disk usage [total=500 GB, used=186 GB, free=314 GB]
+I 2023/05/13 21:17:50 serve.go:125: reverse proxy server [127.0.0.1:6806] is booting
+E 2023/05/13 21:27:49 runtime.go:155: check file system status failed: workspace dir [/Users/reborn/Documents/SiYuan] is in third party sync dir, github.com/siyuan-note/siyuan/kernel/util.checkFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:185 +0x225
+github.com/siyuan-note/siyuan/kernel/util.CheckFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:168 +0x52
+created by main.main
+	/Users/Vanessa/Work/Code/siyuan/kernel/main.go:51 +0x113
+I 2023/05/24 19:34:23 working.go:117: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/05/24 19:34:23 runtime.go:70: kernel is booting:
+    * ver [2.8.9]
+    * arch [amd64]
+    * os [darwin]
+    * pid [939]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/05/24 19:34:23 conf.go:226: upgraded from version [2.8.7] to [2.8.9]
+I 2023/05/24 19:34:23 runtime.go:124: use network proxy [system]
+I 2023/05/24 19:34:23 serve.go:112: kernel [pid=939] http server [127.0.0.1:51659] is booting
+I 2023/05/24 19:34:23 blocktree.go:448: read block tree [97 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/05/24 19:34:23 conf.go:685: database size [3.6 MB], tree/block count [20/419]
+I 2023/05/24 19:34:23 working.go:155: kernel booted
+I 2023/05/24 19:34:23 pandoc.go:97: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/05/24 19:34:23 box.go:79: auto stat [trees=20, blocks=419, dataSize=9.6 MB, assetsSize=9.3 MB]
+I 2023/05/24 19:34:23 disk.go:33: disk usage [total=500 GB, used=188 GB, free=312 GB]
+I 2023/05/24 19:34:24 serve.go:125: reverse proxy server [127.0.0.1:6806] is booting
+E 2023/05/24 19:44:23 runtime.go:155: check file system status failed: workspace dir [/Users/reborn/Documents/SiYuan] is in third party sync dir, github.com/siyuan-note/siyuan/kernel/util.checkFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:185 +0x225
+github.com/siyuan-note/siyuan/kernel/util.CheckFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:168 +0x52
+created by main.main
+	/Users/Vanessa/Work/Code/siyuan/kernel/main.go:52 +0x129
+I 2023/05/24 19:45:33 working.go:117: 
+      ___                                   ___           ___           ___
+     /  /\        ___           ___        /__/\         /  /\         /__/\
+    /  /:/_      /  /\         /__/|       \  \:\       /  /::\        \  \:\
+   /  /:/ /\    /  /:/        |  |:|        \  \:\     /  /:/\:\        \  \:\
+  /  /:/ /::\  /__/::\        |  |:|    ___  \  \:\   /  /:/~/::\   _____\__\:\
+ /__/:/ /:/\:\ \__\/\:\__   __|__|:|   /__/\  \__\:\ /__/:/ /:/\:\ /__/::::::::\
+ \  \:\/:/~/:/    \  \:\/\ /__/::::\   \  \:\ /  /:/ \  \:\/:/__\/ \  \:\~~\~~\/
+  \  \::/ /:/      \__\::/    ~\~~\:\   \  \:\  /:/   \  \::/       \  \:\  ~~~
+   \__\/ /:/       /__/:/       \  \:\   \  \:\/:/     \  \:\        \  \:\
+     /__/:/        \__\/         \__\/    \  \::/       \  \:\        \  \:\
+     \__\/                                 \__\/         \__\/         \__\/
+I 2023/05/24 19:45:33 runtime.go:70: kernel is booting:
+    * ver [2.8.9]
+    * arch [amd64]
+    * os [darwin]
+    * pid [989]
+    * runtime mode [prod]
+    * working directory [/Applications/SiYuan.app/Contents/Resources]
+    * read only [false]
+    * container [std]
+    * database [ver=20220501]
+    * workspace directory [/Users/reborn/Documents/SiYuan]
+I 2023/05/24 19:45:33 pandoc.go:97: built-in pandoc [ver=2.19.2, bin=/Users/reborn/Documents/SiYuan/temp/pandoc/bin/pandoc]
+I 2023/05/24 19:45:33 runtime.go:124: use network proxy [system]
+I 2023/05/24 19:45:33 serve.go:112: kernel [pid=989] http server [127.0.0.1:52372] is booting
+I 2023/05/24 19:45:33 blocktree.go:448: read block tree [98 kB] to [/Users/reborn/Documents/SiYuan/temp/blocktree], elapsed [0.01s]
+I 2023/05/24 19:45:33 conf.go:685: database size [3.6 MB], tree/block count [21/421]
+I 2023/05/24 19:45:33 working.go:155: kernel booted
+I 2023/05/24 19:45:33 box.go:79: auto stat [trees=21, blocks=421, dataSize=9.6 MB, assetsSize=9.3 MB]
+I 2023/05/24 19:45:33 disk.go:33: disk usage [total=500 GB, used=188 GB, free=311 GB]
+I 2023/05/24 19:45:34 serve.go:125: reverse proxy server [127.0.0.1:6806] is booting
+E 2023/05/24 19:55:32 runtime.go:155: check file system status failed: workspace dir [/Users/reborn/Documents/SiYuan] is in third party sync dir, github.com/siyuan-note/siyuan/kernel/util.checkFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:185 +0x225
+github.com/siyuan-note/siyuan/kernel/util.CheckFileSysStatus()
+	/Users/Vanessa/Work/Code/siyuan/kernel/util/runtime.go:168 +0x52
+created by main.main
+	/Users/Vanessa/Work/Code/siyuan/kernel/main.go:52 +0x129

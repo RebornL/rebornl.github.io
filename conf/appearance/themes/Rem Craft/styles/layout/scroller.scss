@@ -1,0 +1,42 @@
+@use "../common" as *;
+
+$thumb-bg: get($scroll, "base");
+$track-bg: transparent; //get($bg, "page");
+
+:root {
+  // 滚动条
+  --b3-scroll-color: #{$thumb-bg};
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  z-index: 0;
+  width: 8px;
+
+  &:horizontal {
+    height: 6px;
+  }
+
+  &-thumb {
+    border-radius: get($radius, "max");
+    box-shadow: inset 0 0 6px 6px $thumb-bg;
+    border: solid 3px transparent;
+    z-index: 0;
+    &:hover {
+      border: solid 1.5px transparent;
+    }
+  }
+
+  // &-corner {
+  //   background: $track-bg;
+  // }
+
+  // &-track {
+  //   background: $track-bg;
+
+  //   &-piece {
+  //     background: $track-bg;
+  //     // width: 6px;
+  //   }
+  // }
+}

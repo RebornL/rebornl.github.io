@@ -1,0 +1,104 @@
+{
+	"ID": "20220906225810-hxbm0n5",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20220906225810-hxbm0n5",
+		"title": "JVM的Safepoint",
+		"updated": "20220906233748"
+	},
+	"Children": [
+		{
+			"ID": "20220906225810-ot4lfll",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220906225810-ot4lfll",
+				"updated": "20220906233050"
+			},
+			"Children": [
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "a",
+					"TextMarkAHref": "https://www.cnblogs.com/thisiswhy/p/16657667.html",
+					"TextMarkTextContent": "没有二十年功力，写不出Thread.sleep(0)这一行“看似无用”的代码！ - why技术 - 博客园 (cnblogs.com)"
+				}
+			]
+		},
+		{
+			"ID": "20220906233108-cyr7fgf",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220906233108-cyr7fgf"
+			}
+		},
+		{
+			"ID": "20220906233108-ve6n924",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220906233108-ve6n924",
+				"updated": "20220906233109"
+			},
+			"Children": [
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "a",
+					"TextMarkAHref": "https://hg.openjdk.java.net/jdk8u/jdk8u/hotspot/file/tip/src/share/vm/runtime/safepoint.cpp",
+					"TextMarkTextContent": "jdk8u/jdk8u/hotspot: 69087d08d473 src/share/vm/runtime/safepoint.cpp (java.net)"
+				}
+			]
+		},
+		{
+			"ID": "20220906233119-zd03x4a",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220906233119-zd03x4a"
+			}
+		},
+		{
+			"ID": "20220906233120-evzqacq",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220906233120-evzqacq",
+				"updated": "20220906233121"
+			},
+			"Children": [
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "a",
+					"TextMarkAHref": "https://juejin.cn/post/6844903878765314061",
+					"TextMarkTextContent": "HBase实战：记一次Safepoint导致长时间STW的踩坑之旅 - 掘金 (juejin.cn)"
+				}
+			]
+		},
+		{
+			"ID": "20220906233207-ehcfz4r",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220906233207-ehcfz4r"
+			}
+		},
+		{
+			"ID": "20220906233207-bjlj48u",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220906233207-bjlj48u",
+				"updated": "20220906233207"
+			},
+			"Children": [
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "a",
+					"TextMarkAHref": "https://zhuanlan.zhihu.com/p/161710652",
+					"TextMarkTextContent": "JVM相关 - SafePoint 与 Stop The World 全解 - 知乎 (zhihu.com)"
+				}
+			]
+		},
+		{
+			"ID": "20220906233748-2j6tj26",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220906233748-2j6tj26"
+			}
+		}
+	]
+}

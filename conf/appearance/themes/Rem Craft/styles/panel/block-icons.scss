@@ -1,0 +1,94 @@
+@use "sass:math";
+@use "../common" as *;
+
+$b-bg: get($bg, "page", 1);
+
+$icon-w: get($component-size, "small");
+$icon-svg-w: get($icon, "small");
+
+$padding: $fn-space;
+
+@mixin btn($type: "page") {
+  @include icon-btn($type, $icon-w, $icon-svg-w, true);
+
+  &.ft__primary,
+  &--active {
+    @include color("focus", true);
+    @include item("focus", 1, true);
+  }
+
+  &[data-type="close"] {
+    @include item-close(true);
+    @include svg-div($icon-w, get($icon, "exsmall"), $important: true);
+  }
+}
+
+//窗口顶栏
+.block {
+  &__icons {
+    color: get($text, "secondary");
+    padding: $padding;
+    height: $icon-w + $padding * 2;
+    font-size: get($font-size, "exsmall");
+    background-color: $b-bg;
+
+    &--active {
+      background-color: $b-bg;
+    }
+
+    // 间隔
+    .fn__space {
+      width: $interval;
+    }
+
+    // 计数块
+    .listCount,
+    .listMCount {
+      @include counter(24px);
+      margin-right: $interval;
+      + .fn__space {
+        display: none;
+      }
+    }
+  }
+
+  //窗口顶栏按钮
+  &__icon {
+    @include btn();
+
+    &[disabled] {
+      @include item-disabled(true);
+    }
+
+    &[type="checkbox"] {
+      width: $icon-svg-w;
+      margin: 0 math.div($icon-w - $icon-svg-w, 2);
+    }
+
+    &[data-type="pin"] {
+      svg {
+        transform: rotate(45deg);
+        transition: transform get($transition-duration, "base")
+          get($transition-function, "ease-in-out");
+      }
+      &[aria-label="取消钉住"] {
+        svg {
+          transform: rotate(0deg);
+        }
+      }
+    }
+
+    &.fn__none + .fn__space {
+      display: none;
+    }
+  }
+
+  // 边窗顶栏logo
+  &__logo {
+    svg {
+      @include svg(get($icon, "small"));
+      margin: 0 $padding;
+    }
+    // margin-right: $padding * 2;
+  }
+}

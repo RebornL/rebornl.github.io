@@ -1,0 +1,350 @@
+{
+	"ID": "20221102212319-w6cbqt4",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20221102212319-w6cbqt4",
+		"title": "高并发系统实战课",
+		"updated": "20221102225245"
+	},
+	"Children": [
+		{
+			"ID": "20221102212319-ak7po8o",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102212319-ak7po8o",
+				"updated": "20221102212358"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "按照数据特征给系统分类："
+				}
+			]
+		},
+		{
+			"ID": "20221102212358-atpesl7",
+			"Type": "NodeList",
+			"ListData": {},
+			"Properties": {
+				"id": "20221102212358-atpesl7",
+				"updated": "20221102213316"
+			},
+			"Children": [
+				{
+					"ID": "20221102212401-xzpo4xl",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20221102212401-xzpo4xl",
+						"updated": "20221102212729"
+					},
+					"Children": [
+						{
+							"ID": "20221102212401-y4w83d5",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221102212401-y4w83d5",
+								"updated": "20221102212729"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "读多写少：这些系统的优化工作聚焦于如何通过缓存分担数据库查询压力，重点做好缓存，包括但不限于数据梳理、做数据缓存、加缓存后保证数据一致性等等工作"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221102212407-6jj9o07",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20221102212407-6jj9o07",
+						"updated": "20221102212919"
+					},
+					"Children": [
+						{
+							"ID": "20221102212407-j8jovxe",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221102212407-j8jovxe",
+								"updated": "20221102212919"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "强一致性：典型就是电商系统，挑战主要是承接高并发流量的同事，还要做好系统隔离性、事务一致性以及库存高并发争抢不超卖。"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221102212412-kvgumup",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20221102212412-kvgumup",
+						"updated": "20221102213124"
+					},
+					"Children": [
+						{
+							"ID": "20221102212412-f22om6h",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221102212412-f22om6h",
+								"updated": "20221102213124"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "写多读少：高并发写系统（全量日志分布式链路跟踪系统），主要设计大量数据如何落盘、如何传输、存储、压缩，还有冷热数据切换备份、索引查询等多方面问题。"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20221102212417-dm2r4ax",
+					"Type": "NodeListItem",
+					"ListData": {
+						"BulletChar": 42,
+						"Marker": "Kg=="
+					},
+					"Properties": {
+						"id": "20221102212417-dm2r4ax",
+						"updated": "20221102213316"
+					},
+					"Children": [
+						{
+							"ID": "20221102212417-gq9ogyz",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20221102212417-gq9ogyz",
+								"updated": "20221102213316"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "读多写多：游戏、直播服务都属于读多写多高并发系统。这类系统数据基本都是在内存中直接对外服务、同时服务都要拆成很小的单元，数据是周期落到磁盘或数据库，而不是实时更新到数据库中。"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20221102212430-82pmkjr",
+			"Type": "NodeHeading",
+			"HeadingLevel": 1,
+			"Properties": {
+				"id": "20221102212430-82pmkjr",
+				"updated": "20221102220908"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "结构梳理：大并发下，你的数据库表可能成为性能隐患"
+				}
+			]
+		},
+		{
+			"ID": "20221102220908-v1a5gq9",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102220908-v1a5gq9",
+				"updated": "20221102221044"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "对读多写少的系统做数据整理优化，这会让数据更容易缓存，数据梳理是一个重要的技巧，任何老系统在做高并发改造时，都建议先做一次表的梳理。"
+				}
+			]
+		},
+		{
+			"ID": "20221102221049-i2vlbv3",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20221102221049-i2vlbv3",
+				"updated": "20221102221136"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "精简数据会有更好的性能"
+				}
+			]
+		},
+		{
+			"ID": "20221102221137-fpolj70",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102221137-fpolj70",
+				"updated": "20221102224154"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221102224154-6l369xb.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221102224158-26vg3jg",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102224158-26vg3jg",
+				"updated": "20221102224409"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "减少账号表字段的核心在于，长度小的数据在吞吐、查询、传输上都会很快，更好管理和缓存。精简之后的表，对应业务用途也会比较单纯，主要用来检测用户登录账号密码是否正确，虽然存储2千万账号，但是整体表现还是很不错的。"
+				}
+			]
+		},
+		{
+			"ID": "20221102225006-g0qjelj",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102225006-g0qjelj"
+			}
+		},
+		{
+			"ID": "20221102225006-q56qe81",
+			"Type": "NodeHeading",
+			"HeadingLevel": 2,
+			"Properties": {
+				"id": "20221102225006-q56qe81",
+				"updated": "20221102225017"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "数据的归类及深入整理"
+				}
+			]
+		},
+		{
+			"ID": "20221102225017-ry8gc8w",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102225017-ry8gc8w",
+				"updated": "20221102225050"
+			},
+			"Children": [
+				{
+					"Type": "NodeImage",
+					"Data": "span",
+					"Children": [
+						{
+							"Type": "NodeBang"
+						},
+						{
+							"Type": "NodeOpenBracket"
+						},
+						{
+							"Type": "NodeLinkText",
+							"Data": "image"
+						},
+						{
+							"Type": "NodeCloseBracket"
+						},
+						{
+							"Type": "NodeOpenParen"
+						},
+						{
+							"Type": "NodeLinkDest",
+							"Data": "assets/image-20221102225050-xcpzql7.png"
+						},
+						{
+							"Type": "NodeCloseParen"
+						}
+					]
+				},
+				{
+					"Type": "NodeText",
+					"Data": "​"
+				}
+			]
+		},
+		{
+			"ID": "20221102225051-r8d3hzy",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102225051-r8d3hzy",
+				"updated": "20221102225158"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "除了通过精简表的只能来提高表的性能和维护性外，还可以针对不同类型的表做不同方向的缓存优化，如上表所示。"
+				}
+			]
+		},
+		{
+			"ID": "20221102225158-g96g7g5",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102225158-g96g7g5",
+				"updated": "20221102225245"
+			},
+			"Children": [
+				{
+					"Type": "NodeText",
+					"Data": "数据四种：实体对象主表、辅助查询表、实体关系和历史数据，不同类型的数据所对应的混存策略是不同的。"
+				}
+			]
+		},
+		{
+			"ID": "20221102225037-iif5rpb",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20221102225037-iif5rpb"
+			}
+		}
+	]
+}

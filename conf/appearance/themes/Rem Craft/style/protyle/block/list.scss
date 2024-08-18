@@ -1,0 +1,171 @@
+@use "sass:math";
+@use "../../common" as *;
+@use "../gutters";
+
+$list-border: get($border, 3);
+$left: 2px;
+$pad-l: 16px;
+
+$action-h: 34px;
+$action-w: $action-h;
+
+$done-opacity: 0.45;
+$done-color: get($text, "placeholder");
+
+.protyle-wysiwyg {
+  // 第一级列表缩进
+  > .list {
+    margin-left: $left;
+    &[fold="1"] {
+      height: 38px !important;
+    }
+  }
+
+  [data-node-id].li {
+    // 解决单行子列表块表按钮显示问题
+    > .list {
+      padding-left: 0;
+      margin-left: 18px + $pad-l !important;
+    }
+
+    &::before {
+      border-color: $list-border;
+      // left: $pad-l + 0.5px;
+    }
+
+    // 列表按钮悬浮底色
+    > .protyle-action {
+      // width: $action-w;
+      svg {
+        @include svg(10px);
+      }
+      &::after {
+        $w: 14px;
+        @include svg($w);
+        top: calc(50% - math.div($w, 2));
+        left: calc(50% - math.div($w, 2));
+        transition: unset;
+      }
+
+      &:hover::after {
+        background-color: get($bg, "component", 3) !important;
+      }
+
+      &--order::after {
+        border-radius: get($radius, "small");
+        opacity: 0.4;
+      }
+
+      // 有序列表特殊情况
+      &--order {
+        &::after {
+          $w: 20px;
+          @include svg($w);
+          top: math.div($action-h - $w, 2);
+          left: math.div($action-w - $w, 2);
+        }
+      }
+
+      // 待办列表特殊情况
+      &--task {
+        svg {
+          @include svg(14px);
+        }
+        &::after {
+          border-radius: get($radius, "small");
+        }
+      }
+    }
+
+    // 折叠后列表按钮样式
+    &[fold="1"] > .protyle-action {
+      &::after {
+        background-color: get($bg, "component", 2) !important;
+      }
+
+      &:hover::after {
+        background-color: get($bg, "component", 4) !important;
+      }
+    }
+  }
+
+  // 待办列表项完成后各子块的特殊样式
+  .protyle-task--done {
+    * {
+      color: $done-color;
+      border-color: get($border, 2);
+    }
+
+    // 完成后的块引用
+    [data-type="block-ref"],
+    // 完成后的超链接样式
+    span[data-type="a"]:not(:empty) ,
+    // 完成后的标签块
+    [data-type="tag"] ,
+    // 完成后的有样式子块
+    [style*="color"] {
+      opacity: $done-opacity;
+    }
+
+    kbd {
+      border-color: get($border, 4);
+    }
+  }
+}
+
+.protyle-gutters button {
+  &[data-type="NodeList"],
+  &[data-type="NodeListItem"] {
+    &,
+    ~ button {
+      margin-top: math.div($action-h - gutters.$h, 2);
+    }
+  }
+}
+
+// 导出预览页
+.b3-typography {
+  // 四种情况
+  ul ol,
+  ol[updated] ol,
+  ul ul,
+  ol[updated] ul {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+      left: -14px;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      border-right: $fn-border;
+    }
+  }
+
+  // 调整待办列表输入框的位置
+  .protyle-task > input {
+    left: -1.4em;
+  }
+
+  // 子列表为无序列表或待办列表
+  ol[updated] > li > ul,
+  ol[updated] > li > ol[updated] {
+    &::before {
+      left: -12px;
+    }
+  }
+
+  // 代表列表完成后字体颜色
+  .protyle-task--done {
+    * {
+      color: $done-color;
+      border-color: get($border, 2);
+    }
+    // 完成后的有样式子块
+    [style*="color"] {
+      opacity: $done-opacity;
+    }
+  }
+}

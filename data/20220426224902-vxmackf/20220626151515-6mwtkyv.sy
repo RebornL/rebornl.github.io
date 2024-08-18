@@ -1,0 +1,47 @@
+{
+	"ID": "20220626151515-6mwtkyv",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20220626151515-6mwtkyv",
+		"title": "WebVview学习记录",
+		"updated": "20220626152356"
+	},
+	"Children": [
+		{
+			"ID": "20220626151515-q141r7z",
+			"Type": "NodeCodeBlock",
+			"IsFencedCodeBlock": true,
+			"Properties": {
+				"id": "20220626151515-q141r7z",
+				"updated": "20220626152356"
+			},
+			"Children": [
+				{
+					"Type": "NodeCodeBlockFenceOpenMarker",
+					"Data": "```"
+				},
+				{
+					"Type": "NodeCodeBlockFenceInfoMarker",
+					"CodeBlockInfo": "amF2YQ=="
+				},
+				{
+					"Type": "NodeCodeBlockCode",
+					"Data": "webview.setWebViewClient(new WebViewClient() {\n\t@Override\n\tpublic void onPageFinished(WebView view, String url) {\n\t\tsuper.onPageFinished(view, url);\n\n\t\tgetWebViewImage();\n\t\tsetWebImageClick(view);\n\t}\n\n    // 获取图片\n    private void getWebViewImage() {\n\n        String jsString = \"function getImages() {\\n\" +\n                        \"\\tvar imgs = document.getElementsByTagName('img');\\n\" +\n                        \"\\tvar imgScr = '';\\n\" +\n                        \"\\tfor (var i = 0; i \u003c imgs.length; i++) {\\n\" +\n                        \"\\t\\tif (i == 0) {\\n\" +\n                        \"\\t\\t\\timgScr = imgs[i].src;\\n\" +\n                        \"\\t\\t} else {\\n\" +\n                        \"\\t\\t\\timgScr = imgScr + '---' + imgs[i].src;\\n\" +\n                        \"\\t\\t}\\n\" +\n                        \"\\t};\\n\" +\n                        \"\\treturn imgScr;\\n\" +\n                        \"};\";\n\n        wbWebview.evaluateJavascript(jsString, null);\n\n        wbWebview.evaluateJavascript(\"javascript:getImages()\", new ValueCallback\u003cString\u003e() {\n                @Override\n                public void onReceiveValue(String value) {\n                    if (value != null \u0026\u0026 !value.equals(\"\") \u0026\u0026 !value.equals(\"null\")) {\n                        value = value.replace(\"\\\"\", \"\");\n                        String[] dataSource = value.split(\n                                    \"---\");\n                        imageDataSource = Arrays.asList(dataSource);\n                        Log(\"已获取到图片, 总共 \" + imageDataSource.size() + \" 张图片\");\n                }\n            }\n        });\n});\n"
+				},
+				{
+					"Type": "NodeCodeBlockFenceCloseMarker",
+					"Data": "```"
+				}
+			]
+		},
+		{
+			"ID": "20220626152148-ej5kgdb",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220626152148-ej5kgdb",
+				"updated": "20220626152148"
+			}
+		}
+	]
+}

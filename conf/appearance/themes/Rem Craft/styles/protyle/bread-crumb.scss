@@ -1,0 +1,110 @@
+@use "sass:math";
+@use "../common" as *;
+
+$item-h: get($component-size, "base");
+$item-color: get($text, "placeholder");
+$fz: get($font-size, "exsmall");
+
+//面包屑
+.protyle-breadcrumb {
+  padding: 0px 8px 0px;
+  min-height: $item-h;
+
+  &__bar {
+    min-height: $item-h;
+    margin: 0;
+  }
+
+  &__item {
+    @include v-center($item-h);
+    line-height: $item-h - 2px;
+    padding: 0;
+    margin: 0;
+    transition: get($transition, "all");
+
+    &:not(:last-child)::after {
+      content: "/";
+      display: flex;
+      margin: 0 8px;
+      color: $item-color;
+      @include v-center($item-h);
+      line-height: $item-h - 2px;
+    }
+
+    svg {
+      @include svg(20px, 10px, $item-h);
+      color: $item-color;
+    }
+
+    .protyle-breadcrumb__text:not(:empty) {
+      color: $item-color;
+      margin: 0;
+      font-size: $fz;
+      transition: get($transition, "all");
+    }
+
+    &:hover,
+    &--active {
+      background-color: transparent;
+
+      .protyle-breadcrumb__text:not(:empty) {
+        color: get($text, "primary");
+      }
+    }
+
+    &[style*="max-width"] {
+      @include item("page");
+      margin: 0;
+
+      &::after {
+        display: none;
+      }
+      
+      svg {
+        color: get($text, "secondary");
+      }
+      &:hover svg {
+        color: get($text, "primary");
+      }
+    }
+  }
+
+  &__arrow {
+    display: none;
+  }
+
+  .block__icon {
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.layout__center .protyle > .protyle-breadcrumb {
+  $item-h: get($component-size, "large");
+  $fz: get($font-size, "base");
+  min-height: $item-h;
+
+  .protyle-breadcrumb {
+    &__bar {
+      min-height: $item-h;
+    }
+    &__item {
+      @include v-center($item-h);
+      line-height: $item-h - 2px;
+
+      &::after {
+        @include v-center($item-h);
+        line-height: $item-h - 2px;
+      }
+
+      svg {
+        @include svg(22px, 11px, $item-h);
+      }
+
+      .protyle-breadcrumb__text:not(:empty) {
+        font-size: $fz;
+      }
+    }
+  }
+}

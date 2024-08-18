@@ -1,0 +1,34 @@
+{
+	"ID": "20220626232858-7ej3xh2",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20220626232858-7ej3xh2",
+		"title": "无障碍代理",
+		"updated": "20220626232913"
+	},
+	"Children": [
+		{
+			"ID": "20220626232858-9kqjol2",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220626232858-9kqjol2",
+				"updated": "20220626232912"
+			},
+			"Children": [
+				{
+					"Type": "NodeTextMark",
+					"TextMarkType": "strong",
+					"TextMarkTextContent": "AccessibilityDelegate"
+				}
+			]
+		},
+		{
+			"ID": "20220626232913-itssau3",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20220626232913-itssau3"
+			}
+		}
+	]
+}

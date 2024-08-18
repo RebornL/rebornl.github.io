@@ -1,0 +1,119 @@
+@use "../common" as *;
+@use "../component/menu";
+@use "../panel/block-icons";
+
+$util-radius: get($radius, "medium");
+
+//工具窗
+.protyle-util {
+  border-radius: $util-radius;
+  padding: 0;
+
+  // 字体弹窗
+  .protyle-font {
+    padding: 4px 16px 16px;
+
+    // 小标题
+    > [style*="margin"] {
+      color: get($text, "secondary");
+      margin: 16px 0 10px !important;
+    }
+
+    // 样式组
+    .fn__flex {
+      // 样式按钮
+      .b3-color__square {
+        @include menu.color-square();
+        margin-right: $fn-space;
+        &:hover {
+          border-color: get($border, 1);
+        }
+      }
+    }
+
+    // 字体效果按钮
+    &__style {
+      padding: 4px 12px;
+      border-color: get($border, 3);
+      margin-right: $fn-space;
+
+      &:hover {
+        border-color: get($border, 1);
+      }
+    }
+
+    // 清除样式
+    button[data-type="clear"] {
+      margin-top: $interval;
+      svg {
+        margin-right: $interval;
+      }
+    }
+  }
+
+  // 特殊语言弹窗
+  .block__popover--move {
+    border-radius: $util-radius;
+
+    .block {
+      &__icon {
+        @include block-icons.btn("pop");
+        &s {
+          padding-left: 16px;
+          border-radius: $util-radius $util-radius 0 0;
+          background-color: get($bg, "pop", 1);
+          border-bottom: $fn-border;
+        }
+      }
+    }
+
+    textarea {
+      border-radius: 0 0 $util-radius $util-radius;
+      background-color: get($bg, "pop", 1);
+      padding: 16px;
+      min-height: 180px;
+      font-size: 1.2em;
+
+      &,
+      &:hover,
+      &:focus {
+        border: none !important;
+        box-shadow: none !important;
+      }
+    }
+  }
+
+  //代码块选择语言
+  .b3-list {
+    min-width: 240px;
+    margin: 0 $fn-space $fn-space;
+
+    .b3-list-item {
+      padding-left: 8px;
+      @include item("pop");
+    }
+  }
+  > .fn__flex-column > .b3-text-field {
+    margin: $fn-space !important;
+  }
+
+  // 模板选择弹窗
+  &:has(.protyle-wysiwyg) {
+    .block__icon {
+      @include item("pop", $important: true);
+      margin: auto 0;
+    }
+    > .fn__flex {
+      > .fn__flex-column > .fn__flex:first-child {
+        margin: $fn-space !important;
+      }
+      > div:last-child {
+        margin: $fn-space $fn-space $fn-space 0;
+
+        border-radius: get($radius, "base");
+        background-color: get($bg, "page", 1);
+        width: 480px !important;
+      }
+    }
+  }
+}

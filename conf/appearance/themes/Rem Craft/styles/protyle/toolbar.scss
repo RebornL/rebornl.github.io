@@ -1,0 +1,36 @@
+
+@use "../common" as *;
+
+$spacing: 4px;
+
+.protyle-toolbar {
+  padding: $spacing;
+  box-shadow: get($shadow, 1);
+  background-color: get($bg, "pop", 1);
+  transform: translateY(-12px);
+  border-radius: get($radius, "large");
+
+  &__item {
+    @include svg-div(28px, 10px);
+    @include item("pop");
+    margin-right: $spacing;
+    border-radius: get($radius, "base");
+
+    &--current {
+      @include item-focus();
+    }
+
+    &::after {
+      bottom: 110%;
+    }
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  &__divider {
+    margin: 0 $spacing 0 0;
+    border-color: get($border, 3);
+  }
+}

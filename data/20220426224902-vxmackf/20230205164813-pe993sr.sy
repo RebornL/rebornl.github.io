@@ -1,0 +1,232 @@
+{
+	"ID": "20230205164813-pe993sr",
+	"Spec": "1",
+	"Type": "NodeDocument",
+	"Properties": {
+		"id": "20230205164813-pe993sr",
+		"title": "用户画像读书疑问",
+		"updated": "20230205164922"
+	},
+	"Children": [
+		{
+			"ID": "20230205164823-bgmgj0j",
+			"Type": "NodeList",
+			"ListData": {
+				"Typ": 1
+			},
+			"Properties": {
+				"id": "20230205164823-bgmgj0j",
+				"updated": "20230205164922"
+			},
+			"Children": [
+				{
+					"ID": "20230205164825-umefltg",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "MS4=",
+						"Num": 1
+					},
+					"Properties": {
+						"id": "20230205164825-umefltg",
+						"updated": "20230205164825"
+					},
+					"Children": [
+						{
+							"ID": "20230205164825-f795r7d",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230205164825-f795r7d",
+								"updated": "20230205164855"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "hive的partition机制"
+								}
+							]
+						},
+						{
+							"ID": "20230205165715-ofhgdu2",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230205165715-ofhgdu2",
+								"updated": "20230205165718"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "​"
+								},
+								{
+									"Type": "NodeImage",
+									"Data": "span",
+									"Children": [
+										{
+											"Type": "NodeBang"
+										},
+										{
+											"Type": "NodeOpenBracket"
+										},
+										{
+											"Type": "NodeLinkText",
+											"Data": "image"
+										},
+										{
+											"Type": "NodeCloseBracket"
+										},
+										{
+											"Type": "NodeOpenParen"
+										},
+										{
+											"Type": "NodeLinkDest",
+											"Data": "assets/image-20230205165718-x6apx4n.png"
+										},
+										{
+											"Type": "NodeCloseParen"
+										}
+									]
+								},
+								{
+									"Type": "NodeText",
+									"Data": "​"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20230205164857-xty3xer",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "Mi4=",
+						"Num": 2
+					},
+					"Properties": {
+						"id": "20230205164857-xty3xer"
+					},
+					"Children": [
+						{
+							"ID": "20230205164857-6p71okv",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230205164857-6p71okv",
+								"updated": "20230205164912"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "union all的作用"
+								}
+							]
+						},
+						{
+							"ID": "20230205171805-sifm5dl",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230205171805-sifm5dl",
+								"updated": "20230205171814"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "​union：对两个结果集进行并集操作，不包括重复行，同时进行默认规则的排序；union在进行表链接后会筛选掉重复的记录，所以在表链接后会对所产生的结果集进行排序运算，删除重复的记录再返回结果。实际大部分应用中是不会产生重复的记录，最常见的是过程表与历史表union。"
+								}
+							]
+						},
+						{
+							"ID": "20230205171817-7ge03q6",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230205171817-7ge03q6"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "union all：对两个结果集进行并集操作，包括重复行，不进行排序； 如果返回的两个结果集中有重复的数据，那么返回的结果集就会包含重复的数据了。​"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20230205164912-3ve63qg",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "My4=",
+						"Num": 3
+					},
+					"Properties": {
+						"id": "20230205164912-3ve63qg",
+						"updated": "20230205164922"
+					},
+					"Children": [
+						{
+							"ID": "20230205164912-sl012gw",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230205164912-sl012gw",
+								"updated": "20230205164922"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "用户画像GMV什么意思"
+								}
+							]
+						},
+						{
+							"ID": "20230205172121-gpactta",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230205172121-gpactta",
+								"updated": "20230205172133"
+							},
+							"Children": [
+								{
+									"Type": "NodeText",
+									"Data": "GMV应该是销售额的意思"
+								}
+							]
+						}
+					]
+				},
+				{
+					"ID": "20230205172133-d8t6obz",
+					"Type": "NodeListItem",
+					"ListData": {
+						"Typ": 1,
+						"Delimiter": 46,
+						"Marker": "NC4=",
+						"Num": 4
+					},
+					"Properties": {
+						"id": "20230205172133-d8t6obz"
+					},
+					"Children": [
+						{
+							"ID": "20230205172133-bllczqm",
+							"Type": "NodeParagraph",
+							"Properties": {
+								"id": "20230205172133-bllczqm"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"ID": "20230205164813-ld39z9f",
+			"Type": "NodeParagraph",
+			"Properties": {
+				"id": "20230205164813-ld39z9f",
+				"updated": "20230205164813"
+			}
+		}
+	]
+}

@@ -1,0 +1,16 @@
+@use "../common" as *;
+$select-bg: rgba(var(--brand-6), 0.3);
+$select-dark: rgba(var(--page-4), 0.6);
+
+::selection {
+  background-color: $select-bg;
+
+  .dark & {
+    background-color: $select-dark;
+  }
+}
+
+// 拖拽选中
+.protyle-wysiwyg .dragover {
+  @include drag();
+}

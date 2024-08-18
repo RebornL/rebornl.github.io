@@ -1,0 +1,17 @@
+@use "../common" as *;
+
+.viewer {
+  &-tooltip {
+    color: get($text, "primary");
+  }
+  &-toolbar {
+    > ul > li {
+      svg {
+        color: get($text, "placeholder");
+      }
+      &:hover svg {
+        color: get($text, "primary");
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+
+@use "../common" as *;
+
+.viewer {
+  &-toolbar {
+    > ul > li {
+      svg {
+        color: get($text, "placeholder");
+      }
+      &:hover svg {
+        color: get($text, "primary");
+      }
+    }
+  }
+}

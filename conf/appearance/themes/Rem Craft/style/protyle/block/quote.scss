@@ -1,0 +1,97 @@
+@use "sass:math";
+@use "../../common" as *;
+@use "heading";
+@use "list";
+
+$bq-color: get($text, "primary");
+
+$side-left: $fn-space;
+$side-w: 2px;
+
+$left-interval: 14px;
+
+$left-tmp: $side-left + $side-w + $left-interval;
+
+//引述块
+@mixin bq {
+  position: relative;
+  background-color: transparent;
+  border: none;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: $side-w;
+    height: calc(100% - 8px * 2);
+    top: $side-left;
+    bottom: $side-left;
+    left: $side-left;
+    z-index: 0;
+    border-radius: get($radius, "max");
+    background-color: get($text, "primary");
+  }
+}
+
+.b3-typography,
+.protyle-wysiwyg {
+  .bq {
+    @include bq();
+    padding: 4px 0;
+    // 一级子元素
+    > [data-node-id] {
+      margin-left: $left-tmp;
+      &[data-type="NodeHeading"] {
+        &:first-child {
+          margin-top: $left-interval + $side-w;
+        }
+        &::before {
+          left: heading.$left - $left-tmp !important;
+        }
+      }
+    }
+
+    > .list {
+      margin-left: $left-tmp + list.$left;
+      // padding: 0;
+    }
+
+    // 所有子元素
+    [data-node-id] {
+      color: $bq-color;
+    }
+
+    &[fold="1"] {
+      height: 48px !important;
+      > div:first-child {
+        font-size: 1em !important;
+        line-height: 1.625 !important;
+        height: auto !important;
+        margin-top: 4px !important;
+      }
+    }
+  }
+}
+
+.b3-typography blockquote {
+  @include bq();
+
+  > * {
+    margin-left: $left-tmp;
+  }
+
+  > ul {
+    padding-left: list.$action-w;
+  }
+
+  * {
+    color: $bq-color;
+  }
+}
+
+.protyle-gutters button[data-type="NodeBlockquote"] {
+  ~ button:last-child,
+  &:last-child {
+    margin-right: $left-tmp - 4px;
+  }
+}
